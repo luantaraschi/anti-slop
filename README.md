@@ -72,14 +72,18 @@ Words axis is otherwise clean — no catalog labels, no leaked implementation na
 That is the output of a blind audit of `fixtures/slop-dashboard`, one of the
 four calibration specimens, pasted exactly as the run produced it. The agent
 had the skill and the directory and nothing else: not the expected answer, not
-this file. What every calibration run scored across all four fixtures is
-recorded in `fixtures/README.md`.
+this file. It followed the rules that say how to rank a finding and reshaped the
+ones that say how to present it: the verdict runs to three sentences where
+`SKILL.md` asks for one, and the aligned columns became tables. That gap is
+recorded rather than papered over in `fixtures/README.md`, together with what
+every calibration run scored across all four fixtures.
 
 ## The three axes
 
 **Surface** (A1 through A10) is the visual layer: the palette, the radius,
-the shadows, the type scale, the icons and motion. Ten tells, most of them
-absences that live in the theme file rather than in any one component.
+the shadows, the type scale, the icons and motion. Ten tells, three of them
+(A1, A3, A5) absences that live in the theme file rather than in any one
+component.
 
 **Words** (W1 through W7) is the copy inside the interface: labels, button
 verbs, empty states, error messages. Seven tells that catch the gap between
@@ -115,11 +119,19 @@ shadcn.
 ## Contributing
 
 A new tell needs all four fields (Signal, Principle, Fix, Not slop when) and
-a free id. Run `python scripts/validate.py` before opening a pull request;
-it checks that every tell has its four fields and has to print
-`0 problem(s)`. As a convention the validator does not enforce, also add the
-new id to whichever fixture row in `fixtures/README.md` already demonstrates
-it.
+a free id. Two commands have to pass before you open a pull request:
+
+```
+python scripts/validate.py
+python -m pytest tests/
+```
+
+The first checks that every tell has its four fields, that no id is defined
+twice, and that every id a fixture names exists; it has to print
+`0 problem(s)`. The second covers the validator itself and needs `pytest`,
+the only dependency in the repo; install it with `pip install pytest`. As a
+convention the validator does not enforce, also add the new id to whichever
+fixture row in `fixtures/README.md` already demonstrates it.
 
 ## License
 

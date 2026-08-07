@@ -97,6 +97,55 @@ def test_check_tells_rejects_a_malformed_id():
     assert errors == ["references/finish.md: no tells found"]
 
 
+TWO_TELLS = """# Finish
+
+### F1 — No lang attribute
+
+**Signal**  The root `<html>` element ships without `lang`.
+
+**Principle**  Screen readers pick a voice from it.
+
+**Fix**  Set `lang` on the root element.
+
+**Not slop when**  the page is a fragment embedded in a host document.
+
+### F2 — A title nobody revisited
+
+**Signal**  Every route ships the same `<title>`.
+
+**Principle**  A repeated title distinguishes nothing in the history.
+
+**Fix**  Give each route a title of its own.
+
+**Not slop when**  only one real route exists and it wrote its own title.
+"""
+
+
+def test_collect_tells_keeps_successive_tells_apart():
+    tells = validate.collect_tells(TWO_TELLS)
+    assert list(tells) == ["F1", "F2"]
+    assert tells["F1"]["title"] == "No lang attribute"
+    assert tells["F2"]["title"] == "A title nobody revisited"
+    assert "screen readers" in tells["F1"]["body"].lower()
+    assert "screen readers" not in tells["F2"]["body"].lower()
+    assert "history" in tells["F2"]["body"].lower()
+    assert "history" not in tells["F1"]["body"].lower()
+
+
+def test_check_tells_accepts_two_complete_tells():
+    assert validate.check_tells(TWO_TELLS, "references/finish.md") == []
+
+
+def test_check_duplicate_tell_ids_accepts_distinct_ids():
+    assert validate.check_duplicate_tell_ids(TWO_TELLS, "references/finish.md") == []
+
+
+def test_check_duplicate_tell_ids_reports_a_repeated_id():
+    text = TWO_TELLS.replace("### F2 —", "### F1 —")
+    errors = validate.check_duplicate_tell_ids(text, "references/finish.md")
+    assert errors == ["references/finish.md: F1 is defined more than once"]
+
+
 SKILL_BODY = """
 | `anti-slop` | A, B, C | `surface.md`, `words.md`, `finish.md`, `molds.md` |
 | `anti-slop surface` | A | `surface.md`, `molds.md` |
@@ -147,6 +196,24 @@ def test_check_fixture_ids_reports_an_unknown_id_a_fixture_forbids():
         "fixtures/README.md: slop-dashboard expects unknown id A1",
         "fixtures/README.md: clean-dashboard forbids unknown id A1",
     ]
+
+
+def test_check_fixture_ids_reports_a_malformed_id_without_skipping_the_row():
+    table = FIXTURE_TABLE.replace(
+        "| `slop-dashboard` | expect | A1, A3, F2 |",
+        "| `slop-dashboard` | expect | A1, X7, F9 |",
+    )
+    errors = validate.check_fixture_ids(table, {"A1", "A3"})
+    assert errors == [
+        "fixtures/README.md: slop-dashboard expects malformed id X7",
+        "fixtures/README.md: slop-dashboard expects unknown id F9",
+    ]
+
+
+def test_check_fixture_ids_reports_a_lowercase_id():
+    table = FIXTURE_TABLE.replace("A1, A3, F2", "A1, A3, f2")
+    errors = validate.check_fixture_ids(table, {"A1", "A3", "F2"})
+    assert errors == ["fixtures/README.md: slop-dashboard expects malformed id f2"]
 
 
 def test_check_fixture_ids_reports_an_empty_table():

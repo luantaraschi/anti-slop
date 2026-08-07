@@ -26,12 +26,29 @@ fixture to fix.
 
 `clean-landing` is the sharpest of the four because it carries the dangerous
 patterns on purpose: a purple gradient and a `shadow-xl`, both drawn from
-colors named in its theme and each used exactly once. A2 and A4 describe those
-patterns, and they still must not fire here.
+colors named in its theme and each used exactly once. A4 is the one whose
+exemption the corpus exercises mechanically: its signal names `shadow-xl`
+outright, so any implementation that greps lands on the exemption and has to
+decline there. A2 is exercised only by a reading auditor. Its signal matches
+`from-purple-*` paired with `to-blue-*`, and this gradient is `from-dusk to-ink`
+off the theme's own colors, so a grep-shaped implementation declines A2 before
+it ever consults the exemption. The blind run did read it, and declined the
+gradient by name.
 
 Do not tidy a `slop-*` fixture. The missing `lang`, the keyless `.map()`, the
 leftover `Your Company` and the untouched shadcn primitives are the deliverable.
 A `slop-*` fixture that has been cleaned up tests nothing.
+
+## What the corpus does not cover
+
+Nine of the twenty-nine tells appear in no row at all, so nothing here exercises
+them in either direction: A9, W2, W4, W5, F6, F7, F8, F9 and F10. Six more
+appear only on an `expect` row, so the pattern is demonstrated and the exemption
+has no counterexample: A8, W6, W7, F5, F11 and F12. That is fifteen of
+twenty-nine with no `forbid` coverage, which means just under half of the "Not
+slop when" clauses have never been tested against a fixture built to disarm
+them, and that clause is the field separating this catalog from a linter. F10's
+absence is a decision with a reason, recorded below; the other eight are a gap.
 
 ## Known tensions
 
@@ -65,14 +82,33 @@ conjunction literally, the blind run declined A10, and said in the same breath
 that those two components never reuse the primitives they sit next to. That
 observation settled it. They are domain-named, not domain-shaped, and a file
 called `StatCard` that re-types the classes of the `<Card>` beside it is not
-evidence anyone decided anything. The signal is now the untouched
-`components/ui/` on its own. The domain-component clause moved into "Not slop
-when" and is stated in terms of use rather than naming: a component earns the
-exemption by importing and rendering the primitives. What rode on the answer was
-`clean-dashboard`, which had leaned on "no domain component anywhere" to disarm
-A10. It survives twice over without that clause: `ui/button.tsx` is reworked, so
-the signal never fires, and `InvoiceLedger` imports and renders it, so the
-exemption holds even if it did.
+evidence anyone decided anything. The first repair made the signal the untouched
+`components/ui/` on its own and moved the domain-component clause into "Not slop
+when", restated in terms of use rather than naming.
+
+A second pass, the same day, found that split backwards. It left A10's four
+fields arguing with each other: the signal fired on an untouched
+`components/ui/` while the exemption released any project whose components
+merely imported their primitives, so byte-identical stock shadcn that everybody
+dutifully imported came out exempt. And "imports the component instead of
+re-typing its classes" is evidence of ordinary React, not evidence anyone
+decided anything. A10 is now the tell the re-run below actually reached:
+primitives installed and then duplicated by hand. The signal is the use gap,
+counted as import sites against hand-rolled ones, and the exemption asks for
+both halves at once, that the primitive is used and that the primitive itself
+carries a decision.
+
+What rode on the answer was `clean-dashboard`, which had leaned on "no domain
+component anywhere" to disarm A10. It survives every version of the tell.
+`ui/button.tsx` is reworked and records the choice at `:7-12`, in the theme's
+radius and colors, with two variants and the stock `ghost`, `link` and
+`destructive` deleted. It is imported and rendered at `components/table.tsx:4,41`
+and `app/page.tsx:7,54,83`, and the fixture holds no raw `<button>` anywhere, so
+the signal has nothing to fire on. `slop-dashboard` still fires it: `<Card>` is
+imported once (`app/page.tsx:25`) against four hand-rolled copies of its classes
+(`components/stat-card.tsx:3`, `components/table.tsx:6`, `app/page.tsx:29`,
+`app/invoices/page.tsx:11`), and `<Button>` once (`app/page.tsx:18`) against a
+raw `<button>` at `app/page.tsx:34`.
 
 ## Last calibration
 
@@ -97,13 +133,17 @@ caused. A score taken after the fixes would be a score of the fixes.
 Three repairs came out of the three mismatches, none of them to a fixture:
 
 - A10's signal stopped being a conjunction, and its exemption started asking
-  whether a component uses the primitives rather than how it is named.
+  whether a component uses the primitives rather than how it is named. A later
+  pass rebuilt the whole tell around that use gap; see Known tensions above.
 - F2's exemption stopped covering a surviving framework default, so a one-screen
   app no longer gets to ship `Vite + React` in the tab.
-- `slop-landing` gained F2 and W6 on its row. W6 needed no tell change: "The
-  platform for teams that move fast" (`src/Hero.tsx:14`) and "Built on
-  infrastructure your team already trusts" (`src/App.tsx:31`) are both really
-  there, and the row was simply short.
+- `slop-landing` gained F2 and W6 on its row. Adding W6 exposed that its signal
+  was a phrase list rather than a pattern: not one of the five phrases it named
+  appears anywhere in the fixture, while "The platform for teams that move fast"
+  (`src/Hero.tsx:14`) and "Built on infrastructure your team already trusts"
+  (`src/App.tsx:31`) are both really there. The tell was widened: the signal now
+  names the pattern, a capability, speed or trust claim with no fact behind it,
+  and the five phrases are examples of it rather than the whole of it.
 
 **The A10 repair was re-tested blind.** A fifth run went at `slop-dashboard` by
 the same method, with a fresh agent that knew neither the expected answer nor

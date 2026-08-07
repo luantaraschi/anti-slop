@@ -1,9 +1,9 @@
 # Surface
 
 The subjective axis. Read the theme before you read a single component:
-`tailwind.config`, `globals.css`, any tokens file. Half the tells below are
-absences that live there, and an auditor who opens components first collects
-thirty symptoms and misses the cause.
+`tailwind.config`, `globals.css`, any tokens file. Three of the ten tells below
+(A1, A3, A5) are absences that live there, and an auditor who opens components
+first collects thirty symptoms and misses the cause.
 
 A pattern being present is never the finding. The finding is the pattern
 present **and** no evidence anyone chose it. Look for that evidence in
@@ -101,12 +101,12 @@ the tell does not fire.
 
 **Not slop when**  The motion follows a declared orchestration and reduced-motion handling is already in place.
 
-### A10 — Stock shadcn
+### A10 — Primitives installed and then hand-rolled
 
-**Signal**  `components/ui/` with not a line of difference from stock shadcn. The library's radius, its focus ring and its whole variant list are still there exactly as the install wrote them, unused variants included.
+**Signal**  The primitives sit in `components/ui/` while the components that play their role re-type their classes in raw `div`s and `button`s beside them. Count both sides: the sites that import the primitive against the sites that reimplement it by hand.
 
-**Principle**  shadcn is a starting point by design, not a destination. Primitives nobody edited leave the interface speaking the library's vocabulary instead of the product's.
+**Principle**  Installing a primitive and then not using it is the decision that never happened. The library's vocabulary is in the tree and the product's is not, so every callsite re-decides the same radius, border and shadow on its own.
 
-**Fix**  Rework the primitives the product leans on most, in the theme's own radius and colors, and drop the variants it never renders.
+**Fix**  Route the hand-rolled sites through the primitive, and rework the primitive itself for what the product actually needs: the theme's radius and colors, and none of the variants it never renders.
 
-**Not slop when**  Every component that plays a primitive's role imports it rather than re-typing its classes beside it. A single importer among a dozen hand-rolled ones does not earn the exemption, and neither does a domain name on a file: a `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as untouched as they were.
+**Not slop when**  The components that play a primitive's role import it, *and* the primitive shows evidence of a decision: variants pruned, theme tokens wired in, a comment recording the choice. Both halves are required. A single importer among a dozen hand-rolled ones does not earn the exemption, and neither does a domain name on a file: a `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as unused as the install left them.

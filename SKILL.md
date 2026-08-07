@@ -51,9 +51,9 @@ just listing symptoms.
    every check is greppable), and it sets the floor the other two axes get
    read against.
 3. **Surface, theme before components.** Read `tailwind.config`,
-   `globals.css`, and any tokens file before opening a single component. Half
-   the Surface tells are absences that live in the theme, and starting from
-   components collects symptoms while missing the cause.
+   `globals.css`, and any tokens file before opening a single component. Three
+   of the ten Surface tells (A1, A3, A5) are absences that live in the theme,
+   and starting from components collects symptoms while missing the cause.
 4. **Words.** Read the copy inside the interface itself: labels, toasts,
    empty states, error messages.
 5. **False positive filter.** Run every candidate finding through the rule
@@ -62,13 +62,12 @@ just listing symptoms.
 
 ## The false positive rule
 
+Look for evidence of a decision in four places before a Surface tell is
+allowed to fire: `theme.extend`, custom properties under `:root` or
+`@theme`, a dedicated tokens file, and a `components/ui/` that differs from
+stock shadcn. Find evidence in any of the four, and the tell does not fire.
 A pattern present is not a finding. A finding is a pattern present **and**
-no evidence anyone chose it. Look for that evidence in four places before a
-Surface tell is allowed to fire: `theme.extend`, custom properties under
-`:root` or `@theme`, a dedicated tokens file, and a `components/ui/` that
-differs from stock shadcn. Find evidence in any of the four, and the tell
-does not fire. A pattern present is not a finding. A finding is a pattern
-present and no evidence anyone chose it.
+no evidence anyone chose it.
 
 ## Output
 
@@ -79,13 +78,13 @@ nothing was prepared for shipping — 7 of 12 finish checks fail. The copy is
 above average; only the empty states give no direction.
 
 ROOT
-A1  Palette nobody picked        tailwind.config.ts:12   fixes A2, A4, A5
-F2  One title across 6 routes    app/layout.tsx:14
+A1  Palette nobody picked         tailwind.config.ts:12   fixes A2, A4, A5
+F2  One title across 6 routes     app/layout.tsx:14
 
 THEN
-F1  <html> without lang          app/layout.tsx:8
-A7  Sparkles decorating 4 heads  components/hero.tsx:23
-W3  "No items found" on 3 screens components/table.tsx:88
+F1  <html> without lang           app/layout.tsx:8
+A7  Sparkles decorating 4 heads   components/hero.tsx:23
+W3  "No items found" on 3 screens  components/table.tsx:88
 ```
 
 ## Report rules

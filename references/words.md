@@ -58,13 +58,13 @@ whose verb never comes back, the empty screen that gives no direction.
 
 ### W6 — Inflated marketing copy
 
-**Signal**  "Seamlessly", "Powerful", "Effortlessly", "Take your X to the next level", "Unlock the power of".
+**Signal**  A claim about capability, speed or trust with no fact behind it: "The platform for teams that move fast", "Built on infrastructure your team already trusts". The stock intensifiers are the same failure compressed into one word ("Seamlessly", "Powerful", "Effortlessly", "Take your X to the next level", "Unlock the power of"), but the tell is the unsubstantiated claim, not a fixed list of phrases.
 
 **Principle**  A sales adjective occupies the place information should hold. Whoever reads it wants to know what the thing does.
 
 **Fix**  Swap for something specific. **Handoff:** run the `humanizer` skill on the text instead of rewriting it here.
 
-**Not slop when**  The brand voice is declaredly promotional and the text backs the claim with a verifiable fact.
+**Not slop when**  The brand voice is openly promotional and the text backs the claim with a verifiable fact.
 
 ### W7 — The rule of three
 

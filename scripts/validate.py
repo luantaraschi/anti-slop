@@ -35,7 +35,34 @@ def collect_tells(text):
     return tells
 
 
+def check_duplicate_tell_ids(text, source):
+    """Report any tell id that appears on more than one heading in the text.
+
+    collect_tells() keys by id, so a repeat overwrites its twin and the
+    catalog loses a tell silently. This check reads the headings directly so
+    that never passes unnoticed.
+    """
+    seen = set()
+    errors = []
+    for line in text.splitlines():
+        heading = _TELL_HEADING.match(line)
+        if not heading:
+            continue
+        tell_id = heading.group(1)
+        if tell_id in seen:
+            errors.append(
+                "{}: {} is defined more than once".format(source, tell_id)
+            )
+        seen.add(tell_id)
+    return errors
+
+
 def check_tells(text, source):
+    """Report every tell in the text that is missing one of the four fields.
+
+    Containment is by substring, so the fields are accepted in any order and
+    anywhere in the tell's body. This check does not police their sequence.
+    """
     tells = collect_tells(text)
     if not tells:
         return ["{}: no tells found".format(source)]
@@ -117,13 +144,17 @@ def check_references(skill_text, available):
     return errors
 
 
-_FIXTURE_ROW = re.compile(
-    r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|\s*([AWF\d,\s]*)\|"
-)
+_FIXTURE_ROW = re.compile(r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|(.*)\|")
+_TELL_ID = re.compile(r"^[AWF]\d+$")
 
 
 def check_fixture_ids(text, known_ids):
-    """Every id a fixture names must exist in the catalog."""
+    """Every id a fixture names must be well formed and exist in the catalog.
+
+    The row itself is matched permissively and the ids are shaped inside the
+    loop, so a typo is reported rather than dropping the whole row out of the
+    scan and turning id-checking off in silence.
+    """
     errors = []
     rows = 0
     for line in text.splitlines():
@@ -133,31 +164,55 @@ def check_fixture_ids(text, known_ids):
         rows += 1
         fixture, kind, ids = row.group(1), row.group(2), row.group(3)
         for tell_id in (part.strip() for part in ids.split(",")):
-            if tell_id and tell_id not in known_ids:
-                errors.append(
-                    "fixtures/README.md: {} {}s unknown id {}".format(
-                        fixture, kind, tell_id
-                    )
+            if not tell_id:
+                continue
+            if not _TELL_ID.match(tell_id):
+                fault = "malformed"
+            elif tell_id not in known_ids:
+                fault = "unknown"
+            else:
+                continue
+            errors.append(
+                "fixtures/README.md: {} {}s {} id {}".format(
+                    fixture, kind, fault, tell_id
                 )
+            )
     if rows == 0:
         errors.insert(0, "fixtures/README.md: no expectation rows found")
     return errors
 
 
 def main(root):
-    errors = check_frontmatter((root / "SKILL.md").read_text(encoding="utf-8"))
+    skill = root / "SKILL.md"
+    references = root / "references"
+    absent = [
+        "{}: not found under {}. Run this from the skill's checkout.".format(
+            label, root
+        )
+        for label, path in (("SKILL.md", skill), ("references/", references))
+        if not path.exists()
+    ]
+    if absent:
+        for error in absent:
+            print(error)
+        print("{} problem(s)".format(len(absent)))
+        return 1
+
+    skill_text = skill.read_text(encoding="utf-8")
+    reference_files = sorted(references.glob("*.md"))
+
+    errors = check_frontmatter(skill_text)
     known = set()
-    for reference in sorted((root / "references").glob("*.md")):
+    for reference in reference_files:
         if reference.name == "molds.md":
             continue
         source = "references/{}".format(reference.name)
         text = reference.read_text(encoding="utf-8")
         known |= set(collect_tells(text))
         errors += check_tells(text, source)
-    available = {p.name for p in (root / "references").glob("*.md")}
-    errors += check_references(
-        (root / "SKILL.md").read_text(encoding="utf-8"), available
-    )
+        errors += check_duplicate_tell_ids(text, source)
+    available = {p.name for p in reference_files}
+    errors += check_references(skill_text, available)
     fixture_readme = root / "fixtures" / "README.md"
     if fixture_readme.exists():
         errors += check_fixture_ids(
