@@ -42,23 +42,30 @@ Without a path, the target is the project root.
 ## Example output
 
 ```
-Verdict — stock shadcn dashboard, installed and never touched. The surface
-carries no decision of its own: one radius, one shadow, no theme.extend. And
-nothing was prepared for shipping — 7 of 12 finish checks fail. The copy is
-above average; only the empty states give no direction.
+Verdict — the stock dashboard, with the primitives left where the installer
+put them. `components/ui/button.tsx` and `card.tsx` are byte-for-byte shadcn,
+and the components named for the domain do not build on them: `StatCard` and
+`InvoiceTable` re-type `rounded-2xl border border-gray-200 shadow-lg p-6`
+beside them, and the page repeats it over the one `<Card>` it does render.
+The theme is `extend: {}`, so every radius, shadow and type step in the tree
+is a default nobody picked. Finish is thin rather than absent: there is a
+custom 404 and a real icon, but no `lang`, one title across three routes, and
+a `.map()` with no key.
 
 ROOT
-A1  Palette nobody picked        tailwind.config.ts:12   fixes A2, A4, A5
-F2  One title across 6 routes    app/layout.tsx:14
+A1   theme.extend is empty          tailwind.config.ts:5       fixes A3, A5
+A10  Stock shadcn primitives        components/ui/card.tsx:12  fixes A4, A6
 
 THEN
-F1  <html> without lang          app/layout.tsx:8
-A7  Sparkles decorating 4 heads  components/hero.tsx:23
-W3  "No items found" on 3 screens components/table.tsx:88
+F1   <html> without lang            app/layout.tsx:5
+F2   One title across three routes  app/layout.tsx:1
+F11  .map() without a key           components/table.tsx:7
+W3   "No items found", no way out   components/table.tsx:3
 ```
 
-This is the literal example from `SKILL.md`. It stands in until a real run
-replaces it.
+That is a run against `fixtures/slop-dashboard`, pasted as it came out. What
+the blind calibration runs scored against all four fixtures is recorded in
+`fixtures/README.md`.
 
 ## The three axes
 

@@ -103,10 +103,10 @@ the tell does not fire.
 
 ### A10 — Stock shadcn
 
-**Signal**  `components/ui/` with not a line of difference from stock shadcn, and no domain component anywhere: everything is a generic `<Card>` and `<Button>`.
+**Signal**  `components/ui/` with not a line of difference from stock shadcn. The library's radius, its focus ring and its whole variant list are still there exactly as the install wrote them, unused variants included.
 
-**Principle**  shadcn is a starting point by design, not a destination. Without a domain component, the interface's vocabulary is the library's, not the product's.
+**Principle**  shadcn is a starting point by design, not a destination. Primitives nobody edited leave the interface speaking the library's vocabulary instead of the product's.
 
-**Fix**  Modify the primitives the product uses most, and build components that name the domain.
+**Fix**  Rework the primitives the product leans on most, in the theme's own radius and colors, and drop the variants it never renders.
 
-**Not slop when**  The install is recent and declared as a base, with domain components already living in another folder.
+**Not slop when**  Components outside `ui/` build on those primitives: they import and render them instead of re-typing the same classes beside them. The domain name on a file is not that evidence. A `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as untouched as they were.

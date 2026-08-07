@@ -17,13 +17,13 @@ two axes are read against.
 
 ### F2 — One title for every route
 
-**Signal**  Every route shares the same `<title>`, or still carries the framework template's: "Vite + React", "Create Next App", "React App".
+**Signal**  Every route shares the same `<title>`, or the title is still the framework template's: "Vite + React", "Create Next App", "React App".
 
-**Principle**  The title is the label on the tab, the history entry, and the search result. Repeated across routes, it distinguishes nothing.
+**Principle**  The title is the label on the tab, the history entry, and the search result. Repeated across routes, it distinguishes nothing. Left as the scaffold shipped it, it names the toolchain instead of the product.
 
-**Fix**  Give each route its own title, specific first and generic last: `Invoices — Acme`.
+**Fix**  Give each route its own title, specific first and generic last: `Invoices — Acme`. On a one-screen app, one title is enough, as long as somebody wrote it.
 
-**Not slop when**  The application is a single screen where only one real route exists.
+**Not slop when**  Only one real route exists and its single title is the product's own. A surviving framework default is never exempt. A one-screen app still puts its name in the tab.
 
 ### F3 — No meta description
 
