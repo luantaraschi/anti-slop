@@ -89,23 +89,7 @@ neither on long-form body copy, where the reflow cost doesn't pay for itself.
 property to apply to, so the condition never arises; or the project already
 applies it elsewhere, and this instance slipped through.
 
-### C5 — A typeface loaded and left rough
-
-**Signal**  A custom font family loaded with no
-`-webkit-font-smoothing: antialiased` set on the root.
-
-**Principle**  On macOS, unsmoothed text renders heavier than the family was
-drawn. Whoever chose the family never checked the result on that platform.
-
-**Fix**  Apply the smoothing once, on the root, never per element — applied
-inconsistently it reads as uneven between sections of the same page.
-
-**Not slop when**  No custom family is loaded anywhere, so the condition never
-arises and the system font already renders the way the platform intends; or
-the project's other pages that load a custom family already carry the
-smoothing, and this is the one it was missed on.
-
-### C6 — A target the size of the drawing
+### C5 — A target the size of the drawing
 
 **Signal**  An interactive element with a declared dimension under 40px and no
 area extended by a pseudo-element or padding. Count the small controls that
@@ -121,7 +105,7 @@ the neighboring target.
 condition never arises; or the project's other small controls already extend,
 and this one is the exception.
 
-### C7 — An image with no edge
+### C6 — An image with no edge
 
 **Signal**  A content `<img>` with no outline, in a project where every other
 surface carries a border or a shadow.
@@ -137,23 +121,23 @@ negative `outline-offset` so it doesn't add to the layout.
 never arises; or the project's other images already carry the treatment, and
 this one was missed.
 
-### C8 — Enter and exit weigh the same
+### C7 — Enter and exit weigh the same
 
 **Signal**  The same duration and the same distance in both directions, or an
 exit that is just `display: none` while the entrance animates.
 
 **Principle**  Whatever is leaving has already had the user's attention moved
-to what comes next. An exit that competes with the entrance holds the eye
-where it no longer needs to be.
+to what comes next. An exit that matches the entrance holds the eye where it
+no longer needs to be.
 
 **Fix**  A shorter, more understated exit than the entrance — a small, fixed
-offset that signals direction without competing for attention.
+offset that signals direction without drawing the eye back.
 
 **Not slop when**  No animated enter or exit exists anywhere in the tree, so
 the condition never arises; or the project's other enter/exit pairs are
 already asymmetric, and this pair is the exception.
 
-### C9 — An animation that cannot change its mind
+### C8 — An animation that cannot change its mind
 
 **Signal**  A `@keyframes` block triggered by an interactive state change — a
 drawer, a panel, a toggle — where the transition would need to be
@@ -171,7 +155,7 @@ reserve keyframes for a sequence meant to run once, start to finish.
 so the condition never arises; or the project's other interactive states
 already use a transition, and this one is the exception.
 
-### C10 — Nothing happens when you press
+### C9 — Nothing happens when you press
 
 **Signal**  Elements with a declared `hover:` state and no `active:` state.
 Count the ones carrying both against the ones that only carry hover.
@@ -186,7 +170,7 @@ in elevation — on every control that already has a hover state.
 absence is uniform across the tree; or the project's other controls already
 carry a pressed state, and this one is the exception.
 
-### C11 — One theme was ever opened
+### C10 — One theme was ever opened
 
 **Signal**  `dark:` present on the background and absent on the border or
 divider; a separator color declared only for the light theme.
@@ -202,7 +186,7 @@ a color set per element.
 never arises; or the project's other borders already declare both themes, and
 this one is the exception.
 
-### C12 — Disabled that still looks clickable
+### C11 — Disabled that still looks clickable
 
 **Signal**  A `disabled` attribute with no visual reduction, or a reduced
 opacity applied with no `disabled` attribute behind it.
@@ -218,7 +202,7 @@ pointer cursor along with them.
 condition never arises; or the project's other disabled controls already
 agree on both sides, and this one is the exception.
 
-### C13 — Color carrying the meaning alone
+### C12 — Color carrying the meaning alone
 
 **Signal**  Status communicated by color alone — a dot, a stripe, a
 label-less badge — with no text, shape, or icon repeating the same
