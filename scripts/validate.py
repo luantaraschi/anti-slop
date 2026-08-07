@@ -12,6 +12,7 @@ REQUIRED_KEYS = ("name", "description", "license")
 DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit")
 
 _KEY = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*)$")
+_FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
 
 def parse_frontmatter(text):
@@ -32,7 +33,8 @@ def parse_frontmatter(text):
         match = _KEY.match(line)
         if match:
             current = match.group(1)
-            keys[current] = match.group(2).strip()
+            value = match.group(2).strip()
+            keys[current] = "" if value in _FOLD_INDICATORS else value
         elif current and line.strip():
             keys[current] = (keys[current] + " " + line.strip()).strip()
     return keys

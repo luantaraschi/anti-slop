@@ -23,6 +23,8 @@ def test_parse_frontmatter_reads_folded_description():
     fm = validate.parse_frontmatter(GOOD_FRONTMATTER)
     assert fm["name"] == "anti-slop"
     assert "vibecoded" in fm["description"]
+    assert not fm["description"].startswith("|")
+    assert fm["description"].startswith("Audit an interface")
     assert fm["license"] == "MIT"
 
 
