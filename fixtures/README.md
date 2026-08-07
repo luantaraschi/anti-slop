@@ -45,7 +45,7 @@ Nine of the twenty-nine tells appear in no row at all, so nothing here exercises
 them in either direction: A9, W2, W4, W5, F6, F7, F8, F9 and F10. Six more
 appear only on an `expect` row, so the pattern is demonstrated and the exemption
 has no counterexample: A8, W6, W7, F5, F11 and F12. That is fifteen of
-twenty-nine with no `forbid` coverage, which means just under half of the "Not
+twenty-nine with no `forbid` coverage, which means just over half of the "Not
 slop when" clauses have never been tested against a fixture built to disarm
 them, and that clause is the field separating this catalog from a linter. F10's
 absence is a decision with a reason, recorded below; the other eight are a gap.

@@ -72,10 +72,11 @@ no evidence anyone chose it.
 ## Output
 
 ```
-Verdict — stock shadcn dashboard, installed and never touched. The surface
-carries no decision of its own: one radius, one shadow, no theme.extend. And
-nothing was prepared for shipping — 7 of 12 finish checks fail. The copy is
-above average; only the empty states give no direction.
+Verdict — stock shadcn dashboard, installed and never touched: the palette,
+the page title, the missing `lang`, the decorative sparkles, and the
+empty-state copy are all still whatever the scaffold produced, and 7 of 12
+finish checks fail because nothing after that first install was ever
+revisited.
 
 ROOT
 A1  Palette nobody picked         tailwind.config.ts:12   fixes A2, A4, A5
@@ -84,7 +85,7 @@ F2  One title across 6 routes     app/layout.tsx:14
 THEN
 F1  <html> without lang           app/layout.tsx:8
 A7  Sparkles decorating 4 heads   components/hero.tsx:23
-W3  "No items found" on 3 screens  components/table.tsx:88
+W3  "No items found" on 3 screens components/table.tsx:88
 ```
 
 ## Report rules
