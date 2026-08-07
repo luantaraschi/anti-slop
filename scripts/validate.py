@@ -201,8 +201,8 @@ def report_coverage(fixture_text, known_ids):
             forbidden |= named
 
     total = len(known_ids)
-    no_row = sorted(known_ids - in_a_row)
-    no_forbid = sorted(known_ids - forbidden)
+    no_row = sorted(known_ids - in_a_row, key=lambda i: (i[0], int(i[1:])))
+    no_forbid = sorted(known_ids - forbidden, key=lambda i: (i[0], int(i[1:])))
 
     lines = []
     if no_row:

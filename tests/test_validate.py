@@ -311,3 +311,15 @@ def test_report_coverage_is_silent_when_every_id_is_forbidden_somewhere():
         "| `clean-dashboard` | forbid | A1, C3 |\n"
     )
     assert validate.report_coverage(table, {"A1", "C3"}) == []
+
+
+def test_report_coverage_sorts_ids_by_number_not_lexicographically():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1 |\n"
+    )
+    lines = validate.report_coverage(table, {"C1", "C2", "C10"})
+    joined = "\n".join(lines)
+    assert "C1, C2, C10" in joined
+    assert "C1, C10, C2" not in joined
