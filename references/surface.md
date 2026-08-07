@@ -15,7 +15,7 @@ the tell does not fire.
 
 **Signal**  `tailwind.config` has no `theme.extend.colors`, no color custom property appears anywhere, and `text-gray-500` is the project's only secondary color.
 
-**Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice — it's the absence of one.
+**Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice. It's the absence of one.
 
 **Fix**  Name four to six colors in the theme, derived from the subject, and use the semantic classes that follow from them.
 
@@ -53,7 +53,7 @@ the tell does not fire.
 
 ### A5 — No type scale
 
-**Signal**  Only Tailwind's default steps, `font-bold` as the sole emphasis, and no custom family — the project runs on Inter or the system font.
+**Signal**  Only Tailwind's default steps, `font-bold` as the sole emphasis, and no custom family: the project runs on Inter or the system font.
 
 **Principle**  Typography carries a page's personality. Without a scale and without a family, the text is a neutral delivery of content.
 
@@ -85,7 +85,7 @@ the tell does not fire.
 
 **Signal**  A hero with a pill badge, an h1, a subtitle, and two buttons; a three-card feature grid; a strip of three or four large numbers.
 
-**Principle**  The structure itself isn't the problem — it's that the same structure shows up regardless of subject, which proves the subject never shaped the design.
+**Principle**  The structure itself isn't the problem: it's that the same structure shows up regardless of subject, which proves the subject never shaped the design.
 
 **Fix**  Open with the most characteristic thing about the subject, in whatever form that thing calls for. The structure should encode something true about the content.
 

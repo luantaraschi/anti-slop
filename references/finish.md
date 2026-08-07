@@ -1,7 +1,7 @@
 # Finish
 
 The cheapest axis, and the most honest. Nothing here proves a model wrote the
-code — it proves nobody came back to it before shipping. Run this axis first:
+code. It proves nobody came back to it before shipping. Run this axis first:
 it is objective, it is nearly all greppable, and it sets the floor the other
 two axes are read against.
 
@@ -113,7 +113,7 @@ two axes are read against.
 
 **Fix**  Key on the data's own identifier. Index is only safe on a list that is truly immutable.
 
-**Not slop when**  The list is genuinely immutable — never reordered, never filtered.
+**Not slop when**  The list is genuinely immutable, never reordered, never filtered.
 
 ### F12 — Surviving placeholder
 
