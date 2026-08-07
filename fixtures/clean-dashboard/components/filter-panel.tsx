@@ -53,7 +53,7 @@ export function FilterPanel({
         // 12 = 5 + 7: the panel's radius is the control's radius plus the
         // padding around it, so the two curves stay concentric.
         "mt-2 flex gap-[7px] rounded-panel border border-rule p-[7px] dark:border-rule/25",
-        "transition-[opacity,transform]",
+        "transition-[opacity,transform] motion-reduce:transition-none",
         // The entrance takes its time. The exit is half as long and travels the
         // same six pixels, because whatever is leaving has already lost the eye
         // to whatever comes next.

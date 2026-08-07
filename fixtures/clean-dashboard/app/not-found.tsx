@@ -13,7 +13,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/invoices"
-        className="mt-6 inline-block text-note text-ledger underline"
+        className="mt-6 inline-block text-note text-ledger underline dark:text-paper"
       >
         Search the ledger
       </Link>

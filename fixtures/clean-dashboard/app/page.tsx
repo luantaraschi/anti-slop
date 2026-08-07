@@ -53,7 +53,7 @@ export default function OverviewPage() {
       <header className="flex items-baseline justify-between">
         <h1 className="font-display text-title text-balance">Overview</h1>
         <div className="flex items-center gap-4">
-          <Button variant="quiet" size="icon" aria-label="Refresh">
+          <Button size="icon" aria-label="Refresh">
             <svg viewBox="0 0 20 20" className="size-5" fill="currentColor">
               <path d="M10 3a7 7 0 1 0 6.7 9h-2.1A5 5 0 1 1 10 5v3l4-4-4-4v3Z" />
             </svg>
@@ -90,7 +90,7 @@ export default function OverviewPage() {
         {/* Left without text-balance on purpose: the corpus needs one isolated
             oversight, so C4's second door has something to be tested against. */}
         <h2 className="font-display text-figure">Reminders</h2>
-        <p className="mt-2 text-body">
+        <p className="mt-2 text-pretty text-body">
           Ourivesaria Lume has been late nine days. The last two invoices were
           paid within a week of the reminder.
         </p>
@@ -104,7 +104,10 @@ export default function OverviewPage() {
           <h2 className="font-display text-figure text-balance">
             Last five invoices
           </h2>
-          <Link href="/invoices" className="text-note text-ledger underline">
+          <Link
+            href="/invoices"
+            className="text-note text-ledger underline dark:text-paper"
+          >
             Open the full ledger
           </Link>
         </div>
