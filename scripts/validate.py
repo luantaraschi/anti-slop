@@ -96,6 +96,27 @@ def check_frontmatter(text):
     return errors
 
 
+_REFERENCE = re.compile(r"`([\w-]+\.md)`")
+
+
+def check_references(skill_text, available):
+    """Cross-check the files SKILL.md cites against the files on disk."""
+    cited = {
+        name
+        for name in _REFERENCE.findall(skill_text)
+        if name not in ("SKILL.md", "README.md")
+    }
+    errors = [
+        "SKILL.md: cites references/{}, which does not exist".format(name)
+        for name in sorted(cited - available)
+    ]
+    errors += [
+        "references/{} exists but SKILL.md never cites it".format(name)
+        for name in sorted(available - cited)
+    ]
+    return errors
+
+
 def main(root):
     errors = check_frontmatter((root / "SKILL.md").read_text(encoding="utf-8"))
     for reference in sorted((root / "references").glob("*.md")):
@@ -103,6 +124,10 @@ def main(root):
             continue
         source = "references/{}".format(reference.name)
         errors += check_tells(reference.read_text(encoding="utf-8"), source)
+    available = {p.name for p in (root / "references").glob("*.md")}
+    errors += check_references(
+        (root / "SKILL.md").read_text(encoding="utf-8"), available
+    )
     for error in errors:
         print(error)
     print("{} problem(s)".format(len(errors)))

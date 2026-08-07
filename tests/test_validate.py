@@ -95,3 +95,26 @@ def test_check_tells_rejects_a_malformed_id():
     text = GOOD_TELL.replace("### F1 —", "### Finish1 —")
     errors = validate.check_tells(text, "references/finish.md")
     assert errors == ["references/finish.md: no tells found"]
+
+
+SKILL_BODY = """
+| `anti-slop` | A, B, C | `surface.md`, `words.md`, `finish.md`, `molds.md` |
+| `anti-slop surface` | A | `surface.md`, `molds.md` |
+"""
+
+
+def test_check_references_accepts_a_matching_set():
+    available = {"surface.md", "words.md", "finish.md", "molds.md"}
+    assert validate.check_references(SKILL_BODY, available) == []
+
+
+def test_check_references_reports_a_cited_file_that_is_absent():
+    available = {"surface.md", "words.md", "finish.md"}
+    errors = validate.check_references(SKILL_BODY, available)
+    assert errors == ["SKILL.md: cites references/molds.md, which does not exist"]
+
+
+def test_check_references_reports_a_file_nobody_cites():
+    available = {"surface.md", "words.md", "finish.md", "molds.md", "motion.md"}
+    errors = validate.check_references(SKILL_BODY, available)
+    assert errors == ["references/motion.md exists but SKILL.md never cites it"]
