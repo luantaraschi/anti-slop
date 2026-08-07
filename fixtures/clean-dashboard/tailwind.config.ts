@@ -11,6 +11,8 @@ export default {
         ledger: "#2F5D50",
         flag: "#B4451F",
       },
+      // panel wraps control with 7px of padding: 12 = 5 + 7. Keep that gap and
+      // the two curves stay concentric; change one number and change the other.
       borderRadius: { control: "5px", panel: "12px", chip: "999px" },
       fontFamily: {
         display: ["Newsreader", "Georgia", "serif"],
