@@ -117,17 +117,52 @@ def check_references(skill_text, available):
     return errors
 
 
+_FIXTURE_ROW = re.compile(
+    r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|\s*([AWF\d,\s]*)\|"
+)
+
+
+def check_fixture_ids(text, known_ids):
+    """Every id a fixture names must exist in the catalog."""
+    errors = []
+    rows = 0
+    for line in text.splitlines():
+        row = _FIXTURE_ROW.match(line.strip())
+        if not row:
+            continue
+        rows += 1
+        fixture, kind, ids = row.group(1), row.group(2), row.group(3)
+        for tell_id in (part.strip() for part in ids.split(",")):
+            if tell_id and tell_id not in known_ids:
+                errors.append(
+                    "fixtures/README.md: {} {}s unknown id {}".format(
+                        fixture, kind, tell_id
+                    )
+                )
+    if rows == 0:
+        errors.insert(0, "fixtures/README.md: no expectation rows found")
+    return errors
+
+
 def main(root):
     errors = check_frontmatter((root / "SKILL.md").read_text(encoding="utf-8"))
+    known = set()
     for reference in sorted((root / "references").glob("*.md")):
         if reference.name == "molds.md":
             continue
         source = "references/{}".format(reference.name)
-        errors += check_tells(reference.read_text(encoding="utf-8"), source)
+        text = reference.read_text(encoding="utf-8")
+        known |= set(collect_tells(text))
+        errors += check_tells(text, source)
     available = {p.name for p in (root / "references").glob("*.md")}
     errors += check_references(
         (root / "SKILL.md").read_text(encoding="utf-8"), available
     )
+    fixture_readme = root / "fixtures" / "README.md"
+    if fixture_readme.exists():
+        errors += check_fixture_ids(
+            fixture_readme.read_text(encoding="utf-8"), known
+        )
     for error in errors:
         print(error)
     print("{} problem(s)".format(len(errors)))

@@ -118,3 +118,28 @@ def test_check_references_reports_a_file_nobody_cites():
     available = {"surface.md", "words.md", "finish.md", "molds.md", "motion.md"}
     errors = validate.check_references(SKILL_BODY, available)
     assert errors == ["references/motion.md exists but SKILL.md never cites it"]
+
+
+FIXTURE_TABLE = """# Fixtures
+
+| Fixture | Kind | IDs |
+|---|---|---|
+| `slop-dashboard` | expect | A1, A3, F2 |
+| `clean-dashboard` | forbid | A1, A3 |
+"""
+
+
+def test_check_fixture_ids_accepts_known_ids():
+    known = {"A1", "A3", "F2"}
+    assert validate.check_fixture_ids(FIXTURE_TABLE, known) == []
+
+
+def test_check_fixture_ids_reports_an_unknown_id():
+    known = {"A1", "A3"}
+    errors = validate.check_fixture_ids(FIXTURE_TABLE, known)
+    assert errors == ["fixtures/README.md: slop-dashboard expects unknown id F2"]
+
+
+def test_check_fixture_ids_reports_an_empty_table():
+    errors = validate.check_fixture_ids("# Fixtures\n\nnone yet\n", {"A1"})
+    assert errors == ["fixtures/README.md: no expectation rows found"]
