@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 REQUIRED_KEYS = ("name", "description", "license")
-DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit")
+DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit", "craft")
 
 _KEY = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*)$")
 _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
