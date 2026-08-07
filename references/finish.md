@@ -113,7 +113,7 @@ two axes are read against.
 
 **Fix**  Key on the data's own identifier. Index is only safe on a list that is truly immutable.
 
-**Not slop when**  The list is genuinely immutable, never reordered, never filtered.
+**Not slop when**  The list is genuinely immutable — never reordered, never filtered.
 
 ### F12 — Surviving placeholder
 

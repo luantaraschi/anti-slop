@@ -53,7 +53,7 @@ the tell does not fire.
 
 ### A5 — No type scale
 
-**Signal**  Only Tailwind's default steps, `font-bold` as the sole emphasis, and no custom family: the project runs on Inter or the system font.
+**Signal**  Only Tailwind's default steps, `font-bold` as the sole emphasis, and no custom family — the project runs on Inter or the system font.
 
 **Principle**  Typography carries a page's personality. Without a scale and without a family, the text is a neutral delivery of content.
 

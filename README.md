@@ -15,9 +15,19 @@ any tool. It reports what is missing, not who (or what) left it that way.
 ## Install
 
 Clone this repository into `~/.claude/skills/anti-slop`, or install it as a
-plugin through the marketplace manifest at `.claude-plugin/marketplace.json`.
+plugin. From within Claude Code, point a plugin marketplace at your checkout
+and install from it:
+
+```
+/plugin marketplace add /path/to/your/anti-slop-checkout
+/plugin install anti-slop@anti-slop
+```
 
 ## Use
+
+Type any of these as a prompt to Claude Code. `anti-slop` is not a slash
+command; it is the phrase that matches the skill's description and starts
+the audit.
 
 | Invocation | Axes | References to load |
 |---|---|---|
@@ -61,20 +71,21 @@ verbs, empty states, error messages. Seven tells that catch the gap between
 what a generator writes by default and what a person writes once they have
 looked at the screen.
 
-**Finish** (F1 through F12) is what a browser or a search engine checks
-first: the `lang` attribute, the title, the meta tags, the favicon, a stable
-key on every mapped list. Twelve tells, nearly all of them greppable, which
-is why the audit reads this axis before the other two.
+**Finish** (F1 through F12) is twelve tells covering what a browser or a
+search engine checks first, things like the `lang` attribute, the title, the
+meta tags, the favicon, and a stable key on every mapped list. Nearly all of
+them are greppable, which is why the audit reads this axis before the other
+two.
 
 ## What this skill refuses to flag
 
-Six patterns get read online as proof a site was vibecoded. This skill
+Six patterns look like proof a site was vibecoded. They are not. This skill
 rejects all six, with a reason:
 
 | Not flagged | Why |
 |---|---|
 | `vercel.app` URL | Free deploy is not a defect |
-| Exposed source maps | Sentry and every error tool need them |
+| Exposed source maps | Error trackers such as Sentry rely on them |
 | No `llms.txt` | A 2024 convention that never became a standard |
 | `robots.txt` blocking AI crawlers | A deliberate choice many authors make |
 | Empty view-source, framework visible in the browser | A single-page app is an architecture, not carelessness |
@@ -88,10 +99,12 @@ shadcn.
 
 ## Contributing
 
-A new tell needs all four fields (Signal, Principle, Fix, Not slop when), a
-free id, and at least one line in `fixtures/README.md` naming the fixture it
-belongs to. Run `python scripts/validate.py` before opening a pull request;
-it has to print `0 problem(s)`.
+A new tell needs all four fields (Signal, Principle, Fix, Not slop when) and
+a free id. Run `python scripts/validate.py` before opening a pull request;
+it checks that every tell has its four fields and has to print
+`0 problem(s)`. As a convention the validator does not enforce, also add the
+new id to whichever fixture row in `fixtures/README.md` already demonstrates
+it.
 
 ## License
 
