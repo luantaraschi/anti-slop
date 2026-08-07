@@ -35,20 +35,34 @@ off the theme's own colors, so a grep-shaped implementation declines A2 before
 it ever consults the exemption. The blind run did read it, and declined the
 gradient by name.
 
+`clean-dashboard` shares that role now, for a different reason: it carries one
+deliberate miss. Five of its six headings carry `text-wrap: balance` —
+`app/not-found.tsx:6`, `app/page.tsx:54`, `app/page.tsx:104`,
+`app/invoices/page.tsx:13`, and `components/table.tsx:35` all have it. The
+"Reminders" heading at `app/page.tsx:92` does not, on purpose: C4's `Not slop
+when` clause opens a second door where the condition does arise but the
+project already applies the property elsewhere, and a fixture that got every
+heading right could only ever exercise the first door, that the condition
+never arises at all. `app/page.tsx:92` is annotated in place as the isolated
+oversight the second door needs something to be tested against.
+
 Do not tidy a `slop-*` fixture. The missing `lang`, the keyless `.map()`, the
 leftover `Your Company` and the untouched shadcn primitives are the deliverable.
 A `slop-*` fixture that has been cleaned up tests nothing.
 
 ## What the corpus does not cover
 
-Nine of the twenty-nine tells appear in no row at all, so nothing here exercises
-them in either direction: A9, W2, W4, W5, F6, F7, F8, F9 and F10. Six more
-appear only on an `expect` row, so the pattern is demonstrated and the exemption
-has no counterexample: A8, W6, W7, F5, F11 and F12. That is fifteen of
-twenty-nine with no `forbid` coverage, which means just over half of the "Not
-slop when" clauses have never been tested against a fixture built to disarm
-them, and that clause is the field separating this catalog from a linter. F10's
-absence is a decision with a reason, recorded below; the other eight are a gap.
+Eleven of the forty-one tells appear in no row at all, so nothing here
+exercises them in either direction: A9, C2, C6, F6, F7, F8, F9, F10, W2, W4
+and W5. Six more appear only on an `expect` row, so the pattern is
+demonstrated and the exemption has no counterexample: A8, F5, F11, F12, W6
+and W7. That is seventeen of forty-one with no `forbid` coverage, a bit over
+two in five, which means that many "Not slop when" clauses have never been
+tested against a fixture built to disarm them, and that clause is the field
+separating this catalog from a linter. F10's absence is a decision with a
+reason, recorded below; C2 and C6's absence is too — no fixture has an
+asymmetric icon inside a control or a content image, so neither condition
+ever arises in this corpus. The other eight are a plain gap.
 
 ## Known tensions
 
@@ -100,15 +114,17 @@ carries a decision.
 
 What rode on the answer was `clean-dashboard`, which had leaned on "no domain
 component anywhere" to disarm A10. It survives every version of the tell.
-`ui/button.tsx` is reworked and records the choice at `:7-12`, in the theme's
-radius and colors, with two variants and the stock `ghost`, `link` and
-`destructive` deleted. It is imported and rendered at `components/table.tsx:4,41`
-and `app/page.tsx:7,54,83`, and the fixture holds no raw `<button>` anywhere, so
-the signal has nothing to fire on. `slop-dashboard` still fires it: `<Card>` is
-imported once (`app/page.tsx:25`) against four hand-rolled copies of its classes
-(`components/stat-card.tsx:3`, `components/table.tsx:6`, `app/page.tsx:29`,
-`app/invoices/page.tsx:11`), and `<Button>` once (`app/page.tsx:18`) against a
-raw `<button>` at `app/page.tsx:34`.
+`components/ui/button.tsx` is reworked and records the choice at `:7-12`, in
+the theme's radius and colors, with two variants and the stock `ghost`, `link`
+and `destructive` deleted. It is imported and rendered at
+`components/table.tsx:4,24,42`, `app/page.tsx:8,56,61,97`, and
+`components/filter-panel.tsx:5,16,65,75`, and the fixture holds no raw
+`<button>` anywhere, so the signal has nothing to fire on. `slop-dashboard`
+still fires it: `<Card>` is imported once (`app/page.tsx:50`) against five
+hand-rolled copies of its classes (`components/stat-card.tsx:3`,
+`components/table.tsx:16`, `app/page.tsx:54`, `app/invoices/page.tsx:11`,
+`components/filter-panel.tsx:7`), and `<Button>` once (`app/page.tsx:42`)
+against four raw `<button>`s (`app/page.tsx:37`, `:61`, `:64`, `:67`).
 
 ## Last calibration
 

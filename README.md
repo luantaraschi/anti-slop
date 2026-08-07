@@ -2,7 +2,8 @@
 
 A Claude Code skill that audits interface code for the marks of work nobody
 finished: the palette nobody picked, the copy nobody wrote, the meta tags
-nobody set. It reports them as a ranked list with a file and a line.
+nobody set, the dark theme nobody opened. It reports them as a ranked list
+with a file and a line.
 
 ## The claim it does not make
 
@@ -36,8 +37,9 @@ the audit.
 
 | Invocation | Axes | References to load |
 |---|---|---|
-| `anti-slop` | Surface, Words, Finish | `surface.md`, `words.md`, `finish.md`, `molds.md` |
+| `anti-slop` | Surface, Craft, Words, Finish | `surface.md`, `craft.md`, `words.md`, `finish.md`, `molds.md` |
 | `anti-slop surface` | Surface | `surface.md`, `molds.md` |
+| `anti-slop craft` | Craft | `craft.md` |
 | `anti-slop words` | Words | `words.md` |
 | `anti-slop finish` | Finish | `finish.md` |
 
@@ -83,12 +85,19 @@ ones that say how to present it: the verdict runs to three sentences where
 recorded rather than papered over in `fixtures/README.md`, together with what
 every calibration run scored across all four fixtures.
 
-## The three axes
+## The four axes
 
 **Surface** (A1 through A10) is the visual layer: the palette, the radius,
 the shadows, the type scale, the icons and motion. Ten tells, three of them
 (A1, A3, A5) absences that live in the theme file rather than in any one
 component.
+
+**Craft** (C1 through C12) is whether anyone looked at the rendered result:
+a radius that ignores what it wraps, a counter that jitters instead of
+holding still, a heading that leaves one word behind, a dark theme nobody
+opened. Twelve tells whose evidence lives in the relationship between
+elements — one value against the one it sits inside, one screen against the
+same screen in the other theme — rather than in any single line.
 
 **Words** (W1 through W7) is the copy inside the interface: labels, button
 verbs, empty states, error messages. Seven tells that catch the gap between
@@ -99,7 +108,7 @@ looked at the screen.
 search engine checks first, things like the `lang` attribute, the title, the
 meta tags, the favicon, and a stable key on every mapped list. Nearly all of
 them are greppable, which is why the audit reads this axis before the other
-two.
+three.
 
 ## What this skill refuses to flag
 
