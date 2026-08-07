@@ -10,10 +10,10 @@ import { Card } from "@/components/ui/card"
 const POLL_MS = 5000
 
 const rows = [
-  { id: "INV-1041", total: "$2,400.00" },
-  { id: "INV-1042", total: "$860.00" },
-  { id: "INV-1043", total: "$12,190.00" },
-  { id: "INV-1044", total: "$310.00" },
+  { id: "INV-1041", total: "$2,400.00", status: "overdue" as const },
+  { id: "INV-1042", total: "$860.00", status: "paid" as const },
+  { id: "INV-1043", total: "$12,190.00", status: "draft" as const },
+  { id: "INV-1044", total: "$310.00", status: "overdue" as const },
 ]
 
 export default function DashboardPage() {
@@ -58,7 +58,7 @@ export default function DashboardPage() {
           placeholder="Search invoices"
         />
         <div className="flex gap-3">
-          <button className="rounded-2xl border border-gray-200 px-4 py-2 text-sm font-bold hover:bg-gray-50">
+          <button className="rounded-2xl border border-gray-200 shadow-lg px-4 py-2 text-sm font-bold hover:bg-gray-50">
             Export CSV
           </button>
           <button disabled className="rounded-2xl border border-gray-200 px-4 py-2 text-sm font-bold">
