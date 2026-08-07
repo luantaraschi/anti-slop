@@ -219,3 +219,54 @@ def test_check_fixture_ids_reports_a_lowercase_id():
 def test_check_fixture_ids_reports_an_empty_table():
     errors = validate.check_fixture_ids("# Fixtures\n\nnone yet\n", {"A1"})
     assert errors == ["fixtures/README.md: no expectation rows found"]
+
+
+CRAFT_TELL = """# Craft
+
+### C3 — Numbers that jump
+
+**Signal**  A value that changes in place with no `tabular-nums`.
+
+**Principle**  Proportional digits reflow the layout on every tick.
+
+**Fix**  Apply `font-variant-numeric: tabular-nums` where the value changes.
+
+**Not slop when**  No number updates in place, or the project already applies it.
+"""
+
+
+def test_collect_tells_accepts_the_craft_prefix():
+    tells = validate.collect_tells(CRAFT_TELL)
+    assert list(tells) == ["C3"]
+    assert tells["C3"]["title"] == "Numbers that jump"
+
+
+def test_check_tells_accepts_a_complete_craft_tell():
+    assert validate.check_tells(CRAFT_TELL, "references/craft.md") == []
+
+
+def test_check_duplicate_tell_ids_catches_a_repeated_craft_id():
+    text = CRAFT_TELL + "\n### C3 — Numbers that jump again\n\n**Signal**  x\n"
+    errors = validate.check_duplicate_tell_ids(text, "references/craft.md")
+    assert errors == ["references/craft.md: C3 is defined more than once"]
+
+
+def test_check_fixture_ids_accepts_a_craft_id():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1, C3 |\n"
+    )
+    assert validate.check_fixture_ids(table, {"A1", "C3"}) == []
+
+
+def test_check_fixture_ids_still_rejects_an_out_of_alphabet_id():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1, X7 |\n"
+    )
+    errors = validate.check_fixture_ids(table, {"A1"})
+    assert errors == [
+        "fixtures/README.md: slop-dashboard expects malformed id X7"
+    ]
