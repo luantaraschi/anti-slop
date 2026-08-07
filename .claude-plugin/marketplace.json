@@ -1,0 +1,13 @@
+{
+  "name": "anti-slop",
+  "owner": {
+    "name": "Luan Taraschi"
+  },
+  "plugins": [
+    {
+      "name": "anti-slop",
+      "source": "./",
+      "description": "Audit an interface for the marks of work nobody finished."
+    }
+  ]
+}

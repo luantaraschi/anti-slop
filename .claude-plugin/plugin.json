@@ -1,0 +1,9 @@
+{
+  "name": "anti-slop",
+  "version": "0.1.0",
+  "description": "Audit an interface for the marks of work nobody finished.",
+  "author": {
+    "name": "Luan Taraschi"
+  },
+  "license": "MIT"
+}
