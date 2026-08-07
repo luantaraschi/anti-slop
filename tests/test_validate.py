@@ -287,3 +287,27 @@ def test_check_fixture_ids_still_rejects_an_out_of_alphabet_id():
     assert errors == [
         "fixtures/README.md: slop-dashboard expects malformed id X7"
     ]
+
+
+COVERAGE_TABLE = (
+    "| Fixture | Kind | IDs |\n"
+    "|---|---|---|\n"
+    "| `slop-dashboard` | expect | A1, C3 |\n"
+    "| `clean-dashboard` | forbid | A1 |\n"
+)
+
+
+def test_report_coverage_counts_ids_with_no_row_and_no_forbid():
+    lines = validate.report_coverage(COVERAGE_TABLE, {"A1", "C3", "W2"})
+    joined = "\n".join(lines)
+    assert "1 of 3 appear in no row: W2" in joined
+    assert "2 of 3 have no forbid row: C3, W2" in joined
+
+
+def test_report_coverage_is_silent_when_every_id_is_forbidden_somewhere():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `clean-dashboard` | forbid | A1, C3 |\n"
+    )
+    assert validate.report_coverage(table, {"A1", "C3"}) == []

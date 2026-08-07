@@ -182,6 +182,44 @@ def check_fixture_ids(text, known_ids):
     return errors
 
 
+def report_coverage(fixture_text, known_ids):
+    """Say which catalog ids no fixture exercises. Informative, not an error.
+
+    Closing the gap is not this function's job — printing the number every run
+    is, so it stops being prose that ages.
+    """
+    in_a_row = set()
+    forbidden = set()
+    for line in fixture_text.splitlines():
+        row = _FIXTURE_ROW.match(line.strip())
+        if not row:
+            continue
+        kind, ids = row.group(2), row.group(3)
+        named = {part.strip() for part in ids.split(",") if part.strip()}
+        in_a_row |= named
+        if kind == "forbid":
+            forbidden |= named
+
+    total = len(known_ids)
+    no_row = sorted(known_ids - in_a_row)
+    no_forbid = sorted(known_ids - forbidden)
+
+    lines = []
+    if no_row:
+        lines.append(
+            "coverage: {} of {} appear in no row: {}".format(
+                len(no_row), total, ", ".join(no_row)
+            )
+        )
+    if no_forbid:
+        lines.append(
+            "coverage: {} of {} have no forbid row: {}".format(
+                len(no_forbid), total, ", ".join(no_forbid)
+            )
+        )
+    return lines
+
+
 def main(root):
     skill = root / "SKILL.md"
     references = root / "references"
@@ -214,12 +252,15 @@ def main(root):
     available = {p.name for p in reference_files}
     errors += check_references(skill_text, available)
     fixture_readme = root / "fixtures" / "README.md"
+    coverage = []
     if fixture_readme.exists():
-        errors += check_fixture_ids(
-            fixture_readme.read_text(encoding="utf-8"), known
-        )
+        fixture_text = fixture_readme.read_text(encoding="utf-8")
+        errors += check_fixture_ids(fixture_text, known)
+        coverage = report_coverage(fixture_text, known)
     for error in errors:
         print(error)
+    for line in coverage:
+        print(line)
     print("{} problem(s)".format(len(errors)))
     return 1 if errors else 0
 
