@@ -14,6 +14,38 @@ DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit")
 _KEY = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*)$")
 _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
+FIELDS = ("**Signal**", "**Principle**", "**Fix**", "**Not slop when**")
+
+_TELL_HEADING = re.compile(r"^### ([AWF]\d+) — (.+)$")
+
+
+def collect_tells(text):
+    """Return every tell in the text, keyed by id, in document order."""
+    tells = {}
+    current = None
+    for line in text.splitlines():
+        heading = _TELL_HEADING.match(line)
+        if heading:
+            current = heading.group(1)
+            tells[current] = {"title": heading.group(2).strip(), "body": []}
+        elif current is not None:
+            tells[current]["body"].append(line)
+    for tell in tells.values():
+        tell["body"] = "\n".join(tell["body"]).strip()
+    return tells
+
+
+def check_tells(text, source):
+    tells = collect_tells(text)
+    if not tells:
+        return ["{}: no tells found".format(source)]
+    return [
+        "{}: {} is missing {}".format(source, tell_id, field)
+        for tell_id, tell in tells.items()
+        for field in FIELDS
+        if field not in tell["body"]
+    ]
+
 
 def parse_frontmatter(text):
     """Return the top-level frontmatter keys, or None if there is no header.
@@ -66,6 +98,11 @@ def check_frontmatter(text):
 
 def main(root):
     errors = check_frontmatter((root / "SKILL.md").read_text(encoding="utf-8"))
+    for reference in sorted((root / "references").glob("*.md")):
+        if reference.name == "molds.md":
+            continue
+        source = "references/{}".format(reference.name)
+        errors += check_tells(reference.read_text(encoding="utf-8"), source)
     for error in errors:
         print(error)
     print("{} problem(s)".format(len(errors)))

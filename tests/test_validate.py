@@ -51,3 +51,47 @@ def test_check_frontmatter_reports_a_description_without_triggers():
     )
     errors = validate.check_frontmatter(text)
     assert any("triggers" in e for e in errors)
+
+
+GOOD_TELL = """# Finish
+
+### F1 — No lang attribute
+
+**Signal**  The root `<html>` element ships without `lang`.
+
+**Principle**  Screen readers pick a voice from it.
+
+**Fix**  Set `lang` on the root element.
+
+**Not slop when**  the page is a fragment embedded in a host document.
+"""
+
+
+def test_collect_tells_indexes_by_id():
+    tells = validate.collect_tells(GOOD_TELL)
+    assert list(tells) == ["F1"]
+    assert tells["F1"]["title"] == "No lang attribute"
+    assert "screen readers" in tells["F1"]["body"].lower()
+
+
+def test_check_tells_accepts_a_complete_tell():
+    assert validate.check_tells(GOOD_TELL, "references/finish.md") == []
+
+
+def test_check_tells_reports_a_missing_field():
+    text = GOOD_TELL.replace(
+        "**Not slop when**  the page is a fragment embedded in a host document.\n", ""
+    )
+    errors = validate.check_tells(text, "references/finish.md")
+    assert errors == ["references/finish.md: F1 is missing **Not slop when**"]
+
+
+def test_check_tells_reports_a_file_with_no_tells():
+    errors = validate.check_tells("# Finish\n\nnothing here\n", "references/finish.md")
+    assert errors == ["references/finish.md: no tells found"]
+
+
+def test_check_tells_rejects_a_malformed_id():
+    text = GOOD_TELL.replace("### F1 —", "### Finish1 —")
+    errors = validate.check_tells(text, "references/finish.md")
+    assert errors == ["references/finish.md: no tells found"]
