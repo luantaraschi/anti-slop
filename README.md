@@ -41,6 +41,8 @@ Without a path, the target is the project root.
 
 ## Example output
 
+---
+
 Verdict — a stock shadcn dashboard whose primitives were installed and never touched: `Card` and `Button` sit untouched in `components/ui/` while every card, input, and button elsewhere in the app reimplements their classes raw, off an empty `theme.extend` that never picked a color, a radius, or a font. Metadata was set up once for the whole app instead of per route, so title, description, and canonical are all missing together, and the invoice table renders its rows without a key. The copy holds up everywhere except the empty invoices table, which reports a count instead of inviting the first action.
 
 **ROOT**
@@ -64,6 +66,8 @@ Detail on the two Surface roots: `components/ui/button.tsx` and `card.tsx` are b
 The theme side is separate: `theme: { extend: {} }` is the whole config, so there's no color, no radius scale, and no type scale to point to — `font-bold` is the only emphasis used anywhere and `rounded-2xl` is the only radius that shows up on cards, inputs, and the hand-rolled button alike. That single empty object is why A1, A3, and A5 all fire from the same piece of evidence.
 
 Words axis is otherwise clean — no catalog labels, no leaked implementation names, no inflated copy, and the not-found page (`app/not-found.tsx:8`, "That address is not part of this workspace") is specific rather than apologetic.
+
+---
 
 That is the output of a blind audit of `fixtures/slop-dashboard`, one of the
 four calibration specimens, pasted exactly as the run produced it. The agent

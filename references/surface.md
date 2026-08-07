@@ -109,4 +109,4 @@ the tell does not fire.
 
 **Fix**  Rework the primitives the product leans on most, in the theme's own radius and colors, and drop the variants it never renders.
 
-**Not slop when**  Components outside `ui/` build on those primitives: they import and render them instead of re-typing the same classes beside them. The domain name on a file is not that evidence. A `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as untouched as they were.
+**Not slop when**  Every component that plays a primitive's role imports it rather than re-typing its classes beside it. A single importer among a dozen hand-rolled ones does not earn the exemption, and neither does a domain name on a file: a `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as untouched as they were.

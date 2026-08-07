@@ -117,21 +117,34 @@ after the fix is a score of the fix.
 ### Recorded for v1, not fixed
 
 **F3, F4 and F9 are unstable between runs on the same fixture.** The first
-`slop-dashboard` run declined F3, F4, F9 and F10 as a group, inferring from the
-product itself, a per-workspace invoice ledger, that a private financial
-dashboard sits behind authentication. The re-run fired F3, F4 and F9, grouping
-them under F2 as one root: "One metadata block covers both routes, with no
-description or canonical." Same fixture, same catalog, opposite verdict. The
-tells are not wrong, but their exemptions turn on a fact, is this page indexed,
-that source alone does not settle, so two careful readers land in different
-places. A rendered pass against a live URL settles it outright, and a rendered
-pass is out of scope for v1.
+`slop-dashboard` run declined F3, F4, F9 and F10 as a group. The reasoning is
+written down in the `clean-dashboard` run, which declined the same cluster and
+said why: nothing in the tree proves an auth layer, but the product itself, a
+per-workspace invoice ledger that keeps referring to "this workspace", is
+unambiguously a private business tool, and the run read that domain signal as
+satisfying the exemption rather than as an absence of evidence. The
+`slop-dashboard` run made the same inference on the same cluster without spelling
+it out. The re-run fired F3, F4 and F9 instead, grouping them under F2 as one
+root: "One metadata block covers both routes, with no description or canonical."
+Same fixture, same catalog, opposite verdict. The tells are not wrong, but their
+exemptions turn on a fact, is this page indexed, that source alone does not
+settle, so two careful readers land in different places. A rendered pass against
+a live URL settles it outright, and a rendered pass is out of scope for v1.
 
-**The output format drifted from what `SKILL.md` specifies.** `SKILL.md`'s Output
-section shows a plain-text block with aligned columns. Both the re-run and an
-earlier non-blind run produced markdown tables instead. The report rules that
-carry meaning were followed either way: verdict first, roots separated from the
-symptoms they cause, each root declaring which symptoms its fix kills, a file and
-a line on every finding. But an agent reading the format section still chose its
-own shape, which means that section describes the output rather than binding it.
-Shipping the gap recorded beats papering over it in the example.
+**The output shape drifted from what `SKILL.md` specifies.** `SKILL.md`'s Output
+section shows a plain-text block with aligned columns; the published run produced
+markdown tables. That much is cosmetic. The next one is not: Report rules open
+with "The verdict is one sentence naming the dominant pattern across axes, not a
+summary of each axis in turn", and the published verdict is three sentences that
+take Surface, then Finish, then Words in turn. That is the shape the rule names
+and rejects, not a matter of length.
+
+What did hold is the ranking: roots separated from the symptoms they cause, each
+root declaring which symptoms its fix kills, findings ordered by what fixing them
+delivers, and a file and a line on every one. So the run followed the rules that
+say how to think and reshaped the ones that say how to present. Both of those
+sections describe the output rather than binding it, and the second is the more
+expensive of the two, because the one-sentence verdict is what forces a reader to
+name a single dominant pattern instead of touring the axes. Recorded rather than
+papered over: the example above is the run as it came out, and the gap is
+visible in it.

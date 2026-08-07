@@ -15,7 +15,7 @@ two axes are read against.
 
 **Not slop when**  Never. There is no page without a language.
 
-### F2 — A title nobody wrote
+### F2 — A title nobody revisited
 
 **Signal**  Every route shares the same `<title>`, or the title is still the framework template's: "Vite + React", "Create Next App", "React App".
 
