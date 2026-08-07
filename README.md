@@ -14,12 +14,17 @@ any tool. It reports what is missing, not who (or what) left it that way.
 
 ## Install
 
-Clone this repository into `~/.claude/skills/anti-slop`, or install it as a
-plugin. From within Claude Code, point a plugin marketplace at your checkout
-and install from it:
+Clone it where Claude Code looks for skills:
 
 ```
-/plugin marketplace add /path/to/your/anti-slop-checkout
+git clone https://github.com/luantaraschi/anti-slop ~/.claude/skills/anti-slop
+```
+
+Or install it as a plugin. From within Claude Code, point a plugin marketplace
+at your checkout and install from it:
+
+```
+/plugin marketplace add ~/.claude/skills/anti-slop
 /plugin install anti-slop@anti-slop
 ```
 
