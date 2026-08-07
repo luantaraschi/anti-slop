@@ -105,10 +105,33 @@ Three repairs came out of the three mismatches, none of them to a fixture:
   infrastructure your team already trusts" (`src/App.tsx:31`) are both really
   there, and the row was simply short.
 
-One thing worth recording that nothing was changed for. Both dashboard runs
-cleared F3, F4, F9 and F10 as a group, by inferring from the product itself, a
-per-workspace invoice ledger, that it sits behind authentication. Both reached
-the intended verdict, but through domain inference
-rather than through code evidence, which is a softer basis than the false
-positive rule asks for. A rendered pass against a live URL settles that question
-outright, and a rendered pass is out of scope for v1.
+**The A10 repair was re-tested blind.** A fifth run went at `slop-dashboard` by
+the same method, with a fresh agent that knew neither the expected answer nor
+that anything had been changed. It reported all ten expected ids, A10 among them,
+and reached A10 on its own reading: "`Card` and `Button` reimplemented raw
+wherever they're actually used." That is the use framing the repair moved into
+the tell, arrived at independently. That run is the example output in the repo
+root `README.md`. The score above stays the pre-repair one, because a score taken
+after the fix is a score of the fix.
+
+### Recorded for v1, not fixed
+
+**F3, F4 and F9 are unstable between runs on the same fixture.** The first
+`slop-dashboard` run declined F3, F4, F9 and F10 as a group, inferring from the
+product itself, a per-workspace invoice ledger, that a private financial
+dashboard sits behind authentication. The re-run fired F3, F4 and F9, grouping
+them under F2 as one root: "One metadata block covers both routes, with no
+description or canonical." Same fixture, same catalog, opposite verdict. The
+tells are not wrong, but their exemptions turn on a fact, is this page indexed,
+that source alone does not settle, so two careful readers land in different
+places. A rendered pass against a live URL settles it outright, and a rendered
+pass is out of scope for v1.
+
+**The output format drifted from what `SKILL.md` specifies.** `SKILL.md`'s Output
+section shows a plain-text block with aligned columns. Both the re-run and an
+earlier non-blind run produced markdown tables instead. The report rules that
+carry meaning were followed either way: verdict first, roots separated from the
+symptoms they cause, each root declaring which symptoms its fix kills, a file and
+a line on every finding. But an agent reading the format section still chose its
+own shape, which means that section describes the output rather than binding it.
+Shipping the gap recorded beats papering over it in the example.

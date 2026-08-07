@@ -41,31 +41,35 @@ Without a path, the target is the project root.
 
 ## Example output
 
-```
-Verdict — the stock dashboard, with the primitives left where the installer
-put them. `components/ui/button.tsx` and `card.tsx` are byte-for-byte shadcn,
-and the components named for the domain do not build on them: `StatCard` and
-`InvoiceTable` re-type `rounded-2xl border border-gray-200 shadow-lg p-6`
-beside them, and the page repeats it over the one `<Card>` it does render.
-The theme is `extend: {}`, so every radius, shadow and type step in the tree
-is a default nobody picked. Finish is thin rather than absent: there is a
-custom 404 and a real icon, but no `lang`, one title across three routes, and
-a `.map()` with no key.
+Verdict — a stock shadcn dashboard whose primitives were installed and never touched: `Card` and `Button` sit untouched in `components/ui/` while every card, input, and button elsewhere in the app reimplements their classes raw, off an empty `theme.extend` that never picked a color, a radius, or a font. Metadata was set up once for the whole app instead of per route, so title, description, and canonical are all missing together, and the invoice table renders its rows without a key. The copy holds up everywhere except the empty invoices table, which reports a count instead of inviting the first action.
 
-ROOT
-A1   theme.extend is empty          tailwind.config.ts:5       fixes A3, A5
-A10  Stock shadcn primitives        components/ui/card.tsx:12  fixes A4, A6
+**ROOT**
 
-THEN
-F1   <html> without lang            app/layout.tsx:5
-F2   One title across three routes  app/layout.tsx:1
-F11  .map() without a key           components/table.tsx:7
-W3   "No items found", no way out   components/table.tsx:3
-```
+| id | finding | location | |
+|---|---|---|---|
+| A10 | `Card` and `Button` reimplemented raw wherever they're actually used | `components/stat-card.tsx:3` (also `components/table.tsx:6`, `app/page.tsx:34`) | fixes A4, A6 |
+| A1 | Theme extend is empty; `text-gray-500` is the only secondary color anywhere | `tailwind.config.ts:5` | fixes A3, A5 |
+| F2 | One metadata block covers both routes, with no description or canonical | `app/layout.tsx:1` | fixes F3, F4, F9 |
 
-That is a run against `fixtures/slop-dashboard`, pasted as it came out. What
-the blind calibration runs scored against all four fixtures is recorded in
-`fixtures/README.md`.
+**THEN**
+
+| id | finding | location |
+|---|---|---|
+| F1 | `<html>` has no `lang` attribute | `app/layout.tsx:5` |
+| F11 | Invoice rows render via `.map` with no `key` prop | `components/table.tsx:8` |
+| W3 | Empty invoices table reads "No items found," no direction to add one | `components/table.tsx:3` |
+
+Detail on the two Surface roots: `components/ui/button.tsx` and `card.tsx` are byte-for-byte the shadcn install — full variant list (`destructive`, `outline`, `secondary`, `ghost`, `link`, sizes `sm`/`lg`/`icon`) present and none of it ever rendered. `<Card>` gets imported and used exactly once (`app/page.tsx:25`); everywhere else — `StatCard`, `InvoiceTable`, the search box, the "Export CSV" button — is a raw `div`/`button` re-typing `rounded-2xl border border-gray-200 shadow-lg p-6` by hand. That's also why A4 (`border` + `shadow-lg` + `rounded-2xl` stacked identically on every one of those five elements) and A6 (`p-6 space-y-4` repeated from `<main>` down through the stat card down through the table wrapper, `app/page.tsx:15-20`) read as uniform: each callsite re-decided the same thing independently instead of inheriting it from one component. Fixing A10 by routing those five spots through the real `Card`/`Button` collapses A4 and A6 with it.
+
+The theme side is separate: `theme: { extend: {} }` is the whole config, so there's no color, no radius scale, and no type scale to point to — `font-bold` is the only emphasis used anywhere and `rounded-2xl` is the only radius that shows up on cards, inputs, and the hand-rolled button alike. That single empty object is why A1, A3, and A5 all fire from the same piece of evidence.
+
+Words axis is otherwise clean — no catalog labels, no leaked implementation names, no inflated copy, and the not-found page (`app/not-found.tsx:8`, "That address is not part of this workspace") is specific rather than apologetic.
+
+That is the output of a blind audit of `fixtures/slop-dashboard`, one of the
+four calibration specimens, pasted exactly as the run produced it. The agent
+had the skill and the directory and nothing else: not the expected answer, not
+this file. What every calibration run scored across all four fixtures is
+recorded in `fixtures/README.md`.
 
 ## The three axes
 
