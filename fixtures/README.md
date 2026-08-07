@@ -19,7 +19,7 @@ fixture to fix.
 
 | Fixture | Kind | IDs |
 |---|---|---|
-| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, F1, F2, F11, W3 |
+| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, F1, F2, F11, W3 |
 | `slop-landing` | expect | A2, A7, A8, W1, W6, W7, F2, F3, F4, F5, F12 |
 | `clean-dashboard` | forbid | A1, A3, A4, A5, A6, A10, F1, F2, W3 |
 | `clean-landing` | forbid | A2, A4, A7, W1, F3, F4 |
