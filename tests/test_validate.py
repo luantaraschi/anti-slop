@@ -140,6 +140,15 @@ def test_check_fixture_ids_reports_an_unknown_id():
     assert errors == ["fixtures/README.md: slop-dashboard expects unknown id F2"]
 
 
+def test_check_fixture_ids_reports_an_unknown_id_a_fixture_forbids():
+    known = {"A3", "F2"}
+    errors = validate.check_fixture_ids(FIXTURE_TABLE, known)
+    assert errors == [
+        "fixtures/README.md: slop-dashboard expects unknown id A1",
+        "fixtures/README.md: clean-dashboard forbids unknown id A1",
+    ]
+
+
 def test_check_fixture_ids_reports_an_empty_table():
     errors = validate.check_fixture_ids("# Fixtures\n\nnone yet\n", {"A1"})
     assert errors == ["fixtures/README.md: no expectation rows found"]
