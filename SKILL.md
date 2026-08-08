@@ -3,11 +3,11 @@ name: anti-slop
 description: |
   Audit an interface for the marks of work nobody finished. Use when a UI looks
   AI-generated or vibecoded, when reviewing a landing page or dashboard before
-  shipping, or when asked to audit the surface, the words, or the finish of a
-  React, Tailwind or shadcn project.
+  shipping, or when asked to audit the surface, the craft, the words, or the
+  finish of a React, Tailwind or shadcn project.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # anti-slop
@@ -16,10 +16,16 @@ metadata:
 
 This skill audits interface code that already exists and reports the marks
 of work nobody finished. It reads a React, Tailwind, or shadcn project and
-returns a verdict plus a ranked list of findings across three axes: Surface
-(the visual layer), Words (the copy inside the interface), and Finish (the
-shipping details a browser or a search engine checks first). It does not
-generate an interface from scratch. For that, use `frontend-design`.
+returns a verdict plus a ranked list of findings across four axes: Surface
+(the visual layer), Craft (whether anyone looked at the rendered result),
+Words (the copy inside the interface), and Finish (the shipping details a
+browser or a search engine checks first). Surface asks whether anyone
+decided, and its evidence lives in the theme file. Craft asks whether
+anyone looked, and its evidence lives in the relationship between
+elements — a radius against the radius nested inside it, a number against
+the layout it sits in, a border in one theme against the same border in
+the other. It does not generate an interface from scratch. For that, use
+`frontend-design`.
 
 ## What it never claims
 
@@ -33,8 +39,9 @@ tool. Report what is missing, not who (or what) left it that way.
 
 | Invocation | Axes | References to load |
 |---|---|---|
-| `anti-slop` | Surface, Words, Finish | `surface.md`, `words.md`, `finish.md`, `molds.md` |
+| `anti-slop` | Surface, Craft, Words, Finish | `surface.md`, `craft.md`, `words.md`, `finish.md`, `molds.md` |
 | `anti-slop surface` | Surface | `surface.md`, `molds.md` |
+| `anti-slop craft` | Craft | `craft.md` |
 | `anti-slop words` | Words | `words.md` |
 | `anti-slop finish` | Finish | `finish.md` |
 
@@ -48,17 +55,21 @@ just listing symptoms.
 1. **Scope.** Exclude `node_modules`, third-party code, Storybook, and any
    generated output before reading anything.
 2. **Finish first.** It is the cheapest axis and the most objective (nearly
-   every check is greppable), and it sets the floor the other two axes get
+   every check is greppable), and it sets the floor the other three axes get
    read against.
 3. **Surface, theme before components.** Read `tailwind.config`,
    `globals.css`, and any tokens file before opening a single component. Three
    of the ten Surface tells (A1, A3, A5) are absences that live in the theme,
    and starting from components collects symptoms while missing the cause.
-4. **Words.** Read the copy inside the interface itself: labels, toasts,
+4. **Craft, the relationship between elements, after the theme is known.**
+   Knowing what the theme declares is what lets a nested radius, a scale
+   value, or a repeated border read as concentric on purpose rather than as
+   a coincidence — so Craft comes after Surface, not before it.
+5. **Words.** Read the copy inside the interface itself: labels, toasts,
    empty states, error messages.
-5. **False positive filter.** Run every candidate finding through the rule
+6. **False positive filter.** Run every candidate finding through the rule
    below before it counts.
-6. **Verdict.** Name the dominant pattern and rank what survived the filter.
+7. **Verdict.** Name the dominant pattern and rank what survived the filter.
 
 ## The false positive rule
 
@@ -68,6 +79,13 @@ allowed to fire: `theme.extend`, custom properties under `:root` or
 stock shadcn. Find evidence in any of the four, and the tell does not fire.
 A pattern present is not a finding. A finding is a pattern present **and**
 no evidence anyone chose it.
+
+On the Craft axis the rule takes a different form, because almost every
+Craft tell fires on absence rather than on a pattern present. There, the
+`Not slop when` clause opens two doors instead of one: the condition the
+tell looks for never arises at all, or the project already handles the same
+detail correctly somewhere else, which is that axis's own evidence that
+someone looked.
 
 ## Output
 
@@ -91,10 +109,21 @@ W3  "No items found" on 3 screens components/table.tsx:88
 ## Report rules
 
 The verdict is one sentence naming the dominant pattern across axes, not a
-summary of each axis in turn. Report between five and ten findings. Order
-them by how much fixing them delivers, never by severity and never grouped
-by axis. Separate root findings from the ones they cause, and state which
-symptoms each root's fix kills. Every finding carries a file and a line.
+summary of each axis in turn.
+
+A full invocation reports at most ten findings. A single-axis invocation has no
+cap: whoever typed `anti-slop craft` asked for that axis, and a Craft finding
+held back there is the thing they came for.
+
+Whatever the cap cuts gets counted. Under the last finding, say how many were
+dropped and from which axis — "4 further Craft findings not listed". A
+finding judged real and then cut for length is still something the reader is
+entitled to know exists.
+
+Order the findings by how much fixing them delivers, never by severity and
+never grouped by axis. Separate root findings from the ones they cause, and
+state which symptoms each root's fix kills. Every finding carries a file and
+a line.
 
 ## Out of scope
 

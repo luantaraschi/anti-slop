@@ -1,6 +1,6 @@
 import { InvoiceTable } from "@/components/table"
 
-const rows: { id: string; total: string }[] = []
+const rows: { id: string; total: string; status: "overdue" | "paid" | "draft" }[] = []
 
 export default function InvoicesPage() {
   return (

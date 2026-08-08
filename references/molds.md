@@ -11,6 +11,11 @@ Use these to name what you see, never to decide. The finding is always a tell
 with evidence behind it. The mold is the sentence that makes the findings
 legible.
 
+The themed and unlooked-at, last below, is not a generator's mold. It
+describes a project that passes a superficial inspection regardless of which
+tool built it, so it ages more slowly than the four generator molds that
+precede it — it does not depend on any tool's vintage.
+
 ## The stock dashboard
 
 **Look**  A shadcn sidebar, stat cards laid out in a grid, a table with status badges.
@@ -42,3 +47,16 @@ legible.
 **Tells that usually fire**  F1 through F12.
 
 **What breaks the match**  Nothing. This mold is the most common, and the easiest to fix.
+
+## The themed and unlooked-at
+
+**Look**  A populated `theme.extend`, named colors, a declared type scale —
+and no concentric radius, no `tabular-nums`, no pressed state, a dark theme
+declared on the background and nowhere else.
+
+**Tells that usually fire**  C1, C3, C4, C9, C10, and almost nothing from
+Surface.
+
+**What breaks the match**  Any craft detail handled correctly in more than
+one place. From there, someone looked, and what remains is an isolated
+oversight rather than a pattern.

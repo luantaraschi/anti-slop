@@ -11,7 +11,8 @@ name: anti-slop
 description: |
   Audit an interface for the marks of work nobody finished. Use when a UI looks
   AI-generated or vibecoded, when reviewing a landing page or dashboard before
-  shipping, or when asked to audit surface, words, or finish.
+  shipping, or when asked to audit the surface, the craft, the words, or the
+  finish of a React, Tailwind or shadcn project.
 license: MIT
 ---
 
@@ -46,11 +47,27 @@ def test_check_frontmatter_reports_a_description_without_triggers():
     text = GOOD_FRONTMATTER.replace(
         "Audit an interface for the marks of work nobody finished. Use when a UI looks\n"
         "  AI-generated or vibecoded, when reviewing a landing page or dashboard before\n"
-        "  shipping, or when asked to audit surface, words, or finish.",
+        "  shipping, or when asked to audit the surface, the craft, the words, or the\n"
+        "  finish of a React, Tailwind or shadcn project.",
         "Reviews interfaces.",
     )
     errors = validate.check_frontmatter(text)
     assert any("triggers" in e for e in errors)
+
+
+def test_check_frontmatter_requires_the_craft_trigger():
+    # The brief's literal replace targets ("or finish of a" / "surface, the
+    # words,") don't survive as contiguous substrings once "the craft" sits
+    # between "surface," and "the words," in the real four-axis description.
+    # This does the same job directly: strip only the craft mention, leaving
+    # the other three triggers (vibecoded, AI-generated, audit) intact, so
+    # the resulting error can only be about the missing craft trigger.
+    text = GOOD_FRONTMATTER.replace(
+        "the surface, the craft, the words, or the",
+        "the surface, the words, or the",
+    )
+    errors = validate.check_frontmatter(text)
+    assert any("craft" in e for e in errors)
 
 
 GOOD_TELL = """# Finish
@@ -219,3 +236,90 @@ def test_check_fixture_ids_reports_a_lowercase_id():
 def test_check_fixture_ids_reports_an_empty_table():
     errors = validate.check_fixture_ids("# Fixtures\n\nnone yet\n", {"A1"})
     assert errors == ["fixtures/README.md: no expectation rows found"]
+
+
+CRAFT_TELL = """# Craft
+
+### C3 — Numbers that jump
+
+**Signal**  A value that changes in place with no `tabular-nums`.
+
+**Principle**  Proportional digits reflow the layout on every tick.
+
+**Fix**  Apply `font-variant-numeric: tabular-nums` where the value changes.
+
+**Not slop when**  No number updates in place, or the project already applies it.
+"""
+
+
+def test_collect_tells_accepts_the_craft_prefix():
+    tells = validate.collect_tells(CRAFT_TELL)
+    assert list(tells) == ["C3"]
+    assert tells["C3"]["title"] == "Numbers that jump"
+
+
+def test_check_tells_accepts_a_complete_craft_tell():
+    assert validate.check_tells(CRAFT_TELL, "references/craft.md") == []
+
+
+def test_check_duplicate_tell_ids_catches_a_repeated_craft_id():
+    text = CRAFT_TELL + "\n### C3 — Numbers that jump again\n\n**Signal**  x\n"
+    errors = validate.check_duplicate_tell_ids(text, "references/craft.md")
+    assert errors == ["references/craft.md: C3 is defined more than once"]
+
+
+def test_check_fixture_ids_accepts_a_craft_id():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1, C3 |\n"
+    )
+    assert validate.check_fixture_ids(table, {"A1", "C3"}) == []
+
+
+def test_check_fixture_ids_still_rejects_an_out_of_alphabet_id():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1, X7 |\n"
+    )
+    errors = validate.check_fixture_ids(table, {"A1"})
+    assert errors == [
+        "fixtures/README.md: slop-dashboard expects malformed id X7"
+    ]
+
+
+COVERAGE_TABLE = (
+    "| Fixture | Kind | IDs |\n"
+    "|---|---|---|\n"
+    "| `slop-dashboard` | expect | A1, C3 |\n"
+    "| `clean-dashboard` | forbid | A1 |\n"
+)
+
+
+def test_report_coverage_counts_ids_with_no_row_and_no_forbid():
+    lines = validate.report_coverage(COVERAGE_TABLE, {"A1", "C3", "W2"})
+    joined = "\n".join(lines)
+    assert "1 of 3 appear in no row: W2" in joined
+    assert "2 of 3 have no forbid row: C3, W2" in joined
+
+
+def test_report_coverage_is_silent_when_every_id_is_forbidden_somewhere():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `clean-dashboard` | forbid | A1, C3 |\n"
+    )
+    assert validate.report_coverage(table, {"A1", "C3"}) == []
+
+
+def test_report_coverage_sorts_ids_by_number_not_lexicographically():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | A1 |\n"
+    )
+    lines = validate.report_coverage(table, {"C1", "C2", "C10"})
+    joined = "\n".join(lines)
+    assert "C1, C2, C10" in joined
+    assert "C1, C10, C2" not in joined
