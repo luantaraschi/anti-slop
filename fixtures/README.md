@@ -222,12 +222,17 @@ knew the expected answer, that a fourth axis had just been added, or that
 anything had been repaired.
 
 Four were full audits, one per fixture. Three invoked `anti-slop craft` alone,
-to separate the new axis from the other three's noise, and those three were
-told the report cap was suspended, so each could report everything the axis
-found rather than everything that fit.
+to separate the new axis from the other three's noise, and the report cap was
+suspended for those three so each could report everything the axis found rather
+than everything that fit. Only run 5 records that instruction in its own header
+("single-axis, uncapped per run instructions"); runs 6 and 7 do not mention it,
+and neither found more than one thing to cap, so the artifacts do not confirm it
+either way for those two.
 
 The counts below are what the seven runs produced, before the repairs they
-caused.
+caused. Throughout this entry an id counts as **reported** when it carries a
+finding of its own. An id named only inside another finding — in its kill list
+or its body — is not reported, however plainly the run says it fires.
 
 - `slop-dashboard`, full: 9 of the 20 expected ids reported — A1, A6, C3, C10,
   C11, C12, F1, F2, W3. Under the old cap.
@@ -251,21 +256,31 @@ because they don't fire", and C5 "real (`app/page.tsx:37`, `size-5` icon
 button, no extension), but a single low-traffic control; cut for budget". On
 `slop-landing`: F3 and F4 "both true and both would fire ... the report format
 caps at ten; cut for redundancy against higher-leverage Finish findings, not
-for a false-positive reason". A3, A4, A5 and A10 appear in neither the
-`slop-dashboard` report nor its declined list, which is the same suppression
-with nothing written down, so they are not counted as misses here. The
-Craft-only run on that fixture is the proof: same tree, cap lifted, five Craft
-ids became nine.
+for a false-positive reason". Four more ids on `slop-dashboard` were found and
+not given a line: A3, A4, A10 and C1 are all named inside A1's own finding, in
+its kill list at the top of the report and again in its body, which is a run
+that reached them and had no room to list them. A5 alone appears in neither the
+report nor the declined list, and that is the same suppression with nothing
+written down. None of the five is scored as a miss. The Craft-only run on the
+same fixture is the proof: same tree, cap lifted, four reported Craft ids became
+nine.
 
 **What held.** The Craft-only run on `clean-dashboard` declined eleven of the
 twelve Craft tells, named the door that closed each one, and cited a specific
-site for every door-two decline: `components/filter-panel.tsx:56-63` for C7's
-shorter exit, `components/ui/button.tsx:14` for C11's shared disabled base,
-`components/invoice-row.tsx:15-25` for C12's label rendered beside the tone,
-`components/stat-card.tsx:45` for C3's `tabular-nums` on the one figure that
-moves, and the radius derivation in `tailwind.config.ts:14-16` for C1. That is
-the second door working as designed, under a reader who did not know it was
-being tested.
+site for every one of the seven it closed by door two: the radius derivation in
+`tailwind.config.ts:14-16` for C1, `components/stat-card.tsx:45` for C3's
+`tabular-nums` on the one figure that moves, `components/filter-panel.tsx:56-63`
+for C7's shorter exit, `components/filter-panel.tsx:56` for C8 driving the same
+panel off a transition rather than a keyframe, the eight paired
+`border-rule`/`dark:border-rule/25` sites for C10, `components/ui/button.tsx:14`
+for C11's shared disabled base, and `components/invoice-row.tsx:15-25` for C12's
+label rendered beside the tone. That is the second door working as designed,
+under a reader who did not know it was being tested.
+
+What that does not establish is the arithmetic this round put behind it. All
+seven of those declines are of one shape: a single occurrence, handled
+correctly. None is a partial miss, which is the shape the majority count was
+written for. See the second entry under `Recorded for v2, not fixed`.
 
 Three repairs came out of the round, none of them to a fixture:
 
@@ -285,8 +300,14 @@ Three repairs came out of the round, none of them to a fixture:
 - **C4 fired on headings that cannot wrap.** The Craft-only run on
   `slop-dashboard` called it "marginal but real" and gave the reason in the
   same breath: "headings are all one-to-two words and won't realistically
-  wrap." A one-word heading has no last line to strand a word on, so it is no
+  wrap." A one-word heading is not a site a report can rest on, so it is no
   longer a site at all. The threshold is four words.
+
+**None of the three repairs was re-tested blind.** The A10 repair in v1 was, and
+that entry says so; this one cannot. The seven runs above are the measurement,
+and every count in this entry predates the repairs those runs caused. Whether
+the new report rules and the narrowed C4 behave as intended under a reader who
+does not know they changed is the next round's question, not this one's answer.
 
 ### Recorded for v2, not fixed
 
@@ -299,12 +320,42 @@ a fixture whose row does not list it. That is the plan's scope showing through,
 not a defect in the tell, and closing it means extending `clean-landing`, not
 loosening C4.
 
-**`clean-dashboard` no longer exercises C4's second door.** The heading left
-untreated on purpose at `app/page.tsx:92` is one word, and the narrowed C4 does
-not count a one-word heading as a site, so the tell declines there before the
-door is ever reached. The fixture still produces the right answer; the
-mechanism it was built to produce it with no longer runs. Closing this means
-lengthening that heading, which is a fixture edit and outside this round.
+**The majority rule that replaced C4's judgment is untested.** Door two itself
+is exercised heavily — run 6 closed seven tells with it, each with a site — but
+every one of those is a single occurrence handled correctly, where the door
+opens on the fact that the project did the thing, not on any count.
+`app/page.tsx:92` was the corpus's only partial miss, some sites treated and one
+not, which is the only shape where the new arithmetic does any work. The
+narrowed signal does not count a one-word heading as a site, so C4 now declines
+there before the count is reached. The verdict the row demands is unchanged;
+the path to it is gone.
+
+The remedy is for the round after this one: lengthen that heading past three
+words, still without `text-balance`, and re-run blind. That is not a fixture
+edited to suit a tell — the demanded verdict is identical before and after, and
+only the mechanism that produces it is restored.
+
+**C4's text-block half kept the vagueness the heading half just shed.** A
+heading site is now defined by a number; a "short text block" is defined by
+nothing. On `slop-dashboard`, `app/invoices/page.tsx:12`, `app/page.tsx:51` and
+`components/table.tsx:13` are one-line labels that an auditor could read as
+sites as readily as the real sentence at `app/not-found.tsx:7-9`. Two treated
+paragraphs against three untreated labels resolves to "fires" for a reader who
+counts labels and "declines" for one who does not, which is the same
+two-answers property the door repair was written to remove, surviving on the
+other half of the same tell. It changes no verdict across these four fixtures,
+because on each of them the counts are degenerate — which is exactly why the
+corpus will not catch it. Inherited rather than introduced by this round, and
+recorded rather than repaired, because a Signal rewrite here would go into the
+catalog unmeasured.
+
+**The five-finding floor survived a round that argued with it.** The cap repair
+lifted the ceiling only. Run 2 reported zero findings on `clean-dashboard` and
+had to spend a paragraph justifying it; runs 6 and 7 reported one each and run 4
+wrote a closing note headed "Note on report length". Three of seven runs treated
+the floor as something to defend against rather than a rule to follow, which is
+what a quota does to an honest count. Out of the scope this round was ruled on,
+and recorded for the next.
 
 **F11 declined on `slop-dashboard`, where the row expects it.** The run's
 reasoning: "rows are hardcoded, never filtered/reordered in the code shown,

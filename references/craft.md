@@ -77,10 +77,11 @@ looked and this instance is an oversight rather than an absence of care.
 
 **Signal**  A heading of four words or more with no `text-wrap: balance`, or a
 short text block with no `text-pretty`. A heading of three words or fewer is
-not a site: at the sizes headings are set, it holds one line at any width a
-heading is read at, so it has no last line to strand a word on. Count the
-sites carrying the property against the sites that don't, headings against
-headings and text blocks against text blocks.
+not a site: it holds one line at most widths it will be read at, so reporting
+it means reporting a break that probably never happens. The threshold is a
+floor for what is worth flagging, not a claim that a shorter heading can never
+wrap. Count the sites carrying the property against the sites that don't,
+headings against headings and text blocks against text blocks.
 
 **Principle**  A single word alone on a heading's last line is the clearest
 sign nobody ever resized the window to check.
