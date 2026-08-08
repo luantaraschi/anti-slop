@@ -111,9 +111,9 @@ W3  "No items found" on 3 screens components/table.tsx:88
 The verdict is one sentence naming the dominant pattern across axes, not a
 summary of each axis in turn.
 
-A full invocation reports between five and ten findings. A single-axis
-invocation has no cap: whoever typed `anti-slop craft` asked for that axis,
-and a Craft finding held back there is the thing they came for.
+A full invocation reports at most ten findings. A single-axis invocation has no
+cap: whoever typed `anti-slop craft` asked for that axis, and a Craft finding
+held back there is the thing they came for.
 
 Whatever the cap cuts gets counted. Under the last finding, say how many were
 dropped and from which axis — "4 further Craft findings not listed". A

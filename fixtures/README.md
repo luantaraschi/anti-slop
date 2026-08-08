@@ -237,7 +237,7 @@ or its body — is not reported, however plainly the run says it fires.
 - `slop-dashboard`, full: 9 of the 20 expected ids reported — A1, A6, C3, C10,
   C11, C12, F1, F2, W3. Under the old cap.
 - `slop-dashboard`, Craft only, cap suspended: 9 of the 10 expected Craft ids —
-  C1, C3, C5, C7, C8, C9, C10, C11, C12. C4 was the miss, filed under "marginal
+  C1, C3, C5, C7, C8, C9, C10, C11, C12. C4 was the miss, filed under "Marginal
   but real" instead of as a finding.
 - `slop-landing`, full: 9 of the 11 expected ids — A2, A7, A8, W1, W6, W7, F2,
   F5, F12. Under the old cap.
@@ -252,18 +252,30 @@ or its body — is not reported, however plainly the run says it fires.
 ran under a cap of ten findings and both wrote down which true positives they
 cut to stay under it. On `slop-dashboard`: C7 and C8 "real, but the weakest of
 the Craft findings here next to C10 and C12 ... cut for budget rather than
-because they don't fire", and C5 "real (`app/page.tsx:37`, `size-5` icon
-button, no extension), but a single low-traffic control; cut for budget". On
-`slop-landing`: F3 and F4 "both true and both would fire ... the report format
-caps at ten; cut for redundancy against higher-leverage Finish findings, not
-for a false-positive reason". Four more ids on `slop-dashboard` were found and
-not given a line: A3, A4, A10 and C1 are all named inside A1's own finding, in
-its kill list at the top of the report and again in its body, which is a run
-that reached them and had no room to list them. A5 alone appears in neither the
-report nor the declined list, and that is the same suppression with nothing
-written down. None of the five is scored as a miss. The Craft-only run on the
-same fixture is the proof: same tree, cap lifted, four reported Craft ids became
-nine.
+because they don't fire"; C5 "real (`app/page.tsx:37`, `size-5` icon button, no
+extension), but a single low-traffic control; cut for budget"; and C9, hover
+declared all over the tree with `active:` nowhere, "which does fire the tell,
+but ... folding it in separately would pad the count rather than add a new
+root". On `slop-landing`: F3 and F4 "both true and both would fire ... the
+report format caps at ten; cut for redundancy against higher-leverage Finish
+findings, not for a false-positive reason". Six written-down cuts, then. C9 is
+the one the earlier accounting here missed, and it is the plainest of the six:
+the run says the tell fires and drops it in the same sentence.
+
+The arithmetic under run 1 is worth stating on its own, because repeating the
+run's framing hides it. That report listed nine findings against a cap of ten,
+and still cut three of the above "for budget". A slot went unused.
+
+Four further ids on `slop-dashboard` were found and not given a line: A3, A4,
+A10 and C1 are all named inside A1's own finding, in its kill list at the top of
+the report and again in its body, which is a run that reached them and had no
+room to list them. Two more, A5 and C4, appear in neither the report nor the
+declined list — grep the artifact for either id and it is not there — and that
+is the same suppression with nothing written down at all. None of the six reads
+as a tell that failed: four are visible in the report's own text, and two are
+missing from a report that had already run out of room. The Craft-only run on
+the same fixture is the proof: same tree, cap lifted, four reported Craft ids
+became nine.
 
 **What held.** The Craft-only run on `clean-dashboard` declined eleven of the
 twelve Craft tells, named the door that closed each one, and cited a specific
@@ -274,23 +286,33 @@ for C7's shorter exit, `components/filter-panel.tsx:56` for C8 driving the same
 panel off a transition rather than a keyframe, the eight paired
 `border-rule`/`dark:border-rule/25` sites for C10, `components/ui/button.tsx:14`
 for C11's shared disabled base, and `components/invoice-row.tsx:15-25` for C12's
-label rendered beside the tone. That is the second door working as designed,
-under a reader who did not know it was being tested.
+label rendered beside the tone. Every one of those citations is real, and a
+reader who did not know the fixture was being tested found in each case the
+evidence the axis asks for.
 
-What that does not establish is the arithmetic this round put behind it. All
-seven of those declines are of one shape: a single occurrence, handled
-correctly. None is a partial miss, which is the shape the majority count was
-written for. See the second entry under `Recorded for v2, not fixed`.
+What it does not establish is that door two works, because six of those seven
+declines are not door-two cases. In six of them the tree holds no failing
+instance at all: the correctly handled occurrence is the only occurrence, or
+every occurrence is correct. Door two releases a tell that *is* firing
+somewhere because the project got the same detail right elsewhere — C7's clause
+asks whether "asymmetry is already the habit in the project's other enter/exit
+pairs and this pair alone broke it", and there are no *other* pairs when the
+tree holds one and that one is right. With no failing instance the Signal never
+matched and nothing needed excusing, which is door one filed under door two's
+name. The seventh, C1, does have a candidate failing instance, and the run
+closed it by supplying a rule the tell does not carry. Both are set out in the
+second entry under `Recorded for v2, not fixed`.
 
 Three repairs came out of the round, none of them to a fixture:
 
-- **The cap was suppressing true positives, so the cap changed.** A full
-  invocation still reports five to ten. A single-axis invocation has no cap,
-  because someone naming one axis is asking for that axis. And whatever the cap
-  does cut now has to be counted in the report, by axis, so nobody loses
-  information without being told they lost it.
+- **The cap was suppressing true positives, so the cap changed.** That repair
+  moved the ceiling only: a full invocation still reported five to ten
+  afterwards, and the floor came off later, for the reason recorded below. A
+  single-axis invocation has no cap, because someone naming one axis is asking
+  for that axis. And whatever the cap does cut now has to be counted in the
+  report, by axis, so nobody loses information without being told they lost it.
 - **C4's second door was a judgment, not a rule.** The full run on
-  `clean-dashboard` declined C4 — "one heading without the property against
+  `clean-dashboard` declined C4 — "One heading without the property against
   four with it reads as a single oversight in a codebase that otherwise applies
   the treatment consistently, not as a pattern of nobody checking" — and the
   Craft-only run fired it on the same fixture and the same evidence. One
@@ -298,10 +320,12 @@ Three repairs came out of the round, none of them to a fixture:
   sites of the same kind, more carrying the property than missing it opens it,
   and a tie does not.
 - **C4 fired on headings that cannot wrap.** The Craft-only run on
-  `slop-dashboard` called it "marginal but real" and gave the reason in the
-  same breath: "headings are all one-to-two words and won't realistically
-  wrap." A one-word heading is not a site a report can rest on, so it is no
-  longer a site at all. The threshold is four words.
+  `slop-dashboard` filed it under "Marginal but real" and gave the reason in
+  the same breath: "Every heading in the tree (`Dashboard`, `Invoices` ×2,
+  `Page not found`, `Filters`) is one or two words — none will realistically
+  wrap at any reasonable viewport, so the heading half of this tell is weak to
+  the point of not really applying." A one-word heading is not a site a report
+  can rest on, so it is no longer a site at all. The threshold is four words.
 
 **None of the three repairs was re-tested blind.** The A10 repair in v1 was, and
 that entry says so; this one cannot. The seven runs above are the measurement,
@@ -320,20 +344,56 @@ a fixture whose row does not list it. That is the plan's scope showing through,
 not a defect in the tell, and closing it means extending `clean-landing`, not
 loosening C4.
 
-**The majority rule that replaced C4's judgment is untested.** Door two itself
-is exercised heavily — run 6 closed seven tells with it, each with a site — but
-every one of those is a single occurrence handled correctly, where the door
-opens on the fact that the project did the thing, not on any count.
-`app/page.tsx:92` was the corpus's only partial miss, some sites treated and one
-not, which is the only shape where the new arithmetic does any work. The
-narrowed signal does not count a one-word heading as a site, so C4 now declines
-there before the count is reached. The verdict the row demands is unchanged;
-the path to it is gone.
+**The majority rule that replaced C4's judgment is untested, and door two closed
+nothing in the shape it was written for.** Run 6 labelled seven declines door
+two and gave each one a site, which reads as heavy exercise and is not. Six of
+the seven have no failing instance anywhere in the tree — the one enter/exit
+pair is asymmetric, the one figure that moves carries `tabular-nums`, all eight
+borders declare both themes — so the Signal never matched, and a door that
+excuses a failure had no failure in front of it. Those six are door one under
+door two's label. The seventh is C1, which is the second of the three cases
+below. Door two closed zero cases in the shape the clause describes.
 
-The remedy is for the round after this one: lengthen that heading past three
-words, still without `text-balance`, and re-run blind. That is not a fixture
-edited to suit a tell — the demanded verdict is identical before and after, and
-only the mechanism that produces it is restored.
+Three sites in the corpus do carry that shape, some instances treated and some
+not, which is the only shape where the new arithmetic does any work. This file
+previously named the first as the only one:
+
+- **C4 at `app/page.tsx:92`.** Five treated headings against one untreated. The
+  narrowed signal does not count a one-word heading as a site, so C4 now
+  declines there before the count is reached. The verdict the row demands is
+  unchanged; the path to it is gone.
+- **C1 on the chip inside the panel.** `rounded-chip` (999px,
+  `components/invoice-row.tsx:39`) sits inside `rounded-panel` (12px,
+  `components/table.tsx:48`), whose padding is `px-5 py-2` — 20px and 8px,
+  neither of them past the 24px that opens door one. An inner radius larger
+  than the outer one is C1's Signal in as many words. Against it stands the one
+  concentric pair the tree does hold, `components/filter-panel.tsx:53-55`. C1's
+  Signal says to count the nested pairs against the concentric ones and never
+  says what count opens the door, so one against one settles nothing. Run 6
+  declined it by asserting that "a pill's radius is set by its own height, not
+  by an outer wrap" — an exemption for pills that C1 does not contain.
+- **C5 on the `row` size.** `components/ui/button.tsx:27-28` declares `row` at
+  `h-7` (28px) and `control` at `h-9` (36px), both under the 40px floor, and
+  `row` is used at five text-button sites with no extension against the one
+  icon control that has one. C5's own door two asks whether extending the
+  target is already the pattern among the project's small controls; one of six
+  is not a pattern, and C5 is on a forbid row. Run 6 held the tell off by
+  arguing that C5's Principle describes a bare drawing rather than a labelled
+  control, and flagged the judgment in writing as "the one genuinely close call
+  in this audit: if `row` controls are judged by declared height alone ... this
+  reverses to a firing finding".
+
+All three are the same failure C4's second door was repaired for, a judgment
+where the tell should carry a rule, and two of them are still live — on the
+fixture whose job is to prove the exemptions hold. C1 and C5 are not repaired
+here: a Signal rewrite for either would go into the catalog unmeasured, and one
+remedy should cover all three at once.
+
+The C4 half of that remedy is already specified, for the round after this one:
+lengthen that heading past three words, still without `text-balance`, and
+re-run blind. That is not a fixture edited to suit a tell — the demanded verdict
+is identical before and after, and only the mechanism that produces it is
+restored.
 
 **C4's text-block half kept the vagueness the heading half just shed.** A
 heading site is now defined by a number; a "short text block" is defined by
@@ -349,17 +409,47 @@ corpus will not catch it. Inherited rather than introduced by this round, and
 recorded rather than repaired, because a Signal rewrite here would go into the
 catalog unmeasured.
 
-**The five-finding floor survived a round that argued with it.** The cap repair
-lifted the ceiling only. Run 2 reported zero findings on `clean-dashboard` and
-had to spend a paragraph justifying it; runs 6 and 7 reported one each and run 4
-wrote a closing note headed "Note on report length". Three of seven runs treated
-the floor as something to defend against rather than a rule to follow, which is
-what a quota does to an honest count. Out of the scope this round was ruled on,
-and recorded for the next.
+**One clause of A1's signal is now false on `slop-dashboard`.** A1's Signal is
+a conjunction: no `theme.extend.colors`, no color custom property anywhere,
+*and* `text-gray-500` as the project's only secondary color. The first two
+clauses hold. The third stopped holding when this round extended the fixture:
+`components/table.tsx:1-5` declares `bg-red-500`, `bg-green-500` and
+`bg-gray-400` to carry invoice status, so gray is no longer the only secondary
+color in the tree. A1 still fires, on the dominant clause — the empty
+`theme.extend` — and run 1 reached it as ROOT off exactly that evidence, so the
+corpus gets the verdict it demands. What it no longer gets is a signal a reader
+can check clause by clause without finding one the fixture contradicts. The
+repair, if there is one, is to A1's wording rather than to the fixture, and it
+is left for the next round for the same reason as the two above: a Signal
+rewrite now would go into the catalog unmeasured.
 
-**F11 declined on `slop-dashboard`, where the row expects it.** The run's
-reasoning: "rows are hardcoded, never filtered/reordered in the code shown,
-immutable-list exemption applies." v1's calibration had F11 fire on the same
+**The five-finding floor argued with three of seven runs, and has since been
+removed.** The cap repair lifted the ceiling only. Run 2 reported zero findings
+on `clean-dashboard` and had to spend a paragraph justifying it; runs 6 and 7
+reported one each and run 4 wrote a closing note headed "Note on report length".
+Three of seven runs treated the floor as something to defend against rather than
+a rule to follow, which is what a quota does to an honest count. It fell outside
+what this round was ruled on, which is why it is recorded here with the runs
+that produced the evidence. `SKILL.md` now reads "at most ten findings": the
+ceiling the round ruled on is untouched, and the floor nobody ruled on is gone.
+Like the three repairs above, that change is unmeasured — no run has been blind
+to it.
+
+**F11 declined on `slop-dashboard`, where the row expects it.** The run found
+the missing `key` at `components/table.tsx:17` and then declined, in these
+words:
+
+> Both current call sites (`app/page.tsx:12-17` and `app/invoices/page.tsx:3`)
+> pass a hardcoded, never-filtered, never-reordered array — the `FilterPanel`
+> toggle doesn't touch `rows` anywhere in the code shown. The tell's own
+> exemption ("the list is genuinely immutable — never reordered, never
+> filtered") applies to what's actually on the page today, even though the
+> presence of a Filters affordance makes it likely this list stops being static
+> later.
+
+The last clause is what makes the decline provisional, and it belongs in the
+record: the run read the tree as it stands and said in the same breath that the
+tree is unlikely to stay that way. v1's calibration had F11 fire on the same
 fixture over the same code. One run reading the exemption the other way is
 variance, not a measurement, so nothing changed on its account. A second
 decline in the next round makes it the tell's problem rather than the round's.

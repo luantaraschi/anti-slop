@@ -1,8 +1,8 @@
 # anti-slop
 
 A Claude Code skill that audits interface code for the marks of work nobody
-finished: the palette nobody picked, the copy nobody wrote, the meta tags
-nobody set, the dark theme nobody opened. It reports them as a ranked list
+finished: the palette nobody picked, the dark theme nobody opened, the copy
+nobody wrote, the meta tags nobody set. It reports them as a ranked list
 with a file and a line.
 
 ## The claim it does not make
@@ -77,13 +77,16 @@ Words axis is otherwise clean — no catalog labels, no leaked implementation na
 ---
 
 That is the output of a blind audit of `fixtures/slop-dashboard`, one of the
-four calibration specimens, pasted exactly as the run produced it. The agent
-had the skill and the directory and nothing else: not the expected answer, not
-this file. It followed the rules that say how to rank a finding and reshaped the
-ones that say how to present it: the verdict runs to three sentences where
-`SKILL.md` asks for one, and the aligned columns became tables. That gap is
-recorded rather than papered over in `fixtures/README.md`, together with what
-every calibration run scored across all four fixtures.
+four calibration specimens, pasted exactly as the run produced it. It ran
+against that fixture as it stood at v1, before the Craft extension lengthened
+the tree and moved its line numbers, so every citation above points at where
+the code was then rather than where it is now; `fixtures/README.md` carries the
+re-derived set. The agent had the skill and the directory and nothing else: not
+the expected answer, not this file. It followed the rules that say how to rank
+a finding and reshaped the ones that say how to present it: the verdict runs to
+three sentences where `SKILL.md` asks for one, and the aligned columns became
+tables. That gap is recorded rather than papered over in `fixtures/README.md`,
+together with what every calibration run scored across all four fixtures.
 
 ## The four axes
 

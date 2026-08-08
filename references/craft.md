@@ -34,8 +34,8 @@ inner radius plus the padding, where that padding is 24px or less.
 
 **Not slop when**  The padding between the layers exceeds 24px, at which point
 the two surfaces read as separate and each radius is free to choose itself; or
-the project's other nested pairs are already concentric, and this one is the
-exception.
+every other nested pair in the tree already runs concentric, which leaves this
+pair an outlier rather than the rule.
 
 ### C2 — Centered by the box, not by the eye
 
@@ -51,8 +51,8 @@ left.
 the SVG itself so the component never has to compensate.
 
 **Not slop when**  No asymmetric icon sits inside a control anywhere in the
-tree; or the project's other controls already compensate, and this one is the
-lone holdout.
+tree; or compensating for the shape is already the norm across the project's
+controls and one control missed it.
 
 ### C3 — Numbers that jump
 
@@ -108,8 +108,8 @@ extend their hit area against the ones that don't.
 the neighboring target.
 
 **Not slop when**  No control in the tree is smaller than 40px, so the
-condition never arises; or the project's other small controls already extend,
-and this one is the exception.
+condition never arises; or extending the target is the pattern among the
+project's small controls and this control fell outside it.
 
 ### C6 — An image with no edge
 
@@ -124,8 +124,8 @@ around it has an edge.
 negative `outline-offset` so it doesn't add to the layout.
 
 **Not slop when**  No content image appears in the tree, so the condition
-never arises; or the project's other images already carry the treatment, and
-this one was missed.
+never arises; or every other image already carries the treatment, which makes
+this a skip rather than a habit.
 
 ### C7 — Enter and exit weigh the same
 
@@ -140,8 +140,8 @@ no longer needs to be.
 offset that signals direction without drawing the eye back.
 
 **Not slop when**  No animated enter or exit exists anywhere in the tree, so
-the condition never arises; or the project's other enter/exit pairs are
-already asymmetric, and this pair is the exception.
+the condition never arises; or asymmetry is already the habit in the project's
+other enter/exit pairs and this pair alone broke it.
 
 ### C8 — An animation that cannot change its mind
 
@@ -158,8 +158,8 @@ never looks stuck.
 reserve keyframes for a sequence meant to run once, start to finish.
 
 **Not slop when**  No interactive open-and-close exists anywhere in the tree,
-so the condition never arises; or the project's other interactive states
-already use a transition, and this one is the exception.
+so the condition never arises; or transitions already drive the project's other
+interactive states, leaving this keyframe the odd one out.
 
 ### C9 — Nothing happens when you press
 
@@ -173,8 +173,8 @@ no feedback at all until the screen itself changes.
 in elevation — on every control that already has a hover state.
 
 **Not slop when**  None of the project's controls has a hover state, and the
-absence is uniform across the tree; or the project's other controls already
-carry a pressed state, and this one is the exception.
+absence is uniform across the tree; or a pressed state is standard equipment on
+the project's other controls and this control went without.
 
 ### C10 — One theme was ever opened
 
@@ -189,8 +189,8 @@ one who wouldn't notice.
 a color set per element.
 
 **Not slop when**  The project has no dark mode at all, so the condition
-never arises; or the project's other borders already declare both themes, and
-this one is the exception.
+never arises; or every other border in the tree declares both themes, which
+makes this border an oversight.
 
 ### C11 — Disabled that still looks clickable
 
@@ -205,8 +205,8 @@ anything. Apart, one of them is lying.
 pointer cursor along with them.
 
 **Not slop when**  No disabled state exists anywhere in the tree, so the
-condition never arises; or the project's other disabled controls already
-agree on both sides, and this one is the exception.
+condition never arises; or the project's other disabled controls keep the two
+sides in step and only this control drifted.
 
 ### C12 — Color carrying the meaning alone
 
@@ -221,5 +221,5 @@ that doesn't survive a screenshot converted to grayscale.
 reinforces the status instead of being the only thing carrying it.
 
 **Not slop when**  The status already ships with text or shape everywhere it
-appears, so the condition never arises; or the project's other indicators
-already repeat the status on two channels, and this one is the exception.
+appears, so the condition never arises; or two channels is what the project's
+other indicators already give the reader, and this indicator is short one.

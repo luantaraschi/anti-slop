@@ -54,7 +54,7 @@ precede it — it does not depend on any tool's vintage.
 and no concentric radius, no `tabular-nums`, no pressed state, a dark theme
 declared on the background and nowhere else.
 
-**Tells that usually fire**  C1, C3, C4, C10, C11, and almost nothing from
+**Tells that usually fire**  C1, C3, C4, C9, C10, and almost nothing from
 Surface.
 
 **What breaks the match**  Any craft detail handled correctly in more than
