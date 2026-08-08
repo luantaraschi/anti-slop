@@ -109,10 +109,21 @@ W3  "No items found" on 3 screens components/table.tsx:88
 ## Report rules
 
 The verdict is one sentence naming the dominant pattern across axes, not a
-summary of each axis in turn. Report between five and ten findings. Order
-them by how much fixing them delivers, never by severity and never grouped
-by axis. Separate root findings from the ones they cause, and state which
-symptoms each root's fix kills. Every finding carries a file and a line.
+summary of each axis in turn.
+
+A full invocation reports between five and ten findings. A single-axis
+invocation has no cap: whoever typed `anti-slop craft` asked for that axis,
+and a Craft finding held back there is the thing they came for.
+
+Whatever the cap cuts gets counted. Under the last finding, say how many were
+dropped and from which axis — "4 further Craft findings not listed". A
+finding judged real and then cut for length is still something the reader is
+entitled to know exists.
+
+Order the findings by how much fixing them delivers, never by severity and
+never grouped by axis. Separate root findings from the ones they cause, and
+state which symptoms each root's fix kills. Every finding carries a file and
+a line.
 
 ## Out of scope
 

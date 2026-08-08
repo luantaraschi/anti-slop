@@ -75,9 +75,12 @@ looked and this instance is an oversight rather than an absence of care.
 
 ### C4 — A heading that leaves a word behind
 
-**Signal**  Headings with no `text-wrap: balance` and short paragraphs with no
-`text-pretty`. Count the ones carrying the property against the ones that
-don't.
+**Signal**  A heading of four words or more with no `text-wrap: balance`, or a
+short text block with no `text-pretty`. A heading of three words or fewer is
+not a site: at the sizes headings are set, it holds one line at any width a
+heading is read at, so it has no last line to strand a word on. Count the
+sites carrying the property against the sites that don't, headings against
+headings and text blocks against text blocks.
 
 **Principle**  A single word alone on a heading's last line is the clearest
 sign nobody ever resized the window to check.
@@ -85,9 +88,11 @@ sign nobody ever resized the window to check.
 **Fix**  `text-wrap: balance` on headings, `text-pretty` on short text,
 neither on long-form body copy, where the reflow cost doesn't pay for itself.
 
-**Not slop when**  The tree has no heading and no short text block for the
-property to apply to, so the condition never arises; or the project already
-applies it elsewhere, and this instance slipped through.
+**Not slop when**  The tree holds no heading of four words or more and no
+short text block, so the condition never arises; or, among the sites of the
+same kind as the one that failed, more carry the property than miss it. That
+is a count, not an impression: five treated headings against one untreated is
+an oversight, and three against three is the pattern.
 
 ### C5 — A target the size of the drawing
 

@@ -46,6 +46,13 @@ heading right could only ever exercise the first door, that the condition
 never arises at all. `app/page.tsx:92` is annotated in place as the isolated
 oversight the second door needs something to be tested against.
 
+That annotation no longer describes what happens. The v2 calibration narrowed
+C4 so a heading of three words or fewer is not a site at all, and "Reminders"
+is one word. The heading still reads as the deliberate miss it was written to
+be, but the tell now declines it before the second door is ever consulted, so
+the corpus has lost its only C4 door-two exercise. Recorded below rather than
+repaired here: a fixture is not edited to suit a tell.
+
 Do not tidy a `slop-*` fixture. The missing `lang`, the keyless `.map()`, the
 leftover `Your Company` and the untouched shadcn primitives are the deliverable.
 A `slop-*` fixture that has been cleaned up tests nothing.
@@ -204,3 +211,104 @@ expensive of the two, because the one-sentence verdict is what forces a reader t
 name a single dominant pattern instead of touring the axes. Recorded rather than
 papered over: the example above is the run as it came out, and the gap is
 visible in it.
+
+### v2, the Craft axis, 2026-08-07
+
+Seven blind runs, by the same method and under the same restrictions as the
+four above. Each agent received only `SKILL.md`, the `references/` files
+SKILL.md names, and its own target directory. None could read this file, the
+repo root `README.md`, `tests/`, `scripts/`, or any fixture but its own. None
+knew the expected answer, that a fourth axis had just been added, or that
+anything had been repaired.
+
+Four were full audits, one per fixture. Three invoked `anti-slop craft` alone,
+to separate the new axis from the other three's noise, and those three were
+told the report cap was suspended, so each could report everything the axis
+found rather than everything that fit.
+
+The counts below are what the seven runs produced, before the repairs they
+caused.
+
+- `slop-dashboard`, full: 9 of the 20 expected ids reported — A1, A6, C3, C10,
+  C11, C12, F1, F2, W3. Under the old cap.
+- `slop-dashboard`, Craft only, cap suspended: 9 of the 10 expected Craft ids —
+  C1, C3, C5, C7, C8, C9, C10, C11, C12. C4 was the miss, filed under "marginal
+  but real" instead of as a finding.
+- `slop-landing`, full: 9 of the 11 expected ids — A2, A7, A8, W1, W6, W7, F2,
+  F5, F12. Under the old cap.
+- `clean-dashboard`, full: 0 of the 19 forbidden ids leaked. The run reported
+  nothing at all, for the second calibration running.
+- `clean-dashboard`, Craft only: C4 leaked. 1 of the 19.
+- `clean-landing`, full: 0 of the 6 forbidden ids leaked. C4 fired, and C4 is
+  not on that row.
+- `clean-landing`, Craft only: the same result, C4 and nothing else.
+
+**The two full runs on the slop fixtures are a floor, not a measurement.** Both
+ran under a cap of ten findings and both wrote down which true positives they
+cut to stay under it. On `slop-dashboard`: C7 and C8 "real, but the weakest of
+the Craft findings here next to C10 and C12 ... cut for budget rather than
+because they don't fire", and C5 "real (`app/page.tsx:37`, `size-5` icon
+button, no extension), but a single low-traffic control; cut for budget". On
+`slop-landing`: F3 and F4 "both true and both would fire ... the report format
+caps at ten; cut for redundancy against higher-leverage Finish findings, not
+for a false-positive reason". A3, A4, A5 and A10 appear in neither the
+`slop-dashboard` report nor its declined list, which is the same suppression
+with nothing written down, so they are not counted as misses here. The
+Craft-only run on that fixture is the proof: same tree, cap lifted, five Craft
+ids became nine.
+
+**What held.** The Craft-only run on `clean-dashboard` declined eleven of the
+twelve Craft tells, named the door that closed each one, and cited a specific
+site for every door-two decline: `components/filter-panel.tsx:56-63` for C7's
+shorter exit, `components/ui/button.tsx:14` for C11's shared disabled base,
+`components/invoice-row.tsx:15-25` for C12's label rendered beside the tone,
+`components/stat-card.tsx:45` for C3's `tabular-nums` on the one figure that
+moves, and the radius derivation in `tailwind.config.ts:14-16` for C1. That is
+the second door working as designed, under a reader who did not know it was
+being tested.
+
+Three repairs came out of the round, none of them to a fixture:
+
+- **The cap was suppressing true positives, so the cap changed.** A full
+  invocation still reports five to ten. A single-axis invocation has no cap,
+  because someone naming one axis is asking for that axis. And whatever the cap
+  does cut now has to be counted in the report, by axis, so nobody loses
+  information without being told they lost it.
+- **C4's second door was a judgment, not a rule.** The full run on
+  `clean-dashboard` declined C4 — "one heading without the property against
+  four with it reads as a single oversight in a codebase that otherwise applies
+  the treatment consistently, not as a pattern of nobody checking" — and the
+  Craft-only run fired it on the same fixture and the same evidence. One
+  hypothesis, heads once and tails once. The door is now a count: among the
+  sites of the same kind, more carrying the property than missing it opens it,
+  and a tie does not.
+- **C4 fired on headings that cannot wrap.** The Craft-only run on
+  `slop-dashboard` called it "marginal but real" and gave the reason in the
+  same breath: "headings are all one-to-two words and won't realistically
+  wrap." A one-word heading has no last line to strand a word on, so it is no
+  longer a site at all. The threshold is four words.
+
+### Recorded for v2, not fixed
+
+**`clean-landing` fires C4, and the fixture is right.** Both runs that reached
+it found the same thing: four headings and four short paragraphs, and not one
+instance of `text-wrap: balance` or `text-pretty` anywhere in the tree, so
+neither door opens. v2 extended only the dashboard pair for Craft. The landing
+pair was never given the treatment C4 looks for, so the tell fires correctly on
+a fixture whose row does not list it. That is the plan's scope showing through,
+not a defect in the tell, and closing it means extending `clean-landing`, not
+loosening C4.
+
+**`clean-dashboard` no longer exercises C4's second door.** The heading left
+untreated on purpose at `app/page.tsx:92` is one word, and the narrowed C4 does
+not count a one-word heading as a site, so the tell declines there before the
+door is ever reached. The fixture still produces the right answer; the
+mechanism it was built to produce it with no longer runs. Closing this means
+lengthening that heading, which is a fixture edit and outside this round.
+
+**F11 declined on `slop-dashboard`, where the row expects it.** The run's
+reasoning: "rows are hardcoded, never filtered/reordered in the code shown,
+immutable-list exemption applies." v1's calibration had F11 fire on the same
+fixture over the same code. One run reading the exemption the other way is
+variance, not a measurement, so nothing changed on its account. A second
+decline in the next round makes it the tell's problem rather than the round's.
