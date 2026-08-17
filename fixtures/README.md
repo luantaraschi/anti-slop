@@ -221,6 +221,9 @@ repo root `README.md`, `tests/`, `scripts/`, or any fixture but its own. None
 knew the expected answer, that a fourth axis had just been added, or that
 anything had been repaired.
 
+The seven reports are in `calibration/2026-08-07/`, as the runs produced them.
+Every string this entry quotes is theirs, and can be read in place.
+
 Four were full audits, one per fixture. Three invoked `anti-slop craft` alone,
 to separate the new axis from the other three's noise, and the report cap was
 suspended for those three so each could report everything the axis found rather

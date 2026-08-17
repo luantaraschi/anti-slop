@@ -1,0 +1,37 @@
+# anti-slop craft — fixtures/clean-dashboard
+
+Invocation: `anti-slop craft` (single-axis, Craft only). Reference loaded: `references/craft.md`. Target read in full: `app/icon.svg`, `app/layout.tsx`, `app/page.tsx`, `app/invoices/page.tsx`, `app/not-found.tsx`, `components/ui/button.tsx`, `components/stat-card.tsx`, `components/invoice-row.tsx`, `components/table.tsx`, `components/filter-panel.tsx`, `tailwind.config.ts`.
+
+## Verdict
+
+Nearly the whole tree pairs a Craft tell with the comment that proves someone chose the alternative — concentric radii, tabular numbers where they move, asymmetric enter/exit, disabled state agreeing with its visual, color paired with a label — and one heading breaks that pattern by dropping `text-balance` while every sibling heading keeps it.
+
+## Findings
+
+**C4 — A heading that leaves a word behind.** `app/page.tsx:92` — `<h2 className="font-display text-figure">Reminders</h2>` carries no `text-balance`, while every other heading in the tree does: the page `<h1>` at `app/page.tsx:54`, the `<h1>` at `app/invoices/page.tsx:13`, the `<h1>` at `app/not-found.tsx:6`, the empty-state `<h3>` at `components/table.tsx:35`, and the sibling `<h2>` at `app/page.tsx:104`. The comment directly above it (`app/page.tsx:90-91`) flags this as deliberate: "Left without text-balance on purpose... so C4's second door has something to be tested against." Closed by neither door — condition arises (the tree has headings) and the project does not handle this instance correctly, even though it handles every other heading correctly. Root finding; nothing else depends on it.
+
+No other Craft tell fires.
+
+## Declined, with door named
+
+**C1 — Radius that ignores what it wraps.** Door two. `tailwind.config.ts:14-16` declares `control: 5px`, `panel: 12px`, with an explicit comment: "panel wraps control with 7px of padding: 12 = 5 + 7... keep that gap and the two curves stay concentric." `components/filter-panel.tsx:53-55` implements exactly that (`rounded-panel ... p-[7px]` around `rounded-control` buttons), and `components/table.tsx:23` documents choosing *not* to add a second nested radius around the "Show every invoice" button rather than repeating the panel's. The one nested-radius relationship in the tree is handled correctly; the pill badges (`rounded-chip`, 999px) in `components/invoice-row.tsx:39` aren't a nested-curve pair in the sense C1 measures — a pill's radius is set by its own height, not by an outer wrap.
+
+**C2 — Centered by the box, not by the eye.** Door one. No control in the tree pairs an icon with text (every `Button` usage is icon-only or text-only), and the one icon-only control (`app/page.tsx:57-59`, a refresh glyph) is a roughly rotationally-symmetric circular arrow, not a triangular or otherwise pointed shape that would read as pushed off-center. The condition — an asymmetric icon needing optical offset — never arises.
+
+**C3 — Numbers that jump.** Door two. The only number that updates in place is `LedgerStat`'s `current` in `components/stat-card.tsx:28-49`, refreshed every 30s (`REFRESH_MS`, line 5) and already rendered with `font-figure text-figure tabular-nums` (line 45). The static footer figure at `app/page.tsx:126` ("Ledger format 3, in use since 2019") is deliberately left proportional, with a comment explaining why (`app/page.tsx:122-124`) — consistent with the Fix's own carve-out for display numbers that don't change.
+
+**C5 — A target the size of the drawing.** Door one. The one bare small-drawing control in the tree — the icon-size refresh button — already extends its hit area to 40px via a documented pseudo-element (`components/ui/button.tsx:29-31`: "The drawing is 20px; the target is the 40px square the pseudo-element centres on it"). The `row` size (`h-7`, 28px — `components/ui/button.tsx:27`), used repeatedly for text buttons (`components/filter-panel.tsx:17-23,65-71,75-81`, `components/table.tsx:24`, `app/page.tsx:97`), is under 40px in height but its target isn't a small drawing floating in dead space — the clickable area is the full labeled control, width set by the text plus padding, which is the case the tell's principle ("the drawing plus whatever surrounds it") does not describe. Flagged here as the one genuinely close call in this audit: if `row` controls are judged by declared height alone rather than by total target area, this reverses to a firing finding, since five text-button instances lack any extension against one icon control that has it.
+
+**C6 — An image with no edge.** Door one. No content `<img>` appears anywhere in the tree — the only graphics are inline SVGs (`app/icon.svg`, the favicon; the refresh glyph in `app/page.tsx:58`), neither of which is a content image. Condition never arises.
+
+**C7 — Enter and exit weigh the same.** Door two. The tree has exactly one animated enter/exit, `FilterPanel` in `components/filter-panel.tsx:56-63`, and it's already asymmetric on purpose: entrance is `duration-200 ease-out`, exit is `duration-100 ease-in`, with a comment explaining the asymmetry (lines 58-59). Handled correctly at its only occurrence.
+
+**C8 — An animation that cannot change its mind.** Door two. The one interactive open/close in the tree, the same `FilterPanel`, drives its motion off `transition-[opacity,transform]` (`components/filter-panel.tsx:56`), not `@keyframes` — no `@keyframes` block exists anywhere in the target. Comment at lines 34-37 states the reasoning explicitly. Handled correctly at its only occurrence.
+
+**C9 — Nothing happens when you press.** Door one. Every `hover:` in the tree lives inside `buttonVariants` (`components/ui/button.tsx:20-25`), and each variant pairs its `hover:` with an `active:` in the same string, for both themes. The two plain underlined links (`app/page.tsx:109`, `app/not-found.tsx:16`) declare neither `hover:` nor `active:`, so they don't trigger the signal at all. No element in the tree declares hover without active.
+
+**C10 — One theme was ever opened.** Door two. Every border/divider in the tree pairs `border-rule` with `dark:border-rule/25`: `components/stat-card.tsx:40`, `components/invoice-row.tsx:33`, `components/table.tsx:19,34,48`, `components/filter-panel.tsx:55`, `components/ui/button.tsx:24`, `app/page.tsx:125`. The one borderless surface (`app/page.tsx:89`, the "Reminders" aside, which floats on `shadow-raised` instead) has no border to omit in either theme, and its shadow's dark-mode limitation is called out directly in `tailwind.config.ts:29-32` as an accepted, documented tradeoff rather than an oversight — not a C10 case regardless, since C10 is specifically about borders.
+
+**C11 — Disabled that still looks clickable.** Door two. The one disabled control in the tree, the "Clear" button (`components/filter-panel.tsx:75-81`, `disabled={!overdueOnly}`), inherits `disabled:pointer-events-none disabled:cursor-default disabled:opacity-50` from `buttonVariants`'s shared base class (`components/ui/button.tsx:14`), so the visual and the attribute always move together. Comment at lines 73-74 states this directly. Handled correctly at its only occurrence.
+
+**C12 — Color carrying the meaning alone.** Door two. The one status-color usage in the tree, invoice state, pairs `STATE_TONE` (color) with `STATE_LABEL` (text) unconditionally in `components/invoice-row.tsx:15-25,38-41` — the badge always renders both. Comment at lines 10-13 states this is deliberate. Handled correctly at its only occurrence.
