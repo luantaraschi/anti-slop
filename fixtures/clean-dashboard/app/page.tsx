@@ -88,8 +88,10 @@ export default function OverviewPage() {
           for a decision. Everything at rest is separated by border-rule. */}
       <aside className="mt-14 rounded-panel bg-paper px-5 py-4 shadow-raised dark:bg-paper/10">
         {/* Left without text-balance on purpose: the corpus needs one isolated
-            oversight, so C4's second door has something to be tested against. */}
-        <h2 className="font-display text-figure">Reminders</h2>
+            oversight, so C4's second door has something to be tested against.
+            Four words rather than one, because a heading of three or fewer is
+            not a site C4 counts, and a one-word oversight tests nothing. */}
+        <h2 className="font-display text-figure">Reminders waiting on you</h2>
         <p className="mt-2 text-pretty text-body">
           Ourivesaria Lume has been late nine days. The last two invoices were
           paid within a week of the reminder.

@@ -23,7 +23,9 @@ this axis's evidence of a decision, the equivalent of `theme.extend` on Surface.
 
 **Signal**  Two rounded elements nested with the same radius value, or an inner
 radius larger than the outer one. Count nested pairs against the pairs where
-the outer radius equals the inner radius plus the padding between them.
+the outer radius equals the inner radius plus the padding between them. A pill
+is not a site on either side of that count: at a radius set by its own height
+it has no corner, and the Principle below measures corners.
 
 **Principle**  An outer and an inner radius are concentric when the gap
 between the two curves stays constant. Equal, the two curves run in parallel
@@ -80,7 +82,10 @@ short text block with no `text-pretty`. A heading of three words or fewer is
 not a site: it holds one line at most widths it will be read at, so reporting
 it means reporting a break that probably never happens. The threshold is a
 floor for what is worth flagging, not a claim that a shorter heading can never
-wrap. Count the sites carrying the property against the sites that don't,
+wrap. A short text block is a paragraph carrying at least one complete sentence
+and no more than about three; a one-line label, a column header, or a fragment
+that is not a sentence is not a site, for the reason a three-word heading is
+not. Count the sites carrying the property against the sites that don't,
 headings against headings and text blocks against text blocks.
 
 **Principle**  A single word alone on a heading's last line is the clearest
@@ -99,7 +104,11 @@ an oversight, and three against three is the pattern.
 
 **Signal**  An interactive element with a declared dimension under 40px and no
 area extended by a pseudo-element or padding. Count the small controls that
-extend their hit area against the ones that don't.
+extend their hit area against the ones that don't. A control whose hit area is
+set by a text label and its padding is not a site: the Principle below is about
+a drawing with nothing around it, and a labelled control has surrounding area by
+construction. A control short in one dimension and generous in the other is a
+real problem and a different one; this tell does not carry it.
 
 **Principle**  The touch target is the drawing plus whatever surrounds it. A
 20px icon with no extension misses the finger and forces a second attempt.

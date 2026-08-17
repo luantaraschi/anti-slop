@@ -13,7 +13,7 @@ the tell does not fire.
 
 ### A1 — A palette nobody picked
 
-**Signal**  `tailwind.config` has no `theme.extend.colors`, no color custom property appears anywhere, and `text-gray-500` is the project's only secondary color.
+**Signal**  `tailwind.config` declares no `theme.extend.colors` and no color custom property appears anywhere, so every color in the tree is a framework default called by its number.
 
 **Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice. It's the absence of one.
 
