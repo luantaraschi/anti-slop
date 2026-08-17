@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!--
+    The mark is the moisture band: two rules, and a reading sitting between
+    them. It is drawn from root 1 — the band is the thing the grower sets and
+    the thing Wickfield holds — rather than from the category, which would
+    have produced a droplet that every irrigation product already owns.
+
+    PLATFORM FACT: an SVG favicon can answer prefers-color-scheme, and a PNG
+    cannot. The two stops below are the same values the page uses, so the tab
+    icon changes theme with the page instead of staying light behind a dark
+    one. A 32x32 PNG fallback is deliberately not shipped: browsers that
+    cannot read an SVG icon fall back to the origin's default, which costs a
+    tab glyph and not a page.
+
+    DERIVATION: rx="6" is the `control` radius, drawn on a 32px canvas that
+    renders at 16px, so the corner reads at 3px — half the control radius.
+    Drawing it at the panel radius would have eaten the mark at tab size.
+  -->
+  <style>
+    :root { --ground: #f6f2ea; --band: #145f63; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ground: #17130e; --band: #5fb6b9; }
+    }
+  </style>
+  <rect width="32" height="32" rx="6" fill="var(--ground)" />
+  <rect x="6" y="8" width="20" height="2" fill="var(--band)" />
+  <rect x="6" y="22" width="20" height="2" fill="var(--band)" />
+  <circle cx="16" cy="16" r="3.5" fill="var(--band)" />
+</svg>

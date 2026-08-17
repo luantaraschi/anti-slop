@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================================
+   Wickfield tokens.
+
+   Every colour on this site is declared here, in both themes, and read by
+   tailwind.config.ts through var(). Nothing in a component names a hex.
+
+   The palette is five colours, named for what the product lives in: the
+   soil it measures, the silt between, the cut in the ground, the water it
+   moves, and the state a crop reaches when the water did not arrive. None
+   is named for its rank. `primary`/`secondary` would have recorded an
+   order and no decision.
+
+   Why five, and not four or six:
+     loam    the surface — the ground everything sits on
+     furrow  the text — the dark mark in that ground
+     silt    the rule and the quiet text — what sits between the two
+     water   the domain's own object, and therefore every action and link
+     wilt    the one state that needs a person: probe silent, valve open
+
+   SUBTRACTION — no sixth colour for the healthy state. A green for "zone is
+   inside its band" was considered and not declared: this site renders no
+   live zone state (see the abstention at the top of src/Hero.tsx), so
+   nothing on it would use the colour. It belongs in the app's theme, on the
+   day the app has a zone list.
+
+   ACCEPTED COST — these are declared as var() holding a hex, not as space-
+   separated channels, so Tailwind's `/50` opacity modifier does not work on
+   them. Nothing here needs a translucent brand colour: the two tinted
+   backgrounds are declared as their own opaque values (`water-wash`,
+   `wilt-wash`) instead of being derived at render time from an alpha.
+   ===================================================================== */
+
+:root {
+  /* PLATFORM FACT: this tells the UA to render form controls, scrollbars and
+     the default canvas in whichever scheme is active. Without it the
+     scrollbar stays light on a dark page, which is the seam that gives away
+     a dark theme painted only on the background. */
+  color-scheme: light dark;
+
+  /* --- light ------------------------------------------------------- */
+
+  --loam-field: #f6f2ea; /* the ground: warm, because soil is not blue */
+  --loam-bed: #fffcf6; /* a prepared bed sitting in that ground: panels */
+
+  --furrow: #211d17;
+
+  --silt-rule: #ded6c6;
+  /* DERIVATION: silt-quiet is --furrow mixed 65% over --loam-field.
+       R 0.65·0x21 + 0.35·0xF6 = 107
+       G 0.65·0x1D + 0.35·0xF2 = 103
+       B 0.65·0x17 + 0.35·0xEA =  96
+     65% is not a taste: it is the lowest mix on this pair that still clears
+     4.5:1 against --loam-field (it lands at ~4.9:1). 60% measures ~4.2:1 and
+     was rejected. Change either endpoint and this value has to be remixed. */
+  --silt-quiet: #6b6760;
+
+  --water-mark: #145f63; /* ~6.9:1 on --loam-field, ~7.5:1 under white */
+  --water-wash: #e3eded;
+
+  --wilt-mark: #9c3d10; /* ~6.4:1 on --loam-field */
+  --wilt-wash: #f6e6da;
+
+  /* DERIVATION: the label on a solid action is whichever of the two loam
+     stops contrasts with --water-mark in this theme. In light, water-mark is
+     dark, so the label is the lightest loam. This token exists so the flip
+     happens once, here, instead of at every button. */
+  --ink-on-water: var(--loam-bed);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --- dark ------------------------------------------------------
+       Every token above is redeclared. A dark theme that redeclares the
+       background and leaves the rule, the quiet text and the two marks
+       alone is not a dark theme, and the seams show first on the borders.
+
+       ABSTENTION: there is no theme toggle. This page holds no other
+       persisted state, and a toggle would be the single piece of storage on
+       a site that stores nothing. The OS setting is honoured and that is
+       the whole mechanism.
+       -------------------------------------------------------------- */
+
+    --loam-field: #17130e; /* still warm — soil at night, not slate */
+    --loam-bed: #201b15;
+
+    --furrow: #efe9de;
+
+    --silt-rule: #383129;
+    /* DERIVATION: the same 65% mix, run on this theme's endpoints.
+         R 0.65·0xEF + 0.35·0x17 = 163
+         G 0.65·0xE9 + 0.35·0x13 = 158
+         B 0.65·0xDE + 0.35·0x0E = 149
+       It lands at ~7.7:1 here, comfortably past the same 4.5:1 floor, so the
+       rule holds in both themes rather than needing a hand-picked twin. */
+    --silt-quiet: #a39e95;
+
+    --water-mark: #5fb6b9; /* the light-theme value measures ~1.5:1 here */
+    --water-wash: #12302f;
+
+    --wilt-mark: #e08b4e;
+    --wilt-wash: #33200f;
+
+    /* DERIVATION: same rule as light, opposite answer — water-mark is now
+       the light one, so the label on it is the darkest loam. */
+    --ink-on-water: var(--loam-field);
+  }
+}
+
+/* ACCEPTED COST — because the theme declares no elevation at all (see
+   `boxShadow` in tailwind.config.ts), a `loam-bed` panel is separated from
+   the `loam-field` page by a 1px `silt-rule` border and nothing else. On a
+   dimmed display in the dark theme that border is close to invisible and the
+   panel merges into the page. A shadow would fix it and would also assert an
+   elevation level this interface does not have — nothing here floats. The
+   merge was accepted; the false layer was not. */
+
+@layer base {
+  /* PLATFORM FACT: the type scale in tailwind.config.ts is expressed in rem
+     against a 16px root, which is the browser's default and also the reader's
+     own setting if they have changed it. No `html { font-size }` is declared,
+     so a grower who has raised their default text size gets a larger page
+     rather than a page that overrides them.
+
+     SUBTRACTION (reduction pass): an `html { background-color }` rule sat
+     above this one and was removed. `color-scheme` above plus the body
+     background already paint the canvas, including the overscroll area, so
+     the second declaration was the same colour set twice from two places
+     that could then disagree. */
+  body {
+    background-color: var(--loam-field);
+    color: var(--furrow);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* PLATFORM FACT: every motion on this site honours reduced motion. There is
+     exactly one — the 120ms colour transition on interactive state — and it
+     is neutralised rather than shortened, because a colour swap has no
+     in-between worth preserving. `scroll-behavior` is reset for the same
+     reason even though nothing declares it smooth. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ABSTENTION: `scroll-behavior: smooth` is not declared. The hero's action
+     is an in-page anchor to the pricing section. On a page this short the
+     smooth scroll animates a distance the reader can already see, and the
+     instant jump is the clearer confirmation that the anchor fired. */
+}

@@ -573,3 +573,104 @@ only one of them was opened in dark mode — C10's Principle almost word for wor
 C10's Signal names borders, dividers and separator colours, and a stat figure's
 foreground is none of those. The run declined it rather than widen the Signal,
 and said: "This is the finding I would most want the tell rewritten to catch."
+
+### v3, the first build-and-audit, 2026-08-17
+
+The shape the corpus had never run: build a specimen from a brief with
+`anti-slop-build`, then audit it blind with `anti-slop`. A tell that fires is
+the build skill's failure, and it arrives with a file and a line.
+
+Two agents, neither of which saw the other's instructions. The builder read
+`anti-slop-build/SKILL.md` and `deriving.md` and its brief, and was forbidden
+the fixtures, the auditor and its catalog — a builder that reads
+`clean-dashboard` is copying, not deciding. The auditor read the four axis
+files and `molds.md` and the specimen, and was forbidden the build skill, the
+fixtures and this file. The brief described Wickfield, irrigation scheduling
+for vegetable farms, chosen because it shares no vocabulary with any fixture.
+
+The specimen is in `calibration/2026-08-17/specimen-wickfield/` and the audit
+beside it. Both are the artifacts, unedited.
+
+**2 of 41 tells fire. Surface 0/10, Craft 1/12, Words 0/7, Finish 1/12.**
+
+- **C4** — no `text-wrap: balance` or `text-pretty` anywhere in the tree. 4
+  heading sites and 12 text-block sites, 0 carrying. Both doors shut: "This is
+  the pattern, not an oversight."
+- **F4** — `og:title`, `og:description` and `og:image` all absent.
+
+Both failures trace to a gap in the build skill rather than to a slip.
+`deriving.md` carries no entry for typography treatment at all, so nothing in it
+told the builder that headings and short text blocks take a wrap property — the
+same builder had already reported, independently, that spacing, measure and type
+family have no entries either. F4's absence is one step further out: the build
+skill covers no Finish material, and the builder wrote a well-argued abstention
+for the Open Graph *image* and then carried the title and description out with
+it, with no reason given for either.
+
+**The auditor read the specimen's comments and refused them.** This was the
+round's second question, because a tree built to record its own decisions is a
+tree full of prose that predicts the verdict. It reported: "Had every comment
+been stripped from this tree, my tell-by-tell result would be identical." In two
+places it named prose that tried to move a verdict and did not — the Open Graph
+abstention that "argues the image and only the image," and a config comment
+recording a heading "set to wrap to two lines," of which it said that knowing
+the wrap is deliberate "makes the unmanaged break point a stronger finding, not
+a weaker one."
+
+**A1 has a third defect, found here rather than on the fixtures.** The Signal
+tests `theme.extend.colors`, and this specimen replaces `theme.colors` outright
+so that framework utilities stop compiling — which satisfies A1's first conjunct
+on a technicality. It changed no verdict here, because the other conjuncts fail
+against ten custom properties. The auditor named the reverse case, which is the
+dangerous one: "a project that replaced `theme.colors` with the framework's own
+palette would slip past this Signal's first clause."
+
+### Recorded for the build skill, not fixed
+
+The builder's own report and the audit agree on where `anti-slop-build` is thin,
+and they were written without sight of each other.
+
+**The recording requirement produced prose that drifts from the code.** 57% of
+the specimen's non-blank lines are comment; `control.ts` is 85%. The audit found
+**ten** places where a comment claims something the code does not do. The
+sharpest is a stepper whose `ACCEPTED COST` says a ceiling of 24 was chosen
+"rather than inventing an upper bound the brief does not have and presenting it
+as a limit of the product" — while the code disables the control at 24 with no
+copy explaining why, which is the thing the sentence names as the alternative.
+Others are plain miscounts stated as reasoning: "the two Actions" where three
+render, "the same six classes" where four are emitted, and an extraction rule —
+"Two callsites is the threshold" — stated twice and broken by a wordmark typed
+at two callsites. A colour named as in use is used nowhere, in a file that
+elsewhere records removing a different colour on exactly that ground.
+
+None of this fires a tell, and that is the finding. The five shapes ask for
+argument and set no standard of verifiability for it, so the skill can produce a
+tree that is decided, auditable, and wrong about itself in ten places.
+
+**The radius equation distorted the design.** The builder reported having to
+engineer a 6px-padded tray so that `panel = control + padding` would be true
+somewhere: "my panels are padded by 24px, and 6+24=30px is a radius nobody would
+ship. Left as written, the rule either produces an absurd number or gets quietly
+ignored." The rule is stated generally and governs only concentric nesting. This
+is the same defect the `clean-dashboard` run found in C1 from the other side.
+
+**Three entries are missing from `deriving.md`:** spacing, measure, and type
+family. The builder invented a spacing rule that worked and said so — "that is
+exactly the kind of decision the skill exists to stop me improvising" — and was
+blunter about the third: "the font stack is arguably the single most visible
+generic tell in a React/Tailwind page, and it has no entry at all." C4's fire
+belongs to this gap.
+
+**The five shapes have no slot for a value derived from a root by judgment.**
+Derivation is defined as arithmetic. A colour chosen from the temperature has no
+shape available, and the builder attached a contrast ratio to each one to give it
+any shape at all — "which is honest but is not why I picked teal."
+
+**Smaller, and all from the builder:** `theme.extend` is the weaker advice, since
+replacing `theme` outright stops `bg-slate-500` compiling; motion's two platform
+facts have nowhere to land on a page where nothing mounts; "record the inventory
+as text before any code" sits badly beside the rule against design notes in a
+separate document; "four to six colors" and "two or three radii" are numbers
+handed down without derivation, against the skill's own doctrine; and the closing
+step, "run `anti-slop` against what you built," does not say what to do when the
+auditor is not available — which was this run's configuration exactly.

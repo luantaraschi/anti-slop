@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!--
+      PLATFORM FACT: two theme-color declarations, one per scheme. A single
+      value paints the mobile browser's own chrome in the wrong theme half
+      the time, which is the seam that gives away a dark theme declared only
+      on the background. The values are the two --loam-field stops from
+      src/index.css. They are duplicated here because the browser reads this
+      before any stylesheet loads; that duplication is the cost of the
+      element and there is no way to point it at a custom property.
+    -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f2ea" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#17130e" />
+
+    <title>Wickfield — irrigation scheduling for small vegetable farms</title>
+
+    <!--
+      The description is the product, not an adjective about it. Every fact
+      in it is in INVENTORY.md.
+    -->
+    <meta
+      name="description"
+      content="Wickfield reads your soil-moisture probes and the ten-day forecast, then opens and closes your valves to hold each zone inside the band you set. Works with Hunter and Rain Bird. $18 per zone per month."
+    />
+
+    <!--
+      ABSTENTION: no Open Graph image. An OG card wants a 1200x630 picture,
+      and the only honest one would be a photograph of a farm this product
+      has not been on or a screenshot of zone data that does not exist. A
+      link to this page unfurls as its title and description, which are both
+      true. The tag is left out rather than pointed at a stock field.
+
+      ABSTENTION: no font preconnect and no stylesheet link. The type stack
+      in tailwind.config.ts is resolved on the device, so there is no third
+      party to warm up a connection to.
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
