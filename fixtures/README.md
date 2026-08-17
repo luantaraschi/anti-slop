@@ -674,3 +674,87 @@ separate document; "four to six colors" and "two or three radii" are numbers
 handed down without derivation, against the skill's own doctrine; and the closing
 step, "run `anti-slop` against what you built," does not say what to do when the
 auditor is not available — which was this run's configuration exactly.
+
+### v3b, measuring the conventions and the preamble, 2026-08-17
+
+Three blind runs, single-axis and uncapped, by the method now written down in
+`docs/calibration-method.md`. Reports in `calibration/2026-08-17b/`.
+
+What this round measured: SKILL.md's two new reading conventions, craft.md's
+third decline category and its stock-code rule, A1's third repair, and A6's
+reformulation.
+
+- `slop-dashboard`, Surface: **6 of the 6 expected ids, and nothing off-row.**
+  The previous round scored the same six plus A9.
+- `slop-dashboard`, Craft: **10 of the 10 expected ids, and nothing off-row.**
+  The previous round scored the same ten plus C2. Supplied rules fell from three
+  to two.
+- `clean-dashboard`, Craft: **0 of the 10 forbidden ids leaked.** One door-two
+  exemption, two door-one, and nine of the third kind.
+
+**The conjunction convention removed two false positives.** A9 fired off-row
+last round on one clause of three; this round the run walked all three, found
+one holding, declined, and refused to smuggle it back: "clause 3 is true and it
+is a real accessibility gap. But A9 as written does not fire on it, and I am not
+smuggling it in." C2 fired off-row last round for want of a magnitude threshold;
+this round the run supplied a bounded one, measured the glyph's area-weighted
+centroid at 1.0px off centre, and declined — flagging the call as overturnable.
+
+**The stock-code rule closed both doors it was written for.** C8 and C11 each
+needed an invented rule last round and neither does now. Both runs quote the
+preamble back: "its `transition-colors` is not evidence that transitions are the
+project's habit," and for C11 also the new clause that a declared capability
+nothing renders is not an instance — `Button` is used once, without `disabled`,
+so `disabled:opacity-50` never reaches a pixel.
+
+**The third decline category was applied cleanly on both sides.** On the clean
+fixture, nine of twelve declines are the condition arising and the Fix being
+applied, and the run named the trap it avoided on C10: every border declares
+both themes, so there is no failing border and door two has nothing to excuse —
+"calling this door two would be exactly the mislabel the brief warns about." The
+slop run reported the mirror image: door two never opened once, in either
+direction, which is a fact about that fixture no previous run had stated.
+
+### Recorded for v3b, not fixed
+
+**A5 is fragile under the convention it was not written for.** Its clause
+"`font-bold` as the sole emphasis" is literally false of `slop-dashboard`:
+`font-medium` and `font-semibold` both appear, inside the stock primitives. Read
+literally under the conjunction convention, A5 declines where its row requires
+it. The run supplied the scoping and located the cause: the stock-code rule
+"is written as an evidence test for firing, not as a scoping instruction for
+reading a clause." The Craft preamble now carries that rule; Surface's version
+does not reach clause reading.
+
+**C1's impasse was confirmed from the outside, and priced.** The clean run
+resolved on the first-sentence reading and showed its working for the other:
+under the sum alone, `components/table.tsx:42` and `app/page.tsx:99` both fire.
+"If a future round settles the Signal on the sum, this tree gains two Craft
+findings and my verdict of zero is wrong." That is the same result that caused
+both rewrites to be withdrawn, reached by a reader who could not see the
+withdrawal reasoning.
+
+**Two comments in `clean-dashboard` claim more than the code does.** The theme's
+`12 = 5 + 7` is stated as the tree's rule and holds at one of four panel-control
+nestings — "the theme comment describes a habit the components mostly do not
+keep." And `components/table.tsx:22` calls 7px "the theme's inset" when no
+spacing token exists and the value appears only as the arbitrary utility
+`p-[7px]`, on a div with no radius, concentric with nothing. This is the same
+defect the built specimen was faulted for, in the fixture that models the
+alternative.
+
+**A comment in `clean-dashboard` is addressed to the auditor.**
+`app/page.tsx:90-93` names the tell and the door it wants exercised. It did not
+move this run's verdict, which came from the count — but the run said it is "the
+one thing in this tree I would not take at face value," and a fixture that is
+supposed to read as a shipped product should not brief its reader.
+
+**A visible defect no tell carries.** The closed filter panel keeps its layout
+box — `opacity-0` with no `hidden` — permanently reserving about 52px between
+the Filters button and the ledger. "You would see the gap by opening the page,
+which is this axis's own test," and C7 and C8 both correctly decline on it.
+
+**An unguarded reduced-motion gap no tell carries.** `slop-dashboard` animates a
+translate with no `prefers-reduced-motion` block. A9's other two clauses are
+absent, so A9 correctly declines, and the Surface axis has no tell that fires on
+the real defect alone.
