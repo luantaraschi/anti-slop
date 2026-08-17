@@ -210,22 +210,26 @@ Order matters between 1 and the rest; 2, 3 and 4 could reorder if a reason
 appears. Round 1 exists on its own because a restructure that also adds a
 catalog gives a reviewer no way to tell which half broke something.
 
-## Open questions the plan must answer
+## Open questions
 
-1. **Plugin layout, unverified.** The repository currently keeps `SKILL.md` at
-   its root, which is what makes the documented install
-   (`git clone … ~/.claude/skills/anti-slop`) work. Whether several skills in
-   one plugin live under a `skills/` directory, and whether a skill may load
-   reference files outside its own directory, must be checked against Claude
-   Code's plugin documentation before any file moves. Both answers change the
-   layout, and one of them decides whether `references/` can stay shared.
-2. **The documented install path breaks** if the auditor's `SKILL.md` moves. The
-   plan decides between keeping it at root for compatibility and updating the
-   install instructions.
-3. **`llms.txt`.** The refusal rests on "a 2024 convention that never became a
-   standard", written a round ago and never rechecked. Verify its status before
-   launch touches the subject; the refusal may be right, stale, or right for a
-   new reason.
+1. **Plugin layout — answered, Round 1.** Skills live at
+   `skills/<name>/SKILL.md`, and a skill may cite files outside its own
+   directory by relative path. Both verified against the official `superpowers`
+   plugin at 6.3.0 rather than against documentation: it exposes fourteen skills
+   that way, and three of them reach into a sibling's directory with `../`.
+   `references/` moved inside `skills/anti-slop/` anyway, which left `SKILL.md`
+   needing no edit at all and kept the skill directory self-contained. Rounds 2
+   and 4 reach in with `../anti-slop/references/` when they need the catalog.
+2. **The documented install — answered, Round 1.** It could not be preserved. A
+   personal skill is one directory holding one `SKILL.md`, so a repository
+   exposing three of them cannot be installed by cloning into
+   `~/.claude/skills/`, whatever the layout. The README now leads with the
+   marketplace install and keeps a one-skill copy path, which works because the
+   catalog travels inside the skill directory.
+3. **`llms.txt` — still open, owned by Round 4.** The refusal rests on "a 2024
+   convention that never became a standard", written a round ago and never
+   rechecked. Verify its status before launch touches the subject; the refusal
+   may be right, stale, or right for a new reason.
 
 ## What this does not do
 
