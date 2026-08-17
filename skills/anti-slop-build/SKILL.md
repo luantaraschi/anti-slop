@@ -61,7 +61,7 @@ decided and is not.
    absences that live there. Write those same three places first.
 3. **Derive.** Each value comes from a root or from another value. `deriving.md`
    carries the rule per value.
-4. **Record.** Every derived value lands with one of the five shapes below.
+4. **Record.** Every derived value lands with one of the six shapes below.
    This is the deliverable, not commentary around it.
 5. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
@@ -69,7 +69,7 @@ decided and is not.
 6. **Copy,** drawn only from the inventory.
 7. **The reduction pass.** One pass whose only purpose is removal.
 
-## The five shapes of a recorded decision
+## The six shapes of a recorded decision
 
 A value is a default wearing a name until something records why it is that
 value. Every recorded decision takes one of these forms. Anything else is
@@ -121,6 +121,13 @@ So each recorded decision has to clear three checks before it ships:
 3. **A stated measurement is measured.** A contrast ratio, a pixel sum, a
    character count — compute it or leave it out. An approximate figure written
    as a measurement is a claim the next reader will trust.
+4. **What it describes still exists.** The reduction pass deletes code, and a
+   recorded decision that named the deleted thing survives it, still reading as
+   true. This is the check the other three miss: the count was right when it was
+   written, the description matched code that did exist, no measurement was
+   stated. **A removal invalidates every recorded decision that named what you
+   removed** — so the reduction pass is not finished until you have re-read the
+   records around every deletion.
 
 Fewer, load-bearing comments beat many argumentative ones. A value whose
 derivation is obvious from the theme file needs no sentence at all.
@@ -137,7 +144,11 @@ claims is true, and only then by how much of it there is.
 The audit rule searches four places for evidence. Write into them:
 
 `theme.extend` · custom properties under `:root` or `@theme` · a dedicated
-tokens file · a `components/ui/` that differs from stock shadcn.
+tokens file · a primitives directory that differs from stock shadcn.
+
+The auditor's rule names `components/ui/` because that is where an install puts
+them, but the path is not the evidence — the divergence from stock is. Put them
+where the project puts them.
 
 **Prefer replacing `theme` to extending it.** `theme.extend.colors` leaves the
 framework's undecided palette sitting beside the decided one, so a page can
@@ -191,6 +202,12 @@ here is *generic*, *undecided*, *unfinished* — never *AI-generated*.
 
 Run `anti-slop` against what you built. A tell that fires is this skill's
 failure, and it arrives with a file and a line.
+
+**Compile the theme, whatever else you do.** If the framework builds, running it
+over the tree costs a second and settles the silent-drop problem in both
+directions at once: every utility the tree uses produces a rule, and a probe
+file confirms that the scales you replaced really did stop compiling. Two builds
+found real defects this way that no reading would have surfaced.
 
 **When the auditor is not available,** say so rather than claiming the build is
 checked, and run the three cheapest checks by hand, because they are the ones

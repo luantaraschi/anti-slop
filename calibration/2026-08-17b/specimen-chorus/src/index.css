@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * No token is defined in this file. Every value below comes out of
+ * tailwind.config.ts through @apply or theme(), so the two cannot drift — a
+ * colour restated here in hex, or a line height restated as 1.6, would be a
+ * second source that nobody remembers to update.
+ */
+
+@layer base {
+  /**
+   * One theme, declared and meant.
+   *
+   * Accepted cost: there is no light theme. Root 3 asked for saturated and
+   * high-contrast on a product that lives in a dark room, and a light
+   * counterpart would have to abandon congo as a fill — houselights on congo is
+   * 11.05:1, which is the whole reason that fill works, and it becomes unusable
+   * against a light ground — and then re-pick gel, at which point it is a
+   * second identity rather than a second theme. A reader whose system prefers
+   * light gets this page anyway. That is the cost.
+   *
+   * Platform fact: `color-scheme: dark` is what tells the user agent the page
+   * is dark. Without it the scrollbar, the form-control chrome and the flash of
+   * canvas before first paint all render light against this ground.
+   */
+  :root {
+    color-scheme: dark;
+  }
+
+  /* The ground is declared on html as well as body so overscroll at either end
+     of a page this long does not expose the user agent's white. */
+  html {
+    @apply bg-blackbox;
+  }
+
+  body {
+    @apply bg-blackbox font-text text-body text-houselights;
+
+    /**
+     * Platform fact: on macOS, light text on a dark ground renders with
+     * subpixel antialiasing that thickens every stroke, and IBM Plex Sans at
+     * the body step gains enough weight to read as its medium. Greyscale
+     * smoothing is the fix, and it only applies where the problem is.
+     */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /**
+   * Judgment (root 3). The accent shows up in the one place the reader makes it
+   * appear themselves. Left alone, selection is the user agent's blue, which is
+   * the one colour on this page nobody picked.
+   */
+  ::selection {
+    @apply bg-gel text-blackbox;
+  }
+
+  /**
+   * Platform fact: focus has to be visible to a keyboard, and `:focus-visible`
+   * is what keeps it from appearing under a mouse press, where it reads as a
+   * bug. Declared once here rather than at each control, so no control can be
+   * built without it.
+   */
+  :focus-visible {
+    outline: 2px solid theme('colors.gel');
+    outline-offset: 3px;
+  }
+}
+
+/**
+ * Platform fact. Every transition in this tree is pointer or touch feedback on
+ * a control, and a reader who has asked their system for less movement is
+ * asking for exactly that. 0.01ms rather than 0 so transitionend still fires.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

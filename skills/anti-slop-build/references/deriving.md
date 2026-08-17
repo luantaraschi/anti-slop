@@ -3,7 +3,7 @@
 Each value below comes from a root or from another value. None of them comes
 from a preference, and none is a menu to pick from.
 
-Every entry says what it derives from, the rule, and which of the five shapes
+Every entry says what it derives from, the rule, and which of the six shapes
 records it. A value that lands without its shape is a default with a new name,
 and the auditor is built to tell those apart.
 
@@ -62,9 +62,15 @@ stack is a legitimate answer when the product's reach or its connection makes a
 download the wrong trade — but it is only a decision if it is declared and the
 reason is recorded, and the scale still has to exist beside it.
 
+Decide the **weight set** with the family, not after it. This is where the cost
+actually lives: a family loaded at four weights is four downloads, and a weight
+the tree never renders is a download nobody chose. It is also where a replaced
+theme leaks — a `font-semibold` that resolves out of a nine-step ramp nobody
+declared is a value nobody picked, one level below the family.
+
 **Record as**  Judgment, naming the root. Accepted cost, when a native stack
 means some readers get a different face than others, or when a webfont costs a
-download you decided to spend.
+download you decided to spend. Subtraction, for the weights not loaded.
 
 ### Typography treatment
 
@@ -88,10 +94,22 @@ comment claiming credit for it is noise.
 
 **From**  Root 4 (density), through the type scale.
 
-**Rule**  The body step's line box is the root. Halve it and double it to get
-the ladder — a step for what sits inside a line's rhythm, one for the body line
-itself, one for grouping, one for separating blocks, one for separating
-sections. Four or five steps is the whole ladder.
+**Rule**  The body step's line box is the root, and the ladder is written out
+rather than described, because "halve it and double it" yields three values
+against five names and two builds mapped the remainder differently:
+
+| Step | Separates |
+|---|---|
+| root ÷ 4 | what sits inside a line's rhythm |
+| root ÷ 2 | a label from the thing it labels |
+| root | one line from the next |
+| root × 2 | one block from the next |
+| root × 4 | one section from the next |
+
+Four or five steps is the whole ladder; drop the last on a screen that never
+scrolls. The arithmetic lands on half-pixels about half the time — an 18px line
+box gives 4.5px — and a half-pixel is fine. Keep it and keep the derivation
+readable; rounding to 4 or 5 buys nothing and throws the arithmetic away.
 
 The value at each level is proportional to what that level separates. The
 failure this prevents is one value repeated at every nesting depth, which makes
@@ -116,7 +134,12 @@ A dense product reading in short bursts can run narrower. A table is not prose
 and takes the width its columns need.
 
 **Record as**  Derivation, both the measure from the body size and the page from
-the measure.
+the measure — with one caveat the survival checks would otherwise catch. The
+usual conversion treats an average character as half the body size, and that
+factor is a **convention, not a measurement**: the real average depends on the
+shipping face and you cannot measure it while writing the theme. Write it as a
+convention. A comment stating `65ch x 0.5em` as though it were measured is the
+false precision check three exists to reject.
 
 ### Radius scale
 
@@ -146,8 +169,7 @@ equation. Judgment otherwise, naming the root the sizes came from. These are not
 interchangeable, and the difference matters more here than anywhere else in this
 file: a build told to record a derivation always will go and manufacture a flush
 pair so it has an equation to write, which is the exact manufacturing the rule
-above forbids. That has happened. A radius scale
-without its arithmetic is three numbers that happen to differ.
+above forbids. That has happened twice, in two independent builds.
 
 **Worked**  A control at 5px inside a panel padded by 7px puts the panel at
 12px. Change the padding and the panel's radius moves with it; the comment says

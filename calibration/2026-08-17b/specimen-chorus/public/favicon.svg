@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!--
+    Three bars of unequal height on the ground colour: a chorus is more than one
+    voice, and they are not the same voice. This is the page's only drawn mark —
+    the wordmark in the header and the footer is set type, not a logo.
+
+    Colours are blackbox, houselights and gel, restated here because an SVG file
+    cannot read the theme. The third bar is gel for the same reason "Pass." is:
+    it is the third of three.
+  -->
+  <rect width="32" height="32" fill="#120C18" />
+  <rect x="6" y="12" width="5" height="14" fill="#F6F0E8" />
+  <rect x="13.5" y="6" width="5" height="20" fill="#F6F0E8" />
+  <rect x="21" y="16" width="5" height="10" fill="#FF4A1C" />
+</svg>

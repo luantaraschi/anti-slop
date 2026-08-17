@@ -761,3 +761,82 @@ which is this axis's own test," and C7 and C8 both correctly decline on it.
 translate with no `prefers-reduced-motion` block. A9's other two clauses are
 absent, so A9 correctly declines, and the Surface axis has no tell that fires on
 the real defect alone.
+
+### v3b, two more specimens: an app screen and an expressive page
+
+Two builds from fully-specified briefs, each blind to the fixtures, to
+`calibration/`, and to the auditor's catalog. Subjects chosen far from the
+corpus and from each other: a dense kitchen shift board with real state, and an
+expressive landing page for a venue booking tool. Specimens in
+`calibration/2026-08-17b/`.
+
+Neither could run `anti-slop` — it sits inside the directory the boundary
+forbids — so neither is scored against the catalog here. What they measured is
+the build skill's own repairs, and they measured them by using them.
+
+**The verifiability standard is the repair that paid.** It was added after the
+first specimen shipped 57% comment and contradicted itself ten times. On these
+two it caught defects before they shipped: eight on the shift board, including a
+`font-semibold` resolving out of an undeclared nine-step ramp, a comment
+claiming two prose blocks where a removal had left one, and a colour at 3.60:1
+on a hovered state; and on the landing page a dozen, including two dead tokens,
+a class stack retyped at four callsites, and two gradient and column figures
+justified by geometry that was never measured. Both builds said the checks are
+why they re-read the tree instead of shipping.
+
+**Two independent builds found the same contradiction, and it was mine.** The
+radius entry scoped the equation to concentric pairs and then said "Record as
+Derivation, **always**" two paragraphs later. Both builders reported resolving
+it the same way: "I noticed myself engineering a flush pair partly to satisfy
+the 'always' — which is the manufacturing the same section forbids," and
+"Faced with 'always', I designed a flush pair into the Settlement panel." A rule
+written to stop the skill distorting a design was distorting it in the opposite
+direction.
+
+**The document that introduced the counting rule failed it.** A sixth shape was
+added and three sentences went on saying "five". One builder named it exactly:
+"This is precisely the *every count in it is a count you ran* failure, occurring
+in the document that introduces that rule."
+
+**Judgment was the most-used addition.** Five uses on one build — type family,
+gradient, seed radius, selection colour, wordmark — with the note that without
+it the build would have "bolted a contrast ratio onto the Syne choice, which is
+the exact failure the paragraph describes."
+
+### Recorded for the build skill, not fixed
+
+Repaired from these two: the radius contradiction, the shape count, the missing
+`fontWeight` and `lineHeight` in the scales to replace, the silent-drop remedy,
+a fourth survival check for records that outlive what they described, the
+compile step, the spacing ladder's arithmetic written out with its five names
+attached, the half-pixel question, the measure's conversion factor stated as a
+convention rather than a measurement, weight sets decided with the family, the
+theme-file exemption from the comment-ratio concern, and `components/ui/`
+demoted from canonical path to example.
+
+Left open, all from the same two reports:
+
+- **The skill does not know about application screens.** Seven specific gaps,
+  listed in `BACKLOG.md`: nothing on state, which is where a screen's identity
+  lives and where the hard contrast floors are; density modelled as one number
+  where a screen needs two bands; disabled needing a stated condition and
+  somewhere to state it; a reduction pass written for landing pages, whose
+  dominant removal candidate on a screen is the same state rendered twice;
+  elevation guidance that assumes resting cards; a page width derived from the
+  measure, which is backwards for a board; and an Open Graph check that assumes
+  a public page.
+- **"Four to six colors" counts values where roles are what you discover.** One
+  build needed seven roles and got back to six by making one colour do three
+  jobs. And measuring the pairings the tree will actually render changed its
+  surface hierarchy twice, so measurement belongs inside the palette derivation
+  rather than after it.
+- **The Process reads as seven phases and is not one.** Most Subtraction records
+  can only be written at step 7, after the reduction pass, and a first-time
+  reader will try to finish step 4 and find half the evidence does not exist yet.
+- **`Judgment` is not listed on every `Record as` line it applies to** —
+  Elevation and Both-themes among them — so it reads as available in some
+  entries and not others.
+- **Declaring a single theme deliberately has no named shape.** Both-themes
+  offers Accepted cost for the two-theme case only.
+- **The inventory has no specified filename or location.** "It is a file" is the
+  whole guidance.
