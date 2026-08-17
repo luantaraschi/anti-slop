@@ -628,6 +628,40 @@ against ten custom properties. The auditor named the reverse case, which is the
 dangerous one: "a project that replaced `theme.colors` with the framework's own
 palette would slip past this Signal's first clause."
 
+Both specimens were later audited blind, by agents that had not seen the build
+skill. **The app screen scored 0 of 41 and the expressive page scored 0 of 41.**
+
+Both auditors distrusted their own zero in writing, which is the response a
+zero deserves. The app screen's named the three verdicts that rest on rules it
+had to supply and gave the count that flips each; the expressive page's set out
+twelve supplied rules and marked two load-bearing.
+
+**The catalog can tell a decided gradient from a default one, and it does it on
+code.** The expressive page runs a saturated gradient, a hot accent and an
+800-weight display face, and A2 declined because the utilities its Signal names
+do not exist in that project — the colour scale and the background-image scale
+are both replaced, so `from-purple-*` cannot be typed — and because the gradient
+reads its stops from the same object the theme reads. A4 declined because
+`boxShadow: {}` is empty rather than absent, so no element could stack border,
+shadow and radius even in principle. Both would have declined with every comment
+in the tree deleted, and the auditor said so.
+
+**The comment question is settled, on this evidence.** A tree built to record
+its own decisions is a tree whose prose predicts every verdict, and that was the
+open risk from the first specimen. The expressive page's auditor ran the
+counterfactual on every arguable decline and reported: "Delete every comment
+block in this tree and the audit lands in exactly the same place: 41 declines, 0
+fires. The comments explain the decisions; they do not constitute them."
+
+**What both runs found instead is where the catalog does not reach.** The app
+screen's list is in `BACKLOG.md`: nine tells written for a public page, five
+verdicts turning on the mismatch, and W3 under-reaching so badly it cannot see a
+wordless empty state. The expressive page's is sharper still, because it is a
+Craft defect that meets Craft's own admission test and no tell carries: a header
+that never got its content track, so the wordmark is 214px out of alignment with
+every heading on the page at 1920px. Neither is a false negative in a tell.
+Both are subjects the catalog does not have.
+
 ### Recorded for the build skill, not fixed
 
 The builder's own report and the audit agree on where `anti-slop-build` is thin,

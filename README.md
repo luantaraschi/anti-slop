@@ -223,9 +223,11 @@ Not equally, and the difference is worth knowing before you rely on one.
 every report committed under `calibration/`. Its most recent scores are below.
 
 **`anti-slop-build` is at 0.1.0 and younger.** Three specimens have been built
-with it and the first was audited blind at two firing tells out of forty-one,
-both traced to entries the reference was missing at the time. Thirteen repairs
-came out of the second and third builds and are not yet measured. It also has
+with it and all three audited blind, by agents that had not seen the build
+skill: **2 of 41 tells fired on the first, 0 of 41 on the second, 0 of 41 on the
+third.** The two that fired on the first traced to reference entries that did
+not exist at the time and now do. Fourteen repairs came out of the second and
+third builds and are not yet measured. It also has
 seven recorded gaps around application screens, listed in `BACKLOG.md` — it was
 written with pages in mind, and a screen with real state is where it is thinnest.
 
