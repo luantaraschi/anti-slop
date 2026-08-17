@@ -37,21 +37,24 @@ gradient by name.
 
 `clean-dashboard` shares that role now, for a different reason: it carries one
 deliberate miss. Five of its six headings carry `text-wrap: balance` —
-`app/not-found.tsx:6`, `app/page.tsx:54`, `app/page.tsx:104`,
+`app/not-found.tsx:6`, `app/page.tsx:54`, `app/page.tsx:106`,
 `app/invoices/page.tsx:13`, and `components/table.tsx:35` all have it. The
-"Reminders" heading at `app/page.tsx:92` does not, on purpose: C4's `Not slop
-when` clause opens a second door where the condition does arise but the
-project already applies the property elsewhere, and a fixture that got every
-heading right could only ever exercise the first door, that the condition
-never arises at all. `app/page.tsx:92` is annotated in place as the isolated
+`Reminders waiting on you` heading at `app/page.tsx:94` does not, on purpose:
+C4's `Not slop when` clause opens a second door where the condition does arise
+but the project already applies the property elsewhere, and a fixture that got
+every heading right could only ever exercise the first door, that the condition
+never arises at all. `app/page.tsx:94` is annotated in place as the isolated
 oversight the second door needs something to be tested against.
 
-That annotation no longer describes what happens. The v2 calibration narrowed
-C4 so a heading of three words or fewer is not a site at all, and "Reminders"
-is one word. The heading still reads as the deliberate miss it was written to
-be, but the tell now declines it before the second door is ever consulted, so
-the corpus has lost its only C4 door-two exercise. Recorded below rather than
-repaired here: a fixture is not edited to suit a tell.
+That heading read `Reminders` — one word — until the round of 2026-08-17. The
+v2 calibration had narrowed C4 so that a heading of three words or fewer is not
+a site at all, which left the tell declining it before the second door was ever
+consulted and the corpus with no C4 door-two exercise anywhere. Lengthening it
+past three words restored the path without moving the verdict, which is why it
+is not a fixture edited to suit a tell: C4 is required to decline here before
+and after, and only the mechanism that produces the decline came back. Two blind
+runs since have reached the door on the count, at two treated headings against
+one untreated.
 
 Do not tidy a `slop-*` fixture. The missing `lang`, the keyless `.map()`, the
 leftover `Your Company` and the untouched shadcn primitives are the deliverable.
