@@ -323,3 +323,34 @@ def test_report_coverage_sorts_ids_by_number_not_lexicographically():
     joined = "\n".join(lines)
     assert "C1, C2, C10" in joined
     assert "C1, C10, C2" not in joined
+
+
+def _write_plugin_tree(root):
+    """Build the smallest tree main() accepts, in the plugin layout."""
+    skill = root / "skills" / "anti-slop"
+    (skill / "references").mkdir(parents=True)
+    (skill / "SKILL.md").write_text(
+        GOOD_FRONTMATTER + "\nReferences to load: `finish.md`\n", encoding="utf-8"
+    )
+    (skill / "references" / "finish.md").write_text(GOOD_TELL, encoding="utf-8")
+    (root / "fixtures").mkdir()
+    (root / "fixtures" / "README.md").write_text(
+        "| `slop-landing` | expect | F1 |\n", encoding="utf-8"
+    )
+
+
+def test_main_accepts_the_plugin_layout(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    assert validate.main(tmp_path) == 0
+    assert "0 problem(s)" in capsys.readouterr().out
+
+
+def test_main_does_not_read_a_skill_left_at_the_repo_root(tmp_path, capsys):
+    """A SKILL.md at the root is not the auditor once the plugin layout lands."""
+    (tmp_path / "references").mkdir()
+    (tmp_path / "references" / "finish.md").write_text(GOOD_TELL, encoding="utf-8")
+    (tmp_path / "SKILL.md").write_text(
+        GOOD_FRONTMATTER + "\nReferences to load: `finish.md`\n", encoding="utf-8"
+    )
+    assert validate.main(tmp_path) == 1
+    assert "not found" in capsys.readouterr().out

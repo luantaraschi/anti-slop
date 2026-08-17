@@ -221,13 +221,16 @@ def report_coverage(fixture_text, known_ids):
 
 
 def main(root):
-    skill = root / "SKILL.md"
-    references = root / "references"
+    skill = root / "skills" / "anti-slop" / "SKILL.md"
+    references = skill.parent / "references"
     absent = [
-        "{}: not found under {}. Run this from the skill's checkout.".format(
+        "{}: not found under {}. Run this from the plugin's checkout.".format(
             label, root
         )
-        for label, path in (("SKILL.md", skill), ("references/", references))
+        for label, path in (
+            ("skills/anti-slop/SKILL.md", skill),
+            ("skills/anti-slop/references/", references),
+        )
         if not path.exists()
     ]
     if absent:
