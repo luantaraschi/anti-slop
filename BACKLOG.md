@@ -23,9 +23,11 @@ run is also their first measurement.
 
 The catalog repairs recorded under `Recorded for v2, not fixed`
 (`fixtures/README.md`), plus the run that measures them. That section holds six
-entries; the two not listed here are a corpus job (B1) and a watch item (F11).
-The record says a single remedy should cover A2, A3 and A4 at once; splitting
-them across rounds spends three blind runs on one problem.
+entries and Round A draws on three of them; of the rest, one is a corpus job
+(B1), one is the removed five-finding floor already counted above as unmeasured,
+and one is a watch item (F11). The record says a single remedy should cover A2,
+A3 and A4 at once; splitting them across rounds spends three blind runs on one
+problem.
 
 - **A1. Restore C4's path to its own rule.** Lengthen `clean-dashboard`'s
   `Reminders` heading (`app/page.tsx:92`) past three words, still without
