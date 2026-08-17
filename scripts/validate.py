@@ -11,6 +11,21 @@ from pathlib import Path
 REQUIRED_KEYS = ("name", "description", "license")
 DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit", "craft")
 
+# Every skill the plugin exposes, with the words its description has to keep to
+# go on firing at the right moment, and whether its references are a catalog of
+# tells or prose. anti-slop-build's deriving.md is prose: asking it for tells
+# would report a defect where there is none.
+SKILLS = {
+    "anti-slop": {
+        "triggers": DESCRIPTION_TRIGGERS,
+        "catalog": True,
+    },
+    "anti-slop-build": {
+        "triggers": ("identity", "generic", "deciding"),
+        "catalog": False,
+    },
+}
+
 _KEY = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*)$")
 _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
@@ -99,26 +114,31 @@ def parse_frontmatter(text):
     return keys
 
 
-def check_frontmatter(text):
+def check_frontmatter(
+    text, name="anti-slop", triggers=DESCRIPTION_TRIGGERS, source="SKILL.md"
+):
+    """Check one skill's header against the name and triggers it must carry."""
     frontmatter = parse_frontmatter(text)
     if frontmatter is None:
-        return ["SKILL.md: missing or malformed frontmatter"]
+        return ["{}: missing or malformed frontmatter".format(source)]
 
     errors = [
-        "SKILL.md: frontmatter is missing '{}'".format(key)
+        "{}: frontmatter is missing '{}'".format(source, key)
         for key in REQUIRED_KEYS
         if key not in frontmatter
     ]
 
-    name = frontmatter.get("name")
-    if name is not None and name != "anti-slop":
-        errors.append("SKILL.md: name is '{}', expected 'anti-slop'".format(name))
+    declared = frontmatter.get("name")
+    if declared is not None and declared != name:
+        errors.append(
+            "{}: name is '{}', expected '{}'".format(source, declared, name)
+        )
 
     description = frontmatter.get("description", "").lower()
-    absent = [t for t in DESCRIPTION_TRIGGERS if t.lower() not in description]
+    absent = [t for t in triggers if t.lower() not in description]
     if absent:
         errors.append(
-            "SKILL.md: description is missing triggers: " + ", ".join(absent)
+            "{}: description is missing triggers: ".format(source) + ", ".join(absent)
         )
     return errors
 
@@ -126,19 +146,19 @@ def check_frontmatter(text):
 _REFERENCE = re.compile(r"`([\w-]+\.md)`")
 
 
-def check_references(skill_text, available):
-    """Cross-check the files SKILL.md cites against the files on disk."""
+def check_references(skill_text, available, source="SKILL.md"):
+    """Cross-check the files a SKILL.md cites against the files beside it."""
     cited = {
         name
         for name in _REFERENCE.findall(skill_text)
         if name not in ("SKILL.md", "README.md")
     }
     errors = [
-        "SKILL.md: cites references/{}, which does not exist".format(name)
+        "{}: cites references/{}, which does not exist".format(source, name)
         for name in sorted(cited - available)
     ]
     errors += [
-        "references/{} exists but SKILL.md never cites it".format(name)
+        "{}: references/{} exists but it is never cited".format(source, name)
         for name in sorted(available - cited)
     ]
     return errors
@@ -221,39 +241,42 @@ def report_coverage(fixture_text, known_ids):
 
 
 def main(root):
-    skill = root / "skills" / "anti-slop" / "SKILL.md"
-    references = skill.parent / "references"
-    absent = [
-        "{}: not found under {}. Run this from the plugin's checkout.".format(
-            label, root
-        )
-        for label, path in (
-            ("skills/anti-slop/SKILL.md", skill),
-            ("skills/anti-slop/references/", references),
-        )
-        if not path.exists()
-    ]
-    if absent:
-        for error in absent:
-            print(error)
-        print("{} problem(s)".format(len(absent)))
-        return 1
-
-    skill_text = skill.read_text(encoding="utf-8")
-    reference_files = sorted(references.glob("*.md"))
-
-    errors = check_frontmatter(skill_text)
+    errors = []
     known = set()
-    for reference in reference_files:
-        if reference.name == "molds.md":
+
+    for name in sorted(SKILLS):
+        spec = SKILLS[name]
+        skill = root / "skills" / name / "SKILL.md"
+        references = skill.parent / "references"
+        label = "skills/{}/SKILL.md".format(name)
+
+        absent = [
+            "skills/{}/{}: not found under {}. Run this from the plugin's "
+            "checkout.".format(name, missing, root)
+            for missing, path in (("SKILL.md", skill), ("references/", references))
+            if not path.exists()
+        ]
+        if absent:
+            errors += absent
             continue
-        source = "references/{}".format(reference.name)
-        text = reference.read_text(encoding="utf-8")
-        known |= set(collect_tells(text))
-        errors += check_tells(text, source)
-        errors += check_duplicate_tell_ids(text, source)
-    available = {p.name for p in reference_files}
-    errors += check_references(skill_text, available)
+
+        skill_text = skill.read_text(encoding="utf-8")
+        reference_files = sorted(references.glob("*.md"))
+        errors += check_frontmatter(skill_text, name, spec["triggers"], label)
+
+        if spec["catalog"]:
+            for reference in reference_files:
+                if reference.name == "molds.md":
+                    continue
+                source = "skills/{}/references/{}".format(name, reference.name)
+                text = reference.read_text(encoding="utf-8")
+                known |= set(collect_tells(text))
+                errors += check_tells(text, source)
+                errors += check_duplicate_tell_ids(text, source)
+
+        available = {p.name for p in reference_files}
+        errors += check_references(skill_text, available, label)
+
     fixture_readme = root / "fixtures" / "README.md"
     coverage = []
     if fixture_readme.exists():

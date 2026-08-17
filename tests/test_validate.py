@@ -183,7 +183,7 @@ def test_check_references_reports_a_cited_file_that_is_absent():
 def test_check_references_reports_a_file_nobody_cites():
     available = {"surface.md", "words.md", "finish.md", "molds.md", "motion.md"}
     errors = validate.check_references(SKILL_BODY, available)
-    assert errors == ["references/motion.md exists but SKILL.md never cites it"]
+    assert errors == ["SKILL.md: references/motion.md exists but it is never cited"]
 
 
 FIXTURE_TABLE = """# Fixtures
@@ -326,13 +326,26 @@ def test_report_coverage_sorts_ids_by_number_not_lexicographically():
 
 
 def _write_plugin_tree(root):
-    """Build the smallest tree main() accepts, in the plugin layout."""
+    """Build the smallest tree main() accepts: every skill the registry names.
+
+    The auditor carries a catalog; the build skill carries prose. main() has to
+    accept both shapes, so the fixture has to hold both.
+    """
     skill = root / "skills" / "anti-slop"
     (skill / "references").mkdir(parents=True)
     (skill / "SKILL.md").write_text(
         GOOD_FRONTMATTER + "\nReferences to load: `finish.md`\n", encoding="utf-8"
     )
     (skill / "references" / "finish.md").write_text(GOOD_TELL, encoding="utf-8")
+    build = root / "skills" / "anti-slop-build"
+    (build / "references").mkdir(parents=True)
+    (build / "SKILL.md").write_text(
+        BUILD_FRONTMATTER + "\nReference: `deriving.md`\n", encoding="utf-8"
+    )
+    (build / "references" / "deriving.md").write_text(
+        "# Deriving\n\nProse, not a catalog. No tell headings here.\n",
+        encoding="utf-8",
+    )
     (root / "fixtures").mkdir()
     (root / "fixtures" / "README.md").write_text(
         "| `slop-landing` | expect | F1 |\n", encoding="utf-8"
@@ -354,3 +367,70 @@ def test_main_does_not_read_a_skill_left_at_the_repo_root(tmp_path, capsys):
     )
     assert validate.main(tmp_path) == 1
     assert "not found" in capsys.readouterr().out
+
+
+BUILD_FRONTMATTER = """---
+name: anti-slop-build
+description: |
+  Decide a product's visual identity and voice before building its interface.
+  Use when an interface reads as generic and its palette needs deciding.
+license: MIT
+---
+
+# anti-slop-build
+"""
+
+
+def test_check_frontmatter_accepts_a_second_skill_by_its_own_name():
+    errors = validate.check_frontmatter(
+        BUILD_FRONTMATTER, "anti-slop-build", ("identity", "generic", "deciding")
+    )
+    assert errors == []
+
+
+def test_check_frontmatter_reports_a_name_that_is_not_the_expected_one():
+    errors = validate.check_frontmatter(
+        BUILD_FRONTMATTER, "anti-slop", validate.DESCRIPTION_TRIGGERS
+    )
+    assert any("anti-slop-build" in e for e in errors)
+
+
+def test_check_frontmatter_labels_the_skill_it_is_reporting_on():
+    text = BUILD_FRONTMATTER.replace("license: MIT\n", "")
+    errors = validate.check_frontmatter(
+        text,
+        "anti-slop-build",
+        ("identity", "generic", "deciding"),
+        "skills/anti-slop-build/SKILL.md",
+    )
+    assert errors == [
+        "skills/anti-slop-build/SKILL.md: frontmatter is missing 'license'"
+    ]
+
+
+def test_main_validates_a_second_skill_that_carries_no_catalog(tmp_path, capsys):
+    """deriving.md holds no tells, and that is not a defect for this skill."""
+    _write_plugin_tree(tmp_path)
+    assert validate.main(tmp_path) == 0
+    out = capsys.readouterr().out
+    assert "no tells found" not in out
+
+
+def test_main_checks_the_second_skill_frontmatter(tmp_path, capsys):
+    """The control above passes vacuously until main() actually reads it."""
+    _write_plugin_tree(tmp_path)
+    (tmp_path / "skills" / "anti-slop-build" / "SKILL.md").write_text(
+        BUILD_FRONTMATTER.replace("license: MIT\n", "")
+        + "\nReference: `deriving.md`\n",
+        encoding="utf-8",
+    )
+    assert validate.main(tmp_path) == 1
+    assert "license" in capsys.readouterr().out
+
+
+def test_main_reports_a_reference_the_second_skill_never_cites(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    build = tmp_path / "skills" / "anti-slop-build" / "references"
+    (build / "orphan.md").write_text("# Orphan\n", encoding="utf-8")
+    assert validate.main(tmp_path) == 1
+    assert "orphan.md" in capsys.readouterr().out
