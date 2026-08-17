@@ -63,7 +63,7 @@ the tell does not fire.
 
 ### A6 — Uniform rhythm
 
-**Signal**  `p-6`, `gap-6`, and `space-y-4` repeated across the whole hierarchy, from the page wrapper down to the list item.
+**Signal**  One spacing value repeated down the nesting, from the page wrapper through the section through the card to the element inside it. The test is the repetition across levels, not any particular utility — `p-6`, `gap-6` and `space-y-4` are what it usually looks like, named as examples rather than as a set that all has to be present.
 
 **Principle**  Space groups. When everything is equidistant, nothing is grouped, and the reader loses the structure the content already has.
 

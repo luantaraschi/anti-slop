@@ -87,6 +87,25 @@ tell looks for never arises at all, or the project already handles the same
 detail correctly somewhere else, which is that axis's own evidence that
 someone looked.
 
+## How a Signal reads
+
+Two conventions, because calibration found auditors inventing both of them and
+inventing them differently.
+
+**A Signal's clauses are a conjunction unless it says otherwise.** All of them
+have to hold. Where a Signal lists examples rather than requirements it says so
+in its own text, and where it means "any one of these" it says that too. A tell
+that lists three symptoms and fires on one is a tell that fires on a third of
+the trees it was written for.
+
+**A counting clause has to name what it counts and what count decides.** "Count
+the sites" without a threshold hands the verdict to whoever is reading. Three
+tells still fail this and are recorded rather than guessed at: A3 counts
+distinct radii and names no threshold, C2 says "otherwise asymmetric" and names
+no magnitude, and C4's count decides a case at a population of one, where it can
+only ever come out the same way. Fixing those means picking numbers, and a
+number picked without measurement is the thing this catalog exists to object to.
+
 ## Output
 
 ```
