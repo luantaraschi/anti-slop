@@ -25,7 +25,9 @@ SKILL.md ............ the procedure: how to rank, what to load, how to report
    +-- references/molds.md             recurring shapes across tells
    |
 fixtures/ ........... four calibration specimens, two clean, two slop
+calibration/ ........ the blind audit reports, as the runs produced them
 scripts/validate.py . structural check over the catalog itself
+BACKLOG.md .......... what the last round left open, and what gates it
 ```
 
 41 tells across four axes is far more than belongs in one context window, and
