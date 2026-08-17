@@ -1,9 +1,23 @@
 # anti-slop
 
-A Claude Code skill that audits interface code for the marks of work nobody
-finished: the palette nobody picked, the dark theme nobody opened, the copy
-nobody wrote, the meta tags nobody set. It reports them as a ranked list
-with a file and a line.
+A Claude Code plugin for interfaces that came out generic. It ships two skills.
+
+**`anti-slop`** audits interface code for the marks of work nobody finished:
+the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
+the meta tags nobody set. Forty-one tells across four axes, reported as a ranked
+list with a file and a line.
+
+**`anti-slop-build`** runs before the components exist. It forces the decisions
+whose absence the auditor detects, and writes them where the auditor looks for
+them.
+
+They are one loop. The auditor's rule for suppressing a false positive is to
+look for evidence that somebody chose the value — in `theme.extend`, in custom
+properties, in a tokens file, in primitives that differ from stock. The build
+skill writes into those four places. So a tell firing on a tree the build skill
+produced is the build skill's failure, and it arrives with a file and a line.
+That is how this repository tests the half of itself that generates rather than
+detects.
 
 ## The claim it does not make
 
@@ -25,6 +39,10 @@ skills/anti-slop/ ... the auditor, catalog included
    +-- references/finish.md   F1-F12   lang, title, meta, keys
    +-- references/molds.md             recurring shapes across tells
    |
+skills/anti-slop-build/ the four roots, and what derives from them
+   SKILL.md ......... the process, the six recorded shapes, the reduction pass
+   +-- references/deriving.md          the rule per derived value
+   |
 fixtures/ ........... four calibration specimens, two clean, two slop
 calibration/ ........ the blind audit reports, as the runs produced them
 scripts/validate.py . structural check over the catalog itself
@@ -45,6 +63,23 @@ Every tell is written to the same four field shape, `Signal`, `Principle`,
 `Fix` and `Not slop when`. The last field is the one that makes the catalog
 usable: a tell without a stated exemption becomes a lint rule that fires on
 deliberate choices, which is how audit tools lose their readers.
+
+## Neither skill has a list of banned patterns
+
+Forbid the purple gradient and the generic reappears wherever the list does not
+reach. The audit rule says why: a finding is a pattern present **and** no
+evidence anyone chose it. The pattern was never the defect.
+
+Both fixtures named `clean-*` in this repository are the argument. `clean-landing`
+runs a gradient and a `shadow-xl` — the same features the slop landing is
+accused over — drawn from colours its theme names, used once each. A2 and A4 are
+on its forbid row and neither has ever fired on it in a blind run.
+
+So the build skill does not tell you to avoid anything. It makes you decide four
+things the brief has to answer — what the product concretely is, its voice, its
+visual temperature, its density — and derives the rest from them, recording each
+derived value with the reasoning beside it. A gradient is available. Reaching
+for one without deciding it is not.
 
 ## Install
 
@@ -81,6 +116,12 @@ the audit.
 
 A path alongside the mode restricts the scope to that file or directory.
 Without a path, the target is the project root.
+
+`anti-slop-build` has no modes. It fires on its description, when you are about
+to build an interface or when one already reads as generic and its palette, type
+scale, radius, motion and copy need deciding rather than inheriting. Give it the
+brief. It will tell you which of the four roots the brief does not answer rather
+than filling them in silently.
 
 ## Example output
 
@@ -169,6 +210,27 @@ A rendered pass, a real console error, running the Finish axis against a
 site published over HTTP, and any stack outside React, Tailwind, and
 shadcn.
 
+Also out of scope today, and worth stating because they are the obvious
+neighbours: performance, SEO beyond what the Finish axis greps, analytics,
+security, uploads, privacy and legal copy. None of that is here. A skill for the
+shipping side is designed and not built.
+
+## How mature each skill is
+
+Not equally, and the difference is worth knowing before you rely on one.
+
+**`anti-slop` is the mature half.** Four calibration rounds, sixteen blind runs,
+every report committed under `calibration/`. Its most recent scores are below.
+
+**`anti-slop-build` is at 0.1.0 and younger.** Three specimens have been built
+with it and the first was audited blind at two firing tells out of forty-one,
+both traced to entries the reference was missing at the time. Thirteen repairs
+came out of the second and third builds and are not yet measured. It also has
+seven recorded gaps around application screens, listed in `BACKLOG.md` — it was
+written with pages in mind, and a screen with real state is where it is thinnest.
+
+Both are usable. The auditor is the one with the longer evidence trail.
+
 ## Testing & Reliability
 
 A prose catalog cannot be unit tested for whether its judgements are right.
@@ -182,10 +244,35 @@ coverage notes naming the 11 of 41 tells that appear in no fixture row and the
 17 with no `forbid` row. Those are reported rather than suppressed, so the
 gaps in calibration are visible instead of implied.
 
-`python -m pytest tests/` runs 32 tests over the validator itself, all
+`python -m pytest tests/` runs 45 tests over the validator itself, all
 passing. The validator is written so that every check takes text and returns a
 list of errors, with only `main()` touching the filesystem, which is what
 makes those tests possible without fixtures on disk.
+
+### What the blind runs scored
+
+A prose catalog is calibrated by handing it to an agent that has not seen the
+answer. Each run gets `SKILL.md`, the reference files its invocation names, and
+one target directory — never `fixtures/README.md`, never another fixture, never
+a previous report. `docs/calibration-method.md` is the method, including the one
+instruction that turns an audit into a calibration: *say which rules you had to
+supply that the tell does not contain.* That disclosure is where most of the
+catalog's repairs have come from.
+
+The most recent round, 2026-08-17:
+
+| Target | Result |
+|---|---|
+| `slop-dashboard`, Surface | 6 of the 6 expected ids, nothing off-row |
+| `slop-dashboard`, Craft | 10 of the 10 expected ids, nothing off-row |
+| `clean-dashboard`, Craft | 0 of 19 forbidden ids leaked, no finding of any kind |
+
+The reports are in `calibration/`, unedited, including the ones that contradict
+the catalog. `fixtures/README.md` records what every round scored **before** the
+repairs it caused, and carries a `Recorded for … not fixed` section for what was
+found and deliberately left — which is currently the longest part of the file.
+
+### The corpus
 
 The four specimens under `fixtures/` are the closest thing to an accuracy
 test: a dashboard and a landing page, each built twice, once as work nobody
