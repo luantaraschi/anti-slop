@@ -141,7 +141,12 @@ not manufacture one to satisfy it.
 A pill is outside the arithmetic entirely: its radius comes from its own height,
 so it neither takes nor gives to the scale.
 
-**Record as**  Derivation, always, and written as the equation. A radius scale
+**Record as**  Derivation **where a concentric pair exists**, written as the
+equation. Judgment otherwise, naming the root the sizes came from. These are not
+interchangeable, and the difference matters more here than anywhere else in this
+file: a build told to record a derivation always will go and manufacture a flush
+pair so it has an equation to write, which is the exact manufacturing the rule
+above forbids. That has happened. A radius scale
 without its arithmetic is three numbers that happen to differ.
 
 **Worked**  A control at 5px inside a panel padded by 7px puts the panel at

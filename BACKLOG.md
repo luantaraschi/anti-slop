@@ -129,3 +129,48 @@ Not work yet. Recorded so the next round recognizes it if it happens again.
 `calibration/<date>/` with `fixtures/README.md` updated to say what they scored
 before any repair they caused. A score taken after the fixes is a score of the
 fixes.
+
+## The build skill does not know about application screens
+
+Recorded 2026-08-17 from the third specimen, a dense kitchen shift board, whose
+builder was asked where the skill fits a screen with state badly. Every item
+below is its report, and none is repaired.
+
+- **Nothing about state, which is where an app screen's identity lives.**
+  Confirmed, awaiting, declined, eligible, disabled — these carry the screen and
+  they are the colours with hard contrast floors, because they carry meaning
+  rather than mood. The palette rule says nothing about how many of the four to
+  six may be state, or that a state colour must be measured against every ground
+  it will appear on. The build's best decision — refusing a "confirmed" colour so
+  the two states needing attention do not compete — came from the generic
+  Subtraction shape, not from the palette entry.
+- **Density is modelled as one number and on a screen it is two.** "Very dense"
+  and "legible at arm's length on a wall screen" resolve to a scale with two
+  bands and a jump between them. The single-ratio framing pushed against that.
+- **Disabled needs a stated condition and somewhere to state it.** Label,
+  adjacent text, tooltip, aria — a real decision the skill does not raise.
+- **The reduction pass is written for landing pages.** An app screen has no
+  sections and one call to action. Its dominant removal candidate is the same
+  state rendered twice, which the pass should name. It also says nothing about
+  redundant affordances.
+- **Elevation guidance assumes resting cards.** Under native HTML5 drag the
+  floating object is drawn by the browser, so the elevation count is zero for a
+  reason the entry does not anticipate.
+- **"Derive the page width from the measure" is wrong for a screen**, where the
+  measure governs one paragraph and the columns are the fixed point. The entry
+  frames the table case as an exception when for applications it is the rule.
+- **The Open Graph hand-check assumes a public page.** A board behind auth has no
+  consumer for it.
+
+Two more from the same report that are not app-specific:
+
+- **The spacing ladder lands on half-pixels and the entry never says so.** An
+  18px line box gives 4.5px, and the entry does not say whether to round and lose
+  the derivation or keep it and accept the half pixel. It also names five roles
+  while the arithmetic yields powers of two, so the fifth step comes out at 72px
+  and is unusable on a one-screen layout.
+- **"Four to six colors" counts values, but roles are what you discover.** The
+  build needed seven roles and got back to six by making one colour do three
+  jobs. And the palette entry mentions contrast only obliquely: measuring the
+  pairings the tree will actually render changed its surface hierarchy twice, so
+  measurement belongs inside the derivation rather than after it.

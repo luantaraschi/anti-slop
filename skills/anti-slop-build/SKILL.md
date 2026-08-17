@@ -125,6 +125,13 @@ So each recorded decision has to clear three checks before it ships:
 Fewer, load-bearing comments beat many argumentative ones. A value whose
 derivation is obvious from the theme file needs no sentence at all.
 
+**The ratio is not the standard — drift is.** A theme or tokens file is where
+the derivations legitimately live, so it will read as mostly comment, and that
+is the file doing its job rather than a file that is padded. A component file
+carrying the same ratio is a different matter: it means the reasoning followed
+the code out of the place that records it. Judge a file by whether what it
+claims is true, and only then by how much of it there is.
+
 ## Where the decisions go
 
 The audit rule searches four places for evidence. Write into them:
@@ -135,12 +142,20 @@ tokens file · a `components/ui/` that differs from stock shadcn.
 **Prefer replacing `theme` to extending it.** `theme.extend.colors` leaves the
 framework's undecided palette sitting beside the decided one, so a page can
 still be built entirely out of values nobody picked. Replacing `theme.colors`,
-`theme.spacing`, `theme.fontSize` and `theme.borderRadius` outright makes
-`bg-slate-500` and `p-4` stop compiling, which turns the decision into a
-constraint. Two things to know before you do it: an unrecognised utility is
-dropped silently rather than raised as an error, so a callsite that types `p-4`
-gets nothing and no warning; and the scale you replace has to be complete enough
-to build from, because there is no fallback left.
+`theme.spacing`, `theme.fontSize`, `theme.borderRadius`, `theme.fontWeight` and
+`theme.lineHeight` outright makes `bg-slate-500` and `p-4` stop compiling, which
+turns the decision into a constraint. The last two are the ones builds forget,
+and on a restrained palette weight carries more of the hierarchy than radius
+does — a `font-semibold` resolving out of a nine-step ramp nobody declared is
+the same defect as a colour nobody picked.
+
+Two things to know before you do it. The scale you replace has to be complete
+enough to build from, because there is no fallback left. And an unrecognised
+utility is dropped **silently** rather than raised as an error, so a callsite
+that types `p-4` gets nothing and no warning — which means the replacement needs
+a check: extract every utility token the tree actually uses and diff it against
+the scales you declared. Do that once before you finish. It is the only way the
+silent drops surface.
 
 Naming is part of the evidence. Colors named for the product rather than for
 their rank, type sizes named for what they carry rather than `sm`/`md`/`lg`. A

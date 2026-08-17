@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * The values Tailwind utilities cannot carry. Everything else lives in
+ * tailwind.config.ts, at the value, with its derivation.
+ */
+:root {
+  /* Mirrors of the theme, for the two places below that are not utilities:
+     the selection colour and the focus ring, both of which are painted by the
+     browser against a property rather than a class. Change these with the
+     theme or they drift. */
+  --range: #0e1013;
+  --chalk: #e9ecee;
+  --ticket: #e9a83e;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    /* The whole product is figures and names. Proportional digits make a
+       running labour total shift its own columns as it changes, which reads as
+       the board twitching rather than the number moving. */
+    font-variant-numeric: tabular-nums;
+
+    /* Root 4: one screen, no scrolling. If content ever exceeds the viewport
+       that is a bug in the layout, not something to scroll past. */
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    height: 100%;
+  }
+
+  ::selection {
+    background: var(--ticket);
+    color: var(--range);
+  }
+
+  /**
+   * PLATFORM FACT. Hover does not exist on a touchscreen, and a pass screen is
+   * as likely to be a touch panel as a monitor. Focus is the state that has to
+   * work everywhere, so it is declared once here rather than per component,
+   * where it would drift.
+   *
+   * `ticket` rather than `chalk`: the focus ring must not be mistaken for the
+   * one chalk-filled control on the screen.
+   */
+  :focus-visible {
+    outline: 2px solid var(--ticket);
+    outline-offset: 1px;
+  }
+
+  /**
+   * Root 3 sets how much movement exists: nothing enters, nothing staggers,
+   * nothing counts up. Colour and border are the only properties that
+   * transition anywhere in this tree — the duration and the reasoning behind it
+   * are in tailwind.config.ts, at the value.
+   *
+   * This block is the completeness rule. Every motion honours it.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
