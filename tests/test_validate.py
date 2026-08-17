@@ -381,6 +381,59 @@ license: MIT
 """
 
 
+STATE_TELL = """# States
+
+### S1 — A fetch with nothing behind it
+
+**Signal**  A request whose failure branch does not exist.
+
+**Principle**  The path that is not the demo is still a path a person reaches.
+
+**Fix**  Give the failure a state and say what to do next.
+
+**Not slop when**  nothing in the tree fetches.
+"""
+
+
+def test_collect_tells_accepts_the_state_prefix():
+    tells = validate.collect_tells(STATE_TELL)
+    assert list(tells) == ["S1"]
+    assert tells["S1"]["title"] == "A fetch with nothing behind it"
+
+
+def test_check_tells_accepts_a_complete_state_tell():
+    assert validate.check_tells(STATE_TELL, "references/states.md") == []
+
+
+def test_check_fixture_ids_accepts_a_state_id():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | S1 |\n"
+    )
+    assert validate.check_fixture_ids(table, {"S1"}) == []
+
+
+def test_check_fixture_ids_still_rejects_an_id_outside_the_alphabet():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | X1 |\n"
+    )
+    errors = validate.check_fixture_ids(table, {"S1"})
+    assert errors == ["fixtures/README.md: slop-dashboard expects malformed id X1"]
+
+
+def test_report_coverage_sorts_state_ids_by_number():
+    table = (
+        "| Fixture | Kind | IDs |\n"
+        "|---|---|---|\n"
+        "| `slop-dashboard` | expect | S1 |\n"
+    )
+    lines = validate.report_coverage(table, {"S1", "S2", "S10"})
+    assert "S2, S10" in "\n".join(lines)
+
+
 def test_check_frontmatter_accepts_a_second_skill_by_its_own_name():
     errors = validate.check_frontmatter(
         BUILD_FRONTMATTER, "anti-slop-build", ("identity", "generic", "deciding")

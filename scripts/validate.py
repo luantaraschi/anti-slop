@@ -31,7 +31,7 @@ _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
 FIELDS = ("**Signal**", "**Principle**", "**Fix**", "**Not slop when**")
 
-_TELL_HEADING = re.compile(r"^### ([AWFC]\d+) — (.+)$")
+_TELL_HEADING = re.compile(r"^### ([AWFCS]\d+) — (.+)$")
 
 
 def collect_tells(text):
@@ -165,7 +165,7 @@ def check_references(skill_text, available, source="SKILL.md"):
 
 
 _FIXTURE_ROW = re.compile(r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|(.*)\|")
-_TELL_ID = re.compile(r"^[AWFC]\d+$")
+_TELL_ID = re.compile(r"^[AWFCS]\d+$")
 
 
 def check_fixture_ids(text, known_ids):

@@ -86,6 +86,32 @@ problem.
   this catalog from a linter, and it is the least tested field in it. The
   largest item on this page and the one most likely to want its own round.
 
+## Round 3, and what inspecting the corpus changed about it
+
+The plugin design puts two subjects next for the auditor: incomplete states
+(reference document §17) and a product never shown (§18). Reading the fixtures
+for both before writing either tell turned up the thing that decides the shape
+of that round.
+
+**Both subjects fire on the clean fixtures as they stand.** No fixture in the
+corpus has a loading state, a skeleton, or an API error branch. `clean-dashboard`
+fetches at `components/stat-card.tsx:32` with no `.catch()` and no failure state,
+and `slop-dashboard` does the same at `app/page.tsx:24`. For §18, no fixture
+contains a content image at all, so `clean-landing` describes its product and
+never shows it, which is the defect §18 names.
+
+So Round 3 is not "add tells". It is fixture work first — extending both clean
+fixtures until they genuinely handle the states they currently skip — and only
+then the tells that measure it. Writing the tells first would produce a catalog
+whose clean fixtures fail it, which is how a corpus stops being a test.
+
+That ordering is also what the coverage numbers ask for on their own. Adding a
+fifth axis to a catalog where 17 of 41 already have no `forbid` row makes the
+untested proportion worse, not better.
+
+The id alphabet is already open to `S` and the validator's tests cover it, so
+the mechanical half of a fifth axis is done and costs the next round nothing.
+
 ## Watch list
 
 Not work yet. Recorded so the next round recognizes it if it happens again.
