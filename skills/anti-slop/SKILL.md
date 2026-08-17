@@ -16,8 +16,9 @@ metadata:
 
 This skill audits interface code that already exists and reports the marks
 of work nobody finished. It reads a React, Tailwind, or shadcn project and
-returns a verdict plus a ranked list of findings across four axes: Surface
+returns a verdict plus a ranked list of findings across five axes: Surface
 (the visual layer), Craft (whether anyone looked at the rendered result),
+States (whether the interface exists off the path that was demonstrated),
 Words (the copy inside the interface), and Finish (the shipping details a
 browser or a search engine checks first). Surface asks whether anyone
 decided, and its evidence lives in the theme file. Craft asks whether
@@ -39,9 +40,10 @@ tool. Report what is missing, not who (or what) left it that way.
 
 | Invocation | Axes | References to load |
 |---|---|---|
-| `anti-slop` | Surface, Craft, Words, Finish | `surface.md`, `craft.md`, `words.md`, `finish.md`, `molds.md` |
+| `anti-slop` | Surface, Craft, States, Words, Finish | `surface.md`, `craft.md`, `states.md`, `words.md`, `finish.md`, `molds.md` |
 | `anti-slop surface` | Surface | `surface.md`, `molds.md` |
 | `anti-slop craft` | Craft | `craft.md` |
+| `anti-slop states` | States | `states.md` |
 | `anti-slop words` | Words | `words.md` |
 | `anti-slop finish` | Finish | `finish.md` |
 
@@ -65,11 +67,15 @@ just listing symptoms.
    Knowing what the theme declares is what lets a nested radius, a scale
    value, or a repeated border read as concentric on purpose rather than as
    a coincidence — so Craft comes after Surface, not before it.
-5. **Words.** Read the copy inside the interface itself: labels, toasts,
+5. **States.** Follow every request, every piece of view state, and every
+   destructive action off the happy path. This axis reads branches rather than
+   values, so it is the one place where what is absent from the code is the
+   whole finding.
+6. **Words.** Read the copy inside the interface itself: labels, toasts,
    empty states, error messages.
-6. **False positive filter.** Run every candidate finding through the rule
+7. **False positive filter.** Run every candidate finding through the rule
    below before it counts.
-7. **Verdict.** Name the dominant pattern and rank what survived the filter.
+8. **Verdict.** Name the dominant pattern and rank what survived the filter.
 
 ## The false positive rule
 

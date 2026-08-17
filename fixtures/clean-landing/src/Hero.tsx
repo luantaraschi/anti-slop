@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="bg-gradient-to-b from-dusk to-ink px-8 py-24">
+    <section className="bg-gradient-to-b from-dusk to-ink px-5 py-16 sm:px-8 sm:py-24">
       <h1 className="text-display text-chalk max-w-3xl">
         Every invoice your firm sent, reconciled the morning after.
       </h1>
@@ -11,7 +11,8 @@ export function Hero() {
       <a
         href="/signup"
         className="mt-10 inline-block rounded-control bg-signal px-6 py-3
-                   text-body text-ink shadow-xl transition-shadow duration-200"
+                   text-body text-ink shadow-xl transition-shadow duration-200
+                   motion-reduce:transition-none"
       >
         Reconcile your first month
       </a>

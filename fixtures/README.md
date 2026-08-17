@@ -19,10 +19,10 @@ fixture to fix.
 
 | Fixture | Kind | IDs |
 |---|---|---|
-| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, F1, F2, F11, W3 |
-| `slop-landing` | expect | A2, A7, A8, W1, W6, W7, F2, F3, F4, F5, F12 |
-| `clean-dashboard` | forbid | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, F1, F2, W3 |
-| `clean-landing` | forbid | A2, A4, A7, W1, F3, F4 |
+| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, S1, S2, F1, F2, F11, W3 |
+| `slop-landing` | expect | A2, A7, A8, C15, W1, W6, W7, F2, F3, F4, F5, F12 |
+| `clean-dashboard` | forbid | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, C15, S1, S2, F1, F2, W3 |
+| `clean-landing` | forbid | A2, A4, A7, C13, C15, W1, F3, F4 |
 
 `clean-landing` is the sharpest of the four because it carries the dangerous
 patterns on purpose: a purple gradient and a `shadow-xl`, both drawn from
@@ -62,11 +62,11 @@ A `slop-*` fixture that has been cleaned up tests nothing.
 
 ## What the corpus does not cover
 
-Eleven of the forty-one tells appear in no row at all, so nothing here
-exercises them in either direction: A9, C2, C6, F6, F7, F8, F9, F10, W2, W4
-and W5. Six more appear only on an `expect` row, so the pattern is
-demonstrated and the exemption has no counterexample: A8, F5, F11, F12, W6
-and W7. That is seventeen of forty-one with no `forbid` coverage, a bit over
+Fifteen of the forty-nine tells appear in no row at all, so nothing here
+exercises them in either direction: A9, A11, A12, C2, C6, C14, F6, F7, F8, F9,
+F10, S3, W2, W4 and W5. Six more appear only on an `expect` row, so the pattern
+is demonstrated and the exemption has no counterexample: A8, F5, F11, F12, W6
+and W7. That is twenty-one of forty-nine with no `forbid` coverage, a bit over
 two in five, which means that many "Not slop when" clauses have never been
 tested against a fixture built to disarm them, and that clause is the field
 separating this catalog from a linter. F10's absence is a decision with a

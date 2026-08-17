@@ -4,7 +4,7 @@ A Claude Code plugin for interfaces that came out generic. It ships two skills.
 
 **`anti-slop`** audits interface code for the marks of work nobody finished:
 the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
-the meta tags nobody set. Forty-one tells across four axes, reported as a ranked
+the meta tags nobody set. Forty-nine tells across five axes, reported as a ranked
 list with a file and a line.
 
 **`anti-slop-build`** runs before the components exist. It forces the decisions
@@ -34,7 +34,8 @@ skills/anti-slop/ ... the auditor, catalog included
    SKILL.md ......... the procedure: how to rank, what to load, how to report
    |
    +-- references/surface.md  A1-A10   the palette, radius, shadows, type
-   +-- references/craft.md    C1-C12   the rendered result
+   +-- references/craft.md    C1-C15   the rendered result
+   +-- references/states.md   S1-S3    the paths off the demo
    +-- references/words.md    W1-W7    the copy
    +-- references/finish.md   F1-F12   lang, title, meta, keys
    +-- references/molds.md             recurring shapes across tells
@@ -49,7 +50,7 @@ scripts/validate.py . structural check over the catalog itself
 BACKLOG.md .......... what the last round left open, and what gates it
 ```
 
-41 tells across four axes is far more than belongs in one context window, and
+49 tells across five axes is far more than belongs in one context window, and
 loading all of it to answer `anti-slop words` would crowd out the code being
 audited. So `SKILL.md` carries only the procedure and a table mapping each
 invocation to the references it needs; the axis files load on demand. A single
@@ -165,19 +166,24 @@ three sentences where `SKILL.md` asks for one, and the aligned columns became
 tables. That gap is recorded rather than papered over in `fixtures/README.md`,
 together with what every calibration run scored across all four fixtures.
 
-## The four axes
+## The five axes
 
-**Surface** (A1 through A10) is the visual layer: the palette, the radius,
+**Surface** (A1 through A12) is the visual layer: the palette, the radius,
 the shadows, the type scale, the icons and motion. Ten tells, three of them
 (A1, A3, A5) absences that live in the theme file rather than in any one
 component.
 
-**Craft** (C1 through C12) is whether anyone looked at the rendered result:
+**Craft** (C1 through C15) is whether anyone looked at the rendered result:
 a radius that ignores what it wraps, a counter that jitters instead of
 holding still, a heading that leaves one word behind, a dark theme nobody
 opened. Twelve tells whose evidence lives in the relationship between
 elements — one value against the one it sits inside, one screen against the
 same screen in the other theme — rather than in any single line.
+
+**States** (S1 through S3) is whether the interface exists off the path that
+was demonstrated: a request with no failure branch, view state the URL never
+learns, an action that cannot be taken back or stopped. Three tells whose
+evidence is a branch that is missing rather than a value that is wrong.
 
 **Words** (W1 through W7) is the copy inside the interface: labels, button
 verbs, empty states, error messages. Seven tells that catch the gap between
@@ -242,8 +248,8 @@ What it can be tested for is structural integrity, and that is what runs here.
 carries all four required fields, that no id is defined twice, that the
 frontmatter keys and description triggers are present, and that every id named
 by a fixture actually exists. It currently reports `0 problem(s)`, along with
-coverage notes naming the 11 of 41 tells that appear in no fixture row and the
-17 with no `forbid` row. Those are reported rather than suppressed, so the
+coverage notes naming the 15 of 49 tells that appear in no fixture row and the
+21 with no `forbid` row. Those are reported rather than suppressed, so the
 gaps in calibration are visible instead of implied.
 
 `python -m pytest tests/` runs 45 tests over the validator itself, all

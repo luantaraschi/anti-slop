@@ -258,3 +258,34 @@ reinforces the status instead of being the only thing carrying it.
 **Not slop when**  The status already ships with text or shape everywhere it
 appears, so the condition never arises; or two channels is what the project's
 other indicators already give the reader, and this indicator is short one.
+
+### C13 — Motion nobody switched off
+
+**Signal**  Anything in the tree animates — a transition, a keyframe, a motion library — and no `prefers-reduced-motion` block appears in any stylesheet, no `motion-reduce:` variant on any animated element, and no motion-preference hook at any callsite.
+
+**Principle**  Movement is not decoration for everyone. A reader who has told their system to reduce motion has usually told it for a reason, and a page that animates anyway is the page nobody opened that setting to check. It is the same defect as a dark theme declared on the background alone: a mode exists, and only one of them was ever looked at.
+
+**Fix**  One `prefers-reduced-motion: reduce` block that shortens or removes transitions and keyframes, or the `motion-reduce:` variant on the elements that move.
+
+**Not slop when**  Nothing in the tree animates, so the condition never arises; or the project honours the preference somewhere and this surface fell outside it.
+
+### C14 — A box nobody reserved
+
+**Signal**  Two branches. An async boundary whose pending state renders something of unrelated height to its resolved state — a spinner, a line of text, or nothing, against a list of rows or a grid of cards — with no placeholder anywhere reserving the resolved footprint. Or a content image with no `width`/`height` pair, no `aspect-*` class, and no fixed height on its wrapper. Count the sites that reserve their box against the ones that don't.
+
+**Principle**  The reader loses their place. Content arrives, the page grows under whatever they were reading, and the line they were on is somewhere else. It is the one defect on this axis that costs the reader their position rather than their confidence.
+
+**Fix**  A placeholder that holds the resolved shape, and dimensions or an aspect ratio on every content image.
+
+**Not slop when**  The resolved size is genuinely unknowable ahead of the response and the container reserves a minimum height, so the page does not grow; the framework forces dimensions, as `next/image` does; or the project's other async surfaces and images already reserve their boxes, leaving this one an oversight.
+
+### C15 — A page only ever seen at one width
+
+**Signal**  A layout with more than one column, a fixed horizontal padding, or a row of controls, and no responsive variant anywhere in the tree — no `sm:`, `md:`, `lg:` or container query on any element, and no breakpoint declared in the theme.
+
+**Principle**  Every interface is read at a width its author never opened. A three-column grid with no single-column fallback does not degrade, it overflows; a header that holds its row at 1440 wraps into itself at 380 or strands itself at 1920.
+
+**Fix**  Declare the widths the content actually changes shape at, and only those. One breakpoint chosen because the content breaks there beats five taken from the framework.
+
+**Not slop when**  The tree is a single column of full-width blocks that reflows on its own, so no width can break it; the surface is deliberately fixed-width and says so in the theme; or the project handles width elsewhere and this view fell outside it.
+

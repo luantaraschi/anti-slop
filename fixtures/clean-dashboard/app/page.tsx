@@ -48,9 +48,13 @@ const recent: Invoice[] = [
 ]
 
 export default function OverviewPage() {
+  // The gutter and the rhythm both step at the one width this ledger actually
+  // changes shape at: below it the three figures cannot sit side by side and
+  // the header cannot hold its row. One breakpoint, chosen because the content
+  // breaks there, not because the framework offers five.
   return (
-    <main className="mx-auto max-w-5xl px-10 py-12">
-      <header className="flex items-baseline justify-between">
+    <main className="mx-auto max-w-5xl px-5 py-8 sm:px-10 sm:py-12">
+      <header className="flex flex-wrap items-baseline justify-between gap-y-3">
         <h1 className="font-display text-title text-balance">Overview</h1>
         <div className="flex items-center gap-4">
           <Button size="icon" aria-label="Refresh">
@@ -62,7 +66,7 @@ export default function OverviewPage() {
         </div>
       </header>
 
-      <section className="mt-10 grid grid-cols-3 gap-4">
+      <section className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <LedgerStat
           label="Outstanding"
           metric="outstanding"

@@ -174,3 +174,59 @@ Two more from the same report that are not app-specific:
   jobs. And the palette entry mentions contrast only obliquely: measuring the
   pairings the tree will actually render changed its surface hierarchy twice, so
   measurement belongs inside the derivation rather than after it.
+
+## The seven subjects taken from the survey, and what they cost
+
+Added 2026-08-17 from a four-way survey of the overlapping design skills. Eight
+new ids for seven subjects, because splitting A9 yielded two.
+
+| Subject | Landed as | Fixture coverage |
+|---|---|---|
+| Split A9 | A9 narrowed, A11 motion scale, C13 reduced-motion | C13 both sides |
+| Space nobody reserved | C14 | none — no fixture has a content image or an async boundary with distinct branches |
+| State the URL never learns | S2 | both sides |
+| A request with no failure branch | S1 | both sides |
+| A page only seen at one width | C15 | both sides |
+| A stacking order nobody declared | A12 | none — no fixture stacks |
+| An action that cannot be taken back | S3 | none — no fixture destroys anything |
+
+**Every one is unmeasured.** No blind run has seen any of them. Four carry an
+expect row and a forbid row, which is the strongest position a new tell has ever
+started from here — but a row is a prediction, not a measurement, and the last
+three rounds each found a tell that fired for a reason nobody predicted.
+
+**The corpus was extended first**, which is what made four of the eight
+measurable at all. `clean-dashboard` gained a failure branch on its ledger fetch
+that keeps the last good total and says it is last known, its filter moved from
+component state to the address while the panel's open flag stayed local, and one
+breakpoint at the width its content actually breaks. `clean-landing` gained the
+same breakpoint treatment and a reduced-motion guard on its one transition.
+`slop-dashboard` gained a filter and a sort in local state, because it had no
+view state at all and S2 would have declined on a condition that never arose.
+
+None of that is a fixture edited to suit a tell. A fetch with no catch, a filter
+the URL never learns and a layout with no breakpoint are defects the audits and
+the surveys identified independently, in the fixtures that model the alternative.
+
+**Still open from the survey, and deliberately not taken:**
+
+- The three positioning claims. The build skill's boundary against
+  `frontend-design` is asserted rather than observed and is published in the
+  README; the accessibility boundary excludes by category while claiming to
+  exclude by method, and the catalog violates its own sentence in six places;
+  and the handoff target fetches its rules from another repository's main branch
+  at review time, so it is unversioned and carries no exemption of any kind.
+- Four clauses on existing tells: C10 gains a shadow with no dark counterpart,
+  C7 gains easing and a door for a deliberate full slide-out, C4 gains the case
+  where `balance` is silently ignored past about six lines, C6 gains the tinted
+  neutral outline.
+- One removal: C9's first exemption releases a project where no control has a
+  hover state and the absence is uniform. Uniform absence of feedback is the
+  absence of a decision, which is this catalog's definition of a finding
+  everywhere else.
+- C3's Signal lists a numeric table column as a site and its Fix restricts the
+  treatment to values that change. Most table columns are static.
+- Three things for the build skill: a seventh shape for a sanctioned local
+  departure, a fifth survival check testing recorded decisions against each
+  other rather than against the code each annotates, and a contrast floor
+  carried as a platform fact rather than as evidence.

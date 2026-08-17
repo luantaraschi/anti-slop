@@ -26,12 +26,23 @@ export function LedgerStat({
   tone?: "neutral" | "overdue"
 }) {
   const [current, setCurrent] = useState(amount)
+  const [stale, setStale] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
       fetch(`/api/totals/${metric}`)
-        .then((response) => response.json())
-        .then((total) => setCurrent(total.amount))
+        .then((response) => {
+          if (!response.ok) throw new Error(String(response.status))
+          return response.json()
+        })
+        .then((total) => {
+          setCurrent(total.amount)
+          setStale(false)
+        })
+        // The ledger going quiet is a state the reader has to be told about:
+        // a figure that silently stops moving reads as a figure that stopped
+        // changing. Keep the last good total and say it is last known.
+        .catch(() => setStale(true))
     }, REFRESH_MS)
     return () => clearInterval(timer)
   }, [metric])
@@ -48,7 +59,9 @@ export function LedgerStat({
       >
         {current}
       </p>
-      <p className="mt-3 text-note text-ink/60 dark:text-paper/60">{period}</p>
+      <p className="mt-3 text-note text-ink/60 dark:text-paper/60">
+        {stale ? `${period} — last known, the feed is not answering` : period}
+      </p>
     </div>
   )
 }

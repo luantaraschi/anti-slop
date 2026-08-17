@@ -1,15 +1,34 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { Button } from "./ui/button"
 
 /**
  * The ledger's one open-and-close, with the trigger that owns it.
+ *
+ * Two pieces of state, kept in two different places on purpose. Whether the
+ * panel is open is this component's business and nobody else's, so it lives in
+ * React. What the ledger is filtered to is the answer to "which invoices am I
+ * looking at", so it lives in the URL: a colleague you send this link to sees
+ * the ledger you were reading, and the back button undoes the filter.
  */
 export function FilterControls() {
   const [open, setOpen] = useState(false)
-  const [overdueOnly, setOverdueOnly] = useState(false)
+
+  const router = useRouter()
+  const pathname = usePathname()
+  const params = useSearchParams()
+  const overdueOnly = params.get("overdue") === "1"
+
+  function setOverdue(next: boolean) {
+    const query = new URLSearchParams(params)
+    if (next) query.set("overdue", "1")
+    else query.delete("overdue")
+    const search = query.toString()
+    router.replace(search ? `${pathname}?${search}` : pathname)
+  }
 
   return (
     <div>
@@ -24,8 +43,8 @@ export function FilterControls() {
       <FilterPanel
         open={open}
         overdueOnly={overdueOnly}
-        onToggle={() => setOverdueOnly((wasOn) => !wasOn)}
-        onClear={() => setOverdueOnly(false)}
+        onToggle={() => setOverdue(!overdueOnly)}
+        onClear={() => setOverdue(false)}
       />
     </div>
   )

@@ -93,7 +93,7 @@ the tell does not fire.
 
 ### A9 — Generic motion
 
-**Signal**  `transition-all duration-300` as the default transition, `hover:scale-105` on cards, and no `prefers-reduced-motion` block anywhere.
+**Signal**  `transition-all` as the default transition, and `hover:scale-105` or an equivalent transform on cards. Both clauses; the reduced-motion half of this tell used to sit here and now lives at C13, because a project that names its transition properties correctly and ships no reduced-motion handling was escaping every tell in the catalog.
 
 **Principle**  `transition-all` animates properties nobody meant to animate. Motion scattered everywhere tires the eye; motion orchestrated communicates.
 
@@ -110,3 +110,24 @@ the tell does not fire.
 **Fix**  Route the hand-rolled sites through the primitive, and rework the primitive itself for what the product actually needs: the theme's radius and colors, and none of the variants it never renders.
 
 **Not slop when**  The components that play a primitive's role import it, *and* the primitive shows evidence of a decision: variants pruned, theme tokens wired in, a comment recording the choice. Both halves are required. A single importer among a dozen hand-rolled ones does not earn the exemption, and neither does a domain name on a file: a `StatCard` that reimplements `<Card>` in raw `div`s leaves the primitives as unused as the install left them.
+
+### A11 — Motion with no scale
+
+**Signal**  One duration value carried by transitions whose travelled distance differs by an order of magnitude — a colour change on a control and a full panel translate — with no `transitionDuration` in the theme, no motion custom property, and no tokens file declaring one.
+
+**Principle**  Duration reads as distance. A 200ms colour fade and a 200ms panel slide look wrong together because the eye expects the longer journey to take longer, and one value everywhere is the same absence of a decision as one radius everywhere.
+
+**Fix**  Two or three durations declared in the theme, tied to how far the thing travels, and used by name.
+
+**Not slop when**  A duration scale is declared in one of the four evidence places, which makes a repeated value a chosen step rather than a default; or every animated change in the tree really is the same magnitude.
+
+### A12 — A stacking order nobody declared
+
+**Signal**  Arbitrary z-index values in the tree — `z-[9999]`, `z-50` beside `z-10` beside `z-[100]` — with no `zIndex` scale in `theme.extend`, no layer custom property under `:root` or `@theme`, and no tokens file naming the layers.
+
+**Principle**  A stacking order is a system with three or four real layers: content, sticky chrome, overlay, and whatever the browser puts on top. Numbers picked at each callsite until the thing appeared are not that system, and the next element added to the page starts the escalation again.
+
+**Fix**  Name the layers in the theme and use the names. Three or four is usually the whole set.
+
+**Not slop when**  A z scale exists in one of the four evidence places and an arbitrary value beside it is a documented escape for a third-party layer the project does not control; or nothing in the tree stacks at all.
+
