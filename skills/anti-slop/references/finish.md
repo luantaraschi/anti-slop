@@ -33,7 +33,7 @@ two axes are read against.
 
 **Fix**  Write one description per indexable route, 120 to 160 characters, aimed at the person deciding whether to click.
 
-**Not slop when**  The route sits behind authentication and never reaches any index.
+**Not slop when**  The route is internal, or sits behind authentication, and never reaches any index. F4 and F10 already release an internal app in as many words; this clause was narrower than both for no reason, so an internal tool with no visible auth layer took a finding it could not act on.
 
 ### F4 — No Open Graph tags
 

@@ -155,7 +155,15 @@ framework's undecided palette sitting beside the decided one, so a page can
 still be built entirely out of values nobody picked. Replacing `theme.colors`,
 `theme.spacing`, `theme.fontSize`, `theme.borderRadius`, `theme.fontWeight` and
 `theme.lineHeight` outright makes `bg-slate-500` and `p-4` stop compiling, which
-turns the decision into a constraint. The last two are the ones builds forget,
+turns the decision into a constraint.
+
+Be exact about what that buys, because a build stated it too broadly and an
+audit caught it: a top-level `theme` is merged per key against the framework's
+own, so **only the keys you declare are replaced**. Everything you leave out —
+`height`, `minHeight`, `width`, `flex`, `inset`, `opacity`, `keyframes` — stays
+at its default and goes on compiling. Replacing four keys does not make a tree
+token-complete, and a comment claiming it does is the first survival check
+failing. The last two are the ones builds forget,
 and on a restrained palette weight carries more of the hierarchy than radius
 does — a `font-semibold` resolving out of a nine-step ramp nobody declared is
 the same defect as a colour nobody picked.
