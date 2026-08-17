@@ -7,7 +7,7 @@ description: |
   finish of a React, Tailwind or shadcn project.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # anti-slop

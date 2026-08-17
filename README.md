@@ -16,7 +16,8 @@ any tool. It reports what is missing, not who (or what) left it that way.
 ## How it works
 
 ```
-SKILL.md ............ the procedure: how to rank, what to load, how to report
+skills/anti-slop/ ... the auditor, catalog included
+   SKILL.md ......... the procedure: how to rank, what to load, how to report
    |
    +-- references/surface.md  A1-A10   the palette, radius, shadows, type
    +-- references/craft.md    C1-C12   the rendered result
@@ -47,18 +48,21 @@ deliberate choices, which is how audit tools lose their readers.
 
 ## Install
 
-Clone it where Claude Code looks for skills:
+Install it as a plugin. From within Claude Code, point a plugin marketplace at
+your checkout and install from it:
 
 ```
-git clone https://github.com/luantaraschi/anti-slop ~/.claude/skills/anti-slop
-```
-
-Or install it as a plugin. From within Claude Code, point a plugin marketplace
-at your checkout and install from it:
-
-```
-/plugin marketplace add ~/.claude/skills/anti-slop
+git clone https://github.com/luantaraschi/anti-slop
+/plugin marketplace add ./anti-slop
 /plugin install anti-slop@anti-slop
+```
+
+To install the auditor on its own, without the plugin, copy the one skill
+directory where Claude Code looks for personal skills. Its catalog travels
+inside it:
+
+```
+cp -r anti-slop/skills/anti-slop ~/.claude/skills/anti-slop
 ```
 
 ## Use
