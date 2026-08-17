@@ -456,3 +456,120 @@ tree is unlikely to stay that way. v1's calibration had F11 fire on the same
 fixture over the same code. One run reading the exemption the other way is
 variance, not a measurement, so nothing changed on its account. A second
 decline in the next round makes it the tell's problem rather than the round's.
+
+### v3, the Round A repairs, 2026-08-17
+
+Three blind runs, single-axis and uncapped, by the same method as the seven
+above. Each agent received `SKILL.md`, the one or two `references/` files its
+invocation names, and one target directory. None could read this file, the repo
+root `README.md`, `calibration/`, `tests/`, `scripts/`, `skills/anti-slop-build/`,
+or any fixture but its own.
+
+The reports are in `calibration/2026-08-17/`, as the runs produced them. Every
+string this entry quotes is theirs.
+
+The round repaired five things before these runs, so unlike v2 this entry scores
+repairs rather than discovering them. What it discovers instead is in the gaps
+below, which are new.
+
+- `slop-dashboard`, Craft only: **10 of the 10 expected Craft ids reported.** It
+  also fired C2, which the row does not list.
+- `slop-dashboard`, Surface only: **6 of the 6 expected Surface ids reported.**
+  It also fired A9, which the row does not list.
+- `clean-dashboard`, Craft only: **0 of the 10 forbidden Craft ids leaked**, and
+  no finding of any kind. v2's C4 leak on this fixture is closed.
+
+**C4's majority rule decided a case, for the first time in the corpus.** This is
+what the round was for. v2 narrowed C4's heading half to four words and left the
+corpus with no site that could exercise the count: the clean dashboard's
+deliberate oversight was the single word `Reminders`, below the floor, so C4
+declined before reaching the door. At four words it is a site, and the run
+closed it on the arithmetic — "2 carry, 1 misses. A strict majority carries, so
+the door opens." The same run recorded that it had refused the source comment
+sitting beside that heading: "I scored the count, not the comment — the verdict
+above is what the class attributes produce on their own."
+
+**C1's pill carve-out and C5's labelled-control carve-out both held, on both
+sides.** On the clean fixture the chip inside the panel is removed from the
+count by name; on the slop fixture C5 "fires on one site and not five," the
+three text buttons excluded by their labels and the bare `size-5` glyph kept.
+Neither tell lost a fire it should have kept.
+
+**A1's repair failed.** Its third clause was false of `slop-dashboard` and was
+rewritten; the replacement is false too. The run walked all three clauses and
+reported clause three — "so every color in the tree is a framework default
+called by its number" — as false on three counts: a hand-typed hex in
+`app/icon.svg:2`, `bg-white` at `app/layout.tsx:8` which is a default called by
+name rather than number, and fifteen-plus semantic classes in `components/ui/`
+that are neither. The tell fired anyway, on the reading that clause three is a
+consequence rather than a test, and the run said what the cost is: "an auditor
+reading clause 3 literally could talk themselves out of firing a tell that
+plainly should fire."
+
+The same run found something the tell has no language for at all. Because no
+custom property is defined anywhere, every `bg-primary` and `ring-ring` in the
+untouched `components/ui/` is **dangling** — it resolves to nothing. "The tree
+isn't merely using the default palette raw; it contains a second, entirely
+non-functional color vocabulary that renders as blank."
+
+### Recorded for v3, not fixed
+
+Ten rules were supplied across the three runs — each one a place where reaching
+a verdict needed something the tell does not say. Three are structural.
+
+**The Craft axis cannot tell chosen code from installed code, and SKILL.md is
+where that goes missing.** C8's and C11's second doors are both opened by
+untouched stock shadcn: `transition-colors` and `disabled:opacity-50`, both at
+`components/ui/button.tsx:8`. The Craft run fired both anyway and named exactly
+what it had to supply — "stock shadcn boilerplate is not the project's own
+evidence that someone looked" — then located the hole: "SKILL.md has exactly
+that clause, and assigns it to Surface, then says Craft's rule 'takes a
+different form.' Craft's different form never picks the clause back up. Applied
+as written, both tells decline on this tree." v2's ledger predicted these two
+would be the likeliest misses; this says why.
+
+**The two doors do not enumerate the ways a tree can pass.** C8, C11 and C5 all
+decline on `clean-dashboard` through a third state the preamble never names:
+the condition arises and the Fix was applied. The run spelled out the cost: "an
+auditor who believes every decline must exit through one of two doors will reach
+for whichever is nearer and mislabel a correctly-built control as an exemption,
+or worse, fire because neither door opened." That is the mechanism behind v2's
+finding that six of run 6's seven door-two declines were not door-two cases.
+
+**C1 contains two different tests and passes the clean fixture on only one.**
+Its first sentence fires on equal or inverted radii; its second sentence, its
+Fix and its door all measure `outer = inner + padding`. Three nested pairs in
+`clean-dashboard` are non-concentric by the second and invisible to the first —
+`app/page.tsx:89`, `components/table.tsx:34`, and `components/table.tsx:19`.
+"An auditor who reads sentence two as the test will fire on this tree, and one
+who reads sentence one will not. That divergence is in the tell, not in the
+tree."
+
+Four narrower ones:
+
+- **C4's count cannot function on a population of one.** On `slop-dashboard` the
+  text-block limb fires on a single site, where the count can only ever be
+  0-against-1. "C4 fires on any tree containing a single short text block, no
+  matter how carefully written." The tell sets no minimum population.
+- **C2 has no magnitude threshold.** "Otherwise asymmetric" covers nearly every
+  icon ever drawn, and nothing separates a play triangle's optical offset from
+  the 1.5px on `slop-dashboard`'s refresh glyph. It fired there and the run
+  ranked it last for that reason. C2 had no fixture row before this; it has
+  evidence now.
+- **A9 fired on one clause of three.** Its two vintage markers, `transition-all
+  duration-300` and `hover:scale-105`, are both absent from `slop-dashboard`;
+  only the missing `prefers-reduced-motion` holds. "Read strictly as a
+  conjunction, A9 declines." A9 also had no fixture row before this.
+- **A6 names three tokens and one of them appears once.** `gap-6` occurs exactly
+  once in `slop-dashboard`, failing the Signal's own "repeated" test. The run
+  fired on the Principle and supplied "the Signal's three tokens are illustrative
+  rather than a required set."
+
+**A real defect in `clean-dashboard` that C10 cannot see.**
+`components/stat-card.tsx:46` declares `text-flag` with no dark counterpart while
+the branch beside it carries one, and `components/invoice-row.tsx:24` flips that
+same colour for the other theme. Two components render one semantic state and
+only one of them was opened in dark mode — C10's Principle almost word for word.
+C10's Signal names borders, dividers and separator colours, and a stat figure's
+foreground is none of those. The run declined it rather than widen the Signal,
+and said: "This is the finding I would most want the tell rewritten to catch."
