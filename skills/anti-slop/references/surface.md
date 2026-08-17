@@ -13,9 +13,9 @@ the tell does not fire.
 
 ### A1 — A palette nobody picked
 
-**Signal**  `tailwind.config` declares no `theme.extend.colors` and no color custom property appears anywhere, so every color in the tree is a framework default called by its number.
+**Signal**  The project has no named colors of its own. `tailwind.config` declares none under either `theme.colors` or `theme.extend.colors` — check both, because replacing the scale and extending it are both real, and a Signal that reads only one of them misses a project that replaced it with the framework's own palette. And no color custom property appears under `:root` or `@theme` anywhere in the tree. Both clauses have to hold.
 
-**Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice. It's the absence of one.
+**Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice. It's the absence of one. Where a stock `components/ui/` is also present, this gets worse than raw: its `bg-primary` and `ring-ring` resolve against custom properties nobody defined, so a second color vocabulary sits in the tree rendering as nothing.
 
 **Fix**  Name four to six colors in the theme, derived from the subject, and use the semantic classes that follow from them.
 

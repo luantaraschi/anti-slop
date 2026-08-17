@@ -19,6 +19,24 @@ detail correctly somewhere else — which means someone looked, and the instance
 that failed is an oversight rather than an absence of care. That second door is
 this axis's evidence of a decision, the equivalent of `theme.extend` on Surface.
 
+**A tell declines three ways, and only two of them are doors.** The third is
+that the condition arose and the Fix was applied — a control smaller than 40px
+that extends its target, a panel that opens on a transition rather than a
+keyframe. Nothing needs excusing there, because nothing failed. Name that state
+as the Signal not matching, never as an exemption. An auditor who believes every
+decline must leave through one of two doors will reach for whichever is nearer
+and file correct work as an exemption, or fire because neither door opened. Both
+have happened in calibration.
+
+**Stock code is not the project looking.** The second door asks whether the
+project handles the same detail correctly elsewhere, and a scaffold's untouched
+output is not the project doing anything. A `components/ui/` that matches a
+stock install answers no door on this axis: its `transition-colors` is not
+evidence that transitions are the project's habit, and its `disabled:opacity-50`
+is not evidence that the project keeps a disabled control's two sides in step.
+Evidence for door two is code someone wrote or changed, and a declared
+capability that nothing renders is not an instance.
+
 ### C1 — A radius that ignores what it wraps
 
 **Signal**  Two rounded elements nested with the same radius value, or an inner
@@ -26,6 +44,14 @@ radius larger than the outer one. Count nested pairs against the pairs where
 the outer radius equals the inner radius plus the padding between them. A pill
 is not a site on either side of that count: at a radius set by its own height
 it has no corner, and the Principle below measures corners.
+
+This Signal's first sentence and its counting sentence are not the same test,
+and the 2026-08-17 calibration recorded that a tree can pass one and fail the
+other. Two rewrites were drafted and both were withdrawn: scoping the test to
+the sum alone fires C1 on `clean-dashboard`, and scoping it further to elements
+flush in a container's corner stops it firing on `slop-dashboard`. Each fixes
+one side by breaking the other, which is what a Signal rewrite going in
+unmeasured looks like. The repair belongs to a round that can measure it.
 
 **Principle**  An outer and an inner radius are concentric when the gap
 between the two curves stays constant. Equal, the two curves run in parallel

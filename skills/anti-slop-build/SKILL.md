@@ -82,10 +82,48 @@ decoration.
 | **Accepted cost** | what this choice loses, stated instead of hidden |
 | **Platform fact** | the truth about a browser or a device that forces it |
 | **Abstention** | the place nothing was done, and why that was the decision |
+| **Judgment** | this value serves that root, and here is the reasoning |
+
+Judgment is the shape for a value a root produces without arithmetic — a hue
+picked to sit at the temperature, a family picked to carry the voice. It exists
+because five shapes that all demand a calculation push you into attaching a
+number to a decision that was not numeric, which reads as rigour and is not.
+Name the root, give the reasoning, and stop. A contrast ratio bolted onto a
+colour you chose for its warmth records something true about the colour and
+nothing true about the choice.
 
 Put them where the value is, not in a separate document. A design note in a
 README is not evidence a reader of the code can find, and it is not evidence
-the auditor's rule accepts.
+the auditor's rule accepts. The one exception is the inventory from root 1: it
+has no value to sit beside, so it is a file, and the rule above does not reach
+it.
+
+## What a recorded decision has to survive
+
+Everything above is an argument for the code, sitting next to the code. That
+buys nothing if the two disagree, and it costs a great deal: prose that
+contradicts the file it annotates is worse than no prose, because it reads as
+care and misleads the next person.
+
+The first calibration of this skill produced a tree that was **57% comment** and
+that contradicted itself in **ten** places — a limit presented as the thing its
+own justification rejected, an extraction rule stated twice and broken in a
+third file, a colour named as in use that nothing used, counts of "two" where
+three rendered. Every one passed as a well-formed shape.
+
+So each recorded decision has to clear three checks before it ships:
+
+1. **Every count in it is a count you ran.** "The two actions", "the same six
+   classes", "the only place this appears" — grep it, or do not write it.
+2. **It describes what the code does, not what you meant.** If the reasoning
+   argues against a limit and the code imposes one, the reasoning is wrong or
+   the code is. Fix whichever is wrong; never ship both.
+3. **A stated measurement is measured.** A contrast ratio, a pixel sum, a
+   character count — compute it or leave it out. An approximate figure written
+   as a measurement is a claim the next reader will trust.
+
+Fewer, load-bearing comments beat many argumentative ones. A value whose
+derivation is obvious from the theme file needs no sentence at all.
 
 ## Where the decisions go
 
@@ -93,6 +131,16 @@ The audit rule searches four places for evidence. Write into them:
 
 `theme.extend` · custom properties under `:root` or `@theme` · a dedicated
 tokens file · a `components/ui/` that differs from stock shadcn.
+
+**Prefer replacing `theme` to extending it.** `theme.extend.colors` leaves the
+framework's undecided palette sitting beside the decided one, so a page can
+still be built entirely out of values nobody picked. Replacing `theme.colors`,
+`theme.spacing`, `theme.fontSize` and `theme.borderRadius` outright makes
+`bg-slate-500` and `p-4` stop compiling, which turns the decision into a
+constraint. Two things to know before you do it: an unrecognised utility is
+dropped silently rather than raised as an error, so a callsite that types `p-4`
+gets nothing and no warning; and the scale you replace has to be complete enough
+to build from, because there is no fallback left.
 
 Naming is part of the evidence. Colors named for the product rather than for
 their rank, type sizes named for what they carry rather than `sm`/`md`/`lg`. A
@@ -128,3 +176,11 @@ here is *generic*, *undecided*, *unfinished* — never *AI-generated*.
 
 Run `anti-slop` against what you built. A tell that fires is this skill's
 failure, and it arrives with a file and a line.
+
+**When the auditor is not available,** say so rather than claiming the build is
+checked, and run the three cheapest checks by hand, because they are the ones
+this skill has repeatedly missed: every heading of four words or more and every
+short text block carries a wrap property; the page declares `lang`, a title of
+its own, a description, and the Open Graph set; and every list rendered from
+data carries a stable key. An unverified build is a finding to report, not a
+step to skip quietly.

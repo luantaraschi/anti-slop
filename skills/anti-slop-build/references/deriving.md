@@ -46,17 +46,100 @@ nothing in the product uses it.
 three. Both named them for their job — a note, a body, a figure, a title — and
 neither declared a step no screen rendered.
 
+### Type family
+
+**From**  Root 2 (voice) and root 3 (temperature).
+
+**Rule**  Name the families before anything renders. This is the most visible
+undecided value in a React or Tailwind project — a page that reaches for the
+ecosystem's current default face announces the ecosystem, not the product — and
+it is the one place where doing nothing still produces a strong signal.
+
+Decide how many families the product needs, which is usually one or two and
+almost never three. Pick each for what it has to carry: a face that suits a
+dense table of figures is not the face that suits a page of argument. A native
+stack is a legitimate answer when the product's reach or its connection makes a
+download the wrong trade — but it is only a decision if it is declared and the
+reason is recorded, and the scale still has to exist beside it.
+
+**Record as**  Judgment, naming the root. Accepted cost, when a native stack
+means some readers get a different face than others, or when a webfont costs a
+download you decided to spend.
+
+### Typography treatment
+
+**From**  Nothing. This is a completeness rule, and the calibration that first
+measured this skill failed on it.
+
+**Rule**  A heading of four words or more takes `text-wrap: balance`. A short
+text block — a paragraph carrying one to three complete sentences — takes
+`text-pretty`. Long-form body copy takes neither, because the reflow costs more
+than it returns.
+
+Apply it at the component that renders the heading, not at each callsite, so
+one class string covers every instance. A heading whose size was chosen to wrap
+needs this most, not least: a designed wrap with an unmanaged break point is
+still a word alone on the last line.
+
+**Record as**  Nothing. This is not a decision, it is the treatment, and a
+comment claiming credit for it is noise.
+
+### Spacing
+
+**From**  Root 4 (density), through the type scale.
+
+**Rule**  The body step's line box is the root. Halve it and double it to get
+the ladder — a step for what sits inside a line's rhythm, one for the body line
+itself, one for grouping, one for separating blocks, one for separating
+sections. Four or five steps is the whole ladder.
+
+The value at each level is proportional to what that level separates. The
+failure this prevents is one value repeated at every nesting depth, which makes
+everything equidistant and nothing grouped: if the padding on the page container
+is also the padding on the card inside it and on the table inside that, no
+spacing decision was made.
+
+**Record as**  Derivation, written as the arithmetic from the body line box.
+Subtraction, naming the steps the framework offers that the product does not
+declare.
+
+### Measure
+
+**From**  The body size, and the kind of reading the product asks for.
+
+**Rule**  Prose sits at roughly 60 to 70 characters a line. Convert that to a
+width from the body step rather than picking a round number, and derive the page
+width from the measure plus its gutters rather than the other way round — the
+column that has to be readable is the fixed point, and the page is what follows.
+
+A dense product reading in short bursts can run narrower. A table is not prose
+and takes the width its columns need.
+
+**Record as**  Derivation, both the measure from the body size and the page from
+the measure.
+
 ### Radius scale
 
 **From**  Root 4 (density), then arithmetic.
 
-**Rule**  Two or three radii, tied to the size of what they wrap. When one
-rounded thing sits inside another, the outer radius is the inner radius plus the
-padding between them. That single equation is what keeps two curves concentric,
-and it is the reason a radius scale is derived rather than chosen.
+**Rule**  Two or three radii, tied to the size of what they wrap.
 
-A pill is outside this arithmetic: its radius comes from its own height, so it
-neither takes nor gives to the scale.
+The equation — outer radius equals inner radius plus the padding between them —
+governs **concentric pairs only**: a rounded element sitting flush in a rounded
+container's corner, with the padding as the only gap. There it is what keeps the
+two curves parallel, and it is the reason a radius scale is derived rather than
+chosen.
+
+It governs nothing else, and reading it as general is how it does damage. A
+container holding a column of content is not concentric with anything inside it,
+so it takes its radius from its own size. A 6px control inside a panel padded by
+24px does not demand a 30px panel — that number is absurd, and a rule that
+produces absurd numbers gets ignored everywhere including where it was right.
+If your tree has no flush pair, the equation has nothing to say and you should
+not manufacture one to satisfy it.
+
+A pill is outside the arithmetic entirely: its radius comes from its own height,
+so it neither takes nor gives to the scale.
 
 **Record as**  Derivation, always, and written as the equation. A radius scale
 without its arithmetic is three numbers that happen to differ.
