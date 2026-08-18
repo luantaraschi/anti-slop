@@ -184,14 +184,14 @@ together with what every calibration run scored across all four fixtures.
 ## The five axes
 
 **Surface** (A1 through A12) is the visual layer: the palette, the radius,
-the shadows, the type scale, the icons and motion. Ten tells, three of them
+the shadows, the type scale, the icons and motion. Twelve tells, three of them
 (A1, A3, A5) absences that live in the theme file rather than in any one
 component.
 
 **Craft** (C1 through C15) is whether anyone looked at the rendered result:
 a radius that ignores what it wraps, a counter that jitters instead of
 holding still, a heading that leaves one word behind, a dark theme nobody
-opened. Twelve tells whose evidence lives in the relationship between
+opened. Fifteen tells whose evidence lives in the relationship between
 elements — one value against the one it sits inside, one screen against the
 same screen in the other theme — rather than in any single line.
 
@@ -230,12 +230,15 @@ rejects all six, with a reason:
 A rendered pass, a real console error, and running the Finish axis against a
 site published over HTTP.
 
-**Stack is not one of them.** Thirty-nine of the forty-nine tells never mention
-a framework: every tell on States, Words and Finish, and all but one on Craft.
-The rest — most of Surface — name Tailwind classes as examples of a pattern,
-because that is the ecosystem the pattern was measured in, and the pattern is
-what fires. Plain HTML and CSS, Vue, Svelte, Astro: read the example, find its
-equivalent, audit that. A run that translated says so in its first line.
+**Stack is not one of them.** Forty-two of the forty-nine tells never name a
+framework or a library: every tell on Craft, States and Words, nine of the
+twelve on Surface, and eight of the twelve on Finish. The seven that do — A1,
+A2, A7, F1, F2, F8, F11 — name Tailwind, React, Next.js or an icon set as
+examples of a pattern, because that is the ecosystem the pattern was measured
+in, and the pattern is what fires. A7 names three icon libraries only to say
+which library it is makes no difference. Plain HTML and CSS, Vue, Svelte, Astro:
+read the example, find its equivalent, audit that. A run that translated says so
+in its first line.
 
 Also out of scope today, and worth stating because they are the obvious
 neighbours: performance, SEO beyond what the Finish axis greps, analytics,
@@ -246,16 +249,19 @@ shipping side is designed and not built.
 
 Not equally, and the difference is worth knowing before you rely on one.
 
-**`anti-slop` is the mature half.** Four calibration rounds, sixteen blind runs,
-every report committed under `calibration/`. Its most recent scores are below.
+**`anti-slop:audit` is the mature half.** Four calibration rounds and twenty-one
+blind reports, every one committed under `calibration/` — eighteen of them the
+auditor reading fixtures, three the auditor reading what the build skill
+produced. Its most recent scores are below.
 
-**`anti-slop-build` is at 0.1.0 and younger.** Three specimens have been built
+**`anti-slop:build` is at 0.1.0 and younger.** Three specimens have been built
 with it and all three audited blind, by agents that had not seen the build
 skill: **2 of 41 tells fired on the first, 0 of 41 on the second, 0 of 41 on the
-third.** The two that fired on the first traced to reference entries that did
-not exist at the time and now do. Fourteen repairs came out of the second and
-third builds and are not yet measured. It also has
-seven recorded gaps around application screens, listed in `BACKLOG.md` — it was
+third.** Forty-one is the size the catalog was at the time, not its size now.
+The two that fired on the first traced to reference entries that did not exist
+at the time and now do. Fourteen repairs came out of the second and third builds
+and are not yet measured. It also has seven recorded gaps around application
+screens, listed in `BACKLOG.md` — it was
 written with pages in mind, and a screen with real state is where it is thinnest.
 
 Both are usable. The auditor is the one with the longer evidence trail.
