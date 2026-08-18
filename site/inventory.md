@@ -24,9 +24,12 @@ choices.
 **Six invocations:** `anti-slop`, plus one per axis. A path after the mode
 narrows the scope to that file or directory.
 
-**42 of the 49 tells never name a framework or a library** — every tell on
-Craft, States and Words, nine of the twelve on Surface, eight of the twelve on
-Finish. The seven that do are A1, A2, A7, F1, F2, F8 and F11.
+**39 of the 49 tells never name a framework, a build tool or a library** —
+every tell on States and Words, fourteen of the fifteen on Craft, nine of the
+twelve on Surface, six of the twelve on Finish. The ten that do are A1, A2, A7,
+C14, F1, F2, F5, F8, F11 and F12. Measured with a proper-noun search, because a
+narrower one misses `next/image`, `Vite's`, `Next's` and `Storybook` and returns
+a flattering 42.
 
 **The rule a finding has to meet:** the pattern is present **and** there is no
 evidence anyone chose it. Neither half alone is a finding.
@@ -51,6 +54,10 @@ is a count you ran.
 **Four calibration fixtures:** `slop-dashboard`, `clean-dashboard`,
 `slop-landing`, `clean-landing`. Two built to be found, two built to be cleared.
 
+**Twelve tells sit on `slop-landing`'s expect row:** A2, A7, A8, C15, W1, W6,
+W7, F2, F3, F4, F5, F12. `clean-landing` carries A2 and A4 on its `forbid` row,
+and neither has fired on it in any blind run.
+
 **21 blind reports**, every one committed under `calibration/`, across four
 rounds dated 2026-08-07, 2026-08-17, 2026-08-17b and 2026-08-18. Eighteen are
 the auditor reading fixtures; three are the auditor reading what the build skill
@@ -69,16 +76,31 @@ has ever fired on it in a blind run.
 
 ## The two screenshots on the page
 
-`img/slop-landing.png` and `img/clean-landing.png` are `fixtures/slop-landing`
-and `fixtures/clean-landing` rendered at 1280×760 in Chromium on 2026-08-18.
+`img/slop-landing.png` is `fixtures/slop-landing` rendered at 1280×760 in
+Chromium on 2026-08-18.
 
-**The caveat that belongs with them:** neither fixture is a runnable
-application. Both are reading specimens with no `package.json`, no entry module
-and no stylesheet. To photograph them, both trees were copied out of the
-repository and the missing entry scaffolding was added to the copies. What the
-images show is the fixtures' own components, compiled with the fixtures' own
-theme files, and not the fixture directories as the auditor reads them. Nothing
-under `fixtures/` was modified.
+**The caveat that belongs with it:** that fixture is not a runnable application.
+It is a reading specimen with no `package.json`, no entry module and no
+stylesheet. To photograph it, the tree was copied out of the repository and the
+missing entry scaffolding was added to the copy. What the image shows is the
+fixture's own components compiled with its own theme file, not the fixture
+directory as the auditor reads it. Nothing under `fixtures/` was modified.
+
+`img/ledgerline.png` is `specimen/index.html` rendered at the same size on the
+same day, and that one is the page itself rather than a photograph of parts —
+it is published at `/specimen/` and the reader can open it.
+
+**Why the second image is not `fixtures/clean-landing`, which it used to be.**
+That fixture is clean in the auditor's sense: every value on it was decided.
+It is not composed, because nothing asked it to be — its job is to make tells
+decline. Put beside the slop page it argued the wrong thing, since a reader
+sees two plain pages and learns nothing. `specimen/` is the same product and
+the same decided material with a person also having composed the page, which is
+what the comparison is actually about.
+
+**What that image must not be read as claiming:** that the plugin designs. It
+does not, and `skills/build/SKILL.md` says so in its own words. The composition
+is a person's and the catalog has no tell that would have found it missing.
 
 ## Install
 
@@ -95,5 +117,9 @@ The auditor alone, without the plugin:
 
 No user count, download count, or star count. No testimonial and no logo wall.
 No time-saved figure, accuracy percentage, or conversion number. No claim that
-the catalog is complete — 15 of 49 tells have never been tested against a
-counterexample, and the page says so rather than avoiding the subject.
+the catalog is complete — 21 of 49 tells have never been tested against a
+counterexample, and the page says so rather than avoiding the subject. Twenty-one
+is the number with no `forbid` row, which is what a counterexample is: a case a
+tell must *not* fire on. Fifteen is the different, smaller number of tells that
+appear in no fixture row at all, and attaching it to this claim understates the
+gap.

@@ -26,23 +26,32 @@
    `min-height` beside them was quietly covering for. A fourth, the figure's
    breakpoint, still has to be a literal and now mirrors a derived token.
 
-   Sixteen remain, and they are the classes below — exceptions on purpose
-   rather than leftovers:
+   What remains is **17 sites carrying 11 distinct values**, and the two numbers
+   are both given because a blind audit of this page found that the single
+   figure that used to stand here — "sixteen" — reproduced on no consistent
+   basis and the comment named none. A count with no stated basis is not a count
+   that was run.
 
-     · a 1px border, which is a hairline rather than a step on any scale
-     · the 2px focus ring and its 3px offset, which have to stay legible at
-       every type size and so cannot scale with one
-     · em-relative typographic refinements — -0.015em of tracking on the title,
-       0.08em on the row-group labels, 0.2em of underline offset, code at
-       0.9em — which are proportions of the token they sit on rather than
-       independent values
-     · 40px, which is a fingertip, and 0.01ms, which is how a stylesheet says
-       "no motion" without removing the declaration
-     · two media-query widths, which cannot read a custom property at all; see
-       the platform fact recorded at `.column`
+   The eleven, and why each is an exception on purpose rather than a leftover:
 
-   The count above is a count that was run, not an estimate. Re-run it before
-   changing this file. -------------------------------------------------------- */
+     · 1px at four sites — a hairline, which is not a step on any scale. The
+       fifth is gone: the frame's border is a token now, because the radius
+       equation needs it.
+     · 2px and 3px, twice each — the focus ring and its offset, at the two
+       rules that declare one. They have to stay legible at every type size and
+       so cannot scale with one.
+     · -0.015em, 0.08em, 0.2em and 0.9em — tracking on the title, tracking on
+       the row-group labels, underline offset, and code's size. Every one is a
+       proportion of the token it sits on rather than an independent value.
+     · 40px, a fingertip.
+     · 0.01ms, twice — how a stylesheet says "no motion" without removing the
+       declaration, once for animation and once for transition.
+     · 661px and 1160px, the media-query widths, which cannot read a custom
+       property at all; see the platform fact recorded at `.column`.
+
+   Re-run the count before changing this file, on this basis: strip comments,
+   strip the two `:root` blocks, then match colours and any number carrying a
+   unit. -------------------------------------------------------------------- */
 
 :root {
   /* Palette — from root 1 and root 3.
@@ -172,11 +181,21 @@
      it wraps. It is a photograph of another product; the radius is there to
      say "specimen", and a larger one would start to style what it is quoting.
 
+     The equation as the catalog states it — outer equals inner plus the
+     padding — is incomplete wherever a border sits between the two layers.
+     CSS derives a replaced element's content-edge radius as outer minus border
+     minus padding, so the first version of this rule named 4px and rendered
+     3px. A blind audit of this page caught it. The border is a token here so
+     the arithmetic is complete and all three move together.
+
      The equation governs nothing else here. The command block is not
      concentric with anything, so it takes the same 4px from its own size. */
   --radius-image: 4px;
   --frame-pad: var(--s-inline);
-  --radius-frame: calc(var(--radius-image) + var(--frame-pad));
+  --frame-border: 1px;
+  --radius-frame: calc(
+    var(--radius-image) + var(--frame-pad) + var(--frame-border)
+  );
 
   /* Elevation — from how many layers this page actually has.
 
@@ -326,7 +345,7 @@ a:active {
 }
 
 a:focus-visible,
-summary:focus-visible {
+.command:focus-visible {
   outline: 2px solid var(--flag);
   outline-offset: 3px;
   border-radius: var(--radius-image);
@@ -336,8 +355,7 @@ strong {
   font-weight: var(--weight-strong);
 }
 
-code,
-kbd {
+code {
   font-family: var(--face-code);
   font-size: 0.9em;
 }
@@ -368,9 +386,15 @@ header p {
   max-width: var(--measure);
 }
 
-/* The command block. Repeated at two callsites, so it is one class rather than
-   two copies of the same declarations — the same defect as a palette nobody
-   picked, one level down. */
+/* The command block. One callsite, and an earlier version of this comment
+   claimed two — a count nobody ran, sitting in the place the audit rule accepts
+   as evidence that somebody decided. It is a class rather than inline
+   declarations because that is right at one callsite too, which is the reason
+   that survived the correction.
+
+   It also scrolls, so it is focusable and labelled, like the findings table.
+   That rule was written for the table and not applied here until an audit
+   pointed out the two were twins. */
 .command {
   margin-top: var(--s-block);
   padding: var(--s-label);
@@ -425,7 +449,7 @@ header p {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--rule);
+  border: var(--frame-border) solid var(--rule);
   border-radius: var(--radius-frame);
   padding: var(--frame-pad);
   background: var(--paper);

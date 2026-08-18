@@ -230,15 +230,22 @@ rejects all six, with a reason:
 A rendered pass, a real console error, and running the Finish axis against a
 site published over HTTP.
 
-**Stack is not one of them.** Forty-two of the forty-nine tells never name a
-framework or a library: every tell on Craft, States and Words, nine of the
-twelve on Surface, and eight of the twelve on Finish. The seven that do — A1,
-A2, A7, F1, F2, F8, F11 — name Tailwind, React, Next.js or an icon set as
-examples of a pattern, because that is the ecosystem the pattern was measured
-in, and the pattern is what fires. A7 names three icon libraries only to say
-which library it is makes no difference. Plain HTML and CSS, Vue, Svelte, Astro:
-read the example, find its equivalent, audit that. A run that translated says so
-in its first line.
+**Stack is not one of them.** Thirty-nine of the forty-nine tells never name a
+framework, a build tool or a library: every tell on States and Words, fourteen
+of the fifteen on Craft, nine of the twelve on Surface, and six of the twelve on
+Finish. The ten that do are A1, A2, A7, C14, F1, F2, F5, F8, F11 and F12 — they
+name Tailwind, React, Next.js, Vite, Storybook or an icon set as examples of a
+pattern, because that is the ecosystem the pattern was measured in, and the
+pattern is what fires. A7 names three icon libraries only to say that which one
+it is makes no difference. Plain HTML and CSS, Vue, Svelte, Astro: read the
+example, find its equivalent, audit that. A run that translated says so in its
+first line.
+
+That count has been wrong in this file twice, in both directions, and both times
+because it was measured with a pattern too narrow to catch how the names are
+actually written — `next/image`, `Vite's`, `Next's` and `Storybook` all evade a
+search for `next.js` and `react`. Ten and thirty-nine is what a proper-noun
+search returns on 2026-08-18.
 
 Also out of scope today, and worth stating because they are the obvious
 neighbours: performance, SEO beyond what the Finish axis greps, analytics,
