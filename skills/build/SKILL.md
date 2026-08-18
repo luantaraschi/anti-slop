@@ -3,10 +3,10 @@ name: build
 description: |
   Decide a product's visual identity and voice before building its interface,
   so the result is not the ecosystem's defaults wearing a product's name. Use
-  when starting a landing page, dashboard, or component library in React,
-  Tailwind or shadcn, before writing components — or when an interface already
-  reads as generic and its palette, type scale, radius, motion and copy need
-  deciding rather than inheriting.
+  when starting a landing page, dashboard, app or component library — in plain
+  HTML and CSS or in any framework — before writing components, or when an
+  interface already reads as generic and its palette, type scale, radius,
+  motion and copy need deciding rather than inheriting.
 license: MIT
 metadata:
   version: "0.1.0"

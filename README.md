@@ -4,8 +4,13 @@ A Claude Code plugin for interfaces that came out generic. It ships two skills.
 
 **`anti-slop:audit`** reads interface code for the marks of work nobody finished:
 the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
-the meta tags nobody set. Forty-nine tells across five axes, reported as a ranked
-list with a file and a line.
+the settings nobody set. Forty-nine tells across five axes, reported as a ranked
+list with a file and a line — in plain words, so the reader does not need the
+vocabulary to act on it.
+
+It reads any web stack. Most of the catalog never mentions a framework, and the
+part that does names Tailwind classes as examples of a pattern rather than as
+the pattern itself.
 
 **`anti-slop:build`** runs before the components exist. It forces the decisions
 whose absence the auditor detects, and writes them where the auditor looks for
@@ -213,9 +218,15 @@ rejects all six, with a reason:
 
 ## Out of scope
 
-A rendered pass, a real console error, running the Finish axis against a
-site published over HTTP, and any stack outside React, Tailwind, and
-shadcn.
+A rendered pass, a real console error, and running the Finish axis against a
+site published over HTTP.
+
+**Stack is not one of them.** Thirty-nine of the forty-nine tells never mention
+a framework: every tell on States, Words and Finish, and all but one on Craft.
+The rest — most of Surface — name Tailwind classes as examples of a pattern,
+because that is the ecosystem the pattern was measured in, and the pattern is
+what fires. Plain HTML and CSS, Vue, Svelte, Astro: read the example, find its
+equivalent, audit that. A run that translated says so in its first line.
 
 Also out of scope today, and worth stating because they are the obvious
 neighbours: performance, SEO beyond what the Finish axis greps, analytics,

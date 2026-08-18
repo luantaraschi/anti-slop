@@ -269,3 +269,45 @@ Still open from this run, not repaired:
 - The five adapted axes were not named individually. If a tell cannot survive
   the translation to a non-React stack it should be declined and named, and
   nothing yet says which ones those are.
+
+## The stack neutralisation, 2026-08-18 — what it touched and what it costs
+
+The audience is someone building with an agent who does not know the vocabulary
+and is not on React. The catalog was written against React, Tailwind and shadcn,
+and both skill descriptions named that stack, which meant neither would fire on
+a plain HTML and CSS project at all.
+
+**The job was smaller than it looked.** Measured before rewriting: ten of the
+forty-nine Signals were genuinely stack-bound, nine of them in `surface.md` and
+one in `craft.md`. Every tell on States, Words and Finish, and fourteen of the
+fifteen on Craft, never mentioned a framework. Three still name a Tailwind class
+and now name it beside a plain-CSS equivalent, which is the intended end state
+rather than remaining work.
+
+Repaired: both descriptions, the false positive rule's four evidence places
+restated as roles rather than filenames, the `Out of scope` line that made stack
+a scope limit, the `surface.md` preamble, and the Signals of A1, A2, A3, A4, A5,
+A7, A9, A10, A12 and C10.
+
+**All of it is unmeasured, and the risk is specific.** Broadening a Signal is
+how a tell starts firing on things it should release. Reasoning against the four
+fixtures says every verdict holds — A2 still declines on `clean-landing` because
+its stops are the project's own, A4 still declines there because one shadow used
+once is not one used everywhere, A3 still declines on `clean-dashboard` because
+it declares three radii — but reasoning is what produced the A1 repair that
+failed twice and the C1 rewrites that were withdrawn twice. **The next blind
+round measures a broadened catalog, which is a different question from the one
+the last round measured.**
+
+Still open from this change:
+
+- **The fixtures are all React and Tailwind.** A catalog that claims to read any
+  stack has no specimen outside one, so the claim is argued rather than tested.
+  A plain HTML and CSS pair, one slop and one clean, would be the first corpus
+  work that measures the crossing rather than assuming it.
+- **The build skill is further behind.** `deriving.md` still tells a builder to
+  replace `theme.colors` and `theme.spacing` by name. The concepts transfer the
+  same way the audit ones did, and the same measurement applies.
+- **Report language is unruled.** The first real-world run reported in the
+  user's language with axis headings translated and tell ids and field names
+  left in English. Nothing says which is right.

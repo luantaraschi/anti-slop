@@ -213,8 +213,11 @@ the project's other controls and this control went without.
 
 ### C10 — One theme was ever opened
 
-**Signal**  `dark:` present on the background and absent on the border or
-divider; a separator color declared only for the light theme.
+**Signal**  A second theme exists and only the background crossed into it: the
+page or body flips, and the borders and dividers do not — a `dark:` variant on
+one and none on the others, a `prefers-color-scheme` block that redeclares the
+background and nothing else, a `[data-theme]` rule that stops at the surface. A
+separator colour declared for one theme only.
 
 **Principle**  A divider that disappears in dark mode erases the hierarchy it
 exists to create, and the person who never opened the other theme is the only

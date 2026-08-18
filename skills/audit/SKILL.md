@@ -1,10 +1,12 @@
 ---
 name: audit
 description: |
-  Audit an interface for the marks of work nobody finished. Use when a UI looks
-  AI-generated or vibecoded, when reviewing a landing page or dashboard before
-  shipping, or when asked to audit the surface, the craft, the words, or the
-  finish of a React, Tailwind or shadcn project.
+  Audit any web interface for the marks of work nobody finished — the palette
+  nobody picked, the copy nobody wrote, the settings nobody set. Use when a site
+  looks generic, AI-generated or vibecoded, when checking a landing page,
+  dashboard or app before showing it to anyone, or when asked to audit the
+  surface, the craft, the states, the words or the finish. Works on plain HTML
+  and CSS as readily as on React, Tailwind, Vue, Svelte or shadcn.
 license: MIT
 metadata:
   version: "0.3.0"
@@ -80,9 +82,21 @@ just listing symptoms.
 ## The false positive rule
 
 Look for evidence of a decision in four places before a Surface tell is
-allowed to fire: `theme.extend`, custom properties under `:root` or
-`@theme`, a dedicated tokens file, and a `components/ui/` that differs from
-stock shadcn. Find evidence in any of the four, and the tell does not fire.
+allowed to fire. The four are roles rather than filenames, and every project
+has them somewhere:
+
+1. **Where the project declares its own values** — a `theme.extend` block, a
+   Sass or Less variables file, a `:root` or `@theme` custom-property block, a
+   design-tokens file, or a stylesheet that names its colours and sizes instead
+   of repeating literals.
+2. **Whether those names came from the subject** — a colour named for the
+   material or the document rather than for its rank or its hex.
+3. **Whether shared components**, if the project has any, differ from whatever
+   they were installed or copied as.
+4. **Anywhere a choice is written down** in the code beside the value it
+   governs.
+
+Find evidence in any of the four, and the tell does not fire.
 A pattern present is not a finding. A finding is a pattern present **and**
 no evidence anyone chose it.
 
@@ -191,15 +205,20 @@ single finding touches belongs in its paragraph.
 
 ## Out of scope
 
-A rendered pass, a real console error, running the Finish axis against a
-site published over HTTP, and any stack outside React, Tailwind, and
-shadcn.
+A rendered pass, a real console error, and running the Finish axis against a
+site published over HTTP.
 
-**If you audit outside that stack anyway, say so first.** Much of this catalog
-transfers — a palette nobody picked is a palette nobody picked whether it lives
-in `theme.extend` or in a `:root` block, and most of Craft, Words and Finish
-never mentions a framework. Adapting is often the right call. Silently adapting
-is not: open the report with one line naming the stack you found and what you
-mapped onto what, so the reader can weigh a verdict reached through a
-translation. A tell that does not survive the translation is declined and named,
-not stretched.
+**Stack is not a scope limit.** Thirty-nine of the forty-nine tells never
+mention a framework at all: every tell on States, Words and Finish, and all but
+one on Craft. The ten that do — most of Surface — name Tailwind classes as
+*examples of a pattern*, because that is the ecosystem the pattern was measured
+in. The pattern is what fires. `theme.extend` stands for wherever this project
+declares its values, one `rounded-2xl` everywhere stands for one radius
+everywhere, `text-gray-500` stands for a neutral nobody chose. Read the example,
+find its equivalent, audit that.
+
+**Say when you translated.** Open the report with one line naming the stack you
+found and what you mapped onto what, so a reader can weigh a verdict reached
+through a translation rather than directly. And where a tell genuinely does not
+survive the crossing — A10 has nothing to say about a project with no component
+library at all — decline it and name it rather than stretching it.

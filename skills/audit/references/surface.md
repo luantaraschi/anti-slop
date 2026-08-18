@@ -1,19 +1,27 @@
 # Surface
 
-The subjective axis. Read the theme before you read a single component:
-`tailwind.config`, `globals.css`, any tokens file. Three of the ten tells below
-(A1, A3, A5) are absences that live there, and an auditor who opens components
-first collects thirty symptoms and misses the cause.
+The subjective axis. Read wherever the project declares its values before you
+read a single component — a theme config, a variables file, a `:root` block, a
+tokens file, or the top of the main stylesheet. Three of the tells below (A1,
+A3, A5) are absences that live there, and an auditor who opens components first
+collects thirty symptoms and misses the cause.
 
 A pattern being present is never the finding. The finding is the pattern
-present **and** no evidence anyone chose it. Look for that evidence in
-`theme.extend`, in custom properties under `:root` or `@theme`, in a tokens
-file, and in a `components/ui/` that differs from stock shadcn. Find it, and
-the tell does not fire.
+present **and** no evidence anyone chose it. Find that evidence and the tell
+does not fire.
+
+**This axis names Tailwind classes more than any other, and they are examples.**
+It is where the patterns were measured, not where they live. `theme.extend`
+means wherever this project declares its values. `rounded-2xl` on everything
+means one radius on everything, whether it is a utility class, a variable, or a
+number retyped in nine rules. `text-gray-500` means a neutral nobody chose. On
+plain CSS, on Vue, on Svelte, on anything: find the equivalent and audit that.
+A tell that cannot cross — A10 needs a component library to exist — is declined
+and named, never stretched.
 
 ### A1 — A palette nobody picked
 
-**Signal**  The project has no named colors of its own. `tailwind.config` declares none under either `theme.colors` or `theme.extend.colors` — check both, because replacing the scale and extending it are both real, and a Signal that reads only one of them misses a project that replaced it with the framework's own palette. And no color custom property appears under `:root` or `@theme` anywhere in the tree. Both clauses have to hold.
+**Signal**  The project has no named colours of its own. Nowhere it could declare them does: not a theme config — check both replacing the scale and extending it, since a project that replaced it with the framework's own palette passes a Signal that reads only one — not a variables file, not a `:root` or `@theme` custom-property block, not a tokens file. Every colour on the page is either a framework default called by its number or a hex typed at the callsite. Both clauses have to hold: nothing declared, and nothing named.
 
 **Principle**  Tailwind's default palette is a starting point published on millions of sites. Using it raw is not a choice. It's the absence of one. Where a stock `components/ui/` is also present, this gets worse than raw: its `bg-primary` and `ring-ring` resolve against custom properties nobody defined, so a second color vocabulary sits in the tree rendering as nothing.
 
@@ -23,7 +31,7 @@ the tell does not fire.
 
 ### A2 — The generator gradient
 
-**Signal**  `from-purple-*` paired with `to-blue-*`, `via-pink-*`, or a gradient applied to heading text with `bg-clip-text`.
+**Signal**  A gradient running purple into blue, or through pink, whose stops are named by the framework rather than by the project — `from-purple-* to-blue-*` in Tailwind, `#8B5CF6` to `#3B82F6` in plain CSS, a `linear-gradient` between two hues that appear nowhere else in the design. Or a gradient applied to heading text so the words themselves carry it.
 
 **Principle**  This specific gradient marks a generator's output vintage. It shows up regardless of subject, which is exactly what gives it away.
 
@@ -33,7 +41,7 @@ the tell does not fire.
 
 ### A3 — One radius for everything
 
-**Signal**  The same `rounded-xl` or `rounded-2xl` on button, input, card, and page-level container. Count the distinct radii in the tree.
+**Signal**  One corner radius on everything — the same value on a button, an input, a card and the container holding all three, whether it arrives as `rounded-2xl`, as a variable used everywhere, or as `16px` retyped in nine rules. Count the distinct radii the project actually uses.
 
 **Principle**  Radius encodes scale. A 40px button and a 600px panel sharing the same corner tells the eye they're the same kind of thing.
 
@@ -43,7 +51,7 @@ the tell does not fire.
 
 ### A4 — Elevation without a system
 
-**Signal**  `shadow-lg` or `shadow-xl` on every card, and `border` plus `shadow` plus `rounded` stacked on the same element.
+**Signal**  The same drop shadow on every raised surface — one preset used everywhere, or one `box-shadow` value repeated — and border plus shadow plus radius stacked on the same element, so three devices do one job.
 
 **Principle**  Three devices for the same separation means none of them was chosen. Uniform shadow flattens the hierarchy it exists to create.
 
@@ -53,7 +61,7 @@ the tell does not fire.
 
 ### A5 — No type scale
 
-**Signal**  Only Tailwind's default steps, `font-bold` as the sole emphasis, and no custom family — the project runs on Inter or the system font.
+**Signal**  No type scale the project declared: only the framework's default steps, or font sizes typed at each callsite with no relationship between them. Plus one weight doing all the emphasis, and no family the project chose — it runs on whatever the ecosystem reaches for first, which is currently Inter, or on the system stack by default rather than by decision.
 
 **Principle**  Typography carries a page's personality. Without a scale and without a family, the text is a neutral delivery of content.
 
@@ -73,7 +81,7 @@ the tell does not fire.
 
 ### A7 — Decorative icons
 
-**Signal**  `Sparkles`, `Zap`, `Rocket`, `TrendingUp`, and `CheckCircle2` from lucide with no function; an icon next to every label; an emoji in a heading.
+**Signal**  Icons that decorate rather than say anything: a sparkle, a lightning bolt, a rocket, an upward arrow or a checkmark beside text that already carries the meaning; an icon next to every label; an emoji in a heading. The library does not matter — lucide, Heroicons, Font Awesome or an inline SVG all read the same on the page.
 
 **Principle**  An icon is signage. One that distinguishes nothing steals attention from whatever does distinguish.
 
@@ -93,7 +101,7 @@ the tell does not fire.
 
 ### A9 — Generic motion
 
-**Signal**  `transition-all` as the default transition, and `hover:scale-105` or an equivalent transform on cards. Both clauses; the reduced-motion half of this tell used to sit here and now lives at C13, because a project that names its transition properties correctly and ships no reduced-motion handling was escaping every tell in the catalog.
+**Signal**  A transition that animates everything rather than a named property — `transition-all`, or `transition: all` in a stylesheet — and a card that grows slightly on hover, a transform of a few percent applied because hover needed to do something. Both clauses; the reduced-motion half of this tell used to sit here and now lives at C13, because a project that names its transition properties correctly and ships no reduced-motion handling was escaping every tell in the catalog.
 
 **Principle**  `transition-all` animates properties nobody meant to animate. Motion scattered everywhere tires the eye; motion orchestrated communicates.
 
@@ -103,7 +111,7 @@ the tell does not fire.
 
 ### A10 — Primitives installed and then hand-rolled
 
-**Signal**  The primitives sit in `components/ui/` while the components that play their role re-type their classes in raw `div`s and `button`s beside them. Count both sides: the sites that import the primitive against the sites that reimplement it by hand.
+**Signal**  A component library was installed or copied in — `components/ui/`, a UI folder, a set of partials — and the things that play its role rebuild it by hand beside it, retyping the same styles onto raw elements. Count both sides: the sites that use the shared component against the sites that reimplement it.
 
 **Principle**  Installing a primitive and then not using it is the decision that never happened. The library's vocabulary is in the tree and the product's is not, so every callsite re-decides the same radius, border and shadow on its own.
 
@@ -123,7 +131,7 @@ the tell does not fire.
 
 ### A12 — A stacking order nobody declared
 
-**Signal**  Arbitrary z-index values in the tree — `z-[9999]`, `z-50` beside `z-10` beside `z-[100]` — with no `zIndex` scale in `theme.extend`, no layer custom property under `:root` or `@theme`, and no tokens file naming the layers.
+**Signal**  Stacking values picked one at a time — 9999 beside 100 beside 50 beside 10 — with nothing anywhere naming the layers, no scale in a theme, no variable, no comment recording the order.
 
 **Principle**  A stacking order is a system with three or four real layers: content, sticky chrome, overlay, and whatever the browser puts on top. Numbers picked at each callsite until the thing appeared are not that system, and the next element added to the page starts the escalation again.
 
