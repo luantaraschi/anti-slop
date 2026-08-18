@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Ledgerline">
+  <!-- Three ruled lines and one that does not reach the margin: the short
+       figure the product exists to find. Three shapes, because at 16px the
+       shortfall has to read as a length difference rather than a colour one. -->
+  <rect x="4" y="7" width="24" height="3" rx="1.5" fill="#2E1F4A" />
+  <rect x="4" y="14" width="14" height="3" rx="1.5" fill="#D9752B" />
+  <rect x="4" y="21" width="24" height="3" rx="1.5" fill="#2E1F4A" />
+</svg>

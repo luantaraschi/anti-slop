@@ -1,14 +1,20 @@
 name: Publish the presentation page
 
-# Publishes `site/` to GitHub Pages. Only that directory ships — the catalog,
-# the fixtures and the calibration reports stay readable on GitHub and are not
-# served as a website.
+# Publishes the presentation page from `site/`, with the demonstration specimen
+# mounted under `/specimen/`. Those two directories ship and nothing else — the
+# catalog, the fixtures and the calibration reports stay readable on GitHub and
+# are not served as a website.
+#
+# They are separate directories rather than one because each is audited as its
+# own subject, and a run against `site/` should not be reading the specimen's
+# markup as part of the page that links to it.
 
 on:
   push:
     branches: [main]
     paths:
       - "site/**"
+      - "specimen/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -34,9 +40,15 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
+      - name: Assemble the two directories into one artifact
+        run: |
+          mkdir -p _site/specimen
+          cp -r site/. _site/
+          cp -r specimen/. _site/specimen/
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _site
 
       - id: deployment
         uses: actions/deploy-pages@v4

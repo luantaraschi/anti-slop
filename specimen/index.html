@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ledgerline — invoice reconciliation for small accounting firms</title>
+    <meta
+      name="description"
+      content="Ledgerline reads your bank feed each morning, matches it against the invoices your firm sent, and flags the lines neither side explains. Built as a demonstration specimen for the anti-slop plugin."
+    />
+    <link rel="canonical" href="https://luantaraschi.github.io/anti-slop/specimen/" />
+    <link rel="icon" type="image/svg+xml" href="mark.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luantaraschi.github.io/anti-slop/specimen/" />
+    <meta property="og:title" content="Every invoice your firm sent, reconciled the morning after" />
+    <meta
+      property="og:description"
+      content="A demonstration specimen: a page where a gradient, an elevated card, a display serif and a saturated accent are all present, and every one of them has a reason recorded beside it."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Instrument+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="hero">
+      <div class="page hero-grid">
+        <div class="hero-text">
+          <p class="label">Ledgerline</p>
+          <h1 class="display">Every invoice your firm sent, reconciled the morning after.</h1>
+          <p>
+            Reads the bank feed, matches it against what you billed, and flags
+            what neither side explains.
+          </p>
+          <a class="cta" href="/specimen/#sources">Reconcile your first month</a>
+          <p class="fineprint">
+            Read-only access to the feed. Nothing is typed twice.
+          </p>
+        </div>
+
+        <div class="ledger">
+          <p class="label">Tuesday 6 August</p>
+          <p class="ledger-title">What was waiting this morning</p>
+
+          <table>
+            <tbody>
+              <tr>
+                <td class="party">TRF BRAGA &amp; FILHAS</td>
+                <td class="amount">2,400.00</td>
+                <td class="verdict">Invoice 1041, paid in full</td>
+              </tr>
+              <tr>
+                <td class="party">TRF OURIVESARIA LUME</td>
+                <td class="amount">11,000.00</td>
+                <td class="verdict">
+                  Invoice 1039 is 12,190.00 —
+                  <span class="short">1,190.00 short</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="party">SEPA FEE</td>
+                <td class="amount">3.40</td>
+                <td class="verdict">No invoice. Recurring since March</td>
+              </tr>
+              <tr>
+                <td class="party">TRF CAIS EDITORA</td>
+                <td class="amount">310.00</td>
+                <td class="verdict">Invoice 1038, paid nine days early</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <footer>
+            Three matched themselves. The fourth is the one worth ten minutes.
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="page after-ledger" id="sources">
+        <div class="section-head">
+          <h2 class="heading">Where the numbers come from</h2>
+          <p>
+            Ledgerline connects to the bank over the same open-banking feed your
+            accountant already uses, and reads invoices out of whatever you send
+            them from.
+          </p>
+        </div>
+
+        <dl class="sources">
+          <div class="source">
+            <dt>Bank feed</dt>
+            <dd>Read-only, refreshed at 6am and again at noon.</dd>
+          </div>
+          <div class="source">
+            <dt>Invoices</dt>
+            <dd>Imported from Moloni, InvoiceXpress, or a folder of PDFs.</dd>
+          </div>
+          <div class="source">
+            <dt>Credit notes</dt>
+            <dd>
+              Matched to the invoice they cancel, so a refund stops reading as a
+              gap.
+            </dd>
+          </div>
+          <div class="source">
+            <dt>Bank charges</dt>
+            <dd>
+              Recognised and set aside, instead of counted as an unexplained
+              line.
+            </dd>
+          </div>
+          <div class="source">
+            <dt>Your notes</dt>
+            <dd>
+              Whatever you wrote against a line last month is still there this
+              month.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="page">
+        <div class="limit">
+          <h2 class="display">Two hundred invoices a month or fewer.</h2>
+          <div>
+            <p>
+              Above that, the reconciliation stops being the hard part and the
+              workflow does. We say so here rather than after you sign up.
+            </p>
+            <p>
+              If your firm is past it, the honest answer is that this is not the
+              tool, and we would rather you found that out on a Tuesday than in
+              your third month.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page site-footer">
+      <p>Ledgerline, Rua do Almada 42, Porto. Registered in Portugal.</p>
+      <nav>
+        <a href="mailto:hello@ledgerline.co">hello@ledgerline.co</a>
+        <a href="https://github.com/luantaraschi/anti-slop"
+          >This page is a specimen — what it is for</a
+        >
+      </nav>
+    </footer>
+  </body>
+</html>
