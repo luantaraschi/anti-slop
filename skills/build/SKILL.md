@@ -57,11 +57,13 @@ decided and is not.
 
 1. **Roots.** Answer all four. Record the inventory as text before any code.
 2. **Theme before components,** which is the audit procedure run backwards. The
-   auditor reads `tailwind.config` first because three Surface tells are
-   absences that live there. Write those same three places first.
+   auditor reads wherever a project declares its values first — a theme
+   config, a variables file, a `:root` block, the top of the main stylesheet —
+   because three Surface tells are absences that live there. Write that place
+   first, whatever it is called in your stack.
 3. **Derive.** Each value comes from a root or from another value. `deriving.md`
    carries the rule per value.
-4. **Record.** Every derived value lands with one of the six shapes below.
+4. **Record.** Every derived value lands with one of the seven shapes below.
    This is the deliverable, not commentary around it.
 5. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
@@ -69,7 +71,7 @@ decided and is not.
 6. **Copy,** drawn only from the inventory.
 7. **The reduction pass.** One pass whose only purpose is removal.
 
-## The six shapes of a recorded decision
+## The seven shapes of a recorded decision
 
 A value is a default wearing a name until something records why it is that
 value. Every recorded decision takes one of these forms. Anything else is
@@ -83,6 +85,7 @@ decoration.
 | **Platform fact** | the truth about a browser or a device that forces it |
 | **Abstention** | the place nothing was done, and why that was the decision |
 | **Judgment** | this value serves that root, and here is the reasoning |
+| **Departure** | this one place leaves the system, and the content is why |
 
 Judgment is the shape for a value a root produces without arithmetic — a hue
 picked to sit at the temperature, a family picked to carry the voice. It exists
@@ -91,6 +94,15 @@ number to a decision that was not numeric, which reads as rigour and is not.
 Name the root, give the reasoning, and stop. A contrast ratio bolted onto a
 colour you chose for its warmth records something true about the colour and
 nothing true about the choice.
+
+Departure is the shape for the exception a real product eventually needs: one
+route, one component, one figure that legitimately wants a value the system does
+not give it. Without it a build has two bad options — bend the global scale to
+accommodate one screen, or write an unrecorded one-off that the auditor will
+correctly read as a value nobody picked. Name what you left, name what the
+content demanded, and keep it at the callsite. A departure recorded once is a
+decision; the same departure at four callsites is a scale you should have
+declared.
 
 Put them where the value is, not in a separate document. A design note in a
 README is not evidence a reader of the code can find, and it is not evidence
@@ -111,7 +123,7 @@ own justification rejected, an extraction rule stated twice and broken in a
 third file, a colour named as in use that nothing used, counts of "two" where
 three rendered. Every one passed as a well-formed shape.
 
-So each recorded decision has to clear three checks before it ships:
+So each recorded decision has to clear five checks before it ships:
 
 1. **Every count in it is a count you ran.** "The two actions", "the same six
    classes", "the only place this appears" — grep it, or do not write it.
@@ -121,7 +133,13 @@ So each recorded decision has to clear three checks before it ships:
 3. **A stated measurement is measured.** A contrast ratio, a pixel sum, a
    character count — compute it or leave it out. An approximate figure written
    as a measurement is a claim the next reader will trust.
-4. **What it describes still exists.** The reduction pass deletes code, and a
+4. **The records agree with each other.** The first three test a record against
+   the code it annotates. None of them catches two records that are each true
+   and jointly wrong — a palette derived for a light surface and an elevation
+   scale derived for a dark one, both well recorded, both correct about
+   themselves. Before you finish, read the derivations as a set and ask what
+   they assume about each other.
+5. **What it describes still exists.** The reduction pass deletes code, and a
    recorded decision that named the deleted thing survives it, still reading as
    true. This is the check the other three miss: the count was right when it was
    written, the description matched code that did exist, no measurement was
@@ -131,6 +149,15 @@ So each recorded decision has to clear three checks before it ships:
 
 Fewer, load-bearing comments beat many argumentative ones. A value whose
 derivation is obvious from the theme file needs no sentence at all.
+
+**A contrast floor is a platform fact, not evidence of a decision.** This skill
+is right that a ratio bolted onto a colour chosen for its warmth records nothing
+about the choice — and that argument has been read as licence to never measure
+one. It is not. Text has to clear its threshold against every ground it will
+actually be rendered on, and a hue derived from the temperature, recorded as a
+well-formed Judgment and undeliverable at that threshold, is a decision that
+does not survive contact. Compute the pairings the tree will really render, and
+record the floor as the constraint it is rather than as the reason for the hue.
 
 **The ratio is not the standard — drift is.** A theme or tokens file is where
 the derivations legitimately live, so it will read as mostly comment, and that
@@ -143,19 +170,30 @@ claims is true, and only then by how much of it there is.
 
 The audit rule searches four places for evidence. Write into them:
 
-`theme.extend` · custom properties under `:root` or `@theme` · a dedicated
-tokens file · a primitives directory that differs from stock shadcn.
+Wherever the project declares its own values — a theme config, a variables
+file, a `:root` or `@theme` block, a tokens file, the top of a stylesheet ·
+whether those names came from the subject rather than from rank or hex ·
+whether shared components, if any exist, differ from whatever they were
+installed or copied as · anywhere a choice is written down beside the value it
+governs.
 
-The auditor's rule names `components/ui/` because that is where an install puts
-them, but the path is not the evidence — the divergence from stock is. Put them
-where the project puts them.
+These are roles, not filenames. The auditor's rule names `theme.extend` and
+`components/ui/` because that is where one ecosystem puts them; the evidence is
+the declaring and the naming, not the path.
 
-**Prefer replacing `theme` to extending it.** `theme.extend.colors` leaves the
-framework's undecided palette sitting beside the decided one, so a page can
-still be built entirely out of values nobody picked. Replacing `theme.colors`,
-`theme.spacing`, `theme.fontSize`, `theme.borderRadius`, `theme.fontWeight` and
-`theme.lineHeight` outright makes `bg-slate-500` and `p-4` stop compiling, which
-turns the decision into a constraint.
+**Where the framework lets you, replace its scale rather than extending it.**
+Extending leaves the undecided scale sitting beside the decided one, so a page
+can still be built entirely out of values nobody picked. Replacing it makes
+those values stop resolving, which turns a decision into a constraint.
+
+In Tailwind that means declaring `colors`, `spacing`, `fontSize`,
+`borderRadius`, `fontWeight` and `lineHeight` under `theme` rather than under
+`theme.extend` — the last two are the ones builds forget, and on a restrained
+palette weight carries more of the hierarchy than radius does. In plain CSS the
+equivalent is narrower: you cannot stop a literal from working, so the
+constraint has to come from review rather than from the compiler, and the
+discipline is that no rule outside the token block types a colour, a size or a
+radius directly.
 
 Be exact about what that buys, because a build stated it too broadly and an
 audit caught it: a top-level `theme` is merged per key against the framework's
@@ -202,8 +240,14 @@ carry legal consequences the third does not.
 
 ## Out of scope
 
-Generating the visual design itself, any stack outside React, Tailwind and
-shadcn, and any claim about who or what wrote a piece of code. The vocabulary
+Composition — the shape of the page, what sits where, what the reader meets
+first. This skill derives the material a layout is made of and decides no
+layout; `frontend-design` and its neighbours do that. Also out: any claim about
+who or what wrote a piece of code.
+
+**Stack is not out of scope.** Every root, every derivation and every recorded
+shape works the same in plain HTML and CSS as in any framework — the tokens
+change name, the arithmetic does not. The vocabulary
 here is *generic*, *undecided*, *unfinished* — never *AI-generated*.
 
 ## Checking the result
@@ -218,9 +262,18 @@ file confirms that the scales you replaced really did stop compiling. Two builds
 found real defects this way that no reading would have surfaced.
 
 **When the auditor is not available,** say so rather than claiming the build is
-checked, and run the three cheapest checks by hand, because they are the ones
-this skill has repeatedly missed: every heading of four words or more and every
-short text block carries a wrap property; the page declares `lang`, a title of
-its own, a description, and the Open Graph set; and every list rendered from
-data carries a stable key. An unverified build is a finding to report, not a
-step to skip quietly.
+checked, and run the five cheapest checks by hand, because they are the ones
+this skill has repeatedly missed:
+
+1. Every heading of four words or more and every short text block carries a wrap
+   property.
+2. The page declares a language, a title of its own, a description, and the
+   sharing tags — unless it is internal, in which case say so.
+3. Every list rendered from data carries a stable key.
+4. If two themes exist, both were opened. Not inferred from one: opened, and
+   looked at.
+5. Reduced motion was switched on and the page checked under it.
+
+The last two cannot be verified by reading, which is why they are on this list
+and not in the survival checks. An unverified build is a finding to report, not
+a step to skip quietly.

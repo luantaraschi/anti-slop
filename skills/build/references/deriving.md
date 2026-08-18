@@ -3,7 +3,7 @@
 Each value below comes from a root or from another value. None of them comes
 from a preference, and none is a menu to pick from.
 
-Every entry says what it derives from, the rule, and which of the six shapes
+Every entry says what it derives from, the rule, and which of the seven shapes
 records it. A value that lands without its shape is a default with a new name,
 and the auditor is built to tell those apart.
 
@@ -51,7 +51,7 @@ neither declared a step no screen rendered.
 **From**  Root 2 (voice) and root 3 (temperature).
 
 **Rule**  Name the families before anything renders. This is the most visible
-undecided value in a React or Tailwind project — a page that reaches for the
+undecided value on any web page — one that reaches for the
 ecosystem's current default face announces the ecosystem, not the product — and
 it is the one place where doing nothing still produces a strong signal.
 
