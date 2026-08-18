@@ -4,93 +4,142 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Ledgerline — invoice reconciliation for small accounting firms</title>
+    <title>Ledgerline — every invoice your firm sent, reconciled the morning after</title>
     <meta
       name="description"
-      content="Ledgerline reads your bank feed each morning, matches it against the invoices your firm sent, and flags the lines neither side explains. Built as a demonstration specimen for the anti-slop plugin."
+      content="Ledgerline reads your bank feed each morning, matches it against the invoices your firm sent, and shows you the one line neither side explains."
     />
     <link rel="canonical" href="https://luantaraschi.github.io/anti-slop/specimen/" />
     <link rel="icon" type="image/svg+xml" href="mark.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://luantaraschi.github.io/anti-slop/specimen/" />
-    <meta property="og:title" content="Every invoice your firm sent, reconciled the morning after" />
+    <meta property="og:title" content="Reconciled the morning after" />
     <meta
       property="og:description"
-      content="A demonstration specimen: a page where a gradient, an elevated card, a display serif and a saturated accent are all present, and every one of them has a reason recorded beside it."
+      content="Four lines came in on Tuesday. Three tied themselves. This is the fourth."
     />
     <meta name="twitter:card" content="summary" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Instrument+Serif&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div class="hero">
-      <div class="page hero-grid">
-        <div class="hero-text">
-          <p class="label">Ledgerline</p>
+    <header class="page masthead">
+      <p class="label">Ledgerline</p>
+      <a href="mailto:hello@ledgerline.co">hello@ledgerline.co</a>
+    </header>
+
+    <main>
+      <section class="page hero">
+        <div class="hero-grid">
           <h1 class="display">Every invoice your firm sent, reconciled the morning after.</h1>
-          <p>
-            Reads the bank feed, matches it against what you billed, and flags
-            what neither side explains.
-          </p>
-          <a class="cta" href="/specimen/#sources">Reconcile your first month</a>
-          <p class="fineprint">
+          <div>
+        <p class="lede">
+          It reads the bank feed, matches it against what you billed, and shows
+          you the line neither side explains.
+        </p>
+        <div class="cta-row">
+          <a class="cta" href="#sources">Reconcile your first month</a>
+          <p class="cta-note">
             Read-only access to the feed. Nothing is typed twice.
           </p>
         </div>
+          </div>
+        </div>
+      </section>
 
-        <div class="ledger">
-          <p class="label">Tuesday 6 August</p>
-          <p class="ledger-title">What was waiting this morning</p>
+      <div class="recon">
+        <div class="page recon-inner">
+          <div class="recon-head">
+            <p class="label">Tuesday 6 August</p>
+            <p class="label">Four lines · one open</p>
+          </div>
 
           <table>
+            <caption class="visually-hidden">
+              Four bank lines from Tuesday 6 August, each set against the
+              invoice it matches. Three balance. The fourth is short by
+              1,190.00.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="th-bank">The bank said</th>
+                <th scope="col" class="th-tie">Tie</th>
+                <th scope="col" class="th-billed">You billed</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td class="party">TRF BRAGA &amp; FILHAS</td>
-                <td class="amount">2,400.00</td>
-                <td class="verdict">Invoice 1041, paid in full</td>
-              </tr>
-              <tr>
-                <td class="party">TRF OURIVESARIA LUME</td>
-                <td class="amount">11,000.00</td>
-                <td class="verdict">
-                  Invoice 1039 is 12,190.00 —
-                  <span class="short">1,190.00 short</span>
+                <td class="bank">
+                  <span class="party machine">TRF BRAGA &amp; FILHAS</span>
+                  <span class="figure machine">2,400.00</span>
+                </td>
+                <td class="tie"><span class="tie-rule"></span></td>
+                <td class="billed">
+                  <span class="party">Invoice 1041</span>
+                  <span class="figure machine">2,400.00</span>
                 </td>
               </tr>
+
               <tr>
-                <td class="party">SEPA FEE</td>
-                <td class="amount">3.40</td>
-                <td class="verdict">No invoice. Recurring since March</td>
+                <td class="bank">
+                  <span class="party machine">TRF OURIVESARIA LUME</span>
+                  <span class="figure machine">11,000.00</span>
+                </td>
+                <td class="tie">
+                  <span class="tie-short">1,190.00 short</span>
+                </td>
+                <td class="billed">
+                  <span class="party">Invoice 1039</span>
+                  <span class="figure machine">12,190.00</span>
+                </td>
               </tr>
+
               <tr>
-                <td class="party">TRF CAIS EDITORA</td>
-                <td class="amount">310.00</td>
-                <td class="verdict">Invoice 1038, paid nine days early</td>
+                <td class="bank">
+                  <span class="party machine">SEPA FEE</span>
+                  <span class="figure machine">3.40</span>
+                </td>
+                <td class="tie"><span class="tie-rule"></span></td>
+                <td class="billed">
+                  <span class="party">Bank charge, recurring since March</span>
+                  <span class="figure machine">3.40</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="bank">
+                  <span class="party machine">TRF CAIS EDITORA</span>
+                  <span class="figure machine">310.00</span>
+                </td>
+                <td class="tie"><span class="tie-rule"></span></td>
+                <td class="billed">
+                  <span class="party">Invoice 1038, nine days early</span>
+                  <span class="figure machine">310.00</span>
+                </td>
               </tr>
             </tbody>
           </table>
 
-          <footer>
-            Three matched themselves. The fourth is the one worth ten minutes.
-          </footer>
+          <p class="recon-foot">
+            Three tied themselves before you opened the laptop. The fourth is
+            the one worth ten minutes.
+          </p>
         </div>
       </div>
-    </div>
 
-    <main>
-      <section class="page after-ledger" id="sources">
+      <section class="page" id="sources">
         <div class="section-head">
           <h2 class="heading">Where the numbers come from</h2>
-          <p>
-            Ledgerline connects to the bank over the same open-banking feed your
+          <p class="lede">
+            It connects to the bank over the same open-banking feed your
             accountant already uses, and reads invoices out of whatever you send
             them from.
           </p>
@@ -132,14 +181,14 @@
       <section class="page">
         <div class="limit">
           <h2 class="display">Two hundred invoices a month or fewer.</h2>
-          <div>
+          <div class="limit-text">
             <p>
               Above that, the reconciliation stops being the hard part and the
               workflow does. We say so here rather than after you sign up.
             </p>
             <p>
               If your firm is past it, the honest answer is that this is not the
-              tool, and we would rather you found that out on a Tuesday than in
+              tool — and we would rather you found that out on a Tuesday than in
               your third month.
             </p>
           </div>

@@ -76,7 +76,7 @@ has ever fired on it in a blind run.
 
 ## The two screenshots on the page
 
-`img/slop-landing.png` is `fixtures/slop-landing` rendered at 1280×760 in
+`img/slop-landing.png` is `fixtures/slop-landing` rendered at 1280×1000 in
 Chromium on 2026-08-18.
 
 **The caveat that belongs with it:** that fixture is not a runnable application.
@@ -86,9 +86,9 @@ missing entry scaffolding was added to the copy. What the image shows is the
 fixture's own components compiled with its own theme file, not the fixture
 directory as the auditor reads it. Nothing under `fixtures/` was modified.
 
-`img/ledgerline.png` is `specimen/index.html` rendered at the same size on the
-same day, and that one is the page itself rather than a photograph of parts —
-it is published at `/specimen/` and the reader can open it.
+`img/ledgerline.png` is `specimen/index.html` rendered at 1280×1000 on the same
+day. That one is the page itself rather than a photograph of parts — it is
+published at `/specimen/` and the reader can open it and read its stylesheet.
 
 **Why the second image is not `fixtures/clean-landing`, which it used to be.**
 That fixture is clean in the auditor's sense: every value on it was decided.

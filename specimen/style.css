@@ -1,140 +1,159 @@
 /* ---------------------------------------------------------------------------
-   Ledgerline — the four roots this page was built from.
+   Ledgerline.
+
+   THE FOUR ROOTS, answered before any code. (anti-slop:build)
 
    1  What it is ......... specimen/inventory.md. Every line of copy draws on
-                           it, and nothing on this page is invented.
+                           it and nothing here is invented.
    2  Voice .............. "It says what it does and where it stops, in the
                            figures the reader will recognise." A line passes if
                            a bookkeeper could check it against their own week.
-   3  Temperature ........ Sober, with one warmth. A firm hands this product its
-                           bank feed, so the page has to be trustworthy before
-                           it is anything else — but a page with no warmth at
-                           all reads as unmaintained rather than serious. The
-                           warmth is spent in exactly two places.
-   4  Density ............ Medium. Read on a laptop between clients, so the
-                           body sits at 16px and the ladder follows from it.
+   3  Temperature ........ Sober, and cool rather than warm. The reader is
+                           handing over a bank feed at eight in the morning.
+   4  Density ............ Medium. Read on a laptop between clients.
 
-   What this page is for, said plainly: the material below — the palette, the
-   scale, the ladder, the motion — is what `anti-slop:build` derives and
-   records. Composition is not what that skill does, and it says so. This page
-   is the same decided material with someone also having composed it, which is
-   the honest version of the comparison it appears in.
+   THE DIRECTION, and what it is reacting against. (frontend-design)
 
-   Literals outside this token block: counted, not estimated. See the note at
-   the foot of the file. --------------------------------------------------- */
+   This file replaces one that landed squarely on a known default: a warm cream
+   ground near #F4F1EA, a high-contrast serif display, and a terracotta accent.
+   That combination is where generated design converges regardless of subject,
+   and it was reached here by treating composition as a checklist item rather
+   than a decision.
+
+   Everything below comes from the subject's own world instead:
+
+     · the ground is ledger paper — the pale green stock an accounting pad is
+       printed on — rather than cream
+     · the reconciliation is a dark slab, inverting the usual light card on a
+       dark hero, and it carries the pad's alternating bands at a contrast of
+       1.12, which is texture rather than costume
+     · the display face is a grotesque used on its WIDTH axis, not a serif
+     · the bank lines are monospace because a bank feed genuinely arrives as
+       fixed-width machine text
+     · the one colour that is not a neutral is the red that means a negative
+       entry, which is the trade's own convention rather than a designer's
+
+   THE SIGNATURE: two columns that have to agree, with a gutter between them. A
+   hairline ties each pair that balances. On the pair that does not, the tie is
+   absent and the shortfall stands in the gap. The structure carries the
+   meaning, so nothing has to be labelled "matched" or "error".
+
+   Composition is not what `anti-slop:build` does, and it says so in its own
+   text. The material below is that skill's; the arrangement is not.
+   --------------------------------------------------------------------------- */
 
 :root {
   /* Palette — from root 1 and root 3.
 
-     Six colours, every name from the subject: the paper a ledger is printed
-     on, the ink on it, the rule between its lines, the hour before the office
-     opens, and the mark you make beside a figure that does not agree.
+     Nine values across six roles, every name from the subject: the pad, its
+     printed band, the ink, the pencil beside it, the slab a statement is read
+     off, and the mark for a figure that does not agree.
 
-     Platform fact, computed on 2026-08-18: `ink` on `chalk` is 16.14:1,
-     `chalk` on `dusk` 13.68:1, and `ink` on `signal` — the button label — is
-     5.46:1.
+     Platform fact, computed 2026-08-18, every pairing the tree renders:
+       ink on paper 17.04 · graphite on paper 5.83 · chalk on slab 14.23 ·
+       chalk on band 12.70 · moss on slab 6.90 · moss on band 6.16
+     All clear 4.5:1 at body size.
 
-     Derivation, and the one that nearly shipped broken: `signal` is 2.96:1 on
-     `chalk`, so the accent that marks the one figure that does not agree could
-     not be used on the figure. `signal-mark` is the same hue at 25.5° and the
-     same saturation, with lightness taken from 0.510 to 0.390 — the first step
-     that clears 4.5:1, which it does at 4.67:1. Same decision, two grounds,
-     two values.
+     Derivation: the mark carries two values because it is read on two grounds.
+     `short-dark` is 7.02:1 on paper. `short-light` is 6.58:1 on the slab and
+     5.87:1 on a banded row — the worse of the two, and therefore the one that
+     had to clear. One role, two grounds, two values.
 
-     Subtraction: the seventh colour this palette was going to carry, a violet
-     between `dusk` and the accent, is not declared. Nothing on the page needed
-     a third step between the hero and the paper, and a colour declared for a
-     screen that does not exist is a colour nobody picked.
+     Accepted cost: `band` sits at 1.12:1 against `slab` and is invisible to a
+     reader who cannot resolve it. That is the intent. It is the pad's printed
+     stripe, which groups rows for an eye that catches it and costs nothing to
+     an eye that does not — no information rides on it, because every row
+     states its own figures. */
+  --paper: #F7F9F5;
+  --slab: #14201A;
+  --band: #1B2A23;
+  --ink: #12180F;
+  --graphite: #5A6459;
+  --chalk: #E8EEE6;
+  --moss: #9DAA98;
+  --short-dark: #9E2B22;
+  --short-light: #F0837A;
 
-     Accepted cost: `rule` is 1.22:1 on `chalk` and does not clear the 3:1 that
-     WCAG 1.4.11 asks of a meaningful boundary. It divides rows whose content
-     is fully legible without it — the figures are aligned and the labels are
-     distinct — so the floor does not apply. A reader who cannot see it loses
-     the grouping, and that is the cost rather than a claim there is none. */
-  --chalk: #F7F5F2;
-  --ink: #1B1725;
-  --rule: #E3DFDC;
-  --dusk: #2E1F4A;
-  --signal: #D9752B;
-  --signal-mark: #A9591E;
-
-  /* Derivation: the two secondary text colours are mixes of two palette
-     entries rather than two more entries. Measured at the mix, not assumed:
-     `ink` at 65% over `chalk` gives 5.26:1, and `chalk` at 70% over `dusk`
-     gives 7.43:1.
-
-     The hero is a gradient from `dusk` to `ink`, so its subhead crosses every
-     value between them. `dusk` is the lighter end, so 7.43:1 is the worst case
-     on the whole run rather than the value at one point of it. */
-  --ink-soft: color-mix(in srgb, var(--ink) 65%, var(--chalk));
-  --chalk-soft: color-mix(in srgb, var(--chalk) 70%, var(--dusk));
+  /* Derivation: the two hairline values are mixes of two palette entries
+     rather than two more entries, because a rule is a proportion of the ground
+     it divides. */
+  --rule-paper: color-mix(in srgb, var(--ink) 12%, var(--paper));
+  --rule-slab: color-mix(in srgb, var(--chalk) 22%, var(--slab));
+  --tie: color-mix(in srgb, var(--chalk) 38%, var(--slab));
+  --underline: color-mix(in srgb, var(--ink) 30%, var(--paper));
 
   /* Type family — from root 2 and root 3.
 
-     Judgment: two families. A high-contrast display serif sets the one line
-     the page is remembered by, because a firm's owner reads that line before
-     deciding whether to read anything else, and a grotesque at 48px says
-     "software" where this product wants to say "record". Everything else is a
-     neutral grotesque with true tabular figures, which a ledger cannot do
-     without.
+     Judgment: two families, and the first is used across its WIDTH axis rather
+     than only its weight. Archivo is a variable grotesque carrying `wdth` from
+     62 to 125. The display line is set expanded and heavy; the labels are set
+     narrow; the body sits at normal. One family reading as three treatments is
+     a typographic decision. Two unrelated families would only have been a
+     pairing.
 
-     Subtraction: the display face is loaded at one weight, because it sets
-     exactly one line and a second weight would be a download for a size that
-     renders once. The text face is loaded at two. Nothing on this page may ask
-     for `bold`; it would resolve to the 600 face and record a weight nobody
-     declared.
+     Judgment: the bank column is monospace because a bank feed arrives as
+     fixed-width machine text. The face is doing the same job the format does,
+     which is why it is there and why nothing else on the page uses it.
 
-     Accepted cost: three font files, and a flash of the fallback stack before
-     they land. `font-display: swap` spends the flash rather than the first
-     paint, which is the right trade for a page whose first paint is a
-     headline. */
-  --face-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --face-text: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
-  --weight-text: 400;
-  --weight-strong: 600;
+     Subtraction: no third family, and no display serif. A serif was the first
+     instinct and is what the discarded version used. It belonged to a look
+     rather than to bookkeeping.
 
-  /* Type scale — from root 4, then the hierarchy this page actually has.
+     Accepted cost: two downloads, one a variable font carrying both axes,
+     which is heavier than two static instances. The width axis is what the
+     display line is built on, so the axis is the thing being paid for.
+     `font-display: swap` spends a flash of the fallback rather than the first
+     paint. */
+  --face: "Archivo", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --face-machine: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
 
-     Four steps, because the page shows four kinds of text: the one line it is
-     remembered by, a section heading, prose, and the label above a column of
-     figures.
+  /* Type scale — from root 4, then the hierarchy the page actually has.
 
-     Subtraction: a fifth step for the figures themselves was considered and
-     not declared. What separates a figure from prose in a ledger is that it is
-     tabular and right-aligned, not that it is larger — and declaring a size
-     step to carry an alignment decision would have recorded the wrong thing.
+     Five steps, because the page shows five kinds of text: a label, body
+     prose, a lede, a section heading, and the one display line.
 
      Derivation: `body` is the root at 16px, which is what a medium density
-     earns. `label` divides by 1.28. `heading` is one and a half body steps and
-     `display` is three, which is also two headings — so the three visible
-     levels of the page stand in whole ratios to each other rather than
-     landing wherever a fixed multiplier put them. */
-  --text-body: 1rem;
-  --text-label: calc(var(--text-body) / 1.28);
-  --text-heading: calc(var(--text-body) * 1.5);
-  --text-display: calc(var(--text-body) * 3);
+     earns. `label` divides by 1.28. `lede` is a quarter above body and
+     `heading` one and three quarters. `display` is four bodies — a jump rather
+     than a step, because the display line is not a larger heading but a
+     different kind of object, and a scale that walked evenly up to it would
+     make it read as one. */
+  --t-body: 1rem;
+  --t-label: calc(var(--t-body) / 1.28);
+  --t-lede: calc(var(--t-body) * 1.25);
+  --t-heading: calc(var(--t-body) * 1.75);
+  /* Platform fact folded into the derivation: four bodies is 64px, and 64px
+     does not fit a phone. The display line holds about fifteen characters; at
+     the half-size-per-character convention those need seven and a half times
+     the font size in width, so the size a viewport can carry is roughly its
+     width over 7.5 — which at 390px is 44.7px and at the gutters this page
+     uses lands on 11vw. Below a 582px viewport the proportion wins; above it
+     the scale step does. A display size that overflows is not a scale. */
+  --t-display: min(calc(var(--t-body) * 4), 11vw);
 
   /* Derivation: the line height tightens as the step grows, because the
      proportion that opens prose for reading leaves a display size looking
-     unset. */
+     unset. The display line goes below 1, which only a face this heavy and
+     this short a line can carry. */
   --lh-label: 1.35;
   --lh-body: 1.55;
-  --lh-heading: 1.3;
-  --lh-display: 1.05;
+  --lh-lede: 1.5;
+  --lh-heading: 1.25;
+  --lh-display: 0.98;
 
   /* Spacing — from root 4, through the type scale.
 
-     Derivation: the body step's line box is the root, and every step is that
+     Derivation: the body step's line box is the root and every step is that
      root multiplied or divided, written as the arithmetic so changing the body
      size moves the whole ladder with it.
 
-       line ÷ 4   what sits inside a line's rhythm
+       line ÷ 4   inside a line's rhythm
        line ÷ 2   a label from the thing it labels
        line       one line from the next
        line × 2   one block from the next
        line × 4   one section from the next */
-  --s-line: calc(var(--text-body) * var(--lh-body));
+  --s-line: calc(var(--t-body) * var(--lh-body));
   --s-inline: calc(var(--s-line) / 4);
   --s-label: calc(var(--s-line) / 2);
   --s-block: calc(var(--s-line) * 2);
@@ -147,51 +166,45 @@
      **convention, not a measurement** — the real average depends on the face
      that ships and cannot be measured while writing a stylesheet.
 
-     The page is two measures plus a block step, because the widest thing on it
-     is a headline beside a ledger and neither is prose. Prose inside it stays
-     at the measure. */
-  --measure: calc(var(--text-body) * 0.5 * 65);
+     The page runs wider than the measure because the widest thing on it is a
+     reconciliation of two figure columns and a gutter, which is not prose and
+     takes the width its columns need. Prose inside it stays at the measure. */
+  --measure: calc(var(--t-body) * 0.5 * 65);
   --page: calc(var(--measure) * 2 + var(--s-block));
 
-  /* Radius — from root 4.
+  /* Radius — from what each thing is.
 
-     Judgment, not derivation, and deliberately so. The equation that ties an
-     outer radius to an inner one governs concentric pairs — something sitting
-     flush in a rounded corner with the padding as the only gap — and this page
-     has none. The ledger's rows are square inside it and its edge is the only
-     curve. Manufacturing a flush pair so there would be an equation to write
-     is the failure the rule warns about, and it did not happen here.
+     Judgment, and deliberately not a derivation: there is no concentric pair
+     on this page. Nothing sits flush inside a rounded corner with the padding
+     as the only gap, so the equation that ties an outer radius to an inner one
+     has nothing here to govern, and manufacturing a pair so there would be an
+     equation to write is the failure that rule warns about.
 
-     Two radii, both from the size of what they wrap: a card the width of half
-     the page, and a control the height of one line plus its padding. */
-  --radius-card: 6px;
-  --radius-control: 4px;
+     One radius, on the one control. The reconciliation is square because a
+     statement is square: it is a document, and a document's corner is where
+     the paper ends. */
+  --r-control: 3px;
 
-  /* Elevation — from how many layers the page actually has.
+  /* Elevation — counted, and the count is zero.
 
-     One level, and it is a counted one rather than a habit: the ledger is the
-     only thing on this page that sits above two surfaces at once, because it
-     crosses the boundary between the hero and the paper below it. Everything
-     else separates with a rule, which costs nothing.
+     Subtraction: no shadow anywhere. The reconciliation is the only object
+     that could have floated, and it separates from the page by a value
+     difference of about 14 to 1 — a shadow beneath it would be doing work
+     already done. Every other separation is a rule or a gap.
 
-     Accepted cost: the shadow is drawn for the light ground it spends most of
-     its area on. Against the dark half of the hero it does almost nothing, and
-     a second shadow was not added to paper over that — the card's own edge is
-     what separates it there. */
-  --lift: 0 1px 2px rgb(27 23 37 / 0.06), 0 12px 32px -8px rgb(27 23 37 / 0.18);
+     Motion — from root 3 and one platform fact.
 
-  /* Motion — from root 3 and one platform fact.
-
-     A sober temperature earns movement only where a control has to answer a
-     pointer. Platform fact: anything driven by interactive state moves on a
+     Platform fact: what moves is a control answering a pointer, on a
      transition rather than a keyframe, so a reader who changes their mind
-     halfway retargets from where the element is rather than restarting its
+     halfway retargets from where the element is instead of restarting its
      timeline.
 
-     Abstention: nothing enters on scroll and nothing animates on load.
-     Movement was available at the hero, at the ledger, and at every section
-     boundary, and was not used at any of them. */
-  --motion: 140ms ease-out;
+     Abstention: nothing enters on scroll, nothing animates on load, and the
+     tie in the reconciliation gutter does not draw itself. Each was available
+     and each was declined. An orchestrated entrance is the single thing that
+     most reliably makes a page read as generated, and this page's one idea is
+     legible standing still. */
+  --motion: 130ms ease-out;
 }
 
 /* ---------------------------------------------------------------------------
@@ -206,12 +219,12 @@
 
 body {
   margin: 0;
-  background: var(--chalk);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--face-text);
-  font-weight: var(--weight-text);
-  font-size: var(--text-body);
+  font-family: var(--face);
+  font-size: var(--t-body);
   line-height: var(--lh-body);
+  font-variation-settings: "wdth" 100, "wght" 400;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -232,11 +245,12 @@ body {
   padding-inline: var(--s-block);
 }
 
-/* Platform fact, and the reason a literal appears outside the token block: a
-   media query cannot read a custom property, because it is evaluated before
-   the cascade resolves them. 1090px is `--page` rounded up; 760px is the width
-   below which the headline and the ledger stop fitting beside each other. */
-@media (max-width: 760px) {
+/* Platform fact, and the reason three literals appear outside the token block:
+   a media query cannot read a custom property, because it is evaluated before
+   the cascade resolves them. 620px is where the two reconciliation columns
+   stop fitting beside each other; 900px is where the limit statement can hold
+   its explanation alongside rather than beneath it. */
+@media (max-width: 620px) {
   .page {
     padding-inline: var(--s-line);
   }
@@ -244,13 +258,17 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+p {
   margin: 0;
+}
+
+h1,
+h2 {
   text-wrap: balance;
 }
 
 p {
-  margin: 0;
   text-wrap: pretty;
 }
 
@@ -258,292 +276,410 @@ p + p {
   margin-top: var(--s-line);
 }
 
+/* Type roles ---------------------------------------------------------------- */
+
 .display {
-  font-family: var(--face-display);
-  font-weight: var(--weight-text);
-  font-size: var(--text-display);
+  font-size: var(--t-display);
   line-height: var(--lh-display);
-  letter-spacing: -0.01em;
+  font-variation-settings: "wdth" 118, "wght" 680;
+  letter-spacing: -0.02em;
 }
 
 .heading {
-  font-family: var(--face-display);
-  font-weight: var(--weight-text);
-  font-size: var(--text-heading);
+  font-size: var(--t-heading);
   line-height: var(--lh-heading);
+  font-variation-settings: "wdth" 112, "wght" 600;
+  letter-spacing: -0.01em;
 }
 
+.lede {
+  font-size: var(--t-lede);
+  line-height: var(--lh-lede);
+  color: var(--graphite);
+  max-width: var(--measure);
+}
+
+/* The label sits at the narrow end of the same width axis the display line
+   uses at its wide end, so the two extremes of the page's type are the two
+   extremes of one axis rather than two unrelated treatments. */
 .label {
-  font-size: var(--text-label);
+  font-size: var(--t-label);
   line-height: var(--lh-label);
-  font-weight: var(--weight-strong);
-  letter-spacing: 0.09em;
+  font-variation-settings: "wdth" 88, "wght" 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-/* Hero --------------------------------------------------------------------- */
+.machine {
+  font-family: var(--face-machine);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Masthead ------------------------------------------------------------------ */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-label);
+  padding-block: var(--s-block);
+  border-bottom: 1px solid var(--rule-paper);
+}
+
+.masthead .label {
+  letter-spacing: 0.22em;
+}
+
+.masthead a {
+  color: var(--graphite);
+  text-decoration-color: var(--underline);
+  text-underline-offset: 0.25em;
+  font-size: var(--t-label);
+  transition: text-decoration-color var(--motion);
+}
+
+.masthead a:hover,
+.masthead a:active {
+  text-decoration-color: currentColor;
+}
+
+/* Hero ---------------------------------------------------------------------- */
 
 .hero {
-  background: linear-gradient(to bottom, var(--dusk), var(--ink));
-  color: var(--chalk);
-  padding-block: var(--s-section);
+  padding-block: var(--s-section) var(--s-block);
 }
 
-.hero-grid {
-  display: grid;
-  gap: var(--s-block);
-  align-items: start;
+/* Judgment: the display line is held to eighteen characters so it breaks into
+   three roughly even lines. A headline this heavy and this tight needs its rag
+   decided rather than left to whatever the container happens to be.
+
+   The lede and the control sit beside it rather than beneath it, aligned to
+   the foot of the headline block. Stacked, they left four hundred pixels of
+   the page empty to the right of a three-line headline, which reads as a
+   column that ran out rather than as a composition. */
+.hero .display {
+  max-width: 18ch;
 }
 
-/* Judgment: the space is split in favour of the column that has more to fit.
-   The headline column carries one measure of text; the ledger carries three
-   columns of its own, and at an even split its party names wrapped to three
-   lines each. Five to six is the ratio at which the longest party name — TRF
-   OURIVESARIA LUME — holds one line. */
-@media (min-width: 760px) {
+@media (min-width: 900px) {
   .hero-grid {
-    grid-template-columns: 5fr 6fr;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
     gap: var(--s-block);
+    align-items: end;
+  }
+
+  /* The column sets the rag here, so the character cap comes off. Left on, it
+     stacked with the narrower column and broke the headline to six lines. */
+  .hero-grid .display {
+    max-width: none;
+  }
+
+  .hero-grid .lede {
+    margin-top: 0;
   }
 }
 
-.hero-text .label {
-  color: var(--chalk-soft);
+.hero .lede {
+  margin-top: var(--s-block);
 }
 
-.hero-text h1 {
-  margin-top: var(--s-label);
-}
-
-/* Scoped to the hero's own text column rather than to every paragraph inside
-   the hero. The unscoped version reached into the ledger — a card on the
-   opposite surface — and painted its title in the subhead's colour, because a
-   descendant selector does not know that a child changed grounds. */
-.hero-text p {
-  margin-top: var(--s-line);
-  max-width: var(--measure);
-  color: var(--chalk-soft);
+.cta-row {
+  margin-top: var(--s-block);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-line);
 }
 
 .cta {
   display: inline-block;
-  margin-top: var(--s-block);
   padding: var(--s-label) var(--s-line);
-  background: var(--signal);
-  color: var(--ink);
-  border-radius: var(--radius-control);
-  font-weight: var(--weight-strong);
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-control);
   text-decoration: none;
-  transition: background-color var(--motion);
+  font-variation-settings: "wdth" 100, "wght" 600;
+  transition: background-color var(--motion), color var(--motion);
 }
 
 /* Platform fact: hover does not exist on a touchscreen, so the hover answer is
    declared together with the pressed state a finger can actually reach. */
 .cta:hover,
 .cta:active {
-  background: var(--signal-mark);
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.cta:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--signal);
+.cta-note {
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  color: var(--graphite);
+  max-width: 24ch;
+}
+
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--short-dark);
   outline-offset: 3px;
 }
 
-.hero-text .fineprint {
-  margin-top: var(--s-line);
-  font-size: var(--text-label);
-  line-height: var(--lh-label);
-  color: var(--chalk-soft);
+/* The reconciliation — the signature ---------------------------------------- */
+
+.recon {
+  background: var(--slab);
+  color: var(--chalk);
+  margin-block: var(--s-block);
 }
 
-/* The ledger --------------------------------------------------------------- */
-
-/* The one elevated surface, and the only element that crosses a boundary: it
-   begins inside the hero and ends on the paper below it. The negative margin
-   is what makes it cross, and it is the section's own bottom padding rather
-   than a number chosen to look right — so the card moves with the rhythm
-   instead of drifting away from it. */
-.ledger {
-  background: var(--chalk);
-  color: var(--ink);
-  border-radius: var(--radius-card);
-  box-shadow: var(--lift);
-  padding: var(--s-line);
-  margin-bottom: calc(var(--s-section) * -1);
-}
-
-.ledger .label {
-  color: var(--ink-soft);
-}
-
-.ledger-title {
-  margin-top: var(--s-inline);
-  font-size: var(--text-body);
-  font-weight: var(--weight-strong);
-  line-height: var(--lh-body);
-}
-
-.ledger table {
-  margin-top: var(--s-line);
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.ledger td {
-  padding-block: var(--s-label);
-  border-top: 1px solid var(--rule);
-  vertical-align: baseline;
-  font-size: var(--text-label);
-  line-height: var(--lh-label);
-  text-wrap: pretty;
-}
-
-.ledger tr:first-child td {
-  border-top: 0;
-}
-
-.ledger .party {
-  color: var(--ink-soft);
-}
-
-/* Judgment: the figures are tabular and right-aligned, which is the whole
-   reason no separate type step was declared for them. A column of amounts that
-   does not align on the decimal is a column nobody read. */
-.ledger .amount {
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  white-space: nowrap;
-  padding-inline: var(--s-label);
-}
-
-/* The party name holds one line; the verdict takes what is left and wraps,
-   which is what a ledger's rightmost column is for. Neither carries a width:
-   the table distributes what the nowrap columns do not claim. */
-.ledger .party {
-  white-space: nowrap;
-}
-
-/* The second and last place the warmth is spent: the one line of the four that
-   does not agree. `signal-mark` rather than `signal`, because this is text on
-   paper and the accent does not clear the floor there. */
-.ledger .short {
-  color: var(--signal-mark);
-  font-weight: var(--weight-strong);
-}
-
-.ledger footer {
-  margin-top: var(--s-line);
-  padding-top: var(--s-label);
-  border-top: 1px solid var(--rule);
-  font-size: var(--text-label);
-  line-height: var(--lh-label);
-  color: var(--ink-soft);
-}
-
-/* Sections ----------------------------------------------------------------- */
-
-/* Derivation: one block step top and bottom, so the gap between two sections
-   is `s-block × 2`, which is the section step. Padding both sides with
-   `s-section` separates them by twice the ladder's largest value — a distance
-   on no step at all. This file shipped that error and a render caught it. */
-section {
+.recon-inner {
   padding-block: var(--s-block);
 }
 
-section + section {
-  border-top: 1px solid var(--rule);
+.recon-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-label);
+  padding-bottom: var(--s-line);
+  border-bottom: 1px solid var(--rule-slab);
 }
 
-/* The section that follows the hero has to clear the card hanging into it. */
-.after-ledger {
-  padding-top: var(--s-section);
+.recon-head .label,
+.recon thead th {
+  color: var(--moss);
+}
+
+.recon table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--s-line);
+  border-bottom: 1px solid var(--rule-slab);
+}
+
+.recon thead th {
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  font-variation-settings: "wdth" 88, "wght" 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: left;
+  padding-block: var(--s-label);
+  font-weight: 400;
+}
+
+.recon thead .th-tie {
+  text-align: center;
+}
+
+.recon thead .th-billed {
+  text-align: right;
+}
+
+/* The pad's printed band. It groups a row for an eye that catches it and
+   carries nothing an eye that misses it would need. */
+.recon tbody tr:nth-child(odd) {
+  background: var(--band);
+}
+
+.recon td {
+  padding-block: var(--s-line);
+  vertical-align: middle;
+  text-wrap: pretty;
+}
+
+.recon .bank {
+  padding-left: var(--s-line);
+}
+
+.recon .billed {
+  text-align: right;
+  padding-right: var(--s-line);
+}
+
+.recon .party {
+  display: block;
+  color: var(--moss);
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+}
+
+.recon .figure {
+  display: block;
+  margin-top: var(--s-inline);
+  font-variation-settings: "wdth" 100, "wght" 500;
+}
+
+/* The gutter, and the whole idea of the page. A hairline crosses it wherever
+   the two sides agree — the tie an accountant draws by hand. Where they do not
+   agree the rule is absent, and the difference stands in the gap instead.
+   Nothing is labelled "matched" or "error": the presence or absence of the
+   line is the statement, which is why this column holds nothing else. */
+.recon .tie {
+  width: 22%;
+  padding-inline: var(--s-label);
+  text-align: center;
+}
+
+.recon .tie-rule {
+  display: block;
+  height: 1px;
+  background: var(--tie);
+}
+
+.recon .tie-short {
+  display: block;
+  color: var(--short-light);
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  font-variation-settings: "wdth" 92, "wght" 600;
+  white-space: nowrap;
+}
+
+/* The rule that closes the reconciliation belongs to the table, which is full
+   width, and not to this paragraph, which is held to the measure. Carrying it
+   here drew a line that stopped two thirds of the way across for no reason a
+   reader could see. */
+.recon-foot {
+  margin-top: var(--s-line);
+  color: var(--moss);
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  max-width: var(--measure);
+}
+
+/* On a phone the two sides cannot sit beside each other, so the same idea is
+   rotated: the bank line, the tie, and the invoice stack vertically, and the
+   rule that crossed the gutter now crosses the row. The header row is removed
+   from view rather than from the accessibility tree, because each cell states
+   what it is in its own text once they are stacked. */
+@media (max-width: 620px) {
+  .recon thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .recon table,
+  .recon tbody,
+  .recon tr,
+  .recon td {
+    display: block;
+    width: auto;
+  }
+
+  .recon tr {
+    padding: var(--s-line) 0;
+  }
+
+  .recon td {
+    padding-block: 0;
+    padding-inline: var(--s-line);
+  }
+
+  .recon .billed {
+    text-align: left;
+  }
+
+  /* The gutter's 22% was a column width and means nothing once the row is
+     stacked; left in place it drew a tie a quarter of the way across. */
+  .recon .tie {
+    width: auto;
+    padding-block: var(--s-label);
+  }
+
+  .recon .tie-short,
+  .recon .tie-rule {
+    text-align: left;
+  }
+}
+
+/* Sections ------------------------------------------------------------------ */
+
+section {
+  padding-block: var(--s-block);
 }
 
 .section-head {
   max-width: var(--measure);
 }
 
-.section-head p {
+.section-head .lede {
   margin-top: var(--s-line);
-  color: var(--ink-soft);
 }
-
-/* Sources ------------------------------------------------------------------ */
 
 .sources {
   margin-top: var(--s-block);
-  display: grid;
-  gap: 0;
 }
 
 .source {
   display: grid;
   gap: var(--s-inline);
   padding-block: var(--s-line);
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--rule-paper);
   align-items: baseline;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 620px) {
   .source {
-    grid-template-columns: 12rem 1fr;
+    grid-template-columns: 13rem 1fr;
     gap: var(--s-block);
   }
 }
 
 .source dt {
-  font-weight: var(--weight-strong);
+  font-variation-settings: "wdth" 100, "wght" 600;
 }
 
 .source dd {
   margin: 0;
   max-width: var(--measure);
-  color: var(--ink-soft);
+  color: var(--graphite);
   text-wrap: pretty;
 }
 
-/* The limit ---------------------------------------------------------------- */
-
-/* The page's own bad news, given the size of its good news. A product that
-   states its ceiling in the same type as its promise is making a claim about
-   itself that a footnote would not make. */
+/* The limit. The page's own bad news, set in the same face and weight as its
+   good news — because a product that states its ceiling in a footnote is
+   making a different claim than one that states it in display type. */
 .limit {
-  display: grid;
-  gap: var(--s-block);
+  padding-top: var(--s-block);
+  border-top: 1px solid var(--rule-paper);
 }
 
-@media (min-width: 760px) {
-  .limit {
-    grid-template-columns: 1fr 1fr;
-  }
+/* Twenty characters, which puts this on two lines. In a half-width column it
+   broke to five, and a statement that takes five lines of display type has
+   stopped being a statement. */
+.limit .display {
+  max-width: 20ch;
+}
+
+/* The explanation sits under the statement and flush to its right, so the
+   reader's eye lands on the ceiling first and finds the reasoning where the
+   line ends. */
+.limit-text {
+  margin-top: var(--s-block);
+  margin-left: auto;
+  max-width: var(--measure);
 }
 
 .limit p {
-  max-width: var(--measure);
-  color: var(--ink-soft);
+  color: var(--graphite);
 }
 
-/* Footer ------------------------------------------------------------------- */
+/* Footer -------------------------------------------------------------------- */
 
 .site-footer {
   padding-block: var(--s-block) var(--s-section);
-  border-top: 1px solid var(--rule);
-  font-size: var(--text-label);
+  border-top: 1px solid var(--rule-paper);
+  font-size: var(--t-label);
   line-height: var(--lh-label);
-  color: var(--ink-soft);
-}
-
-.site-footer a {
-  color: inherit;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 0.25em;
-  transition: text-decoration-color var(--motion);
-}
-
-.site-footer a:hover,
-.site-footer a:active {
-  text-decoration-color: currentColor;
+  color: var(--graphite);
 }
 
 .site-footer nav {
@@ -551,6 +687,18 @@ section + section {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-line);
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration-color: var(--underline);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--motion);
+}
+
+.site-footer a:hover,
+.site-footer a:active {
+  text-decoration-color: currentColor;
 }
 
 /* Platform fact: a target is at least 40px even when its drawing is smaller,
@@ -571,21 +719,51 @@ section + section {
   height: 40px;
 }
 
-/* ---------------------------------------------------------------------------
-   Literals outside the token block, counted rather than estimated. Re-run the
-   count before changing this file.
+/* The reconciliation's caption states in a sentence what the gutter states in
+   a line, for a reader who is hearing the page rather than seeing it. It is
+   removed from view and not from the accessibility tree, which `display: none`
+   would do. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
-     · 1px, five times — a hairline, which is not a step on any scale
+/* ---------------------------------------------------------------------------
+   Literals outside the token block: 40 sites carrying 21 distinct values,
+   counted rather than estimated.
+
+   The basis, so a re-run can agree with this one: strip comments, strip the
+   `:root` block, then match colours and any number carrying a unit — including
+   `%`, which a pattern ending in `\b` silently drops, because `%` is not a word
+   character. That mistake made the first count of this file read 33 and 17.
+
+     · 1px, twelve sites — hairlines, borders, and the tie itself. A hairline is
+       the thinnest a rule can be drawn, not a step on any scale.
+     · proportions, eight sites — 100% and 22% are shares of a container, 50%
+       and -50% centre an element against itself, and none is a size.
+     · em tracking, seven sites — -0.02em and -0.01em on the two display steps,
+       0.14em and 0.22em on the labels, 0.25em of underline offset. Each is a
+       proportion of the token it sits on.
+     · character caps, three sites — 18ch, 20ch and 24ch. A character count is
+       a measure, which is the one thing on this page that is supposed to be
+       counted in characters.
+     · media widths, four sites — 620px and 900px, which `@media` cannot read
+       from a custom property at all.
+     · 0.01ms, twice — how a stylesheet says "no motion" without removing the
+       declaration.
      · 2px and 3px, the focus ring and its offset, which have to stay legible
-       at every type size and so cannot scale with one
-     · 40px, which is a fingertip, and 0.01ms, which is how a stylesheet says
-       "no motion" without removing the declaration
-     · 760px, a media-query width, which cannot read a custom property at all
-     · 12rem, the width of the source labels, which is the widest of the five
-       plus its gutter and is a column width rather than a scale value
-     · 55%, the ledger's verdict column, likewise
-     · em-relative refinements: -0.01em and 0.09em of tracking, 0.25em of
-       underline offset — proportions of the token they sit on
-     · the two rgb() alphas in `--lift`, which are opacities rather than
-       colours and are declared inside the token block anyway
+       at every type size and so cannot scale with one.
+     · 40px, a fingertip. -1px, the one pixel a visually-hidden element is
+       pulled back by so it cannot be reached with a pointer.
+     · 13rem, the width of the source labels, which is the widest of the five
+       plus its gutter and is a column width rather than a scale value.
+
+   Re-run the count before changing this file.
    --------------------------------------------------------------------------- */
