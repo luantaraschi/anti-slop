@@ -1,0 +1,568 @@
+/* ---------------------------------------------------------------------------
+   The four roots this page was built from.
+
+   1  What it is ......... site/inventory.md. Every line of copy draws on it.
+   2  Voice .............. "States what it found and what it does not claim,
+                           and never sells." A line passes if it could appear
+                           in a finding.
+   3  Temperature ........ Sober-institutional. The product's claim is that it
+                           detects decoration nobody decided, so a page that
+                           decorates to sell would be evidence against itself.
+   4  Density ............ Low. One idea per block, six blocks, read once.
+
+   Roots 2 to 4 govern the values below, so they are recorded here rather than
+   in a document. Root 1 has no value to sit beside, so it is a file.
+
+   The constraint that replaces a compiler: no rule outside this token block
+   types a colour, a scale value, or a radius directly. In Tailwind the theme
+   can be replaced so undeclared values stop resolving; in plain CSS a literal
+   always works, so the discipline has to come from review instead.
+
+   That review was run, and it found eighteen literals rather than none.
+
+   Three were values nobody had decided and are gone: the figure's width, now
+   two measures plus a step; and the two insets that were meant to extend a tap
+   target to 40px and whose arithmetic actually reached 37.3px, which the
+   `min-height` beside them was quietly covering for. A fourth, the figure's
+   breakpoint, still has to be a literal and now mirrors a derived token.
+
+   Sixteen remain, and they are the classes below — exceptions on purpose
+   rather than leftovers:
+
+     · a 1px border, which is a hairline rather than a step on any scale
+     · the 2px focus ring and its 3px offset, which have to stay legible at
+       every type size and so cannot scale with one
+     · em-relative typographic refinements — -0.015em of tracking on the title,
+       0.08em on the row-group labels, 0.2em of underline offset, code at
+       0.9em — which are proportions of the token they sit on rather than
+       independent values
+     · 40px, which is a fingertip, and 0.01ms, which is how a stylesheet says
+       "no motion" without removing the declaration
+     · two media-query widths, which cannot read a custom property at all; see
+       the platform fact recorded at `.column`
+
+   The count above is a count that was run, not an estimate. Re-run it before
+   changing this file. -------------------------------------------------------- */
+
+:root {
+  /* Palette — from root 1 and root 3.
+
+     Five colours, each named for the subject: a document somebody read and
+     marked up. Rank names would have recorded an order rather than a decision.
+     A sober temperature earns neither a gradient nor a saturated accent, so
+     `flag` is an oxide at the saturation of a correction mark rather than an
+     alert colour.
+
+     Platform fact, computed on 2026-08-18 rather than estimated: against
+     `paper`, `ink` is 16.51:1, `margin` 5.73:1 and `flag` 7.36:1 in this
+     theme, and 15.58:1, 6.36:1 and 6.91:1 in the dark one. All six clear 4.5:1
+     at body size.
+
+     Accepted cost: `rule` sits at 1.28:1 against paper and does not clear the
+     3:1 that WCAG 1.4.11 asks of a user-interface boundary. It is a divider
+     between sections whose content is fully understandable without perceiving
+     it, so the floor does not apply — but a reader who cannot see it loses the
+     grouping, and that is the cost rather than an argument that there is none. */
+  --paper: #FBFAF8;
+  --ink: #1C1B18;
+  --rule: #E2DFD8;
+  --margin: #67635B;
+  --flag: #8C3A1C;
+
+  /* Type family — from root 2 and root 3.
+
+     Judgment: one text family, a serif, because the voice is a record rather
+     than a pitch and a text serif reads as a document before a word is read.
+     It is also the one value on this page that most reliably announces the
+     ecosystem instead of the product when nobody picks it.
+
+     Accepted cost: one font download, and a flash of the fallback before it
+     lands. `font-display: swap` spends the flash rather than the first
+     paint.
+
+     Subtraction: 200, 300, 500, 700, 800 and 900 are not loaded. Two weights
+     carry every level of hierarchy this page has, and a weight the page never
+     renders is a download nobody chose. Nothing here may ask for `bold`; it
+     would resolve to the 600 face and record a weight that was never decided.
+
+     Judgment: the monospace is the reader's own. It sets six lines of shell
+     command and seven finding ids, and a second download for that would be
+     spending a reader's connection on a value nobody would notice. */
+  --face-text: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+  --face-code: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --weight-text: 400;
+  --weight-strong: 600;
+
+  /* Type scale — from root 4, then the hierarchy this page actually has.
+
+     Four steps, because the page shows four distinct kinds of text: a title, a
+     section heading, prose, and the small print that labels a figure. Each is
+     named for what it carries. A fifth step was not declared because no fifth
+     kind of text renders.
+
+     Derivation: `body` is the root, set at 17px because a low density earns a
+     larger reading size than the 16px default. `note` divides by 1.25 and the
+     two larger steps multiply by 1.5 each. The ratios differ on purpose: the
+     small step separates a caption from the prose beside it and has to stay
+     readable, while the large steps separate levels of a page and have to be
+     unmistakable at a glance. One ratio across all four would have put `note`
+     at 11px, which is a size nobody chose either. */
+  --text-body: 1.0625rem;
+  --text-note: calc(var(--text-body) / 1.25);
+  --text-heading: calc(var(--text-body) * 1.5);
+  --text-title: calc(var(--text-heading) * 1.5);
+
+  /* Derivation: line height tightens as the step grows, because the same
+     proportion that opens prose for reading leaves a display size looking
+     unset. */
+  --lh-note: 1.45;
+  --lh-body: 1.6;
+  --lh-heading: 1.25;
+  --lh-title: 1.1;
+
+  /* Spacing — from root 4, through the type scale.
+
+     Derivation: the body step's line box is the root, and every step is that
+     root multiplied or divided, written as arithmetic rather than as a number
+     so changing the body size moves the whole ladder with it.
+
+       line ÷ 4   what sits inside a line's rhythm
+       line ÷ 2   a label from the thing it labels
+       line       one line from the next
+       line × 2   one block from the next
+       line × 4   one section from the next
+
+     Five steps, and the last is kept because this page scrolls. The arithmetic
+     lands on 6.8px and 13.6px; the half-pixels stay, because rounding them to
+     8 and 14 would throw away the derivation and buy nothing. */
+  --s-line: calc(var(--text-body) * var(--lh-body));
+  --s-inline: calc(var(--s-line) / 4);
+  --s-label: calc(var(--s-line) / 2);
+  --s-block: calc(var(--s-line) * 2);
+  --s-section: calc(var(--s-line) * 4);
+
+  /* Measure and page — from the body size and the kind of reading asked for.
+
+     Derivation, with the caveat that keeps it honest: the 0.5 below treats an
+     average character as half the body size. That is a typographic
+     **convention, not a measurement** — the real average depends on the face
+     that ships, and it cannot be measured while writing a stylesheet. The
+     measure is the fixed point and the page is what follows from it, rather
+     than the other way round. */
+  --measure: calc(var(--text-body) * 0.5 * 65);
+  --page: calc(var(--measure) + var(--s-block) * 2);
+
+  /* Derivation: the one figure that leaves the measure is two specimens side
+     by side, so its width is two measures plus the block step between them.
+     With the block gutters this puts each screenshot at 498px — the width at
+     which the headline the comparison turns on is still readable, and roughly
+     where it was when the figure carried a round number nobody derived. */
+  --specimens: calc(var(--measure) * 2 + var(--s-block));
+
+  /* Radius — from root 4, then arithmetic.
+
+     Two radii, and exactly one concentric pair on the page: a screenshot
+     sitting flush inside its frame, with the frame's padding as the only gap.
+     There the equation applies — outer equals inner plus the padding — and it
+     is written as that equation, so changing the padding moves the frame's
+     radius with it instead of leaving the two curves diverging.
+
+     Judgment: the screenshot's own 4px comes from its size, not from anything
+     it wraps. It is a photograph of another product; the radius is there to
+     say "specimen", and a larger one would start to style what it is quoting.
+
+     The equation governs nothing else here. The command block is not
+     concentric with anything, so it takes the same 4px from its own size. */
+  --radius-image: 4px;
+  --frame-pad: var(--s-inline);
+  --radius-frame: calc(var(--radius-image) + var(--frame-pad));
+
+  /* Elevation — from how many layers this page actually has.
+
+     Subtraction: no levels are declared, because nothing on this page floats
+     above anything. It is a document. Every separation on it is a rule or a
+     gap, both of which cost nothing and work identically in both themes. A
+     shadow stacked on a section would be the value nobody counted.
+
+     Motion — from root 3 and one platform fact.
+
+     A sober temperature earns almost no movement, so the only thing that moves
+     is a control answering a pointer. Platform fact: anything driven by
+     interactive state moves on a transition rather than a keyframe, so a
+     reader who changes their mind halfway retargets from where the element is
+     instead of restarting its timeline.
+
+     Abstention: nothing enters on scroll and nothing animates on load.
+     Movement was available at every section boundary and was not used. */
+  --motion: 120ms ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Both themes, fully declared — every colour above has a value here, not
+       just the background. The two were rendered and looked at on 2026-08-18
+       rather than inferred from each other.
+
+       Judgment: `flag` cannot survive the inversion at the same value. An
+       oxide that reads as a correction mark on paper reads as dried blood on a
+       dark ground and loses its legibility besides, so the dark theme takes
+       the same hue lifted and desaturated until it clears the floor. Same
+       role, different value, which is what a colour that works in both themes
+       usually costs. */
+    --paper: #131210;
+    --ink: #EDEAE3;
+    --rule: #302D28;
+    --margin: #9B968C;
+    --flag: #D98A5F;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Everything below reads the tokens above and declares no value of its own.
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--face-text);
+  font-weight: var(--weight-text);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Platform fact: a reader who asks for reduced motion gets none, including the
+   smooth scroll a fragment link would otherwise trigger. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The column every section reads in. The comparison figure leaves it; see
+   `.specimens`. */
+.column {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--s-block);
+}
+
+/* Derivation: each section pads by one block step, top and bottom, so the gap
+   between two of them is `s-block × 2`, which is the section step. Writing
+   `s-section` on both sides instead would separate them by twice the ladder's
+   largest value — a distance that is on no step at all. That is what this file
+   did until the page was rendered and looked at. */
+section {
+  padding-block: var(--s-block);
+  border-top: 1px solid var(--rule);
+}
+
+/* Platform fact, and the one place a literal has to appear outside the token
+   block: a media query cannot read a custom property, because it is evaluated
+   before the cascade resolves them. So `--page` is written here as the 661px
+   it computes to, and the two move together only because this comment says
+   they must. Below that width the measure no longer fits between two block
+   gutters, so the gutter steps down one rung of the same ladder rather than
+   holding a value the screen cannot afford. */
+@media (max-width: 661px) {
+  .column {
+    padding-inline: var(--s-line);
+  }
+}
+
+h1,
+h2 {
+  font-weight: var(--weight-strong);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+p + p,
+h2 + p {
+  margin-top: var(--s-line);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--flag);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--motion);
+}
+
+/* Platform fact: hover does not exist on a touchscreen, so every hover answer
+   is declared with the pressed state that a finger can actually reach. */
+a:hover,
+a:active {
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--flag);
+  outline-offset: 3px;
+  border-radius: var(--radius-image);
+}
+
+strong {
+  font-weight: var(--weight-strong);
+}
+
+code,
+kbd {
+  font-family: var(--face-code);
+  font-size: 0.9em;
+}
+
+.lede {
+  color: var(--margin);
+}
+
+/* A note sits below something that is not a paragraph — a table, a pair of
+   skill blocks — so `p + p` never reaches it and it arrived flush against the
+   block above. It separates by the line step, which is what separates one line
+   from the next and is what a note is: an aside on what precedes it. */
+.note {
+  margin-top: var(--s-line);
+  font-size: var(--text-note);
+  line-height: var(--lh-note);
+  color: var(--margin);
+}
+
+/* Header ------------------------------------------------------------------ */
+
+header {
+  padding-block: var(--s-section) var(--s-block);
+}
+
+header p {
+  margin-top: var(--s-line);
+  max-width: var(--measure);
+}
+
+/* The command block. Repeated at two callsites, so it is one class rather than
+   two copies of the same declarations — the same defect as a palette nobody
+   picked, one level down. */
+.command {
+  margin-top: var(--s-block);
+  padding: var(--s-label);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-image);
+  font-family: var(--face-code);
+  font-size: var(--text-note);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.command .prompt {
+  color: var(--margin);
+  user-select: none;
+}
+
+/* Specimens --------------------------------------------------------------- */
+
+/* Departure. This is the one place on the page that leaves the measure, and
+   the content is why: the two screenshots are 1280px wide, and side by side
+   inside a 661px column each would render at roughly 300px, where the
+   headline the comparison turns on stops being readable. The figure takes the
+   width its content needs, the way a table does, and the prose around it stays
+   at the measure. Recorded once, at the one callsite that departs. */
+.specimens {
+  max-width: var(--specimens);
+  margin: var(--s-block) auto 0;
+  padding-inline: var(--s-block);
+  display: grid;
+  gap: var(--s-block);
+  grid-template-columns: 1fr;
+}
+
+/* The second of the two media-query literals, and the same platform fact
+   applies: this 1160px is `--specimens` rounded up to a whole pixel, written
+   out because `@media` cannot read it. Below the width the pair was derived
+   for, the pair does not fit, so it stacks and each specimen takes the column
+   instead of half of it. */
+@media (min-width: 1160px) {
+  .specimens {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.specimen {
+  margin: 0;
+}
+
+.specimen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-frame);
+  padding: var(--frame-pad);
+  background: var(--paper);
+}
+
+.specimen figcaption {
+  margin-top: var(--s-label);
+  font-size: var(--text-note);
+  line-height: var(--lh-note);
+  color: var(--margin);
+  text-wrap: pretty;
+}
+
+.specimen figcaption b {
+  color: var(--ink);
+  font-weight: var(--weight-strong);
+}
+
+/* Findings ---------------------------------------------------------------- */
+
+/* A table is not prose: it takes the width its columns need, and on a phone
+   that width does not exist. Crushed into 281px it rendered one word per line
+   and stopped being a table at all, so it keeps its shape and scrolls inside
+   itself instead. The container is focusable because a region that scrolls has
+   to be reachable without a pointer.
+
+   Judgment: the floor is the measure. The widest cell is a 26-character path
+   set in the note step, and the three columns together land close enough to
+   the prose column that reusing it beats introducing a number nobody derived. */
+.scroller {
+  overflow-x: auto;
+}
+
+.scroller:focus-visible {
+  outline: 2px solid var(--flag);
+  outline-offset: 3px;
+}
+
+.findings {
+  margin-top: var(--s-block);
+  border-collapse: collapse;
+  width: 100%;
+  min-width: var(--measure);
+  font-size: var(--text-note);
+  line-height: var(--lh-note);
+  text-align: left;
+}
+
+.findings th,
+.findings td {
+  padding: var(--s-label) var(--s-label) var(--s-label) 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+  text-wrap: pretty;
+}
+
+.findings th {
+  font-weight: var(--weight-strong);
+  color: var(--margin);
+}
+
+/* The two row groups the report actually returns. They are here because the
+   paragraph above the table explains ROOT and THEN, and for one draft the
+   table below it showed neither — prose describing something the markup did
+   not do, which is the second survival check failing in the direction that is
+   hardest to notice. */
+.findings .group {
+  padding-top: var(--s-line);
+  font-family: var(--face-code);
+  color: var(--ink);
+  letter-spacing: 0.08em;
+}
+
+.findings td:first-child {
+  font-family: var(--face-code);
+  color: var(--flag);
+  white-space: nowrap;
+}
+
+.findings td:last-child {
+  font-family: var(--face-code);
+  color: var(--margin);
+  white-space: nowrap;
+}
+
+/* Skills ------------------------------------------------------------------ */
+
+/* Abstention. This is the slot that asks for an icon — two blocks, side by
+   side, each wanting a glyph above its heading — and it is the same slot the
+   catalogue's A7 was written about. Nothing here says anything the words do
+   not already say, so nothing was put here. Recorded at the place the icon was
+   available rather than in a list of things the page does not have. */
+.skills {
+  margin-top: var(--s-block);
+  display: grid;
+  gap: var(--s-block);
+}
+
+.skills h3 {
+  margin: 0 0 var(--s-label);
+  font-family: var(--face-code);
+  font-size: var(--text-body);
+  font-weight: var(--weight-strong);
+}
+
+.skills p {
+  max-width: var(--measure);
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+footer {
+  padding-block: var(--s-block) var(--s-section);
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-note);
+  line-height: var(--lh-note);
+  color: var(--margin);
+}
+
+footer p + p {
+  margin-top: var(--s-label);
+}
+
+/* Platform fact: a target is at least 40px even when its drawing is smaller,
+   because a fingertip is about that wide. A pseudo-element extends the footer
+   links without changing the line they sit on. */
+footer a {
+  position: relative;
+  display: inline-block;
+}
+
+footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+}

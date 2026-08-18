@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>anti-slop — read an interface for the marks of work nobody finished</title>
+    <meta
+      name="description"
+      content="A Claude Code plugin that reads the interface you already have and reports what was left at its default — the palette nobody picked, the empty state nobody wrote, the dark theme nobody opened. Forty-nine tells across five axes, with a file and a line."
+    />
+    <link rel="canonical" href="https://luantaraschi.github.io/anti-slop/" />
+    <link rel="icon" type="image/svg+xml" href="mark.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luantaraschi.github.io/anti-slop/" />
+    <meta property="og:title" content="The marks of work nobody finished" />
+    <meta
+      property="og:description"
+      content="Two landing pages. Both use a gradient. Only one of them decided it — and that difference is the whole catalog."
+    />
+    <meta property="og:image" content="https://luantaraschi.github.io/anti-slop/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="column">
+      <h1>The marks of work nobody finished.</h1>
+      <p class="lede">
+        <strong>anti-slop</strong> is a plugin for Claude Code. It reads the
+        interface you already have and reports what was left at its default —
+        the palette nobody picked, the empty state nobody wrote, the dark theme
+        nobody opened — as a ranked list with a file and a line.
+      </p>
+      <p class="lede">
+        Forty-nine of those marks, across five axes. You do not need the
+        vocabulary to act on the report.
+      </p>
+      <pre class="command"><span class="prompt">$ </span>git clone https://github.com/luantaraschi/anti-slop
+<span class="prompt">&gt; </span>/plugin marketplace add ./anti-slop
+<span class="prompt">&gt; </span>/plugin install anti-slop@anti-slop</pre>
+    </header>
+
+    <section class="column">
+      <h2>It has no list of banned patterns</h2>
+      <p>
+        Forbid the purple gradient and the generic reappears wherever the list
+        does not reach. A finding here is two things at once: the pattern is
+        present, <strong>and</strong> there is no evidence anyone chose it.
+        Neither half alone is a finding.
+      </p>
+      <p>
+        So the auditor looks for the choosing first — a variables file, a
+        <code>:root</code> block, a theme config, a comment sitting beside the
+        value it governs. Where it finds one, the pattern is somebody's decision
+        and the report says nothing about it.
+      </p>
+    </section>
+
+    <section>
+      <div class="column">
+        <h2>Two landing pages. Both use a gradient.</h2>
+        <p>
+          Both are calibration specimens in this repository. One was built to be
+          found and one was built to be cleared, and the difference between them
+          is not which features they use.
+        </p>
+      </div>
+
+      <div class="specimens">
+        <figure class="specimen">
+          <img
+            src="img/slop-landing.png"
+            width="1280"
+            height="760"
+            alt="A landing page with a purple-to-blue gradient behind centred text. A sparkle icon sits in the headline, which reads Build something great today, above the line The platform for teams that move fast and two buttons labelled Get Started and Learn More."
+          />
+          <figcaption>
+            <b>fixtures/slop-landing.</b> A gradient between two colours the
+            framework shipped, a sparkle in the headline, and a promise that
+            would fit any product on earth. Twelve tells sit on its expect row.
+          </figcaption>
+        </figure>
+
+        <figure class="specimen">
+          <img
+            src="img/clean-landing.png"
+            width="1280"
+            height="760"
+            alt="A landing page with a dark purple-to-near-black gradient behind left-aligned text. The headline reads Every invoice your firm sent, reconciled the morning after, above a line explaining that it reads the bank feed and matches it against what you billed, and an orange button labelled Reconcile your first month."
+          />
+          <figcaption>
+            <b>fixtures/clean-landing.</b> Also a gradient — drawn between two
+            colours its own theme names, <code>dusk</code> and <code>ink</code>,
+            and used once on the page. A2 and A4 sit on its <em>forbid</em> row,
+            and neither has ever fired on it in a blind run.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="column">
+      <h2>What a run gives you back</h2>
+      <p>
+        A verdict in plain words, then a ranked list.
+        <strong>ROOT</strong> holds the findings that close others when you fix
+        them; <strong>THEN</strong> holds the rest. One row, one id, one place
+        to open.
+      </p>
+
+      <div
+        class="scroller"
+        tabindex="0"
+        role="region"
+        aria-label="Five findings from a blind run"
+      >
+        <table class="findings">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">what is missing</th>
+            <th scope="col">where</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <th colspan="3" scope="rowgroup" class="group">ROOT</th>
+            </tr>
+            <tr>
+              <td>A1</td>
+              <td>The theme picks no colour, no radius and no type scale</td>
+              <td>tailwind.config.ts:5</td>
+            </tr>
+            <tr>
+              <td>A10</td>
+              <td>The card's classes retyped by hand instead of reused</td>
+              <td>components/stat-card.tsx:3</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th colspan="3" scope="rowgroup" class="group">THEN</th>
+            </tr>
+            <tr>
+              <td>F1</td>
+              <td>The page never says what language it is in</td>
+              <td>app/layout.tsx:7</td>
+            </tr>
+            <tr>
+              <td>F11</td>
+              <td>Rows built from a list with nothing to tell them apart</td>
+              <td>components/table.tsx:17</td>
+            </tr>
+            <tr>
+              <td>W3</td>
+              <td>The empty table reports a count instead of offering a first step</td>
+              <td>components/table.tsx:13</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note">
+        Five real findings, each checked against
+        <code>fixtures/slop-dashboard</code> on 2026-08-18. The two under ROOT
+        are there because the same evidence produces four more: the empty theme
+        is also why A3 and A5 fire, and the retyped card is also why A4 and A6
+        do. Two files close six findings. Twenty-one blind reports are committed
+        under <code>calibration/</code>, written by agents that were given the
+        skill and the directory and nothing else.
+      </p>
+    </section>
+
+    <section class="column">
+      <h2>Two skills, and they are one loop</h2>
+
+      <div class="skills">
+        <div>
+          <h3>anti-slop:audit</h3>
+          <p>
+            Reads what already exists. Run it on the whole project or on one
+            file, and on all five axes or on one of them. It reads any web
+            stack: 42 of the 49 tells never name a framework or a library.
+          </p>
+        </div>
+
+        <div>
+          <h3>anti-slop:build</h3>
+          <p>
+            Runs before the components exist. It makes you answer four things
+            the auditor cannot answer for you — what the product concretely is,
+            how it talks, how sober it should look, how much belongs on one
+            screen — and writes every value it derives with the reasoning beside
+            it, in the places the auditor searches for evidence.
+          </p>
+        </div>
+      </div>
+
+      <p class="note">
+        Which is how each half tests the other: a tell that fires on a tree the
+        build skill produced is the build skill's failure, and it arrives with a
+        file and a line.
+      </p>
+    </section>
+
+    <footer class="column">
+      <p>
+        <strong>The claim it does not make.</strong> Nothing in this catalog
+        proves a model wrote the code. It fires on absence and repetition, which
+        look the same whether a person typed every line or an agent did. The
+        report never says a file was AI-generated.
+      </p>
+      <p>
+        <strong>What is not finished.</strong> 15 of the 49 tells have never been
+        tested against a counterexample, and the validator prints that number
+        every time it runs rather than hiding it.
+      </p>
+      <p>
+        <a href="https://github.com/luantaraschi/anti-slop">Source on GitHub</a>
+        · MIT · by Luan Taraschi
+      </p>
+    </footer>
+  </body>
+</html>

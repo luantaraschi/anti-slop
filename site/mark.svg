@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="anti-slop">
+  <!-- A proofreader's caret under a line of text: the mark somebody makes when
+       they come back to a page. Two shapes, because a third stops resolving at
+       16px. The oxide is the theme's `flag`; the rule is its `margin`, which is
+       the one neutral that clears its contrast floor on both a light and a dark
+       browser chrome. -->
+  <rect x="4" y="10" width="24" height="3" rx="1.5" fill="#67635B" />
+  <path
+    d="M9 26 L16 18 L23 26"
+    fill="none"
+    stroke="#8C3A1C"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
