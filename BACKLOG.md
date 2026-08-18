@@ -21,7 +21,7 @@ run is also their first measurement.
 
 Round 1 of the plugin design shipped on 2026-08-17 — a different numbering from
 the A and B below, which are debt rather than plan. It moved the auditor to
-`skills/anti-slop/` with its catalog and changed nothing under this heading. It
+`skills/audit/` with its catalog and changed nothing under this heading. It
 spent no blind run, which is the point: a restructure that changes no tell needs
 no measurement, so the run it did not spend is still available to whichever
 round carries Round A.

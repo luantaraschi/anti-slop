@@ -465,7 +465,7 @@ decline in the next round makes it the tell's problem rather than the round's.
 Three blind runs, single-axis and uncapped, by the same method as the seven
 above. Each agent received `SKILL.md`, the one or two `references/` files its
 invocation names, and one target directory. None could read this file, the repo
-root `README.md`, `calibration/`, `tests/`, `scripts/`, `skills/anti-slop-build/`,
+root `README.md`, `calibration/`, `tests/`, `scripts/`, `skills/build/`,
 or any fixture but its own.
 
 The reports are in `calibration/2026-08-17/`, as the runs produced them. Every

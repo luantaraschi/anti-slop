@@ -2,12 +2,12 @@
 
 A Claude Code plugin for interfaces that came out generic. It ships two skills.
 
-**`anti-slop`** audits interface code for the marks of work nobody finished:
+**`anti-slop:audit`** reads interface code for the marks of work nobody finished:
 the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
 the meta tags nobody set. Forty-nine tells across five axes, reported as a ranked
 list with a file and a line.
 
-**`anti-slop-build`** runs before the components exist. It forces the decisions
+**`anti-slop:build`** runs before the components exist. It forces the decisions
 whose absence the auditor detects, and writes them where the auditor looks for
 them.
 
@@ -30,7 +30,7 @@ any tool. It reports what is missing, not who (or what) left it that way.
 ## How it works
 
 ```
-skills/anti-slop/ ... the auditor, catalog included
+skills/audit/ ... the auditor, catalog included
    SKILL.md ......... the procedure: how to rank, what to load, how to report
    |
    +-- references/surface.md  A1-A10   the palette, radius, shadows, type
@@ -40,7 +40,7 @@ skills/anti-slop/ ... the auditor, catalog included
    +-- references/finish.md   F1-F12   lang, title, meta, keys
    +-- references/molds.md             recurring shapes across tells
    |
-skills/anti-slop-build/ the four roots, and what derives from them
+skills/build/ the four roots, and what derives from them
    SKILL.md ......... the process, the six recorded shapes, the reduction pass
    +-- references/deriving.md          the rule per derived value
    |
@@ -98,7 +98,7 @@ directory where Claude Code looks for personal skills. Its catalog travels
 inside it:
 
 ```
-cp -r anti-slop/skills/anti-slop ~/.claude/skills/anti-slop
+cp -r anti-slop/skills/audit ~/.claude/skills/audit
 ```
 
 ## Use
@@ -109,16 +109,17 @@ the audit.
 
 | Invocation | Axes | References to load |
 |---|---|---|
-| `anti-slop` | Surface, Craft, Words, Finish | `surface.md`, `craft.md`, `words.md`, `finish.md`, `molds.md` |
+| `anti-slop` | all five | every axis file, plus `molds.md` |
 | `anti-slop surface` | Surface | `surface.md`, `molds.md` |
 | `anti-slop craft` | Craft | `craft.md` |
+| `anti-slop states` | States | `states.md` |
 | `anti-slop words` | Words | `words.md` |
 | `anti-slop finish` | Finish | `finish.md` |
 
 A path alongside the mode restricts the scope to that file or directory.
 Without a path, the target is the project root.
 
-`anti-slop-build` has no modes. It fires on its description, when you are about
+The build skill has no modes. It fires on its description, when you are about
 to build an interface or when one already reads as generic and its palette, type
 scale, radius, motion and copy need deciding rather than inheriting. Give it the
 brief. It will tell you which of the four roots the brief does not answer rather

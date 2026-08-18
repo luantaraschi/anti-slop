@@ -39,9 +39,9 @@ Slots: `<AXIS>` (surface / craft / states / words / finish), `<AXIS_FILE>`,
 
 > You are auditing a shipped product's source tree. Treat it as a real product someone published, not as test data.
 >
-> **Read only these.** The skill: `skills/anti-slop/SKILL.md` and `skills/anti-slop/references/<AXIS_FILE>`. Your target, in full: `<TARGET>`.
+> **Read only these.** The skill: `skills/audit/SKILL.md` and `skills/audit/references/<AXIS_FILE>`. Your target, in full: `<TARGET>`.
 >
-> You are FORBIDDEN from opening anything else in this repository. Specifically do not open, glob, grep or list: `fixtures/README.md`, any other directory under `fixtures/`, `calibration/`, the repository `README.md`, `BACKLOG.md`, `docs/`, `tests/`, `scripts/`, `skills/anti-slop-build/`, or the other reference files under `skills/anti-slop/references/`. Several of those contain the expected answer.
+> You are FORBIDDEN from opening anything else in this repository. Specifically do not open, glob, grep or list: `fixtures/README.md`, any other directory under `fixtures/`, `calibration/`, the repository `README.md`, `BACKLOG.md`, `docs/`, `tests/`, `scripts/`, `skills/build/`, or the other reference files under `skills/audit/references/`. Several of those contain the expected answer.
 >
 > Your invocation is `anti-slop <AXIS>`. **The report cap is suspended** — report everything the axis finds, and if you would have cut something for length, include it and say so.
 >
@@ -74,9 +74,9 @@ because no fixture contains a valve, a station or a support slot.
 
 > Build from a brief, using a skill installed in this repository.
 >
-> **Read only these two files:** `skills/anti-slop-build/SKILL.md` and `skills/anti-slop-build/references/deriving.md`.
+> **Read only these two files:** `skills/build/SKILL.md` and `skills/build/references/deriving.md`.
 >
-> You are FORBIDDEN from opening anything else here. In particular do not open `fixtures/`, `calibration/`, `skills/anti-slop/`, `README.md`, `BACKLOG.md`, `docs/`, `tests/` or `scripts/`. There are worked examples in this tree and reading one makes this exercise measure copying rather than deciding.
+> You are FORBIDDEN from opening anything else here. In particular do not open `fixtures/`, `calibration/`, `skills/audit/`, `README.md`, `BACKLOG.md`, `docs/`, `tests/` or `scripts/`. There are worked examples in this tree and reading one makes this exercise measure copying rather than deciding.
 >
 > The brief: `<PRODUCT>` — `<ROOTS>`. Answer all four roots in the brief, or expect the builder to derive and flag the ones you left out.
 >
@@ -85,7 +85,7 @@ because no fixture contains a valve, a station or a support slot.
 > Report back: the four roots as you carried them and any the brief under-specified; each derived value with its source and shape; what the reduction pass removed; and — bluntly — anything in the skill that was unclear, contradictory, wrong, or that you had to interpret. That last part is worth more than the page.
 
 Then audit the specimen with block 1 at full scope, pointed at the output
-directory, with `skills/anti-slop-build/` on the forbidden list. **A tell that
+directory, with `skills/build/` on the forbidden list. **A tell that
 fires is the build skill's failure, and it arrives with a file and a line.**
 
 ---

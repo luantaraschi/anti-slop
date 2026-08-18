@@ -1,5 +1,5 @@
 ---
-name: anti-slop-build
+name: build
 description: |
   Decide a product's visual identity and voice before building its interface,
   so the result is not the ecosystem's defaults wearing a product's name. Use
@@ -12,7 +12,7 @@ metadata:
   version: "0.1.0"
 ---
 
-# anti-slop-build
+# build
 
 ## What this is
 

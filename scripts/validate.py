@@ -13,14 +13,14 @@ DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit", "craft")
 
 # Every skill the plugin exposes, with the words its description has to keep to
 # go on firing at the right moment, and whether its references are a catalog of
-# tells or prose. anti-slop-build's deriving.md is prose: asking it for tells
+# tells or prose. The build skill's deriving.md is prose: asking it for tells
 # would report a defect where there is none.
 SKILLS = {
-    "anti-slop": {
+    "audit": {
         "triggers": DESCRIPTION_TRIGGERS,
         "catalog": True,
     },
-    "anti-slop-build": {
+    "build": {
         "triggers": ("identity", "generic", "deciding"),
         "catalog": False,
     },
@@ -115,7 +115,7 @@ def parse_frontmatter(text):
 
 
 def check_frontmatter(
-    text, name="anti-slop", triggers=DESCRIPTION_TRIGGERS, source="SKILL.md"
+    text, name="audit", triggers=DESCRIPTION_TRIGGERS, source="SKILL.md"
 ):
     """Check one skill's header against the name and triggers it must carry."""
     frontmatter = parse_frontmatter(text)

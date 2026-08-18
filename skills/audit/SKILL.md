@@ -1,5 +1,5 @@
 ---
-name: anti-slop
+name: audit
 description: |
   Audit an interface for the marks of work nobody finished. Use when a UI looks
   AI-generated or vibecoded, when reviewing a landing page or dashboard before
@@ -10,7 +10,7 @@ metadata:
   version: "0.3.0"
 ---
 
-# anti-slop
+# audit
 
 ## What this is
 
@@ -134,6 +134,33 @@ three sites still gets one row — name the site you would open first, and put t
 other two in the paragraph below it. Never continue a row onto a second line
 with the first columns left blank: it renders as a broken table and the reader
 cannot tell a second site from a second finding.
+
+## Who reads this
+
+Assume the reader can change the code and does not know the vocabulary. They
+know their site looks like every other site. They may not know what a type
+scale is, that `tabular-nums` exists, or why a radius would ignore what it
+wraps.
+
+That splits the report in two, and the split is the point.
+
+**What you detect stays precise.** The `Signal` fields are written for whoever
+runs the check, and they name properties, attributes and classes because that is
+what makes a finding land on a line instead of on a feeling. Never soften a
+Signal to make a report friendlier.
+
+**What you write is for the person.** Every finding says, in plain words, what
+is wrong and what it costs them — and then, beside it, where. "The numbers in
+your dashboard jitter every time they update, because most fonts give each digit
+a different width" is the finding. `components/stat-card.tsx:45` is where. A
+reader who has never heard of tabular figures understands the first half, and
+the second half is what an agent needs to fix it.
+
+The `Principle` field is already written this way and is the model: *a single
+word alone on a heading's last line is the clearest sign nobody ever resized the
+window to check.* Report at that altitude. If a finding cannot be stated without
+a class name, state the consequence first and the class name second, in the same
+breath.
 
 ## Report rules
 
