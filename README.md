@@ -38,7 +38,7 @@ any tool. It reports what is missing, not who (or what) left it that way.
 skills/audit/ ... the auditor, catalog included
    SKILL.md ......... the procedure: how to rank, what to load, how to report
    |
-   +-- references/surface.md  A1-A10   the palette, radius, shadows, type
+   +-- references/surface.md  A1-A12   the palette, radius, shadows, type
    +-- references/craft.md    C1-C15   the rendered result
    +-- references/states.md   S1-S3    the paths off the demo
    +-- references/words.md    W1-W7    the copy
@@ -46,7 +46,7 @@ skills/audit/ ... the auditor, catalog included
    +-- references/molds.md             recurring shapes across tells
    |
 skills/build/ the four roots, and what derives from them
-   SKILL.md ......... the process, the six recorded shapes, the reduction pass
+   SKILL.md ......... the process, the seven recorded shapes, the reduction pass
    +-- references/deriving.md          the rule per derived value
    |
 fixtures/ ........... four calibration specimens, two clean, two slop
@@ -81,6 +81,14 @@ Both fixtures named `clean-*` in this repository are the argument. `clean-landin
 runs a gradient and a `shadow-xl` — the same features the slop landing is
 accused over — drawn from colours its theme names, used once each. A2 and A4 are
 on its forbid row and neither has ever fired on it in a blind run.
+
+It works alongside the design skills rather than replacing them, and the
+boundary is narrower than this repository used to claim: a survey of
+`frontend-design` and its neighbours found the two reaching for the same palette
+count and the same naming rule, and disagreeing on type families. What is
+genuinely theirs is composition — the shape of the page and the one element it
+is remembered by. What is genuinely this one's is the recording, which none of
+them has.
 
 So the build skill does not tell you to avoid anything. It makes you decide four
 things the brief has to answer — what the product concretely is, its voice, its

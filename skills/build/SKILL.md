@@ -19,9 +19,29 @@ metadata:
 This skill runs before the components exist. It forces the decisions whose
 absence `anti-slop` detects, and writes them where `anti-slop` looks for them.
 
-It does not design. `frontend-design`, `ui-ux-pro-max` and
-`make-interfaces-feel-better` do that. This skill hands them decided
-constraints and stays out of the way.
+**It does design, and the honest boundary is narrower than "it does not."**
+A survey of the neighbouring skills, 2026-08-17, found that this one and
+`frontend-design` reach for the same palette count, the same rule against
+naming a colour for its rank, and the same removal pass — and disagree outright
+on how many type families a product should carry. Two skills making the same
+decision with different justification machinery is not a handoff.
+
+What is genuinely left to the design skills is **composition**: the shape of the
+page, what sits where, what the reader meets first, and the one element the page
+is remembered by. This skill derives the material a layout is made of — a
+measure, a page width, a spacing ladder, a scale — and then decides no layout.
+
+What this skill has that they do not is the recording. `frontend-design` keeps
+its plan in thinking and shows it when confident, so the reasoning evaporates on
+ship — and under the audit rule a genuinely decided page still takes a finding,
+because the evidence lives in a discarded draft. The seven shapes exist to stop
+that.
+
+If you run both, run this one first and hand its recorded decisions over **as
+the brief**. `frontend-design` follows a brief exactly and treats a memory only
+as a hint, so decisions that arrive as theme values rather than as words will be
+re-decided — and its own self-critique is primed to revise anything that "reads
+like a generic default," which a deliberately sober palette does, from outside.
 
 ## What it never does
 
