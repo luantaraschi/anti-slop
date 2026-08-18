@@ -11,6 +11,10 @@ This file is the method. It was reconstructed from the prompts that produced the
 runs in `calibration/`, because it had been living in those prompts and nowhere
 else.
 
+**The prompts themselves are in `calibration-prompts.md`.** This file is the
+reasoning; that one is the text to paste. If the two disagree, this one is the
+authority and the other one is stale.
+
 ## The blind run
 
 One fresh agent, one target, one invocation.
