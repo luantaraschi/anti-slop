@@ -1,149 +1,166 @@
 # Roadmap
 
-Sequenced by what unlocks what, not by what would be nice. `BACKLOG.md` holds
-the detail and the evidence for every item here; this file is the order and the
-reasoning for it.
+Sequenced by what unlocks what. `BACKLOG.md` holds the detail and the evidence
+for every item; this file is the order, the status, and what each one needs.
 
-Two constraints set the whole shape.
+Two constraints set the shape.
 
 **A blind run is spent once per round.** An agent that has read this repository
 cannot un-read it, so measurement is the scarce thing and unmeasured changes
-compound. There is a large pile of them right now.
+compound.
 
-**The audience changed on 2026-08-18.** This is for someone building with an
-agent who does not know the vocabulary and is often not on React. Half of that
-repositioning landed; the other half is items 2 and 3 below.
+**The audience is someone building with an agent** who does not know the
+vocabulary and is often not on React. That repositioning landed on 2026-08-18.
 
 ---
 
-## 1 — Measure what is already in · one round, five runs
+## Done
 
-**Why first.** The catalog went from 41 tells to 49, gained a fifth axis, had
-ten Signals broadened for stack neutrality, and gained two reading conventions —
-all since the last measurement. Every round so far has found at least one thing
-that fired for a reason nobody predicted, and the two most recent found a repair
-that was outright wrong.
+### 1 — Measure the catalog as it stands ✅ 2026-08-18
 
-The prompts are written. `docs/calibration-prompts.md`, block 1 plus block 2.
+Five blind runs, reports in `calibration/2026-08-18/`, score recorded in
+`fixtures/README.md` under `v4` before any repair it caused.
 
-| Run | Target | What it measures |
-|---|---|---|
-| `craft` | `slop-dashboard` | C13 fires; the broadened C10 |
-| `craft` | `clean-dashboard` | C13, C15 decline |
-| `states` | `slop-dashboard` | S1, S2 fire — the axis's first measurement |
-| `states` | `clean-dashboard` | S1, S2 decline |
-| `surface` | `slop-dashboard` | every rewritten Signal, clause by clause |
+| Run | Result |
+|---|---|
+| `slop-dashboard`, Surface | 6 of 6 expected, nothing off-row |
+| `slop-dashboard`, Craft | 11 fire, including C13 and C15 on their first read |
+| `slop-dashboard`, States | S1 and S2 fire, S3 declines — the axis's first measurement |
+| `clean-dashboard`, Craft | 0 of 15, one exemption out of fifteen declines |
+| `clean-dashboard`, States | 0 of 3, nothing leaked |
 
-**Done when** the reports are in `calibration/<date>/` and `fixtures/README.md`
-carries the score before any repair it causes.
+**Caveat recorded in the record itself:** the prompts were written by the author
+of the tells they measure, which `docs/calibration-method.md` says not to do.
+The agents were blind; the prompt-writing was not.
 
-**Unblocks** an honest "calibrated" claim covering the current catalog rather
-than the 41-tell one, which is what the README's maturity section currently has
-to hedge.
+### 2 — Stack neutrality ✅ 2026-08-17 and 18
 
-## 2 — Make the any-stack claim true · one corpus round
+Both skills. Ten Signals broadened, the four evidence places restated as roles,
+`deriving.md` and the build skill's replace-rather-than-extend rule given a
+plain-CSS equivalent, and stack removed as a scope limit. Measured in round 1
+above: A7's broadening "widened what gets examined without widening what gets
+convicted," and A5's removed a false citation it used to invite.
 
-**Why now.** The catalog says it reads any stack and all four fixtures are React
-and Tailwind. The claim is argued, not tested, and item 1 cannot test it either.
+**Not done, and it is the gap:** all four fixtures are still React and Tailwind,
+so the claim is argued rather than tested. See item 6.
 
-Build a fifth and sixth fixture: one plain HTML and CSS page nobody finished,
-one somebody decided. Same discipline as the existing four — an `expect` row and
-a `forbid` row, every id with code a reader can point at.
+### 3 — Build skill brought level ✅ 2026-08-18
 
-**Also here:** the build skill is a round behind on the same repair.
-`deriving.md` still tells a builder to replace `theme.colors` and
-`theme.spacing` by name, which is advice only a Tailwind project can take.
+A seventh recorded shape (Departure), a fifth survival check that tests records
+against each other rather than against the code each annotates, a contrast floor
+carried as a platform fact, and two hand-checks that cannot be done by reading.
 
-**Done when** a blind run on the new pair scores like the old pair does, and the
-build skill's derivation entries name roles rather than framework keys.
+### 4 — The false positioning claim ✅ 2026-08-18
 
-## 3 — Finish the audience repositioning · small, and overdue
+The build skill said it does not design and hands decided constraints to
+`frontend-design`. A survey found the claim was asserted, never checked, and
+wrong: the two share a palette count and a naming rule and conflict on type
+families. Corrected in both places it was published.
 
-Three things the 2026-08-18 change started and did not complete.
+### 5 — Repairs from round 1 ✅ 2026-08-18
 
-- **The Output example still shows the old terse format.** The report is
-  supposed to speak plainly now and the one worked example in the repo does not
-  demonstrate it. A reader copies the example.
-- **The build skill asks a vibe coder for "visual temperature" and "density".**
-  Those are designer words. The four roots are right; the way they are asked is
-  not, for the person this is now for.
-- **Report language is unruled.** The first real-world run reported in the
-  user's language with axis names translated and tell ids left in English.
-  Nothing says which is right.
+The counting-clause roster (short by two), A12's independently-readable second
+clause, C7's `display: none` gap on its third independent report, S2's Signal
+listing a case its own exemption forgave, and the States preamble exempting the
+corpus from its own axis.
 
-## 4 — The four tells known to be broken · needs item 1's run
+**And three comments this repository put into `clean-dashboard` that its code did
+not support** — the filter link that did nothing, the breakpoint claimed as
+measured while taken from the framework, and `12 = 5 + 7` stated as the tree's
+rule while holding at one of five panels. All three repaired in the code rather
+than the prose.
 
-Held because each is a Signal rewrite and Signal rewrites made without
-measurement have a poor record here: one wrong repair, two withdrawals.
+---
 
-- **C1** carries two different tests and a tree can pass one and fail the other.
-  Two rewrites drafted, both withdrawn — scoping to the sum fires it on the clean
-  fixture, scoping to flush corners stops it firing on the slop one.
-- **A5** is literally false of `slop-dashboard` under the conjunction convention,
-  because two font weights live in the untouched stock primitives. It fires only
-  if a reader supplies the stock-code scoping, and that rule is written as an
-  evidence test rather than as a clause-reading instruction.
-- **C3** contradicts itself: its Signal lists a numeric table column as a site
-  and its Fix restricts the treatment to values that change.
-- **C9's first exemption** releases a project where no control has a hover state
-  and the absence is uniform. Uniform absence of feedback is the absence of a
-  decision, which is this catalog's definition of a finding everywhere else.
+## Open, and what each needs
 
-## 5 — What the survey found and this repo has not taken
+### 6 — A plain HTML and CSS fixture pair · **can be done without you**
 
-From the four-way comparison against the overlapping design skills, 2026-08-17.
+The catalog says it reads any stack and every specimen is React and Tailwind.
+Two more fixtures — one page nobody finished, one somebody decided — with an
+`expect` row and a `forbid` row each, then a blind run against them.
 
-**Three positioning claims, one of them published and wrong.** The build skill
-says it does not design and hands decided constraints to `frontend-design`. It
-was never checked: the two share a palette count, an anti-rank-naming rule and a
-removal pass, and conflict outright on how many type families to use. The
-accessibility boundary excludes by category while claiming to exclude by method,
-and the catalog violates its own sentence in six places. And the handoff target
-fetches its rules from another repository's main branch at review time, so it is
-unversioned and carries no exemption of any kind.
+This is the largest remaining thing that does not need a ruling.
 
-**Four clauses on existing tells:** C10 gains a shadow with no dark counterpart,
-C7 gains easing and a door for a deliberate full slide-out, C4 gains the case
-where balance is silently ignored past about six lines, C6 gains the tinted
-neutral outline.
+### 7 — C1's impasse · **needs you**
 
-**Three for the build skill:** a seventh shape for a sanctioned local departure,
-a fifth survival check testing recorded decisions against each other rather than
-against the code each annotates, and a contrast floor carried as a platform fact
-rather than as evidence.
+Not a rewrite. A decision.
 
-## 6 — The launch skill · the largest remaining piece
+Its Signal holds two tests and a tree can pass one and fail the other. Two
+rewrites were drafted and both withdrawn, and two independent runs have now
+reproduced the split with locations: under the sum-only reading C1 fires twice on
+`clean-dashboard`, at `app/page.tsx:93` and `components/table.tsx:34`.
 
-Round 4 of `docs/specs/2026-08-17-anti-slop-plugin-design.md`. Sections 8 to 16
-of the reference document — SEO beyond what Finish greps, discovery, analytics,
-performance, security, uploads, privacy and legal copy, model behaviour in a
-user-facing product.
+**The step:** read those two sites and rule which reading is right. If the sum
+reading wins, the clean fixture gains two Craft findings and has to change. If
+the gate reading wins, the counting sentence should be demoted in the text so it
+stops looking like a second test.
 
-It returns three classes rather than one: a **finding** with a file and a line,
-a **measurement** that needs something run, and a **question** only a human can
-answer. That third class is what lets it carry material the auditor could never
-accept without contaminating the auditor's standard.
+### 8 — The build skill's four roots, in your audience's words · **needs you**
 
-**Held until last** because it roughly doubles the catalog, and a catalog where
-21 of 49 tells have no counterexample should not double before that number comes
-down.
+It asks for "visual temperature" and "density". Those are designer words and the
+reader is a vibe coder. The roots are right; the asking is not.
+
+**The step:** write how you would ask those four questions to someone who has
+never read a design brief. I can turn the phrasing into the skill; I cannot
+invent the vocabulary of an audience you chose and I have not met.
+
+### 9 — S3 and the unwired control · **needs a ruling, then I can build it**
+
+Both States runs found the same hole independently. A control that promises an
+action and performs none — four of `slop-dashboard`'s seven buttons — is exactly
+what the axis is named for, and no tell reaches it. S3 requires the action to
+exist before the guard can be missing.
+
+**The step:** decide whether that is a fourth States tell or a clause on S3. My
+read is a fourth tell, because S3's four exemptions are all doors for products
+that act. Say which and I will write it.
+
+### 10 — The rest of the survey · **mostly without you**
+
+Four clauses on existing tells (C10's shadow with no dark counterpart, C7's
+easing, C4's balance-ignored-past-six-lines, C6's tinted neutral outline), one
+removal (C9's first exemption releases uniform absence of feedback, which is the
+absence of a decision), and C3's self-contradiction.
+
+All are Signal edits, so they wait for a round that can measure them — which
+means they ride along with item 6's run rather than going in alone.
+
+### 11 — The launch skill · **the legal half needs you**
+
+Sections 8 to 16 of the reference document. Reach, speed, guard, trust. It
+returns findings, measurements and questions rather than findings alone.
+
+**The step for you:** the privacy, terms and retention material. You know that
+domain and I would be guessing where guessing has consequences. The rest —
+SEO detail, performance, analytics, the security handoff — I can draft.
+
+Held until last because it roughly doubles the catalog, and 21 of 49 tells still
+have no counterexample.
+
+---
+
+## Two steps that are yours today
+
+**Push.** Seven commits sit unpushed. Everything in the Done list above is local
+only.
+
+**Run the audit on two or three of your own projects.** Thirteen blind runs have
+scored fixtures this repository built. One has scored real code — your portfolio
+— and it found a placeholder endpoint that silently broke your contact form on
+three pages, plus three defects in the report format that no fixture could have
+surfaced. Real code is where false positives live, and it is the cheapest test
+you can run.
 
 ---
 
 ## What is deliberately not on this list
 
-**Closing every coverage gap.** Fifteen tells appear in no fixture row. Three of
-those are uncovered on purpose. Of the rest, A9 and C2 have already been measured
-as too broad, so the honest answer for some may be to cut rather than to cover.
-Building four fixtures to exercise a tell that should not exist is the expensive
-way to learn that.
+**Closing every coverage gap.** Fifteen tells appear in no fixture row. Three are
+uncovered on purpose. Of the rest, A9 and C2 have been measured as too broad, so
+the honest answer for some may be to cut rather than to cover.
 
-**More specimens for the build skill before its own repairs land.** Three exist
-and the fourteen repairs they produced are unmeasured. A fourth specimen would
-measure the same version again.
-
-**A rendered pass.** Every round has produced at least one defect that is only
-visible by opening the page — a header 214px out of alignment at 1920px, a
-closed panel reserving 52px it does not use. The Craft axis asks whether anyone
-looked and answers it entirely by reading code. That is a real limit, it is
-recorded, and closing it is a different product rather than the next item.
+**A rendered pass.** Every round produces at least one defect only visible by
+opening the page — a header 214px out of alignment at 1920px, a closed panel
+reserving 52px. The Craft axis asks whether anyone looked and answers it by
+reading code. Recorded as a limit; closing it is a different product.
