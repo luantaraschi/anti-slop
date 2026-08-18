@@ -80,7 +80,14 @@
   --rule-paper: color-mix(in srgb, var(--ink) 12%, var(--paper));
   --rule-slab: color-mix(in srgb, var(--chalk) 22%, var(--slab));
   --tie: color-mix(in srgb, var(--chalk) 38%, var(--slab));
-  --underline: color-mix(in srgb, var(--ink) 30%, var(--paper));
+  /* Platform fact: this underline is the only thing that distinguishes a link
+     from the prose beside it, and hover — the other cure — does not exist on a
+     touchscreen. At 30% it measured 1.96:1 on paper and a reader could not see
+     it. 60% is 4.63:1, which clears the 3:1 that WCAG 1.4.11 asks of a
+     boundary that carries meaning. The row divider's accepted cost above does
+     not extend here: a divider separates content that is legible without it,
+     and this separates nothing — it is the signal itself. */
+  --underline: color-mix(in srgb, var(--ink) 60%, var(--paper));
 
   /* Type family — from root 2 and root 3.
 
