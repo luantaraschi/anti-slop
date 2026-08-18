@@ -53,6 +53,7 @@ fixtures/ ........... four calibration specimens, two clean, two slop
 calibration/ ........ the blind audit reports, as the runs produced them
 scripts/validate.py . structural check over the catalog itself
 BACKLOG.md .......... what the last round left open, and what gates it
+ROADMAP.md .......... the order the open work should happen in, and why
 ```
 
 49 tells across five axes is far more than belongs in one context window, and
