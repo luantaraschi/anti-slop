@@ -230,3 +230,42 @@ the surveys identified independently, in the fixtures that model the alternative
   departure, a fifth survival check testing recorded decisions against each
   other rather than against the code each annotates, and a contrast floor
   carried as a platform fact rather than as evidence.
+
+## What the first real-world run found, 2026-08-18
+
+The first audit against a project nobody built as a fixture: a static portfolio,
+own CSS, vanilla JS. It produced five findings that all read as real, including
+a shipped placeholder endpoint that silently breaks the contact form on three
+pages. **A12 fired correctly on its first outing** — six global z-index values,
+no token naming any of them — which is the only measurement that tell has.
+
+Three defects in the report format, none of which any fixture could have
+surfaced, all repaired in this commit:
+
+- **A finding with more than one site had no representation.** The run stacked
+  continuation rows with the id and description columns blank, which renders as
+  a broken table where a second site is indistinguishable from a second finding.
+  One row, one location, the rest in the paragraph.
+- **The fourth column was overloaded.** It is specified to carry tell ids so a
+  reader learns which repairs collapse into each other; the run wrote a site
+  count there instead, which reads as though the finding fixes three other
+  findings.
+- **The verdict rule said "one sentence" and stopped.** One sentence carrying
+  nine inline code spans obeys it and is unreadable. It now has to survive being
+  read aloud.
+
+And one thing that is not a format defect: **the run audited a stack the skill
+declares out of scope, adapted the concepts sensibly, and did not say so.** It
+mapped `theme.extend` onto `:root` blocks and worked from there. That is usually
+the right call and the catalog now says so — but it has to be declared in the
+first line of the report, because a verdict reached through a translation is
+weaker than one reached directly and the reader has to be able to weigh it.
+
+Still open from this run, not repaired:
+
+- The report language followed the user rather than the catalog, so axis
+  headings were translated while tell ids and field names were not. No rule
+  covers this either way.
+- The five adapted axes were not named individually. If a tell cannot survive
+  the translation to a non-React stack it should be declined and named, and
+  nothing yet says which ones those are.

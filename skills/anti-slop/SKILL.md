@@ -116,10 +116,8 @@ number picked without measurement is the thing this catalog exists to object to.
 
 ```
 Verdict — stock shadcn dashboard, installed and never touched: the palette,
-the page title, the missing `lang`, the decorative sparkles, and the
-empty-state copy are all still whatever the scaffold produced, and 7 of 12
-finish checks fail because nothing after that first install was ever
-revisited.
+the page title, the missing lang attribute, the decorative sparkles and the
+empty-state copy are all still whatever the scaffold produced.
 
 ROOT
 A1  Palette nobody picked         tailwind.config.ts:12   fixes A2, A4, A5
@@ -131,10 +129,19 @@ A7  Sparkles decorating 4 heads   components/hero.tsx:23
 W3  "No items found" on 3 screens components/table.tsx:88
 ```
 
+One row, one id, one location, four columns at most. A finding that lives at
+three sites still gets one row — name the site you would open first, and put the
+other two in the paragraph below it. Never continue a row onto a second line
+with the first columns left blank: it renders as a broken table and the reader
+cannot tell a second site from a second finding.
+
 ## Report rules
 
 The verdict is one sentence naming the dominant pattern across axes, not a
-summary of each axis in turn.
+summary of each axis in turn. It has to survive being read aloud: name the
+pattern in words, and leave the identifiers, paths and class names for the
+findings underneath. A sentence carrying eight inline code spans obeys the
+one-sentence rule and defeats its purpose.
 
 A full invocation reports at most ten findings. A single-axis invocation has no
 cap: whoever typed `anti-slop craft` asked for that axis, and a Craft finding
@@ -150,8 +157,22 @@ never grouped by axis. Separate root findings from the ones they cause, and
 state which symptoms each root's fix kills. Every finding carries a file and
 a line.
 
+The fourth column carries tell ids and nothing else — `fixes A2, A4`. It is the
+one place a reader learns that repairs collapse into each other, so a count of
+sites, a severity, or a note written there costs them that. How many places a
+single finding touches belongs in its paragraph.
+
 ## Out of scope
 
 A rendered pass, a real console error, running the Finish axis against a
 site published over HTTP, and any stack outside React, Tailwind, and
 shadcn.
+
+**If you audit outside that stack anyway, say so first.** Much of this catalog
+transfers — a palette nobody picked is a palette nobody picked whether it lives
+in `theme.extend` or in a `:root` block, and most of Craft, Words and Finish
+never mentions a framework. Adapting is often the right call. Silently adapting
+is not: open the report with one line naming the stack you found and what you
+mapped onto what, so the reader can weigh a verdict reached through a
+translation. A tell that does not survive the translation is declined and named,
+not stretched.
