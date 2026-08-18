@@ -14,9 +14,14 @@ one failure and misses another is an oversight, and a project that handles none
 never considered the case.
 
 **A demo path is not a defect.** These tells fire on a product, not on a
-prototype that says it is one. A tree that declares itself a sketch, a
-Storybook story, or a fixture is out of scope here as everywhere else in this
-catalog.
+prototype that says it is one. A tree whose own code declares it a sketch or a
+Storybook story is out of scope, the same way F12 releases a placeholder inside
+one.
+
+That release is about what a file says of itself, not about where it sits. A
+calibration corpus is read as the shipped product it imitates — this catalog's
+own fixtures are audited by this axis, and an exemption keyed to the directory
+name would make the corpus unable to test the axis that lives in it.
 
 ### S1 — A request with no failure branch
 
@@ -30,7 +35,11 @@ catalog.
 
 ### S2 — State the URL never learns
 
-**Signal**  A filter, a tab, a sort order, a page number, a selected record, or an expanded panel held in component state, with nothing in the tree reading or writing it to the address — no search params, no route segment, no history entry. Count the state that belongs to the address against the state that reaches it.
+**Signal**  A value that names the view — a filter, a tab, a sort order, a page number, a selected record — held in component state, with nothing reading or writing **that value** to the address. Evaluate it once per value rather than once per tree: a project can put one thing in the address and leave another out, and the tell fires on the one left out.
+
+Whether a panel is open is not such a value, and it is not a site. The exemption below forgives it anyway, which made earlier readings of this Signal a trap: an auditor who found an expanded panel in component state had a fire that looked well evidenced and was wrong.
+
+The three cures the second clause names are not interchangeable, and the Principle's three costs are why. Search params and a route segment cure the refresh and the pasted link; only a history entry cures the back button. A value written to the address with `replace` rather than `push` has paid two of the three and still owes the third, and this tell reports the half that is missing rather than passing the whole.
 
 **Principle**  A view the reader cannot send to a colleague is a view that exists once. Refresh loses it, the back button does not undo it, and the link they paste opens something else. The test is whether the value answers "what am I looking at" — a filter does, and a hover preview does not.
 

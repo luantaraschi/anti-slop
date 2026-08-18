@@ -27,7 +27,9 @@ export function FilterControls() {
     if (next) query.set("overdue", "1")
     else query.delete("overdue")
     const search = query.toString()
-    router.replace(search ? `${pathname}?${search}` : pathname)
+    // push rather than replace: the filter is a place the reader can be, so
+    // the back button has to take them out of it again.
+    router.push(search ? `${pathname}?${search}` : pathname)
   }
 
   return (

@@ -3,6 +3,8 @@ import type { Config } from "tailwindcss"
 export default {
   content: ["./index.html", "./src/**/*.tsx"],
   theme: {
+    // One breakpoint, at the width the hero stops holding its measure.
+    screens: { wide: "48rem" },
     extend: {
       colors: {
         ink: "#1B1725",

@@ -3,6 +3,9 @@ import type { Config } from "tailwindcss"
 export default {
   content: ["./app/**/*.tsx", "./components/**/*.tsx"],
   theme: {
+    // One breakpoint, at the width the three figures stop fitting side by
+    // side. Named for what breaks there rather than for a t-shirt size.
+    screens: { ledger: "48rem" },
     extend: {
       colors: {
         ink: "#191C22",
@@ -11,8 +14,10 @@ export default {
         ledger: "#2F5D50",
         flag: "#B4451F",
       },
-      // panel wraps control with 7px of padding: 12 = 5 + 7. Keep that gap and
-      // the two curves stay concentric; change one number and change the other.
+      // 12 = 5 + 7 where a control sits flush in a panel's corner, which in this
+      // tree is the filter row and nowhere else. The other panels hold a column
+      // of content rather than a control in a corner, so they are not concentric
+      // with anything and take their radius from their own size.
       borderRadius: { control: "5px", panel: "12px", chip: "999px" },
       fontFamily: {
         display: ["Newsreader", "Georgia", "serif"],

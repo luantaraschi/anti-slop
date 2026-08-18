@@ -120,11 +120,17 @@ the trees it was written for.
 
 **A counting clause has to name what it counts and what count decides.** "Count
 the sites" without a threshold hands the verdict to whoever is reading. Three
-tells still fail this and are recorded rather than guessed at: A3 counts
-distinct radii and names no threshold, C2 says "otherwise asymmetric" and names
-no magnitude, and C4's count decides a case at a population of one, where it can
-only ever come out the same way. Fixing those means picking numbers, and a
-number picked without measurement is the thing this catalog exists to object to.
+tells still fail this and are recorded rather than guessed at: A3 counts distinct
+radii and names no threshold, C2 says "otherwise asymmetric" and names no
+magnitude, C4's count decides a case at a population of one where it can only
+ever come out the same way, and S1 and S2 both count without saying what the
+count settles. Fixing those means picking numbers, and a number picked without
+measurement is the thing this catalog exists to object to.
+
+**The threshold does not have to live in the Signal.** A10 passes this convention
+because its number sits in its `Not slop when` — a single importer among a dozen
+hand-rolled ones does not earn the exemption — and a run measuring it decided
+cleanly with nothing supplied. Anywhere in the tell is enough.
 
 ## Output
 

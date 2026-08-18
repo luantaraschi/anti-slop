@@ -47,13 +47,24 @@ const recent: Invoice[] = [
   },
 ]
 
-export default function OverviewPage() {
+export default function OverviewPage({
+  searchParams,
+}: {
+  searchParams?: { overdue?: string }
+}) {
+  // The filter lives in the address, so this is where it is read back. A
+  // link to this page with the filter on opens on the filtered ledger.
+  const overdueOnly = searchParams?.overdue === "1"
+  const shown = overdueOnly
+    ? recent.filter((invoice) => invoice.state === "overdue")
+    : recent
   // The gutter and the rhythm both step at the one width this ledger actually
   // changes shape at: below it the three figures cannot sit side by side and
-  // the header cannot hold its row. One breakpoint, chosen because the content
-  // breaks there, not because the framework offers five.
+  // the header cannot hold its row. That width is declared in the theme as
+  // `ledger` rather than taken from the framework's five, so the number in the
+  // config is the measurement and the class names point at it.
   return (
-    <main className="mx-auto max-w-5xl px-5 py-8 sm:px-10 sm:py-12">
+    <main className="mx-auto max-w-5xl px-5 py-8 ledger:px-10 ledger:py-12">
       <header className="flex flex-wrap items-baseline justify-between gap-y-3">
         <h1 className="font-display text-title text-balance">Overview</h1>
         <div className="flex items-center gap-4">
@@ -66,7 +77,7 @@ export default function OverviewPage() {
         </div>
       </header>
 
-      <section className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <section className="mt-10 grid grid-cols-1 gap-4 ledger:grid-cols-3">
         <LedgerStat
           label="Outstanding"
           metric="outstanding"
@@ -121,7 +132,7 @@ export default function OverviewPage() {
           <FilterControls />
         </div>
         <div className="mt-4">
-          <InvoiceLedger invoices={recent} />
+          <InvoiceLedger invoices={shown} />
         </div>
       </section>
 

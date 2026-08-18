@@ -131,7 +131,7 @@ and named, never stretched.
 
 ### A12 — A stacking order nobody declared
 
-**Signal**  Stacking values picked one at a time — 9999 beside 100 beside 50 beside 10 — with nothing anywhere naming the layers, no scale in a theme, no variable, no comment recording the order.
+**Signal**  Stacking values picked one at a time, none of which any scale, variable or comment names — 9999 beside 100 beside 50 beside 10, each written at the moment something had to appear. The absence of a scale is not the finding on its own: almost every unfinished project lacks one, and a tree that stacks nothing needs none. What fires is arbitrary values existing *and* nothing naming them.
 
 **Principle**  A stacking order is a system with three or four real layers: content, sticky chrome, overlay, and whatever the browser puts on top. Numbers picked at each callsite until the thing appeared are not that system, and the next element added to the page starts the escalation again.
 

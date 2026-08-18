@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="bg-gradient-to-b from-dusk to-ink px-5 py-16 sm:px-8 sm:py-24">
+    <section className="bg-gradient-to-b from-dusk to-ink px-5 py-16 wide:px-8 wide:py-24">
       <h1 className="text-display text-chalk max-w-3xl">
         Every invoice your firm sent, reconciled the morning after.
       </h1>

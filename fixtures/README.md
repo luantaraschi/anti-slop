@@ -19,7 +19,7 @@ fixture to fix.
 
 | Fixture | Kind | IDs |
 |---|---|---|
-| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, S1, S2, F1, F2, F11, W3 |
+| `slop-dashboard` | expect | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, C15, S1, S2, F1, F2, F11, W3 |
 | `slop-landing` | expect | A2, A7, A8, C15, W1, W6, W7, F2, F3, F4, F5, F12 |
 | `clean-dashboard` | forbid | A1, A3, A4, A5, A6, A10, C1, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, C15, S1, S2, F1, F2, W3 |
 | `clean-landing` | forbid | A2, A4, A7, C13, C15, W1, F3, F4 |
@@ -874,3 +874,129 @@ Left open, all from the same two reports:
   offers Accepted cost for the two-theme case only.
 - **The inventory has no specified filename or location.** "It is a file" is the
   whole guidance.
+
+### v4, the fifth axis and the broadened catalog, 2026-08-18
+
+Five blind runs. Reports in `calibration/2026-08-18/`. This round measured the
+States axis for the first time, the eight tells added on 2026-08-17, the ten
+Signals broadened for stack neutrality, and the two reading conventions.
+
+**A caveat on this round's independence.** The prompts were written by the same
+author as the tells they measure. The agents were fresh and could not read this
+file, but "aim the run at what changed" and "tell it what to expect" are close
+together. `docs/calibration-method.md` says never to measure in the session that
+made the change; this round did. Weigh it accordingly.
+
+| Run | Result |
+|---|---|
+| `slop-dashboard`, Surface | **6 of the 6 expected ids, nothing off-row.** A11 and A12 both decline. |
+| `slop-dashboard`, Craft | **11 fire.** Ten of the eleven expected reported; C7 named inside C8's kill list rather than given its own line. C15 also fired, see below. |
+| `slop-dashboard`, States | **S1 and S2 fire, S3 declines.** Both expected ids, nothing off-row. |
+| `clean-dashboard`, Craft | **0 of 15 fire.** Ten at state three, four door one, one exemption. |
+| `clean-dashboard`, States | **0 of 3 fire.** Nothing leaked. |
+
+**The three-decline distinction is holding.** On `clean-dashboard` exactly one of
+fifteen declines is an exemption. Two earlier rounds produced runs that labelled
+most declines door two; this one named the trap and avoided it: calling those
+exemptions "would invent fourteen failures that do not exist."
+
+**The conjunction convention decided three Surface outcomes, all toward
+restraint.** A8, A11 and A12 each fire under a disjunctive reading and decline
+under the conjunctive one. The convention is load-bearing rather than decorative.
+
+**The broadening did what a broadening should.** A7 reached an inline SVG a
+library-keyed Signal would never have looked at, and then let it go on every
+decoration clause: it "widened what gets examined without widening what gets
+convicted." And A5's rewrite removed a false citation it used to invite, since a
+grep for Inter in this tree returns `setInterval` and `clearInterval`.
+
+### Recorded for v4, not fixed
+
+**A row of this file was wrong, not a tell.** `slop-dashboard` fires C15 and its
+expect row did not list it. The row came from a grep that matched `sm:` and `lg:`
+as cva object keys in the stock button rather than as responsive variants; the
+tree has no responsive treatment at all. The row is corrected above and the error
+is recorded here because it was the author's, not the catalog's.
+
+**Three comments this repository added to `clean-dashboard` on 2026-08-17 claim
+more than its code does**, and two blind runs found them independently.
+
+- The filter comment says a colleague sent the link sees the same ledger and the
+  back button undoes the filter. **Neither is true.** `router.replace` writes no
+  history entry, and nothing consumes the param: it reaches `aria-pressed` and
+  `disabled` and nowhere else, so the link changes which button looks pressed and
+  nothing about which invoices show.
+- The breakpoint comment says the width was chosen because the content breaks
+  there rather than because the framework offers five. It uses `sm`, which is one
+  of the five, and the theme declares no `screens` key.
+- `12 = 5 + 7` is stated as the tree's rule and holds at one of the five places
+  `rounded-panel` is used.
+
+This is the failure the build skill's survival checks exist to prevent,
+committed by the author into the fixture that models the alternative.
+
+**The States axis exempts the corpus from itself.** `states.md` releases a tree
+that declares itself a sketch, a story or a fixture, and the fixtures live under
+`fixtures/` and comment on their own role. A run scored the tree only because the
+invocation overrode the exemption, and said so at the top.
+
+**S3 is unfirable on a tree that has not been wired, and both States runs reached
+that independently.** Four labelled action buttons with no handler satisfy
+neither limb, and the decline reads identically to a tree that guards everything.
+A control that promises an action and performs none "is exactly the failure this
+axis is named for, and none of S1, S2 or S3 reaches it."
+
+**S2 has an internal contradiction and an exemption structure small projects
+cannot reach.** Its Signal lists an expanded panel as a site and its exemption
+forgives whether a menu is open, which is the same object in most trees; one run
+called it a trap. And all three of its doors are shaped *the project does this
+correctly elsewhere*, so a two-route app that has never touched the address bar
+cannot open any of them.
+
+**S2's clause 2 treats three cures as interchangeable** where its Principle names
+three separate costs. Search params fix refresh and the pasted link; only a
+history entry fixes the back button. `clean-dashboard` is the demonstration and
+S2 has no wording that registers the missing half.
+
+**A11's threshold cannot be computed for its own example.** It fires on distances
+differing by an order of magnitude and offers a colour change against a full
+panel translate as the pairing, and a colour change travels zero.
+
+**A12's second clause is true of almost every unfinished project** and survives
+only by being grammatically subordinated to the first with the word "with". Read
+as independent it fires on a tree containing no stacking values at all.
+
+**A5's clause 2 could flip the tell.** Two weights render on `slop-dashboard`, one
+authored and one arriving inside the stock button. The run supplied *count the
+weights doing authored emphasis*; the literal reading fails the clause and
+declines A5 where its row requires it.
+
+**A1's clause 2 does not list the case it meets most often.** A semantic name from
+an unmodified install, resolving against a property nobody defined, is neither a
+framework default called by number nor a hex typed at a callsite.
+
+**The counting-clause roster is short by two.** SKILL.md names A3, C2 and C4 as
+the tells that count without naming a threshold. S1 and S2 both do too.
+
+**And the fix for all of them is already in the catalog.** A10's counting clause
+passes the convention because its threshold lives in the `Not slop when`: the
+threshold "does not have to live in the Signal, it just has to live somewhere in
+the tell."
+
+**C1's impasse was reproduced a second time, with locations.** Under the sum-only
+reading C1 fires twice on `clean-dashboard`, at `app/page.tsx:93` and
+`components/table.tsx:34`. The run took the gate reading on the catalog's own
+grounds and recorded that a round which measures the repair may come back and
+fire there.
+
+**C7's `display: none` gap, third independent report.** The panel is a conditional
+unmount, which is more abrupt than `display: none`, and the tell names only the
+CSS form.
+
+**C3 disagrees with itself and carries no warning.** Its first sentence lists a
+numeric table column as a site; its counting sentence excludes a static one. C1
+carries that warning in its own text; C3 has the same problem and carries none.
+
+**C14 does not reach an empty-to-populated height swap**, which costs the reader
+their place in exactly the way its Principle describes, because the branch says
+*pending* and an empty state is not a pending one.

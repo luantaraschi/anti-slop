@@ -165,7 +165,10 @@ this a skip rather than a habit.
 ### C7 — Enter and exit weigh the same
 
 **Signal**  The same duration and the same distance in both directions, or an
-exit that is just `display: none` while the entrance animates.
+exit that is instant while the entrance animates. Instant takes three forms and
+they count alike: `display: none`, a conditional unmount, and a class removed
+with no transition behind it. In a component framework the unmount is the common
+one, and it is more abrupt than the CSS form rather than less.
 
 **Principle**  Whatever is leaving has already had the user's attention moved
 to what comes next. An exit that matches the entrance holds the eye where it
