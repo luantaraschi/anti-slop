@@ -26,7 +26,7 @@
    `min-height` beside them was quietly covering for. A fourth, the figure's
    breakpoint, still has to be a literal and now mirrors a derived token.
 
-   What remains is **25 sites carrying 11 distinct values**, and the two numbers
+   What remains is **28 sites carrying 11 distinct values**, and the two numbers
    are both given because a blind audit of this page found that the single
    figure that used to stand here — "sixteen" — reproduced on no consistent
    basis and the comment named none. A count with no stated basis is not a count
@@ -34,7 +34,7 @@
 
    The eleven, and why each is an exception on purpose rather than a leftover:
 
-     · 1px at six sites — a hairline, which is not a step on any scale. The
+     · 1px at seven sites — a hairline, which is not a step on any scale. The
        fifth is gone: the frame's border is a token now, because the radius
        equation needs it. The navigation rule and the action outline add two
        more sites, but not another kind of boundary.
@@ -42,14 +42,14 @@
        rules that declare one. They have to stay legible at every type size and
        so cannot scale with one.
      · -0.015em, 0.08em, 0.2em and 0.9em — tracking on the title, tracking on
-       the two utility labels, underline offset, and the two reduced code
+       the three utility labels, underline offset, and the two reduced code
        sizes. Every one is a proportion of the token it sits on rather than an
        independent value.
      · 40px at four sites, a fingertip: the brand, navigation links, actions
        and extended footer-link target.
      · 0.01ms, twice — how a stylesheet says "no motion" without removing the
        declaration, once for animation and once for transition.
-     · 661px at two media rules and 1160px at one, the media-query widths,
+     · 661px at three media rules and 1160px at one, the media-query widths,
        which cannot read a custom property at all; see the platform fact
        recorded at `.column`.
 
@@ -603,10 +603,38 @@ header p {
   margin: 0;
 }
 
+.specimen-stage {
+  margin: 0 0 var(--s-label);
+  padding-bottom: var(--s-label);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-label);
+  font-family: var(--face-code);
+}
+
+.specimen-stage strong {
+  color: var(--flag);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: 0.08em;
+}
+
+.specimen-stage span {
+  color: var(--margin);
+  font-size: var(--text-note);
+  line-height: var(--lh-note);
+  text-align: right;
+}
+
 .specimen img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1280 / 760;
+  object-fit: cover;
+  object-position: top;
   border: var(--frame-border) solid var(--rule);
   border-radius: var(--radius-frame);
   padding: var(--frame-pad);
@@ -624,6 +652,18 @@ header p {
 .specimen figcaption b {
   color: var(--ink);
   font-weight: var(--weight-strong);
+}
+
+@media (max-width: 661px) {
+  .specimen-stage {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--s-inline);
+  }
+
+  .specimen-stage span {
+    text-align: left;
+  }
 }
 
 /* Findings ---------------------------------------------------------------- */

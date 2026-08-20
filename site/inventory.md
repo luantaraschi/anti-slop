@@ -92,6 +92,12 @@ has ever fired on it in a blind run.
 `img/slop-landing.png` is `fixtures/slop-landing` rendered at 1280×1000 in
 Chromium on 2026-08-18.
 
+The comparison frame uses a 1280:760 aspect ratio for both screenshots. The
+slop fixture is aligned to the top and its last 240 pixels are cropped; that
+keeps the hero, the repeated cards and the unsupported figures visible while
+giving the two pieces of evidence equal visual weight. The lull capture already
+has that ratio and is shown whole.
+
 **The caveat that belongs with it:** that fixture is not a runnable application.
 It is a reading specimen with no `package.json`, no entry module and no
 stylesheet. To photograph it, the tree was copied out of the repository and the
@@ -99,12 +105,18 @@ missing entry scaffolding was added to the copy. What the image shows is the
 fixture's own components compiled with its own theme file, not the fixture
 directory as the auditor reads it. Nothing under `fixtures/` was modified.
 
-`img/lull.png` is the public page for
+`img/lull-example-05cfa6d.png` is the public page for
 [`lull`](https://luantaraschi.github.io/lull/) rendered at 1280×760 on
 2026-08-20 from the local checkout at commit `05cfa6d`. The screenshot shows
 the complete opening claim and the start of the interactive instrument. The
 page drives the same pure reducer exported by the package; that relationship is
 stated in lull's own page and README rather than inferred here.
+
+`img/ledgerline.png` remains in the published artifact as a compatibility
+asset. The previous deploy removed it at the same moment the HTML stopped
+referencing it, so a browser holding the older HTML briefly rendered its alt
+text against the newer artifact. Keeping the old path makes both sides of that
+cache boundary valid. The current page does not reference it.
 
 **Why the second image is not `fixtures/clean-landing`.** That fixture is clean
 in the auditor's sense: every value on it was decided. It is not composed,
