@@ -36,7 +36,7 @@ it ever consults the exemption. The blind run did read it, and declined the
 gradient by name.
 
 `clean-dashboard` shares that role now, for a different reason: it carries one
-deliberate miss. Five of its six headings carry `text-wrap: balance` —
+deliberate miss. Five of its six headings carry `text-wrap: balance` -
 `app/not-found.tsx:6`, `app/page.tsx:54`, `app/page.tsx:106`,
 `app/invoices/page.tsx:13`, and `components/table.tsx:35` all have it. The
 `Reminders waiting on you` heading at `app/page.tsx:94` does not, on purpose:
@@ -46,7 +46,7 @@ every heading right could only ever exercise the first door, that the condition
 never arises at all. `app/page.tsx:94` is annotated in place as the isolated
 oversight the second door needs something to be tested against.
 
-That heading read `Reminders` — one word — until the round of 2026-08-17. The
+That heading read `Reminders` - one word - until the round of 2026-08-17. The
 v2 calibration had narrowed C4 so that a heading of three words or fewer is not
 a site at all, which left the tell declining it before the second door was ever
 consulted and the corpus with no C4 door-two exercise anywhere. Lengthening it
@@ -70,7 +70,7 @@ and W7. That is twenty-one of forty-nine with no `forbid` coverage, a bit over
 two in five, which means that many "Not slop when" clauses have never been
 tested against a fixture built to disarm them, and that clause is the field
 separating this catalog from a linter. F10's absence is a decision with a
-reason, recorded below; C2 and C6's absence is too — no fixture has an
+reason, recorded below; C2 and C6's absence is too - no fixture has an
 asymmetric icon inside a control or a content image, so neither condition
 ever arises in this corpus. The other eight are a plain gap.
 
@@ -237,15 +237,15 @@ either way for those two.
 
 The counts below are what the seven runs produced, before the repairs they
 caused. Throughout this entry an id counts as **reported** when it carries a
-finding of its own. An id named only inside another finding — in its kill list
-or its body — is not reported, however plainly the run says it fires.
+finding of its own. An id named only inside another finding - in its kill list
+or its body - is not reported, however plainly the run says it fires.
 
-- `slop-dashboard`, full: 9 of the 20 expected ids reported — A1, A6, C3, C10,
+- `slop-dashboard`, full: 9 of the 20 expected ids reported - A1, A6, C3, C10,
   C11, C12, F1, F2, W3. Under the old cap.
-- `slop-dashboard`, Craft only, cap suspended: 9 of the 10 expected Craft ids —
+- `slop-dashboard`, Craft only, cap suspended: 9 of the 10 expected Craft ids -
   C1, C3, C5, C7, C8, C9, C10, C11, C12. C4 was the miss, filed under "Marginal
   but real" instead of as a finding.
-- `slop-landing`, full: 9 of the 11 expected ids — A2, A7, A8, W1, W6, W7, F2,
+- `slop-landing`, full: 9 of the 11 expected ids - A2, A7, A8, W1, W6, W7, F2,
   F5, F12. Under the old cap.
 - `clean-dashboard`, full: 0 of the 19 forbidden ids leaked. The run reported
   nothing at all, for the second calibration running.
@@ -276,7 +276,7 @@ Four further ids on `slop-dashboard` were found and not given a line: A3, A4,
 A10 and C1 are all named inside A1's own finding, in its kill list at the top of
 the report and again in its body, which is a run that reached them and had no
 room to list them. Two more, A5 and C4, appear in neither the report nor the
-declined list — grep the artifact for either id and it is not there — and that
+declined list - grep the artifact for either id and it is not there - and that
 is the same suppression with nothing written down at all. None of the six reads
 as a tell that failed: four are visible in the report's own text, and two are
 missing from a report that had already run out of room. The Craft-only run on
@@ -300,7 +300,7 @@ What it does not establish is that door two works, because six of those seven
 declines are not door-two cases. In six of them the tree holds no failing
 instance at all: the correctly handled occurrence is the only occurrence, or
 every occurrence is correct. Door two releases a tell that *is* firing
-somewhere because the project got the same detail right elsewhere — C7's clause
+somewhere because the project got the same detail right elsewhere - C7's clause
 asks whether "asymmetry is already the habit in the project's other enter/exit
 pairs and this pair alone broke it", and there are no *other* pairs when the
 tree holds one and that one is right. With no failing instance the Signal never
@@ -318,9 +318,9 @@ Three repairs came out of the round, none of them to a fixture:
   for that axis. And whatever the cap does cut now has to be counted in the
   report, by axis, so nobody loses information without being told they lost it.
 - **C4's second door was a judgment, not a rule.** The full run on
-  `clean-dashboard` declined C4 — "One heading without the property against
+  `clean-dashboard` declined C4 - "One heading without the property against
   four with it reads as a single oversight in a codebase that otherwise applies
-  the treatment consistently, not as a pattern of nobody checking" — and the
+  the treatment consistently, not as a pattern of nobody checking" - and the
   Craft-only run fired it on the same fixture and the same evidence. One
   hypothesis, heads once and tails once. The door is now a count: among the
   sites of the same kind, more carrying the property than missing it opens it,
@@ -328,7 +328,7 @@ Three repairs came out of the round, none of them to a fixture:
 - **C4 fired on headings that cannot wrap.** The Craft-only run on
   `slop-dashboard` filed it under "Marginal but real" and gave the reason in
   the same breath: "Every heading in the tree (`Dashboard`, `Invoices` ×2,
-  `Page not found`, `Filters`) is one or two words — none will realistically
+  `Page not found`, `Filters`) is one or two words - none will realistically
   wrap at any reasonable viewport, so the heading half of this tell is weak to
   the point of not really applying." A one-word heading is not a site a report
   can rest on, so it is no longer a site at all. The threshold is four words.
@@ -353,9 +353,9 @@ loosening C4.
 **The majority rule that replaced C4's judgment is untested, and door two closed
 nothing in the shape it was written for.** Run 6 labelled seven declines door
 two and gave each one a site, which reads as heavy exercise and is not. Six of
-the seven have no failing instance anywhere in the tree — the one enter/exit
+the seven have no failing instance anywhere in the tree - the one enter/exit
 pair is asymmetric, the one figure that moves carries `tabular-nums`, all eight
-borders declare both themes — so the Signal never matched, and a door that
+borders declare both themes - so the Signal never matched, and a door that
 excuses a failure had no failure in front of it. Those six are door one under
 door two's label. The seventh is C1, which is the second of the three cases
 below. Door two closed zero cases in the shape the clause describes.
@@ -370,14 +370,14 @@ previously named the first as the only one:
   unchanged; the path to it is gone.
 - **C1 on the chip inside the panel.** `rounded-chip` (999px,
   `components/invoice-row.tsx:39`) sits inside `rounded-panel` (12px,
-  `components/table.tsx:48`), whose padding is `px-5 py-2` — 20px and 8px,
+  `components/table.tsx:48`), whose padding is `px-5 py-2` - 20px and 8px,
   neither of them past the 24px that opens door one. An inner radius larger
   than the outer one is C1's Signal in as many words. Against it stands the one
   concentric pair the tree does hold, `components/filter-panel.tsx:53-55`. C1's
   Signal says to count the nested pairs against the concentric ones and never
   says what count opens the door, so one against one settles nothing. Run 6
   declined it by asserting that "a pill's radius is set by its own height, not
-  by an outer wrap" — an exemption for pills that C1 does not contain.
+  by an outer wrap" - an exemption for pills that C1 does not contain.
 - **C5 on the `row` size.** `components/ui/button.tsx:27-28` declares `row` at
   `h-7` (28px) and `control` at `h-9` (36px), both under the 40px floor, and
   `row` is used at five text-button sites with no extension against the one
@@ -390,14 +390,14 @@ previously named the first as the only one:
   reverses to a firing finding".
 
 All three are the same failure C4's second door was repaired for, a judgment
-where the tell should carry a rule, and two of them are still live — on the
+where the tell should carry a rule, and two of them are still live - on the
 fixture whose job is to prove the exemptions hold. C1 and C5 are not repaired
 here: a Signal rewrite for either would go into the catalog unmeasured, and one
 remedy should cover all three at once.
 
 The C4 half of that remedy is already specified, for the round after this one:
 lengthen that heading past three words, still without `text-balance`, and
-re-run blind. That is not a fixture edited to suit a tell — the demanded verdict
+re-run blind. That is not a fixture edited to suit a tell - the demanded verdict
 is identical before and after, and only the mechanism that produces it is
 restored.
 
@@ -410,7 +410,7 @@ paragraphs against three untreated labels resolves to "fires" for a reader who
 counts labels and "declines" for one who does not, which is the same
 two-answers property the door repair was written to remove, surviving on the
 other half of the same tell. It changes no verdict across these four fixtures,
-because on each of them the counts are degenerate — which is exactly why the
+because on each of them the counts are degenerate - which is exactly why the
 corpus will not catch it. Inherited rather than introduced by this round, and
 recorded rather than repaired, because a Signal rewrite here would go into the
 catalog unmeasured.
@@ -421,8 +421,8 @@ a conjunction: no `theme.extend.colors`, no color custom property anywhere,
 clauses hold. The third stopped holding when this round extended the fixture:
 `components/table.tsx:1-5` declares `bg-red-500`, `bg-green-500` and
 `bg-gray-400` to carry invoice status, so gray is no longer the only secondary
-color in the tree. A1 still fires, on the dominant clause — the empty
-`theme.extend` — and run 1 reached it as ROOT off exactly that evidence, so the
+color in the tree. A1 still fires, on the dominant clause - the empty
+`theme.extend` - and run 1 reached it as ROOT off exactly that evidence, so the
 corpus gets the verdict it demands. What it no longer gets is a signal a reader
 can check clause by clause without finding one the fixture contradicts. The
 repair, if there is one, is to A1's wording rather than to the fixture, and it
@@ -438,7 +438,7 @@ a rule to follow, which is what a quota does to an honest count. It fell outside
 what this round was ruled on, which is why it is recorded here with the runs
 that produced the evidence. `SKILL.md` now reads "at most ten findings": the
 ceiling the round ruled on is untouched, and the floor nobody ruled on is gone.
-Like the three repairs above, that change is unmeasured — no run has been blind
+Like the three repairs above, that change is unmeasured - no run has been blind
 to it.
 
 **F11 declined on `slop-dashboard`, where the row expects it.** The run found
@@ -446,9 +446,9 @@ the missing `key` at `components/table.tsx:17` and then declined, in these
 words:
 
 > Both current call sites (`app/page.tsx:12-17` and `app/invoices/page.tsx:3`)
-> pass a hardcoded, never-filtered, never-reordered array — the `FilterPanel`
+> pass a hardcoded, never-filtered, never-reordered array - the `FilterPanel`
 > toggle doesn't touch `rows` anywhere in the code shown. The tell's own
-> exemption ("the list is genuinely immutable — never reordered, never
+> exemption ("the list is genuinely immutable - never reordered, never
 > filtered") applies to what's actually on the page today, even though the
 > presence of a Filters affordance makes it likely this list stops being static
 > later.
@@ -487,9 +487,9 @@ what the round was for. v2 narrowed C4's heading half to four words and left the
 corpus with no site that could exercise the count: the clean dashboard's
 deliberate oversight was the single word `Reminders`, below the floor, so C4
 declined before reaching the door. At four words it is a site, and the run
-closed it on the arithmetic — "2 carry, 1 misses. A strict majority carries, so
+closed it on the arithmetic - "2 carry, 1 misses. A strict majority carries, so
 the door opens." The same run recorded that it had refused the source comment
-sitting beside that heading: "I scored the count, not the comment — the verdict
+sitting beside that heading: "I scored the count, not the comment - the verdict
 above is what the class attributes produce on their own."
 
 **C1's pill carve-out and C5's labelled-control carve-out both held, on both
@@ -500,8 +500,8 @@ Neither tell lost a fire it should have kept.
 
 **A1's repair failed.** Its third clause was false of `slop-dashboard` and was
 rewritten; the replacement is false too. The run walked all three clauses and
-reported clause three — "so every color in the tree is a framework default
-called by its number" — as false on three counts: a hand-typed hex in
+reported clause three - "so every color in the tree is a framework default
+called by its number" - as false on three counts: a hand-typed hex in
 `app/icon.svg:2`, `bg-white` at `app/layout.tsx:8` which is a default called by
 name rather than number, and fifteen-plus semantic classes in `components/ui/`
 that are neither. The tell fired anyway, on the reading that clause three is a
@@ -511,21 +511,21 @@ plainly should fire."
 
 The same run found something the tell has no language for at all. Because no
 custom property is defined anywhere, every `bg-primary` and `ring-ring` in the
-untouched `components/ui/` is **dangling** — it resolves to nothing. "The tree
+untouched `components/ui/` is **dangling** - it resolves to nothing. "The tree
 isn't merely using the default palette raw; it contains a second, entirely
 non-functional color vocabulary that renders as blank."
 
 ### Recorded for v3, not fixed
 
-Ten rules were supplied across the three runs — each one a place where reaching
+Ten rules were supplied across the three runs - each one a place where reaching
 a verdict needed something the tell does not say. Three are structural.
 
 **The Craft axis cannot tell chosen code from installed code, and SKILL.md is
 where that goes missing.** C8's and C11's second doors are both opened by
 untouched stock shadcn: `transition-colors` and `disabled:opacity-50`, both at
 `components/ui/button.tsx:8`. The Craft run fired both anyway and named exactly
-what it had to supply — "stock shadcn boilerplate is not the project's own
-evidence that someone looked" — then located the hole: "SKILL.md has exactly
+what it had to supply - "stock shadcn boilerplate is not the project's own
+evidence that someone looked" - then located the hole: "SKILL.md has exactly
 that clause, and assigns it to Surface, then says Craft's rule 'takes a
 different form.' Craft's different form never picks the clause back up. Applied
 as written, both tells decline on this tree." v2's ledger predicted these two
@@ -542,7 +542,7 @@ finding that six of run 6's seven door-two declines were not door-two cases.
 **C1 contains two different tests and passes the clean fixture on only one.**
 Its first sentence fires on equal or inverted radii; its second sentence, its
 Fix and its door all measure `outer = inner + padding`. Three nested pairs in
-`clean-dashboard` are non-concentric by the second and invisible to the first —
+`clean-dashboard` are non-concentric by the second and invisible to the first -
 `app/page.tsx:89`, `components/table.tsx:34`, and `components/table.tsx:19`.
 "An auditor who reads sentence two as the test will fire on this tree, and one
 who reads sentence one will not. That divergence is in the tell, not in the
@@ -572,7 +572,7 @@ Four narrower ones:
 `components/stat-card.tsx:46` declares `text-flag` with no dark counterpart while
 the branch beside it carries one, and `components/invoice-row.tsx:24` flips that
 same colour for the other theme. Two components render one semantic state and
-only one of them was opened in dark mode — C10's Principle almost word for word.
+only one of them was opened in dark mode - C10's Principle almost word for word.
 C10's Signal names borders, dividers and separator colours, and a stat figure's
 foreground is none of those. The run declined it rather than widen the Signal,
 and said: "This is the finding I would most want the tell rewritten to catch."
@@ -585,7 +585,7 @@ the build skill's failure, and it arrives with a file and a line.
 
 Two agents, neither of which saw the other's instructions. The builder read
 `anti-slop-build/SKILL.md` and `deriving.md` and its brief, and was forbidden
-the fixtures, the auditor and its catalog — a builder that reads
+the fixtures, the auditor and its catalog - a builder that reads
 `clean-dashboard` is copying, not deciding. The auditor read the four axis
 files and `molds.md` and the specimen, and was forbidden the build skill, the
 fixtures and this file. The brief described Wickfield, irrigation scheduling
@@ -596,14 +596,14 @@ beside it. Both are the artifacts, unedited.
 
 **2 of 41 tells fire. Surface 0/10, Craft 1/12, Words 0/7, Finish 1/12.**
 
-- **C4** — no `text-wrap: balance` or `text-pretty` anywhere in the tree. 4
+- **C4** - no `text-wrap: balance` or `text-pretty` anywhere in the tree. 4
   heading sites and 12 text-block sites, 0 carrying. Both doors shut: "This is
   the pattern, not an oversight."
-- **F4** — `og:title`, `og:description` and `og:image` all absent.
+- **F4** - `og:title`, `og:description` and `og:image` all absent.
 
 Both failures trace to a gap in the build skill rather than to a slip.
 `deriving.md` carries no entry for typography treatment at all, so nothing in it
-told the builder that headings and short text blocks take a wrap property — the
+told the builder that headings and short text blocks take a wrap property - the
 same builder had already reported, independently, that spacing, measure and type
 family have no entries either. F4's absence is one step further out: the build
 skill covers no Finish material, and the builder wrote a well-argued abstention
@@ -614,7 +614,7 @@ it, with no reason given for either.
 round's second question, because a tree built to record its own decisions is a
 tree full of prose that predicts the verdict. It reported: "Had every comment
 been stripped from this tree, my tell-by-tell result would be identical." In two
-places it named prose that tried to move a verdict and did not — the Open Graph
+places it named prose that tried to move a verdict and did not - the Open Graph
 abstention that "argues the image and only the image," and a config comment
 recording a heading "set to wrap to two lines," of which it said that knowing
 the wrap is deliberate "makes the unmanaged break point a stronger finding, not
@@ -622,7 +622,7 @@ a weaker one."
 
 **A1 has a third defect, found here rather than on the fixtures.** The Signal
 tests `theme.extend.colors`, and this specimen replaces `theme.colors` outright
-so that framework utilities stop compiling — which satisfies A1's first conjunct
+so that framework utilities stop compiling - which satisfies A1's first conjunct
 on a technicality. It changed no verdict here, because the other conjuncts fail
 against ten custom properties. The auditor named the reverse case, which is the
 dangerous one: "a project that replaced `theme.colors` with the framework's own
@@ -639,8 +639,8 @@ twelve supplied rules and marked two load-bearing.
 **The catalog can tell a decided gradient from a default one, and it does it on
 code.** The expressive page runs a saturated gradient, a hot accent and an
 800-weight display face, and A2 declined because the utilities its Signal names
-do not exist in that project — the colour scale and the background-image scale
-are both replaced, so `from-purple-*` cannot be typed — and because the gradient
+do not exist in that project - the colour scale and the background-image scale
+are both replaced, so `from-purple-*` cannot be typed - and because the gradient
 reads its stops from the same object the theme reads. A4 declined because
 `boxShadow: {}` is empty rather than absent, so no element could stack border,
 shadow and radius even in principle. Both would have declined with every comment
@@ -672,11 +672,11 @@ the specimen's non-blank lines are comment; `control.ts` is 85%. The audit found
 **ten** places where a comment claims something the code does not do. The
 sharpest is a stepper whose `ACCEPTED COST` says a ceiling of 24 was chosen
 "rather than inventing an upper bound the brief does not have and presenting it
-as a limit of the product" — while the code disables the control at 24 with no
+as a limit of the product" - while the code disables the control at 24 with no
 copy explaining why, which is the thing the sentence names as the alternative.
 Others are plain miscounts stated as reasoning: "the two Actions" where three
-render, "the same six classes" where four are emitted, and an extraction rule —
-"Two callsites is the threshold" — stated twice and broken by a wordmark typed
+render, "the same six classes" where four are emitted, and an extraction rule -
+"Two callsites is the threshold" - stated twice and broken by a wordmark typed
 at two callsites. A colour named as in use is used nowhere, in a file that
 elsewhere records removing a different colour on exactly that ground.
 
@@ -692,8 +692,8 @@ ignored." The rule is stated generally and governs only concentric nesting. This
 is the same defect the `clean-dashboard` run found in C1 from the other side.
 
 **Three entries are missing from `deriving.md`:** spacing, measure, and type
-family. The builder invented a spacing rule that worked and said so — "that is
-exactly the kind of decision the skill exists to stop me improvising" — and was
+family. The builder invented a spacing rule that worked and said so - "that is
+exactly the kind of decision the skill exists to stop me improvising" - and was
 blunter about the third: "the font stack is arguably the single most visible
 generic tell in a React/Tailwind page, and it has no entry at all." C4's fire
 belongs to this gap.
@@ -701,7 +701,7 @@ belongs to this gap.
 **The five shapes have no slot for a value derived from a root by judgment.**
 Derivation is defined as arithmetic. A colour chosen from the temperature has no
 shape available, and the builder attached a contrast ratio to each one to give it
-any shape at all — "which is honest but is not why I picked teal."
+any shape at all - "which is honest but is not why I picked teal."
 
 **Smaller, and all from the builder:** `theme.extend` is the weaker advice, since
 replacing `theme` outright stops `bg-slate-500` compiling; motion's two platform
@@ -710,7 +710,7 @@ as text before any code" sits badly beside the rule against design notes in a
 separate document; "four to six colors" and "two or three radii" are numbers
 handed down without derivation, against the skill's own doctrine; and the closing
 step, "run `anti-slop` against what you built," does not say what to do when the
-auditor is not available — which was this run's configuration exactly.
+auditor is not available - which was this run's configuration exactly.
 
 ### v3b, measuring the conventions and the preamble, 2026-08-17
 
@@ -735,19 +735,19 @@ one holding, declined, and refused to smuggle it back: "clause 3 is true and it
 is a real accessibility gap. But A9 as written does not fire on it, and I am not
 smuggling it in." C2 fired off-row last round for want of a magnitude threshold;
 this round the run supplied a bounded one, measured the glyph's area-weighted
-centroid at 1.0px off centre, and declined — flagging the call as overturnable.
+centroid at 1.0px off centre, and declined - flagging the call as overturnable.
 
 **The stock-code rule closed both doors it was written for.** C8 and C11 each
 needed an invented rule last round and neither does now. Both runs quote the
 preamble back: "its `transition-colors` is not evidence that transitions are the
 project's habit," and for C11 also the new clause that a declared capability
-nothing renders is not an instance — `Button` is used once, without `disabled`,
+nothing renders is not an instance - `Button` is used once, without `disabled`,
 so `disabled:opacity-50` never reaches a pixel.
 
 **The third decline category was applied cleanly on both sides.** On the clean
 fixture, nine of twelve declines are the condition arising and the Fix being
 applied, and the run named the trap it avoided on C10: every border declares
-both themes, so there is no failing border and door two has nothing to excuse —
+both themes, so there is no failing border and door two has nothing to excuse -
 "calling this door two would be exactly the mislabel the brief warns about." The
 slop run reported the mirror image: door two never opened once, in either
 direction, which is a fact about that fixture no previous run had stated.
@@ -773,7 +773,7 @@ withdrawal reasoning.
 
 **Two comments in `clean-dashboard` claim more than the code does.** The theme's
 `12 = 5 + 7` is stated as the tree's rule and holds at one of four panel-control
-nestings — "the theme comment describes a habit the components mostly do not
+nestings - "the theme comment describes a habit the components mostly do not
 keep." And `components/table.tsx:22` calls 7px "the theme's inset" when no
 spacing token exists and the value appears only as the arbitrary utility
 `p-[7px]`, on a div with no radius, concentric with nothing. This is the same
@@ -782,12 +782,12 @@ alternative.
 
 **A comment in `clean-dashboard` is addressed to the auditor.**
 `app/page.tsx:90-93` names the tell and the door it wants exercised. It did not
-move this run's verdict, which came from the count — but the run said it is "the
+move this run's verdict, which came from the count - but the run said it is "the
 one thing in this tree I would not take at face value," and a fixture that is
 supposed to read as a shipped product should not brief its reader.
 
 **A visible defect no tell carries.** The closed filter panel keeps its layout
-box — `opacity-0` with no `hidden` — permanently reserving about 52px between
+box - `opacity-0` with no `hidden` - permanently reserving about 52px between
 the Filters button and the ledger. "You would see the gap by opening the page,
 which is this axis's own test," and C7 and C8 both correctly decline on it.
 
@@ -804,8 +804,8 @@ corpus and from each other: a dense kitchen shift board with real state, and an
 expressive landing page for a venue booking tool. Specimens in
 `calibration/2026-08-17b/`.
 
-Neither could run `anti-slop` — it sits inside the directory the boundary
-forbids — so neither is scored against the catalog here. What they measured is
+Neither could run `anti-slop` - it sits inside the directory the boundary
+forbids - so neither is scored against the catalog here. What they measured is
 the build skill's own repairs, and they measured them by using them.
 
 **The verifiability standard is the repair that paid.** It was added after the
@@ -822,7 +822,7 @@ why they re-read the tree instead of shipping.
 radius entry scoped the equation to concentric pairs and then said "Record as
 Derivation, **always**" two paragraphs later. Both builders reported resolving
 it the same way: "I noticed myself engineering a flush pair partly to satisfy
-the 'always' — which is the manufacturing the same section forbids," and
+the 'always' - which is the manufacturing the same section forbids," and
 "Faced with 'always', I designed a flush pair into the Settlement panel." A rule
 written to stop the skill distorting a design was distorting it in the opposite
 direction.
@@ -832,8 +832,8 @@ added and three sentences went on saying "five". One builder named it exactly:
 "This is precisely the *every count in it is a count you ran* failure, occurring
 in the document that introduces that rule."
 
-**Judgment was the most-used addition.** Five uses on one build — type family,
-gradient, seed radius, selection colour, wordmark — with the note that without
+**Judgment was the most-used addition.** Five uses on one build - type family,
+gradient, seed radius, selection colour, wordmark - with the note that without
 it the build would have "bolted a contrast ratio onto the Syne choice, which is
 the exact failure the paragraph describes."
 
@@ -867,8 +867,8 @@ Left open, all from the same two reports:
 - **The Process reads as seven phases and is not one.** Most Subtraction records
   can only be written at step 7, after the reduction pass, and a first-time
   reader will try to finish step 4 and find half the evidence does not exist yet.
-- **`Judgment` is not listed on every `Record as` line it applies to** —
-  Elevation and Both-themes among them — so it reads as available in some
+- **`Judgment` is not listed on every `Record as` line it applies to** -
+  Elevation and Both-themes among them - so it reads as available in some
   entries and not others.
 - **Declaring a single theme deliberately has no named shape.** Both-themes
   offers Accepted cost for the two-theme case only.

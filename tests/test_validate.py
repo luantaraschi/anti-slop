@@ -6,6 +6,36 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import validate
 
 
+def test_forbidden_content_character_rejects_em_dash_with_line_number():
+    errors = validate.check_forbidden_content_character(
+        "first line\nsecond — line\n", "README.md"
+    )
+    assert errors == [
+        "README.md:2: em dash is forbidden in site and README content"
+    ]
+
+
+def test_forbidden_content_character_accepts_other_punctuation():
+    assert validate.check_forbidden_content_character(
+        "A colon: yes. A hyphen - yes.\n", "site/index.html"
+    ) == []
+
+
+def test_content_files_includes_readmes_and_both_published_directories(tmp_path):
+    expected = {
+        tmp_path / "README.md",
+        tmp_path / "site" / "index.html",
+        tmp_path / "specimen" / "inventory.md",
+    }
+    for path in expected:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("content\n", encoding="utf-8")
+    ignored_image = tmp_path / "site" / "og.png"
+    ignored_image.write_bytes(b"not text")
+
+    assert set(validate.content_files(tmp_path)) == expected
+
+
 GOOD_FRONTMATTER = """---
 name: audit
 description: |

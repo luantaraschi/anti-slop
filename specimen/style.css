@@ -22,8 +22,8 @@
 
    Everything below comes from the subject's own world instead:
 
-     · the ground is ledger paper — the pale green stock an accounting pad is
-       printed on — rather than cream
+     · the ground is ledger paper - the pale green stock an accounting pad is
+       printed on - rather than cream
      · the reconciliation is a dark slab, inverting the usual light card on a
        dark hero, and it carries the pad's alternating bands at a contrast of
        1.12, which is texture rather than costume
@@ -43,7 +43,7 @@
    --------------------------------------------------------------------------- */
 
 :root {
-  /* Palette — from root 1 and root 3.
+  /* Palette - from root 1 and root 3.
 
      Nine values across six roles, every name from the subject: the pad, its
      printed band, the ink, the pencil beside it, the slab a statement is read
@@ -56,13 +56,13 @@
 
      Derivation: the mark carries two values because it is read on two grounds.
      `short-dark` is 7.02:1 on paper. `short-light` is 6.58:1 on the slab and
-     5.87:1 on a banded row — the worse of the two, and therefore the one that
+     5.87:1 on a banded row - the worse of the two, and therefore the one that
      had to clear. One role, two grounds, two values.
 
      Accepted cost: `band` sits at 1.12:1 against `slab` and is invisible to a
      reader who cannot resolve it. That is the intent. It is the pad's printed
      stripe, which groups rows for an eye that catches it and costs nothing to
-     an eye that does not — no information rides on it, because every row
+     an eye that does not - no information rides on it, because every row
      states its own figures. */
   --paper: #F7F9F5;
   --slab: #14201A;
@@ -81,15 +81,15 @@
   --rule-slab: color-mix(in srgb, var(--chalk) 22%, var(--slab));
   --tie: color-mix(in srgb, var(--chalk) 38%, var(--slab));
   /* Platform fact: this underline is the only thing that distinguishes a link
-     from the prose beside it, and hover — the other cure — does not exist on a
+     from the prose beside it, and hover - the other cure - does not exist on a
      touchscreen. At 30% it measured 1.96:1 on paper and a reader could not see
      it. 60% is 4.63:1, which clears the 3:1 that WCAG 1.4.11 asks of a
      boundary that carries meaning. The row divider's accepted cost above does
      not extend here: a divider separates content that is legible without it,
-     and this separates nothing — it is the signal itself. */
+     and this separates nothing - it is the signal itself. */
   --underline: color-mix(in srgb, var(--ink) 60%, var(--paper));
 
-  /* Type family — from root 2 and root 3.
+  /* Type family - from root 2 and root 3.
 
      Judgment: two families, and the first is used across its WIDTH axis rather
      than only its weight. Archivo is a variable grotesque carrying `wdth` from
@@ -115,14 +115,14 @@
   --face-machine: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
 
-  /* Type scale — from root 4, then the hierarchy the page actually has.
+  /* Type scale - from root 4, then the hierarchy the page actually has.
 
      Five steps, because the page shows five kinds of text: a label, body
      prose, a lede, a section heading, and the one display line.
 
      Derivation: `body` is the root at 16px, which is what a medium density
      earns. `label` divides by 1.28. `lede` is a quarter above body and
-     `heading` one and three quarters. `display` is four bodies — a jump rather
+     `heading` one and three quarters. `display` is four bodies - a jump rather
      than a step, because the display line is not a larger heading but a
      different kind of object, and a scale that walked evenly up to it would
      make it read as one. */
@@ -134,7 +134,7 @@
      does not fit a phone. The display line holds about fifteen characters; at
      the half-size-per-character convention those need seven and a half times
      the font size in width, so the size a viewport can carry is roughly its
-     width over 7.5 — which at 390px is 44.7px and at the gutters this page
+     width over 7.5 - which at 390px is 44.7px and at the gutters this page
      uses lands on 11vw. Below a 582px viewport the proportion wins; above it
      the scale step does. A display size that overflows is not a scale. */
   --t-display: min(calc(var(--t-body) * 4), 11vw);
@@ -149,7 +149,7 @@
   --lh-heading: 1.25;
   --lh-display: 0.98;
 
-  /* Spacing — from root 4, through the type scale.
+  /* Spacing - from root 4, through the type scale.
 
      Derivation: the body step's line box is the root and every step is that
      root multiplied or divided, written as the arithmetic so changing the body
@@ -166,11 +166,11 @@
   --s-block: calc(var(--s-line) * 2);
   --s-section: calc(var(--s-line) * 4);
 
-  /* Measure and page — from the body size and the reading asked for.
+  /* Measure and page - from the body size and the reading asked for.
 
      Derivation, with the caveat that keeps it honest: the 0.5 treats an
      average character as half the body size, which is a typographic
-     **convention, not a measurement** — the real average depends on the face
+     **convention, not a measurement** - the real average depends on the face
      that ships and cannot be measured while writing a stylesheet.
 
      The page runs wider than the measure because the widest thing on it is a
@@ -179,7 +179,7 @@
   --measure: calc(var(--t-body) * 0.5 * 65);
   --page: calc(var(--measure) * 2 + var(--s-block));
 
-  /* Radius — from what each thing is.
+  /* Radius - from what each thing is.
 
      Judgment, and deliberately not a derivation: there is no concentric pair
      on this page. Nothing sits flush inside a rounded corner with the padding
@@ -192,14 +192,14 @@
      the paper ends. */
   --r-control: 3px;
 
-  /* Elevation — counted, and the count is zero.
+  /* Elevation - counted, and the count is zero.
 
      Subtraction: no shadow anywhere. The reconciliation is the only object
      that could have floated, and it separates from the page by a value
-     difference of about 14 to 1 — a shadow beneath it would be doing work
+     difference of about 14 to 1 - a shadow beneath it would be doing work
      already done. Every other separation is a rule or a gap.
 
-     Motion — from root 3 and one platform fact.
+     Motion - from root 3 and one platform fact.
 
      Platform fact: what moves is a control answering a pointer, on a
      transition rather than a keyframe, so a reader who changes their mind
@@ -433,7 +433,7 @@ a:focus-visible,
   outline-offset: 3px;
 }
 
-/* The reconciliation — the signature ---------------------------------------- */
+/* The reconciliation - the signature ---------------------------------------- */
 
 .recon {
   background: var(--slab);
@@ -521,7 +521,7 @@ a:focus-visible,
 }
 
 /* The gutter, and the whole idea of the page. A hairline crosses it wherever
-   the two sides agree — the tie an accountant draws by hand. Where they do not
+   the two sides agree - the tie an accountant draws by hand. Where they do not
    agree the rule is absent, and the difference stands in the gap instead.
    Nothing is labelled "matched" or "error": the presence or absence of the
    line is the statement, which is why this column holds nothing else. */
@@ -652,7 +652,7 @@ section {
 }
 
 /* The limit. The page's own bad news, set in the same face and weight as its
-   good news — because a product that states its ceiling in a footnote is
+   good news - because a product that states its ceiling in a footnote is
    making a different claim than one that states it in display type. */
 .limit {
   padding-top: var(--s-block);
@@ -747,23 +747,23 @@ section {
    counted rather than estimated.
 
    The basis, so a re-run can agree with this one: strip comments, strip the
-   `:root` block, then match colours and any number carrying a unit — including
+   `:root` block, then match colours and any number carrying a unit - including
    `%`, which a pattern ending in `\b` silently drops, because `%` is not a word
    character. That mistake made the first count of this file read 33 and 17.
 
-     · 1px, twelve sites — hairlines, borders, and the tie itself. A hairline is
+     · 1px, twelve sites - hairlines, borders, and the tie itself. A hairline is
        the thinnest a rule can be drawn, not a step on any scale.
-     · proportions, eight sites — 100% and 22% are shares of a container, 50%
+     · proportions, eight sites - 100% and 22% are shares of a container, 50%
        and -50% centre an element against itself, and none is a size.
-     · em tracking, seven sites — -0.02em and -0.01em on the two display steps,
+     · em tracking, seven sites - -0.02em and -0.01em on the two display steps,
        0.14em and 0.22em on the labels, 0.25em of underline offset. Each is a
        proportion of the token it sits on.
-     · character caps, three sites — 18ch, 20ch and 24ch. A character count is
+     · character caps, three sites - 18ch, 20ch and 24ch. A character count is
        a measure, which is the one thing on this page that is supposed to be
        counted in characters.
-     · media widths, four sites — 620px and 900px, which `@media` cannot read
+     · media widths, four sites - 620px and 900px, which `@media` cannot read
        from a custom property at all.
-     · 0.01ms, twice — how a stylesheet says "no motion" without removing the
+     · 0.01ms, twice - how a stylesheet says "no motion" without removing the
        declaration.
      · 2px and 3px, the focus ring and its offset, which have to stay legible
        at every type size and so cannot scale with one.

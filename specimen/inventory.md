@@ -1,4 +1,4 @@
-# Inventory — Ledgerline
+# Inventory - Ledgerline
 
 Root 1 for the page in this directory. Every line of copy on `index.html` draws
 on this and on nothing else.
@@ -7,21 +7,21 @@ on this and on nothing else.
 
 Ledgerline is not a real company. It is the product the calibration fixture
 `fixtures/clean-landing` was written for, and this page is that same product
-built again — same brief, same decided material, with someone also composing
+built again - same brief, same decided material, with someone also composing
 the page.
 
 That distinction is the whole point of the comparison this specimen appears in
 on the presentation page. `anti-slop:build` derives the material an interface is
 made of and records why each value is what it is. It says in its own text that
-composition — the shape of the page, what sits where, what the reader meets
-first — is not what it does. So a page built by it alone is decided and plain,
+composition - the shape of the page, what sits where, what the reader meets
+first - is not what it does. So a page built by it alone is decided and plain,
 which is exactly what `fixtures/clean-landing` is, and exactly why that fixture
 made a weak advertisement for anything.
 
 **What this page demonstrates:** that a page where nothing is a default does not
 have to be a page that played it safe. It runs a saturated accent, a display
 face set at the wide end of its width axis, a dark slab with banded rows, and a
-monospace used for one column only — and every one of those has its reasoning
+monospace used for one column only - and every one of those has its reasoning
 sitting beside the value in `style.css`, including the accent, which could not
 be used at its first value on the ground it had to mark.
 
@@ -29,8 +29,8 @@ be used at its first value on the ground it had to mark.
 was competent and plain, and then a rebuild landed it on a documented default:
 a warm cream ground near #F4F1EA, a high-contrast display serif, and a
 terracotta accent. That is the combination generated design converges on
-whatever the subject is. It cleared every check this repository has — every
-value derived, every decision recorded, every contrast computed — and it was
+whatever the subject is. It cleared every check this repository has - every
+value derived, every decision recorded, every contrast computed - and it was
 still the template. Nothing in the 49 tells could have caught it, because each
 value genuinely was chosen; they were simply all chosen from the same place.
 
@@ -64,7 +64,7 @@ Four lines. Three matched themselves; the fourth is the one worth ten minutes.
 | Line | Amount | What it resolved to |
 |---|---|---|
 | TRF BRAGA & FILHAS | 2,400.00 | Invoice 1041, paid in full |
-| TRF OURIVESARIA LUME | 11,000.00 | Invoice 1039 is 12,190.00 — **1,190.00 short** |
+| TRF OURIVESARIA LUME | 11,000.00 | Invoice 1039 is 12,190.00 - **1,190.00 short** |
 | SEPA FEE | 3.40 | No invoice. Recurring since March |
 | TRF CAIS EDITORA | 310.00 | Invoice 1038, paid nine days early |
 

@@ -37,7 +37,7 @@ choices.
 **Six invocations:** `anti-slop`, plus one per axis. A path after the mode
 narrows the scope to that file or directory.
 
-**39 of the 49 tells never name a framework, a build tool or a library** —
+**39 of the 49 tells never name a framework, a build tool or a library** -
 every tell on States and Words, fourteen of the fifteen on Craft, nine of the
 twelve on Surface, six of the twelve on Finish. The ten that do are A1, A2, A7,
 C14, F1, F2, F5, F8, F11 and F12. Measured with a proper-noun search, because a
@@ -83,7 +83,7 @@ tests.
 **The validator reports its own gaps rather than hiding them:** 15 of the 49
 tells appear in no fixture row, and 21 of the 49 have no `forbid` row.
 
-**`clean-landing` runs a gradient and a `shadow-xl`** — the same two features
+**`clean-landing` runs a gradient and a `shadow-xl`** - the same two features
 the slop landing is accused over. A2 and A4 sit on its forbid row and neither
 has ever fired on it in a blind run.
 
@@ -120,7 +120,7 @@ cache boundary valid. The current page does not reference it.
 
 **Why the second image is not `fixtures/clean-landing`.** That fixture is clean
 in the auditor's sense: every value on it was decided. It is not composed,
-because nothing asked it to be — its job is to make tells decline. Put beside
+because nothing asked it to be - its job is to make tells decline. Put beside
 the slop page it argued the wrong thing, since a reader sees two plain pages and
 learns nothing. lull is a shipped open-source product whose opening argument,
 typographic roles and interactive proof are documented in its own source and
@@ -146,7 +146,7 @@ The auditor alone, without the plugin:
 
 No user count, download count, or star count. No testimonial and no logo wall.
 No time-saved figure, accuracy percentage, or conversion number. No claim that
-the catalog is complete — 21 of 49 tells have never been tested against a
+the catalog is complete - 21 of 49 tells have never been tested against a
 counterexample, and the page says so rather than avoiding the subject. Twenty-one
 is the number with no `forbid` row, which is what a counterexample is: a case a
 tell must *not* fire on. Fifteen is the different, smaller number of tells that

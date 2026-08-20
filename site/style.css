@@ -28,26 +28,26 @@
 
    What remains is **28 sites carrying 11 distinct values**, and the two numbers
    are both given because a blind audit of this page found that the single
-   figure that used to stand here — "sixteen" — reproduced on no consistent
+   figure that used to stand here - "sixteen" - reproduced on no consistent
    basis and the comment named none. A count with no stated basis is not a count
    that was run.
 
    The eleven, and why each is an exception on purpose rather than a leftover:
 
-     · 1px at seven sites — a hairline, which is not a step on any scale. The
+     · 1px at seven sites - a hairline, which is not a step on any scale. The
        fifth is gone: the frame's border is a token now, because the radius
        equation needs it. The navigation rule and the action outline add two
        more sites, but not another kind of boundary.
-     · 2px and 3px, twice each — the focus ring and its offset, at the two
+     · 2px and 3px, twice each - the focus ring and its offset, at the two
        rules that declare one. They have to stay legible at every type size and
        so cannot scale with one.
-     · -0.015em, 0.08em, 0.2em and 0.9em — tracking on the title, tracking on
+     · -0.015em, 0.08em, 0.2em and 0.9em - tracking on the title, tracking on
        the three utility labels, underline offset, and the two reduced code
        sizes. Every one is a proportion of the token it sits on rather than an
        independent value.
      · 40px at four sites, a fingertip: the brand, navigation links, actions
        and extended footer-link target.
-     · 0.01ms, twice — how a stylesheet says "no motion" without removing the
+     · 0.01ms, twice - how a stylesheet says "no motion" without removing the
        declaration, once for animation and once for transition.
      · 661px at three media rules and 1160px at one, the media-query widths,
        which cannot read a custom property at all; see the platform fact
@@ -58,7 +58,7 @@
    unit. -------------------------------------------------------------------- */
 
 :root {
-  /* Palette — from root 1 and root 3.
+  /* Palette - from root 1 and root 3.
 
      Five colours, each named for the subject: a document somebody read and
      marked up. Rank names would have recorded an order rather than a decision.
@@ -74,7 +74,7 @@
      Accepted cost: `rule` sits at 1.28:1 against paper and does not clear the
      3:1 that WCAG 1.4.11 asks of a user-interface boundary. It is a divider
      between sections whose content is fully understandable without perceiving
-     it, so the floor does not apply — but a reader who cannot see it loses the
+     it, so the floor does not apply - but a reader who cannot see it loses the
      grouping, and that is the cost rather than an argument that there is none. */
   --paper: #FBFAF8;
   --ink: #1C1B18;
@@ -82,7 +82,7 @@
   --margin: #67635B;
   --flag: #8C3A1C;
 
-  /* Type family — from root 2 and root 3.
+  /* Type family - from root 2 and root 3.
 
      Judgment: one text family, a serif, because the voice is a record rather
      than a pitch and a text serif reads as a document before a word is read.
@@ -107,7 +107,7 @@
   --weight-text: 400;
   --weight-strong: 600;
 
-  /* Type scale — from root 4, then the hierarchy this page actually has.
+  /* Type scale - from root 4, then the hierarchy this page actually has.
 
      Four steps, because the page shows four distinct kinds of text: a title, a
      section heading, prose, and the small print that labels a figure. Each is
@@ -134,7 +134,7 @@
   --lh-heading: 1.25;
   --lh-title: 1.1;
 
-  /* Spacing — from root 4, through the type scale.
+  /* Spacing - from root 4, through the type scale.
 
      Derivation: the body step's line box is the root, and every step is that
      root multiplied or divided, written as arithmetic rather than as a number
@@ -155,11 +155,11 @@
   --s-block: calc(var(--s-line) * 2);
   --s-section: calc(var(--s-line) * 4);
 
-  /* Measure and page — from the body size and the kind of reading asked for.
+  /* Measure and page - from the body size and the kind of reading asked for.
 
      Derivation, with the caveat that keeps it honest: the 0.5 below treats an
      average character as half the body size. That is a typographic
-     **convention, not a measurement** — the real average depends on the face
+     **convention, not a measurement** - the real average depends on the face
      that ships, and it cannot be measured while writing a stylesheet. The
      measure is the fixed point and the page is what follows from it, rather
      than the other way round. */
@@ -168,16 +168,16 @@
 
   /* Derivation: the one figure that leaves the measure is two specimens side
      by side, so its width is two measures plus the block step between them.
-     With the block gutters this puts each screenshot at 498px — the width at
+     With the block gutters this puts each screenshot at 498px - the width at
      which the headline the comparison turns on is still readable, and roughly
      where it was when the figure carried a round number nobody derived. */
   --specimens: calc(var(--measure) * 2 + var(--s-block));
 
-  /* Radius — from root 4, then arithmetic.
+  /* Radius - from root 4, then arithmetic.
 
      Two radii, and exactly one concentric pair on the page: a screenshot
      sitting flush inside its frame, with the frame's padding as the only gap.
-     There the equation applies — outer equals inner plus the padding — and it
+     There the equation applies - outer equals inner plus the padding - and it
      is written as that equation, so changing the padding moves the frame's
      radius with it instead of leaving the two curves diverging.
 
@@ -185,8 +185,8 @@
      it wraps. It is a photograph of another product; the radius is there to
      say "specimen", and a larger one would start to style what it is quoting.
 
-     The equation as the catalog states it — outer equals inner plus the
-     padding — is incomplete wherever a border sits between the two layers.
+     The equation as the catalog states it - outer equals inner plus the
+     padding - is incomplete wherever a border sits between the two layers.
      CSS derives a replaced element's content-edge radius as outer minus border
      minus padding, so the first version of this rule named 4px and rendered
      3px. A blind audit of this page caught it. The border is a token here so
@@ -201,14 +201,14 @@
     var(--radius-image) + var(--frame-pad) + var(--frame-border)
   );
 
-  /* Elevation — from how many layers this page actually has.
+  /* Elevation - from how many layers this page actually has.
 
      Subtraction: no levels are declared, because nothing on this page floats
      above anything. It is a document. Every separation on it is a rule or a
      gap, both of which cost nothing and work identically in both themes. A
      shadow stacked on a section would be the value nobody counted.
 
-     Motion — from root 3 and one platform fact.
+     Motion - from root 3 and one platform fact.
 
      A sober temperature earns almost no movement, so the only thing that moves
      is a control answering a pointer. Platform fact: anything driven by
@@ -223,7 +223,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Both themes, fully declared — every colour above has a value here, not
+    /* Both themes, fully declared - every colour above has a value here, not
        just the background. The two were rendered and looked at on 2026-08-18
        rather than inferred from each other.
 
@@ -304,7 +304,7 @@ body {
 /* Derivation: each section pads by one block step, top and bottom, so the gap
    between two of them is `s-block × 2`, which is the section step. Writing
    `s-section` on both sides instead would separate them by twice the ladder's
-   largest value — a distance that is on no step at all. That is what this file
+   largest value - a distance that is on no step at all. That is what this file
    did until the page was rendered and looked at. */
 section {
   padding-block: var(--s-block);
@@ -387,8 +387,8 @@ code {
   color: var(--margin);
 }
 
-/* A note sits below something that is not a paragraph — a table, a pair of
-   skill blocks — so `p + p` never reaches it and it arrived flush against the
+/* A note sits below something that is not a paragraph - a table, a pair of
+   skill blocks - so `p + p` never reaches it and it arrived flush against the
    block above. It separates by the line step, which is what separates one line
    from the next and is what a note is: an aside on what precedes it. */
 .note {
@@ -536,7 +536,7 @@ header p {
 }
 
 /* The command block. One callsite, and an earlier version of this comment
-   claimed two — a count nobody ran, sitting in the place the audit rule accepts
+   claimed two - a count nobody ran, sitting in the place the audit rule accepts
    as evidence that somebody decided. It is a class rather than inline
    declarations because that is right at one callsite too, which is the reason
    that survived the correction.
@@ -711,7 +711,7 @@ header p {
 
 /* The two row groups the report actually returns. They are here because the
    paragraph above the table explains ROOT and THEN, and for one draft the
-   table below it showed neither — prose describing something the markup did
+   table below it showed neither - prose describing something the markup did
    not do, which is the second survival check failing in the direction that is
    hardest to notice. */
 .findings .group {
@@ -735,8 +735,8 @@ header p {
 
 /* Skills ------------------------------------------------------------------ */
 
-/* Abstention. This is the slot that asks for an icon — two blocks, side by
-   side, each wanting a glyph above its heading — and it is the same slot the
+/* Abstention. This is the slot that asks for an icon - two blocks, side by
+   side, each wanting a glyph above its heading - and it is the same slot the
    catalogue's A7 was written about. Nothing here says anything the words do
    not already say, so nothing was put here. Recorded at the place the icon was
    available rather than in a list of things the page does not have. */

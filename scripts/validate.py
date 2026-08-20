@@ -31,7 +31,39 @@ _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
 FIELDS = ("**Signal**", "**Principle**", "**Fix**", "**Not slop when**")
 
+FORBIDDEN_CONTENT_CHARACTER = "\u2014"
+SITE_TEXT_SUFFIXES = {".css", ".html", ".js", ".json", ".md", ".svg", ".txt", ".xml"}
+
 _TELL_HEADING = re.compile(r"^### ([AWFCS]\d+) — (.+)$")
+
+
+def check_forbidden_content_character(text, source):
+    """Reject em dashes in website copy and README files."""
+    return [
+        "{}:{}: em dash is forbidden in site and README content".format(
+            source, line_number
+        )
+        for line_number, line in enumerate(text.splitlines(), start=1)
+        if FORBIDDEN_CONTENT_CHARACTER in line
+    ]
+
+
+def content_files(root):
+    """Return the text files governed by the no-em-dash content rule."""
+    paths = {
+        path
+        for path in root.rglob("README*")
+        if path.is_file()
+    }
+    for published_directory in ("site", "specimen"):
+        site = root / published_directory
+        if site.exists():
+            paths.update(
+                path
+                for path in site.rglob("*")
+                if path.is_file() and path.suffix.lower() in SITE_TEXT_SUFFIXES
+            )
+    return sorted(paths, key=lambda path: path.as_posix())
 
 
 def collect_tells(text):
@@ -243,6 +275,12 @@ def report_coverage(fixture_text, known_ids):
 def main(root):
     errors = []
     known = set()
+
+    for content_file in content_files(root):
+        source = content_file.relative_to(root).as_posix()
+        errors += check_forbidden_content_character(
+            content_file.read_text(encoding="utf-8"), source
+        )
 
     for name in sorted(SKILLS):
         spec = SKILLS[name]
