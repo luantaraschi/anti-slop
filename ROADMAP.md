@@ -140,10 +140,7 @@ have no counterexample.
 
 ---
 
-## Two steps that are yours today
-
-**Push.** Seven commits sit unpushed. Everything in the Done list above is local
-only.
+## One step that is yours today
 
 **Run the audit on two or three of your own projects.** Thirteen blind runs have
 scored fixtures this repository built. One has scored real code — your portfolio
