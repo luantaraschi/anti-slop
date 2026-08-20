@@ -11,6 +11,19 @@ A plugin for Claude Code, named `anti-slop`, version 0.3.0, MIT, by Luan
 Taraschi. It ships two skills: `anti-slop:audit` at 0.3.0 and `anti-slop:build`
 at 0.1.0.
 
+## What the identity means
+
+The mark is a proofreader's caret beneath a line: the visible evidence that
+somebody came back to the work. The wordmark places that caret under the hyphen
+in `anti-slop`, so the repository avatar, README and presentation page all use
+the same gesture. It is not a strike-through and does not claim that individual
+patterns are banned.
+
+The palette is paper, ink, a quiet margin grey and oxide correction ink. The
+body is a text serif because the product returns a report; utility labels and
+the wordmark use the reader's monospace because findings end in a file and a
+line.
+
 ## What the auditor holds
 
 **49 tells across five axes.** Surface 12 (A1–A12), Craft 15 (C1–C15), States 3

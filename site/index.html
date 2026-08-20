@@ -32,24 +32,53 @@
   </head>
 
   <body>
-    <header class="column">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="brand" href="./" aria-label="anti-slop home">
+          <img src="mark.svg" width="32" height="32" alt="" />
+          <span>anti-slop</span>
+        </a>
+        <div class="nav-links">
+          <a href="#method">Method</a>
+          <a href="#report">Report</a>
+          <a href="#install">Install</a>
+          <a href="https://github.com/luantaraschi/anti-slop">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero column">
+      <picture class="wordmark">
+        <source media="(prefers-color-scheme: dark)" srcset="wordmark-dark.svg" />
+        <img src="wordmark.svg" width="720" height="180" alt="anti-slop" />
+      </picture>
       <h1>The marks of work nobody finished.</h1>
       <p class="lede">
-        <strong>anti-slop</strong> is a plugin for Claude Code. It reads the
-        interface you already have and reports what was left at its default —
-        the palette nobody picked, the empty state nobody wrote, the dark theme
-        nobody opened — as a ranked list with a file and a line.
+        A plugin for Claude Code that reads the interface you already have and
+        reports what was left at its default — the palette nobody picked, the
+        empty state nobody wrote, the dark theme nobody opened — as a ranked
+        list with a file and a line.
       </p>
-      <p class="lede">
-        Forty-nine of those marks, across five axes. You do not need the
-        vocabulary to act on the report.
-      </p>
-      <pre class="command" tabindex="0" role="region" aria-label="How to install it"><span class="prompt">$ </span>git clone https://github.com/luantaraschi/anti-slop
+      <div class="facts" aria-label="Project facts">
+        <span><b>49</b> tells</span>
+        <span><b>5</b> axes</span>
+        <span><b>21</b> blind reports</span>
+        <span><b>MIT</b> licensed</span>
+      </div>
+      <div class="hero-actions">
+        <a class="action primary" href="#install">Install the plugin</a>
+        <a class="action secondary" href="https://github.com/luantaraschi/anti-slop">Read the source</a>
+      </div>
+      <pre id="install" class="command" tabindex="0" role="region" aria-label="How to install it"><span class="command-label">INSTALL FROM CLAUDE CODE</span>
+<span class="prompt">$ </span>git clone https://github.com/luantaraschi/anti-slop
 <span class="prompt">&gt; </span>/plugin marketplace add ./anti-slop
 <span class="prompt">&gt; </span>/plugin install anti-slop@anti-slop</pre>
     </header>
 
-    <section class="column">
+    <main id="content">
+    <section id="method" class="column">
       <h2>It has no list of banned patterns</h2>
       <p>
         Forbid the purple gradient and the generic reappears wherever the list
@@ -112,7 +141,7 @@
       </div>
     </section>
 
-    <section class="column">
+    <section id="report" class="column">
       <h2>What a run gives you back</h2>
       <p>
         A verdict in plain words, then a ranked list.
@@ -216,6 +245,8 @@
         file and a line.
       </p>
     </section>
+
+    </main>
 
     <footer class="column">
       <p>

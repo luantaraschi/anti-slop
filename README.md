@@ -1,4 +1,28 @@
-# anti-slop
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/wordmark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset=".github/assets/wordmark-light.svg">
+    <img alt="anti-slop" src=".github/assets/wordmark-light.svg" width="560">
+  </picture>
+</p>
+
+<p align="center">
+  <strong>Read an interface for the marks of work nobody finished.</strong>
+</p>
+
+<p align="center">
+  <a href="https://luantaraschi.github.io/anti-slop/">Website</a>
+  · <a href="#install">Install</a>
+  · <a href="#how-it-works">How it works</a>
+  · <a href="#contributing">Contribute</a>
+</p>
+
+<p align="center">
+  <img alt="version 0.3.0" src="https://img.shields.io/badge/version-0.3.0-8C3A1C">
+  <img alt="49 tells" src="https://img.shields.io/badge/catalog-49_tells-67635B">
+  <img alt="2 skills" src="https://img.shields.io/badge/skills-2-67635B">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-8C3A1C"></a>
+</p>
 
 A Claude Code plugin for interfaces that came out generic. It ships two skills.
 

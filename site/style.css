@@ -26,7 +26,7 @@
    `min-height` beside them was quietly covering for. A fourth, the figure's
    breakpoint, still has to be a literal and now mirrors a derived token.
 
-   What remains is **17 sites carrying 11 distinct values**, and the two numbers
+   What remains is **25 sites carrying 11 distinct values**, and the two numbers
    are both given because a blind audit of this page found that the single
    figure that used to stand here — "sixteen" — reproduced on no consistent
    basis and the comment named none. A count with no stated basis is not a count
@@ -34,20 +34,24 @@
 
    The eleven, and why each is an exception on purpose rather than a leftover:
 
-     · 1px at four sites — a hairline, which is not a step on any scale. The
+     · 1px at six sites — a hairline, which is not a step on any scale. The
        fifth is gone: the frame's border is a token now, because the radius
-       equation needs it.
+       equation needs it. The navigation rule and the action outline add two
+       more sites, but not another kind of boundary.
      · 2px and 3px, twice each — the focus ring and its offset, at the two
        rules that declare one. They have to stay legible at every type size and
        so cannot scale with one.
      · -0.015em, 0.08em, 0.2em and 0.9em — tracking on the title, tracking on
-       the row-group labels, underline offset, and code's size. Every one is a
-       proportion of the token it sits on rather than an independent value.
-     · 40px, a fingertip.
+       the two utility labels, underline offset, and the two reduced code
+       sizes. Every one is a proportion of the token it sits on rather than an
+       independent value.
+     · 40px at four sites, a fingertip: the brand, navigation links, actions
+       and extended footer-link target.
      · 0.01ms, twice — how a stylesheet says "no motion" without removing the
        declaration, once for animation and once for transition.
-     · 661px and 1160px, the media-query widths, which cannot read a custom
-       property at all; see the platform fact recorded at `.column`.
+     · 661px at two media rules and 1160px at one, the media-query widths,
+       which cannot read a custom property at all; see the platform fact
+       recorded at `.column`.
 
    Re-run the count before changing this file, on this basis: strip comments,
    strip the two `:root` blocks, then match colours and any number carrying a
@@ -258,6 +262,24 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 2;
+  top: var(--s-label);
+  left: var(--s-label);
+  padding: var(--s-inline) var(--s-label);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--face-code);
+  font-size: var(--text-note);
+  transform: translateY(calc((var(--s-section) + var(--s-block)) * -1));
+  transition: transform var(--motion);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Platform fact: a reader who asks for reduced motion gets none, including the
    smooth scroll a fragment link would otherwise trigger. */
 @media (prefers-reduced-motion: reduce) {
@@ -287,6 +309,7 @@ body {
 section {
   padding-block: var(--s-block);
   border-top: 1px solid var(--rule);
+  scroll-margin-top: var(--s-section);
 }
 
 /* Platform fact, and the one place a literal has to appear outside the token
@@ -375,15 +398,141 @@ code {
   color: var(--margin);
 }
 
-/* Header ------------------------------------------------------------------ */
+/* Navigation and header ---------------------------------------------------- */
+
+.site-nav {
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  max-width: var(--specimens);
+  margin-inline: auto;
+  padding: var(--s-label) var(--s-block);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-block);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-inline);
+  min-height: 40px;
+  font-family: var(--face-code);
+  font-weight: var(--weight-strong);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand img {
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-line);
+  font-family: var(--face-code);
+  font-size: var(--text-note);
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a:active {
+  text-decoration: underline;
+  text-decoration-color: var(--flag);
+}
 
 header {
   padding-block: var(--s-section) var(--s-block);
 }
 
+.wordmark {
+  display: block;
+  max-width: var(--measure);
+  margin: calc(var(--s-block) * -1) auto var(--s-block);
+}
+
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero h1,
+.hero .lede {
+  text-align: center;
+}
+
 header p {
   margin-top: var(--s-line);
   max-width: var(--measure);
+}
+
+.facts {
+  margin-top: var(--s-block);
+  padding-block: var(--s-label);
+  border-block: 1px solid var(--rule);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-label) var(--s-block);
+  color: var(--margin);
+  font-family: var(--face-code);
+  font-size: var(--text-note);
+}
+
+.facts b {
+  color: var(--ink);
+  font-weight: var(--weight-strong);
+}
+
+.hero-actions {
+  margin-top: var(--s-block);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-label);
+}
+
+.action {
+  min-height: 40px;
+  padding: var(--s-inline) var(--s-line);
+  border: 1px solid var(--flag);
+  border-radius: var(--radius-image);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--face-code);
+  font-size: var(--text-note);
+  font-weight: var(--weight-strong);
+  text-decoration: none;
+  transition:
+    background-color var(--motion),
+    color var(--motion);
+}
+
+.action.primary {
+  background: var(--flag);
+  color: var(--paper);
+}
+
+.action.secondary {
+  color: var(--flag);
+}
+
+.action:hover,
+.action:active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
 
 /* The command block. One callsite, and an earlier version of this comment
@@ -408,6 +557,15 @@ header p {
   white-space: pre;
 }
 
+.command-label {
+  display: block;
+  margin-bottom: var(--s-inline);
+  color: var(--flag);
+  font-size: 0.9em;
+  font-weight: var(--weight-strong);
+  letter-spacing: 0.08em;
+}
+
 .command .prompt {
   color: var(--margin);
   user-select: none;
@@ -430,7 +588,7 @@ header p {
   grid-template-columns: 1fr;
 }
 
-/* The second of the two media-query literals, and the same platform fact
+/* The wide media-query literal, and the same platform fact
    applies: this 1160px is `--specimens` rounded up to a whole pixel, written
    out because `@media` cannot read it. Below the width the pair was derived
    for, the pair does not fit, so it stacks and each specimen takes the column
@@ -589,4 +747,41 @@ footer a::after {
   top: 50%;
   transform: translateY(-50%);
   height: 40px;
+}
+
+@media (max-width: 661px) {
+  .nav-inner {
+    padding-inline: var(--s-line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-inline);
+  }
+
+  .brand {
+    align-self: center;
+  }
+
+  .nav-links {
+    justify-content: space-between;
+    gap: var(--s-inline);
+  }
+
+  header {
+    padding-top: var(--s-block);
+  }
+
+  .wordmark {
+    margin-top: 0;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+  }
+
+  .hero-actions,
+  .action {
+    width: 100%;
+  }
 }
