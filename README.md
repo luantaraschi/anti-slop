@@ -29,8 +29,8 @@ A Claude Code plugin for interfaces that came out generic. It ships two skills.
 **`anti-slop:audit`** reads interface code for the marks of work nobody finished:
 the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
 the settings nobody set. Forty-nine tells across five axes, reported as a ranked
-list with a file and a line - in plain words, so the reader does not need the
-vocabulary to act on it.
+list with a file and a line. The report uses plain words, so the reader does not
+need the vocabulary to act on it.
 
 It reads any web stack. Most of the catalog never mentions a framework, and the
 part that does names Tailwind classes as examples of a pattern rather than as
@@ -40,9 +40,9 @@ the pattern itself.
 whose absence the auditor detects, and writes them where the auditor looks for
 them.
 
-They are one loop. The auditor's rule for suppressing a false positive is to
-look for evidence that somebody chose the value - in `theme.extend`, in custom
-properties, in a tokens file, in primitives that differ from stock. The build
+They are one loop. The auditor suppresses a false positive when it finds evidence
+that somebody chose the value. That evidence may live in `theme.extend`, custom
+properties, a tokens file or primitives that differ from stock. The build
 skill writes into those four places. So a tell firing on a tree the build skill
 produced is the build skill's failure, and it arrives with a file and a line.
 That is how this repository tests the half of itself that generates rather than
@@ -102,22 +102,21 @@ reach. The audit rule says why: a finding is a pattern present **and** no
 evidence anyone chose it. The pattern was never the defect.
 
 Both fixtures named `clean-*` in this repository are the argument. `clean-landing`
-runs a gradient and a `shadow-xl` - the same features the slop landing is
-accused over - drawn from colours its theme names, used once each. A2 and A4 are
-on its forbid row and neither has ever fired on it in a blind run.
+runs a gradient and a `shadow-xl`, just like the slop landing. Its colours come
+from the theme and each effect appears once. A2 and A4 are on its forbid row and
+neither has ever fired on it in a blind run.
 
 It works alongside the design skills rather than replacing them, and the
 boundary is narrower than this repository used to claim: a survey of
 `frontend-design` and its neighbours found the two reaching for the same palette
-count and the same naming rule, and disagreeing on type families. What is
-genuinely theirs is composition - the shape of the page and the one element it
-is remembered by. What is genuinely this one's is the recording, which none of
-them has.
+count and the same naming rule, and disagreeing on type families. Those skills
+handle composition: the shape of the page and the element the reader remembers.
+This skill records the decisions, which none of them does.
 
-So the build skill does not tell you to avoid anything. It makes you decide four
-things the brief has to answer - what the product concretely is, its voice, its
-visual temperature, its density - and derives the rest from them, recording each
-derived value with the reasoning beside it. A gradient is available. Reaching
+So the build skill does not tell you to avoid anything. It makes you decide what
+the product is, how it speaks, how sober it should look and how much belongs on
+one screen. It derives the rest from those answers and records the reasoning
+beside each value. A gradient is available. Reaching
 for one without deciding it is not.
 
 ## Install
@@ -167,7 +166,7 @@ than filling them in silently.
 
 ---
 
-Verdict - a stock shadcn dashboard whose primitives were installed and never touched: `Card` and `Button` sit untouched in `components/ui/` while every card, input, and button elsewhere in the app reimplements their classes raw, off an empty `theme.extend` that never picked a color, a radius, or a font. Metadata was set up once for the whole app instead of per route, so title, description, and canonical are all missing together, and the invoice table renders its rows without a key. The copy holds up everywhere except the empty invoices table, which reports a count instead of inviting the first action.
+Verdict: a stock shadcn dashboard whose primitives were installed and never touched. `Card` and `Button` sit untouched in `components/ui/` while every card, input, and button elsewhere in the app reimplements their classes raw. The empty `theme.extend` never picked a color, radius or font. Metadata was set up once for the whole app instead of per route, so title, description, and canonical are all missing together. The invoice table renders its rows without a key. The copy holds up everywhere except the empty invoices table, which reports a count instead of inviting the first action.
 
 **ROOT**
 
@@ -185,11 +184,11 @@ Verdict - a stock shadcn dashboard whose primitives were installed and never tou
 | F11 | Invoice rows render via `.map` with no `key` prop | `components/table.tsx:8` |
 | W3 | Empty invoices table reads "No items found," no direction to add one | `components/table.tsx:3` |
 
-Detail on the two Surface roots: `components/ui/button.tsx` and `card.tsx` are byte-for-byte the shadcn install - full variant list (`destructive`, `outline`, `secondary`, `ghost`, `link`, sizes `sm`/`lg`/`icon`) present and none of it ever rendered. `<Card>` gets imported and used exactly once (`app/page.tsx:25`); everywhere else - `StatCard`, `InvoiceTable`, the search box, the "Export CSV" button - is a raw `div`/`button` re-typing `rounded-2xl border border-gray-200 shadow-lg p-6` by hand. That's also why A4 (`border` + `shadow-lg` + `rounded-2xl` stacked identically on every one of those five elements) and A6 (`p-6 space-y-4` repeated from `<main>` down through the stat card down through the table wrapper, `app/page.tsx:15-20`) read as uniform: each callsite re-decided the same thing independently instead of inheriting it from one component. Fixing A10 by routing those five spots through the real `Card`/`Button` collapses A4 and A6 with it.
+Detail on the two Surface roots: `components/ui/button.tsx` and `card.tsx` are byte-for-byte copies of the shadcn install. The full variant list is present (`destructive`, `outline`, `secondary`, `ghost`, `link`, plus sizes `sm`, `lg` and `icon`), but none of it ever renders. `<Card>` gets imported and used exactly once (`app/page.tsx:25`). `StatCard`, `InvoiceTable`, the search box and the "Export CSV" button are raw elements that retype `rounded-2xl border border-gray-200 shadow-lg p-6` by hand. That also explains A4 and A6. Each callsite made the same choice independently instead of inheriting it from one component. Routing those five spots through the real `Card` and `Button` fixes A10 and collapses A4 and A6 with it.
 
-The theme side is separate: `theme: { extend: {} }` is the whole config, so there's no color, no radius scale, and no type scale to point to - `font-bold` is the only emphasis used anywhere and `rounded-2xl` is the only radius that shows up on cards, inputs, and the hand-rolled button alike. That single empty object is why A1, A3, and A5 all fire from the same piece of evidence.
+The theme side is separate. `theme: { extend: {} }` is the whole config, so there is no color, radius scale or type scale to point to. `font-bold` is the only emphasis used anywhere. `rounded-2xl` is the only radius on cards, inputs and the hand-rolled button. That single empty object is why A1, A3, and A5 all fire from the same piece of evidence.
 
-Words axis is otherwise clean - no catalog labels, no leaked implementation names, no inflated copy, and the not-found page (`app/not-found.tsx:8`, "That address is not part of this workspace") is specific rather than apologetic.
+The Words axis is otherwise clean. It has no catalog labels, leaked implementation names or inflated copy. The not-found page (`app/not-found.tsx:8`, "That address is not part of this workspace") is specific rather than apologetic.
 
 ---
 
@@ -215,9 +214,8 @@ component.
 **Craft** (C1 through C15) is whether anyone looked at the rendered result:
 a radius that ignores what it wraps, a counter that jitters instead of
 holding still, a heading that leaves one word behind, a dark theme nobody
-opened. Fifteen tells whose evidence lives in the relationship between
-elements - one value against the one it sits inside, one screen against the
-same screen in the other theme - rather than in any single line.
+opened. Fifteen tells read relationships between elements rather than any single
+line. They compare a value with its container and the same screen across themes.
 
 **States** (S1 through S3) is whether the interface exists off the path that
 was demonstrated: a request with no failure branch, view state the URL never
@@ -257,18 +255,18 @@ site published over HTTP.
 **Stack is not one of them.** Thirty-nine of the forty-nine tells never name a
 framework, a build tool or a library: every tell on States and Words, fourteen
 of the fifteen on Craft, nine of the twelve on Surface, and six of the twelve on
-Finish. The ten that do are A1, A2, A7, C14, F1, F2, F5, F8, F11 and F12 - they
-name Tailwind, React, Next.js, Vite, Storybook or an icon set as examples of a
+Finish. Ten tells name tools: A1, A2, A7, C14, F1, F2, F5, F8, F11 and F12.
+They mention Tailwind, React, Next.js, Vite, Storybook or an icon set as examples of a
 pattern, because that is the ecosystem the pattern was measured in, and the
 pattern is what fires. A7 names three icon libraries only to say that which one
 it is makes no difference. Plain HTML and CSS, Vue, Svelte, Astro: read the
 example, find its equivalent, audit that. A run that translated says so in its
 first line.
 
-That count has been wrong in this file twice, in both directions, and both times
-because it was measured with a pattern too narrow to catch how the names are
-actually written - `next/image`, `Vite's`, `Next's` and `Storybook` all evade a
-search for `next.js` and `react`. Ten and thirty-nine is what a proper-noun
+That count has been wrong in this file twice, in both directions. Both errors
+came from patterns too narrow to catch how the names are written. A search for
+`next.js` and `react` misses `next/image`, `Vite's`, `Next's` and `Storybook`.
+Ten and thirty-nine is what a proper-noun
 search returns on 2026-08-18.
 
 Also out of scope today, and worth stating because they are the obvious
@@ -280,9 +278,9 @@ shipping side is designed and not built.
 
 Not equally, and the difference is worth knowing before you rely on one.
 
-**`anti-slop:audit` is the mature half.** Four calibration rounds and twenty-one
-blind reports, every one committed under `calibration/` - eighteen of them the
-auditor reading fixtures, three the auditor reading what the build skill
+**`anti-slop:audit` is the mature half.** Four calibration rounds produced
+twenty-one blind reports committed under `calibration/`. Eighteen cover the
+auditor reading fixtures. Three cover the auditor reading what the build skill
 produced. Its most recent scores are below.
 
 **`anti-slop:build` is at 0.1.0 and younger.** Three specimens have been built
@@ -291,9 +289,9 @@ skill: **2 of 41 tells fired on the first, 0 of 41 on the second, 0 of 41 on the
 third.** Forty-one is the size the catalog was at the time, not its size now.
 The two that fired on the first traced to reference entries that did not exist
 at the time and now do. Fourteen repairs came out of the second and third builds
-and are not yet measured. It also has seven recorded gaps around application
-screens, listed in `BACKLOG.md` - it was
-written with pages in mind, and a screen with real state is where it is thinnest.
+and are not yet measured. `BACKLOG.md` lists seven gaps around application
+screens. The skill was written with pages in mind and remains thinnest on
+screens with real state.
 
 Both are usable. The auditor is the one with the longer evidence trail.
 
@@ -310,7 +308,7 @@ coverage notes naming the 15 of 49 tells that appear in no fixture row and the
 21 with no `forbid` row. Those are reported rather than suppressed, so the
 gaps in calibration are visible instead of implied.
 
-`python -m pytest tests/` runs 45 tests over the validator itself, all
+`python -m pytest tests/` runs 49 tests over the validator itself, all
 passing. The validator is written so that every check takes text and returns a
 list of errors, with only `main()` touching the filesystem, which is what
 makes those tests possible without fixtures on disk.
@@ -318,8 +316,8 @@ makes those tests possible without fixtures on disk.
 ### What the blind runs scored
 
 A prose catalog is calibrated by handing it to an agent that has not seen the
-answer. Each run gets `SKILL.md`, the reference files its invocation names, and
-one target directory - never `fixtures/README.md`, never another fixture, never
+answer. Each run gets `SKILL.md`, the reference files its invocation names and
+one target directory. It never receives `fixtures/README.md`, another fixture or
 a previous report. `docs/calibration-method.md` is the method, including the one
 instruction that turns an audit into a calibration: *say which rules you had to
 supply that the tell does not contain.* That disclosure is where most of the
@@ -335,8 +333,8 @@ The most recent round, 2026-08-17:
 
 The reports are in `calibration/`, unedited, including the ones that contradict
 the catalog. `fixtures/README.md` records what every round scored **before** the
-repairs it caused, and carries a `Recorded for … not fixed` section for what was
-found and deliberately left - which is currently the longest part of the file.
+repairs it caused. It also carries a `Recorded for … not fixed` section for work
+that was found and deliberately left. That is currently the longest part of the file.
 
 ### The corpus
 

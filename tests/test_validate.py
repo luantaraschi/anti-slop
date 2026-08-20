@@ -11,14 +11,23 @@ def test_forbidden_content_character_rejects_em_dash_with_line_number():
         "first line\nsecond — line\n", "README.md"
     )
     assert errors == [
-        "README.md:2: em dash is forbidden in site and README content"
+        "README.md:2: dash punctuation is forbidden in site and README content"
     ]
 
 
 def test_forbidden_content_character_accepts_other_punctuation():
     assert validate.check_forbidden_content_character(
-        "A colon: yes. A hyphen - yes.\n", "site/index.html"
+        "A colon: yes. An open-source project.\n", "site/index.html"
     ) == []
+
+
+def test_forbidden_content_character_rejects_en_dash_and_spaced_hyphen():
+    text = "range A1–A12\nmechanical swap - still bad\nseparator at wrap -\n"
+    assert validate.check_forbidden_content_character(text, "README.md") == [
+        "README.md:1: dash punctuation is forbidden in site and README content",
+        "README.md:2: dash punctuation is forbidden in site and README content",
+        "README.md:3: dash punctuation is forbidden in site and README content",
+    ]
 
 
 def test_content_files_includes_readmes_and_both_published_directories(tmp_path):

@@ -26,8 +26,9 @@ line.
 
 ## What the auditor holds
 
-**49 tells across five axes.** Surface 12 (A1–A12), Craft 15 (C1–C15), States 3
-(S1–S3), Words 7 (W1–W7), Finish 12 (F1–F12).
+**49 tells across five axes.** Surface has 12 (A1 through A12), Craft has 15
+(C1 through C15), States has 3 (S1 through S3), Words has 7 (W1 through W7),
+and Finish has 12 (F1 through F12).
 `grep -c '^### [AWFCS][0-9]' skills/audit/references/*.md`
 
 **Every tell has the same four fields:** Signal, Principle, Fix, Not slop when.
@@ -37,8 +38,8 @@ choices.
 **Six invocations:** `anti-slop`, plus one per axis. A path after the mode
 narrows the scope to that file or directory.
 
-**39 of the 49 tells never name a framework, a build tool or a library** -
-every tell on States and Words, fourteen of the fifteen on Craft, nine of the
+**39 of the 49 tells never name a framework, a build tool or a library.** This
+includes every tell on States and Words, fourteen of the fifteen on Craft, nine of the
 twelve on Surface, six of the twelve on Finish. The ten that do are A1, A2, A7,
 C14, F1, F2, F5, F8, F11 and F12. Measured with a proper-noun search, because a
 narrower one misses `next/image`, `Vite's`, `Next's` and `Storybook` and returns
@@ -77,22 +78,23 @@ the auditor reading fixtures; three are the auditor reading what the build skill
 produced.
 `find calibration -maxdepth 2 -name 'audit-*.md' | wc -l`
 
-**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 45
+**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 49
 tests.
 
 **The validator reports its own gaps rather than hiding them:** 15 of the 49
 tells appear in no fixture row, and 21 of the 49 have no `forbid` row.
 
-**`clean-landing` runs a gradient and a `shadow-xl`** - the same two features
-the slop landing is accused over. A2 and A4 sit on its forbid row and neither
-has ever fired on it in a blind run.
+**`clean-landing` runs a gradient and a `shadow-xl`.** The slop landing uses both
+features too. On `clean-landing`, each value comes from named theme colours and
+appears once. A2 and A4 sit on its forbid row and neither has ever fired on it
+in a blind run.
 
-## The two screenshots on the page
+## The comparison screenshots on the page
 
 `img/slop-landing.png` is `fixtures/slop-landing` rendered at 1280×1000 in
 Chromium on 2026-08-18.
 
-The comparison frame uses a 1280:760 aspect ratio for both screenshots. The
+The comparison frame uses a 1280:760 aspect ratio for every screenshot. The
 slop fixture is aligned to the top and its last 240 pixels are cropped; that
 keeps the hero, the repeated cards and the unsupported figures visible while
 giving the two pieces of evidence equal visual weight. The lull capture already
@@ -112,24 +114,44 @@ the complete opening claim and the start of the interactive instrument. The
 page drives the same pure reducer exported by the package; that relationship is
 stated in lull's own page and README rather than inferred here.
 
+`img/merge-odds-before.png` and `img/merge-odds-after.png` are the two public
+routes for [`Merge Odds`](https://luantaraschi.github.io/merge-odds/) rendered
+at 1280×760 on 2026-08-20 from commit `36a79b3`. The first route is an
+intentionally generic demonstration with a purple gradient, emoji icons,
+interchangeable promises and repeated rounded cards. The second route is the
+product page. Its opening argument is the policy gate the tool applies before
+work begins, and its interactive reader uses the repository's measured data.
+
+Merge Odds is the default pair because both pages describe the same product.
+That controls for subject matter and makes the change in decisions easier to
+read. lull remains available as a second positive example because its
+composition solves a different product problem without borrowing the Merge
+Odds visual system.
+
+The project switcher is progressive enhancement. With JavaScript, one pair is
+visible and the buttons update their pressed state, the heading and the URL
+fragment. Without JavaScript, both pairs remain in the document and the
+buttons stay hidden. The install command follows the same rule: copying is an
+enhancement, while the command remains selectable text without it.
+
 `img/ledgerline.png` remains in the published artifact as a compatibility
 asset. The previous deploy removed it at the same moment the HTML stopped
 referencing it, so a browser holding the older HTML briefly rendered its alt
 text against the newer artifact. Keeping the old path makes both sides of that
 cache boundary valid. The current page does not reference it.
 
-**Why the second image is not `fixtures/clean-landing`.** That fixture is clean
-in the auditor's sense: every value on it was decided. It is not composed,
-because nothing asked it to be - its job is to make tells decline. Put beside
-the slop page it argued the wrong thing, since a reader sees two plain pages and
-learns nothing. lull is a shipped open-source product whose opening argument,
-typographic roles and interactive proof are documented in its own source and
-brand notes.
+**Why the decided images are not `fixtures/clean-landing`.** That fixture is clean
+in the auditor's sense: every value on it was decided. Nobody composed the page
+because the fixture only exists to make tells decline. Put beside the slop page,
+it argued the wrong thing. A reader saw two plain pages and learned nothing.
+lull and Merge Odds are shipped open-source products whose opening arguments,
+typographic roles and interactive proof are documented in their own source.
 
-**What that image must not be read as claiming:** that this plugin designed
-lull, or that passing an audit produces its composition. It did neither. The
-catalog can recognize evidence of decisions; it cannot supply the opening idea
-or the arrangement that makes those decisions legible.
+**What those images must not be read as claiming:** that passing an audit
+produces their composition. The catalog can recognize evidence of decisions;
+it cannot supply the opening idea or the arrangement that makes those
+decisions legible. Merge Odds used `anti-slop:build` to record its roots and
+derived values. Composition still came from the frontend design work.
 
 ## Install
 
@@ -145,9 +167,9 @@ The auditor alone, without the plugin:
 ## What has no source, and therefore cannot appear on the page
 
 No user count, download count, or star count. No testimonial and no logo wall.
-No time-saved figure, accuracy percentage, or conversion number. No claim that
-the catalog is complete - 21 of 49 tells have never been tested against a
-counterexample, and the page says so rather than avoiding the subject. Twenty-one
+No time-saved figure, accuracy percentage, or conversion number. The catalog is
+not complete. Twenty-one of 49 tells have never been tested against a
+counterexample, and the page says so. Twenty-one
 is the number with no `forbid` row, which is what a counterexample is: a case a
 tell must *not* fire on. Fifteen is the different, smaller number of tells that
 appear in no fixture row at all, and attaching it to this claim understates the

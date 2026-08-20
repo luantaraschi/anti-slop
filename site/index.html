@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>anti-slop - read an interface for the marks of work nobody finished</title>
+    <title>anti-slop: read an interface for the marks of work nobody finished</title>
     <meta
       name="description"
-      content="A Claude Code plugin that reads the interface you already have and reports what was left at its default - the palette nobody picked, the empty state nobody wrote, the dark theme nobody opened. Forty-nine tells across five axes, with a file and a line."
+      content="Audit an existing interface with Claude Code. anti-slop finds untouched defaults and incomplete states, then reports each finding with a file and line. Forty-nine tells across five axes."
     />
     <link rel="canonical" href="https://luantaraschi.github.io/anti-slop/" />
     <link rel="icon" type="image/svg+xml" href="mark.svg" />
@@ -17,7 +17,7 @@
     <meta property="og:title" content="The marks of work nobody finished" />
     <meta
       property="og:description"
-      content="A generic scaffold beside lull's working product page. The difference is not a banned pattern; it is evidence that somebody chose."
+      content="Generic pages beside the products they were meant to explain: Merge Odds and lull. The difference is evidence that somebody chose."
     />
     <meta property="og:image" content="https://luantaraschi.github.io/anti-slop/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -29,6 +29,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
   </head>
 
   <body>
@@ -42,6 +43,7 @@
         </a>
         <div class="nav-links">
           <a href="#method">Method</a>
+          <a href="#examples">Examples</a>
           <a href="#report">Report</a>
           <a href="#install">Install</a>
           <a href="https://github.com/luantaraschi/anti-slop">GitHub</a>
@@ -56,10 +58,9 @@
       </picture>
       <h1>The marks of work nobody finished.</h1>
       <p class="lede">
-        A plugin for Claude Code that reads the interface you already have and
-        reports what was left at its default - the palette nobody picked, the
-        empty state nobody wrote, the dark theme nobody opened - as a ranked
-        list with a file and a line.
+        A plugin for Claude Code that audits the interface you already have.
+        It catches defaults and unfinished states, then names the file and line
+        behind each finding.
       </p>
       <div class="facts" aria-label="Project facts">
         <span><b>49</b> tells</span>
@@ -71,10 +72,20 @@
         <a class="action primary" href="#install">Install the plugin</a>
         <a class="action secondary" href="https://github.com/luantaraschi/anti-slop">Read the source</a>
       </div>
-      <pre id="install" class="command" tabindex="0" role="region" aria-label="How to install it"><span class="command-label">INSTALL FROM CLAUDE CODE</span>
-<span class="prompt">$ </span>git clone https://github.com/luantaraschi/anti-slop
+      <div id="install" class="command-shell" role="region" aria-label="How to install it">
+        <div class="command-head">
+          <span class="command-label">INSTALL FROM CLAUDE CODE</span>
+          <button
+            class="copy-button"
+            type="button"
+            data-copy="git clone https://github.com/luantaraschi/anti-slop&#10;/plugin marketplace add ./anti-slop&#10;/plugin install anti-slop@anti-slop"
+          >Copy</button>
+        </div>
+        <pre class="command" tabindex="0" aria-label="Installation commands"><code><span class="prompt">$ </span>git clone https://github.com/luantaraschi/anti-slop
 <span class="prompt">&gt; </span>/plugin marketplace add ./anti-slop
-<span class="prompt">&gt; </span>/plugin install anti-slop@anti-slop</pre>
+<span class="prompt">&gt; </span>/plugin install anti-slop@anti-slop</code></pre>
+        <p id="copy-status" class="sr-only" aria-live="polite"></p>
+      </div>
     </header>
 
     <main id="content">
@@ -87,64 +98,114 @@
         Neither half alone is a finding.
       </p>
       <p>
-        So the auditor looks for the choosing first - a variables file, a
-        <code>:root</code> block, a theme config, a comment sitting beside the
-        value it governs. Where it finds one, the pattern is somebody's decision
-        and the report says nothing about it.
+        So the auditor starts by looking for proof that somebody chose the value.
+        That proof might live in a variables file, a <code>:root</code> block, a
+        theme config or a comment beside the value. When it finds proof, the
+        report says nothing about the pattern.
       </p>
     </section>
 
-    <section>
+    <section id="examples">
       <div class="column">
-        <h2>Two landing pages. Only one was decided.</h2>
+        <h2>A generic page beside the product it was meant to explain.</h2>
         <p>
-          On the left, a calibration fixture: the palette, icon, headline and
-          three identical cards are whatever the scaffold produced. On the
-          right, the public page for <strong>lull</strong>, another open-source
-          project. It starts with the exact failure the library handles, then
-          lets the reader drive the same reducer the package ships.
+          The first pair holds the subject constant. Both pages are for
+          <strong>Merge Odds</strong>. One could advertise any tool; the other
+          opens with the policy gate the product actually applies and lets the
+          reader inspect measured projects.
         </p>
+        <div class="comparison-controls" role="group" aria-label="Choose a comparison">
+          <button type="button" data-comparison="merge-odds" aria-controls="comparison-merge-odds" aria-pressed="true">Merge Odds</button>
+          <button type="button" data-comparison="lull" aria-controls="comparison-lull" aria-pressed="false">lull</button>
+        </div>
+        <p id="comparison-status" class="sr-only" aria-live="polite"></p>
       </div>
 
-      <div class="specimens">
-        <figure class="specimen">
-          <p class="specimen-stage">
-            <strong>BEFORE</strong>
-            <span>defaults left in place</span>
-          </p>
-          <img
-            src="img/slop-landing.png"
-            width="1280"
-            height="760"
-            alt="A landing page with a purple-to-blue gradient behind centred text. A sparkle icon sits in the headline, which reads Build something great today, above the line The platform for teams that move fast and two buttons labelled Get Started and Learn More."
-          />
-          <figcaption>
-            <b>A page nobody came back to.</b> A gradient between two colours
-            the framework shipped, a sparkle in the headline, and a promise that
-            would fit any product on earth. Twelve tells fire on it.
-          </figcaption>
-        </figure>
+      <div id="comparison-merge-odds" class="comparison-set" data-comparison-set="merge-odds">
+        <h3 class="comparison-set-title">MERGE ODDS · SAME PRODUCT</h3>
+        <div class="specimens">
+          <figure class="specimen">
+            <p class="specimen-stage">
+              <strong>BEFORE</strong>
+              <span>interchangeable promises</span>
+            </p>
+            <img
+              src="img/merge-odds-before.png"
+              width="1280"
+              height="760"
+              alt="A generic dark landing page with a purple glow, emoji decoration and the headline Supercharge Your Open Source Journey. Rounded buttons and dashboard cards make broad promises about smart insights and speed."
+            />
+            <figcaption>
+              <b>The name changed; the template did not.</b> A gradient, a
+              rocket, broad claims and dashboard cards say nothing about policy,
+              evidence or open-source contribution rules.
+              <a href="https://luantaraschi.github.io/merge-odds/generic/">Open the generic route</a>.
+            </figcaption>
+          </figure>
 
-        <figure class="specimen">
-          <p class="specimen-stage">
-            <strong>AFTER</strong>
-            <span>decisions made visible</span>
-          </p>
-          <img
-            src="img/lull-example-05cfa6d.png"
-            width="1280"
-            height="760"
-            alt="The lull website on cool grey paper. Four timestamped chat fragments introduce the headline Four balloons. Four model calls. A paragraph explains that lull waits for a conversation to fall quiet, and the interactive Run it instrument begins below."
-          />
-          <figcaption>
-            <b>A page somebody decided.</b> lull opens with the failure it
-            handles: four timestamped fragments, then one plain claim. The
-            monospace carries time and events; the serif carries explanation.
-            Below the fold, the page runs the library's own reducer instead of
-            describing a demo that does not exist.
-            <a href="https://luantaraschi.github.io/lull/">Run lull in your browser</a>.
-          </figcaption>
-        </figure>
+          <figure class="specimen">
+            <p class="specimen-stage">
+              <strong>AFTER</strong>
+              <span>the product defines the page</span>
+            </p>
+            <img
+              src="img/merge-odds-after.png"
+              width="1280"
+              height="760"
+              alt="The Merge Odds website on warm paper. A large serif headline reads Read the rules before you touch the repo. Beside it, two paths cross a bright policy gate before leaving as one line, above a pinned policy quote."
+            />
+            <figcaption>
+              <b>The first screen states the decision the tool exists to make.</b>
+              Two paths cross a policy gate, the cited rule sits beside the claim,
+              and the live reader below uses the dataset the repository ships.
+              <a href="https://luantaraschi.github.io/merge-odds/">Check a project in Merge Odds</a>.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div id="comparison-lull" class="comparison-set" data-comparison-set="lull">
+        <h3 class="comparison-set-title">LULL · ANOTHER DECIDED PRODUCT</h3>
+        <div class="specimens">
+          <figure class="specimen">
+            <p class="specimen-stage">
+              <strong>BEFORE</strong>
+              <span>defaults left in place</span>
+            </p>
+            <img
+              src="img/slop-landing.png"
+              width="1280"
+              height="760"
+              alt="A landing page with a purple-to-blue gradient behind centred text. A sparkle icon sits in the headline, which reads Build something great today, above the line The platform for teams that move fast and two buttons labelled Get Started and Learn More."
+            />
+            <figcaption>
+              <b>A page nobody came back to.</b> A gradient between two colours
+              the framework shipped, a sparkle in the headline, and a promise that
+              would fit any product on earth. Twelve tells fire on it.
+            </figcaption>
+          </figure>
+
+          <figure class="specimen">
+            <p class="specimen-stage">
+              <strong>AFTER</strong>
+              <span>decisions made visible</span>
+            </p>
+            <img
+              src="img/lull-example-05cfa6d.png"
+              width="1280"
+              height="760"
+              alt="The lull website on cool grey paper. Four timestamped chat fragments introduce the headline Four balloons. Four model calls. A paragraph explains that lull waits for a conversation to fall quiet, and the interactive Run it instrument begins below."
+            />
+            <figcaption>
+              <b>A page somebody decided.</b> lull opens with the failure it
+              handles: four timestamped fragments, then one plain claim. The
+              monospace carries time and events; the serif carries explanation.
+              Below the fold, the page runs the library's own reducer instead of
+              describing a demo that does not exist.
+              <a href="https://luantaraschi.github.io/lull/">Run lull in your browser</a>.
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -237,11 +298,10 @@
         <div>
           <h3>anti-slop:build</h3>
           <p>
-            Runs before the components exist. It makes you answer four things
-            the auditor cannot answer for you - what the product concretely is,
-            how it talks, how sober it should look, how much belongs on one
-            screen - and writes every value it derives with the reasoning beside
-            it, in the places the auditor searches for evidence.
+            Runs before the components exist. It asks four questions the auditor
+            cannot answer. What is the product? How does it talk? How sober should
+            it look? How much belongs on one screen? It records each derived value
+            and the reason for it where the auditor searches for evidence.
           </p>
         </div>
       </div>

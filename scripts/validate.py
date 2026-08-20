@@ -31,20 +31,23 @@ _FOLD_INDICATORS = {"|", "|-", "|+", ">", ">-", ">+"}
 
 FIELDS = ("**Signal**", "**Principle**", "**Fix**", "**Not slop when**")
 
-FORBIDDEN_CONTENT_CHARACTER = "\u2014"
+FORBIDDEN_CONTENT_CHARACTERS = ("\u2014", "\u2013")
+FORBIDDEN_DASH_SEPARATORS = (" - ", " -- ")
 SITE_TEXT_SUFFIXES = {".css", ".html", ".js", ".json", ".md", ".svg", ".txt", ".xml"}
 
 _TELL_HEADING = re.compile(r"^### ([AWFCS]\d+) — (.+)$")
 
 
 def check_forbidden_content_character(text, source):
-    """Reject em dashes in website copy and README files."""
+    """Reject dash punctuation in website copy and README files."""
     return [
-        "{}:{}: em dash is forbidden in site and README content".format(
+        "{}:{}: dash punctuation is forbidden in site and README content".format(
             source, line_number
         )
         for line_number, line in enumerate(text.splitlines(), start=1)
-        if FORBIDDEN_CONTENT_CHARACTER in line
+        if any(character in line for character in FORBIDDEN_CONTENT_CHARACTERS)
+        or any(separator in line for separator in FORBIDDEN_DASH_SEPARATORS)
+        or line.endswith((" -", " --"))
     ]
 
 

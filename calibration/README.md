@@ -49,8 +49,8 @@ citations go stale and stay stale, the same way the example in the root
 `README.md` points at a tree that has since grown.
 
 **Not a complete history.** The v1 round, dated the same day, ran four blind
-audits of its own, and `fixtures/README.md` records what they scored - but those
-four reports did not survive their workspace. That entry is a record without artifacts, and it is the
+audits of its own, and `fixtures/README.md` records what they scored. Those four
+reports did not survive their workspace. That entry is a record without artifacts, and it is the
 reason this directory exists.
 
 ## What changed after the runs
