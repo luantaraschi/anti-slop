@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/wordmark-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset=".github/assets/wordmark-light.svg">
-    <img alt="anti-slop" src=".github/assets/wordmark-light.svg" width="560">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/anti-slop-wordmark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset=".github/assets/anti-slop-wordmark-light.svg">
+    <img alt="anti-slop" src=".github/assets/anti-slop-wordmark-light.svg" width="560">
   </picture>
 </p>
 
