@@ -99,21 +99,25 @@ missing entry scaffolding was added to the copy. What the image shows is the
 fixture's own components compiled with its own theme file, not the fixture
 directory as the auditor reads it. Nothing under `fixtures/` was modified.
 
-`img/ledgerline.png` is `specimen/index.html` rendered at 1280×1000 on the same
-day. That one is the page itself rather than a photograph of parts — it is
-published at `/specimen/` and the reader can open it and read its stylesheet.
+`img/lull.png` is the public page for
+[`lull`](https://luantaraschi.github.io/lull/) rendered at 1280×760 on
+2026-08-20 from the local checkout at commit `05cfa6d`. The screenshot shows
+the complete opening claim and the start of the interactive instrument. The
+page drives the same pure reducer exported by the package; that relationship is
+stated in lull's own page and README rather than inferred here.
 
-**Why the second image is not `fixtures/clean-landing`, which it used to be.**
-That fixture is clean in the auditor's sense: every value on it was decided.
-It is not composed, because nothing asked it to be — its job is to make tells
-decline. Put beside the slop page it argued the wrong thing, since a reader
-sees two plain pages and learns nothing. `specimen/` is the same product and
-the same decided material with a person also having composed the page, which is
-what the comparison is actually about.
+**Why the second image is not `fixtures/clean-landing`.** That fixture is clean
+in the auditor's sense: every value on it was decided. It is not composed,
+because nothing asked it to be — its job is to make tells decline. Put beside
+the slop page it argued the wrong thing, since a reader sees two plain pages and
+learns nothing. lull is a shipped open-source product whose opening argument,
+typographic roles and interactive proof are documented in its own source and
+brand notes.
 
-**What that image must not be read as claiming:** that the plugin designs. It
-does not, and `skills/build/SKILL.md` says so in its own words. The composition
-is a person's and the catalog has no tell that would have found it missing.
+**What that image must not be read as claiming:** that this plugin designed
+lull, or that passing an audit produces its composition. It did neither. The
+catalog can recognize evidence of decisions; it cannot supply the opening idea
+or the arrangement that makes those decisions legible.
 
 ## Install
 

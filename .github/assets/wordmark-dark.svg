@@ -2,13 +2,14 @@
   <title id="title">anti-slop</title>
   <desc id="desc">The anti-slop wordmark with a proofreader's caret beneath the hyphen.</desc>
   <text
-    x="99"
+    x="360"
     y="112"
     fill="#EDEAE3"
     font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace"
     font-size="96"
     font-weight="700"
     letter-spacing="-2"
+    text-anchor="middle"
   >anti-slop</text>
   <path
     d="M344 157 L360 139 L376 157"
