@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/luantaraschi/anti-slop/discussions/categories/q-a
+    about: Get help with installation, an audit result, or a catalog rule.
+  - name: Discuss an idea
+    url: https://github.com/luantaraschi/anti-slop/discussions/categories/ideas
+    about: Talk through a larger change before writing code.

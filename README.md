@@ -12,9 +12,10 @@
 
 <p align="center">
   <a href="https://luantaraschi.github.io/anti-slop/">Website</a>
+  · <a href="https://github.com/luantaraschi/anti-slop/discussions">Discussions</a>
   · <a href="#install">Install</a>
   · <a href="#how-it-works">How it works</a>
-  · <a href="#contributing">Contribute</a>
+  · <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
 <p align="center">

@@ -1,0 +1,40 @@
+name: Propose a catalog change
+description: Add a tell, repair an existing tell, or document a false positive.
+title: "Tell: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: tell
+    attributes:
+      label: Tell or proposed axis
+      placeholder: C4, Words, or new Surface tell
+    validations:
+      required: true
+  - type: textarea
+    id: signal
+    attributes:
+      label: Code that demonstrates the signal
+      description: Link a public example or paste the smallest safe excerpt.
+    validations:
+      required: true
+  - type: textarea
+    id: principle
+    attributes:
+      label: Why this is a defect
+      description: Describe what is missing from the interface, not who or what wrote it.
+    validations:
+      required: true
+  - type: textarea
+    id: exemption
+    attributes:
+      label: When the same pattern is deliberate
+      description: State the evidence that should make the auditor decline the finding.
+    validations:
+      required: true
+  - type: textarea
+    id: fixture
+    attributes:
+      label: Fixture plan
+      description: Name an expect case and a forbid case, or explain why the current corpus cannot hold them.
+    validations:
+      required: true
