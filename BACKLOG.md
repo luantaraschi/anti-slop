@@ -37,6 +37,27 @@ below carries them. Everything else changes the builder rather than the
 detector, and the builder is measured by building rather than by a blind read —
 which is Round D, and which is a different and cheaper kind of run.
 
+**The composing round shipped the same day and is measured even less.** It added
+`composing.md` and `precedents.md`, moved composition into scope for real, and
+put a step in the process that stops for a human answer. It changed no tell at
+all, so it spends no blind run — but it also means the builder now has a step
+nothing in the repository exercises, because no fixture was ever built by
+running the skill and answering it. Round D covers that and should carry this
+too.
+
+Three claims in `precedents.md` rest on screenshots rather than on fetched CSS,
+and the file marks each of them as visual: proof of life, showing the product,
+and the single-saturated-colour palette. Everything else in it was read out of
+a shipped stylesheet. That distinction is the file's own evidence rule and it
+should survive every future edit, including edits made by a tool.
+
+**`precedents.md` is append-only and its entry schema is at the bottom of the
+file.** It is written to be fed by something other than a person reading a
+page — the five fields are exactly what a capture tool would have to collect,
+and the evidence-quality field is what keeps a scraped entry from being trusted
+like a measured one. Anything writing into it has to fill all five or the entry
+is worse than absent.
+
 Two of the round's promises are unauditable by construction and are recorded
 here so that nothing later mistakes them for coverage. **Contrast** is
 arithmetic the catalog deliberately does not carry, so `floor.md` requires it to

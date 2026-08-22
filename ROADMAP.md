@@ -173,7 +173,7 @@ returns findings, measurements and questions rather than findings alone.
 domain and I would be guessing where guessing has consequences. The rest —
 SEO detail, performance, analytics, the security handoff — I can draft.
 
-Held until last because it roughly doubles the catalog, and 21 of 49 tells still
+Held until last because it roughly doubles the catalog, and 26 of 54 tells still
 have no counterexample.
 
 ---

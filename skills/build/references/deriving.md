@@ -20,6 +20,21 @@ its rank. Temperature decides saturation and contrast, not the names: an
 expressive temperature earns a gradient or a saturated accent, a sober one earns
 neither, and both draw their stops from these same four to six.
 
+**One colour, held without exception, is the same decision taken harder.** A
+product whose temperature is expressive can answer this rule with a single
+saturated field carrying everything — the ground, the type, the controls — plus
+the neutrals the contrast floor forces. It is not a shortcut around the count:
+it is more demanding, because the ratios have to work with nothing to escape to,
+and the brand has to survive being the only thing on screen. Record it as a
+Judgment naming the temperature, and record the accepted cost, which is that
+every subsequent screen inherits the commitment.
+
+**Whatever the count, the colours are declared as tokens.** A palette
+disciplined by eye survives exactly as long as the eye that made it. One
+reference site in this library has no colour custom property anywhere and ships
+`rgb(98, 101, 78)` and `rgb(98, 100, 78)` on the same page, one unit apart, with
+two modal scrims that disagree. Nobody chose that; nobody could see it.
+
 **Record as**  Naming is most of the evidence here. Add a derivation when a
 color's value comes from another's, and an accepted cost when a color does not
 survive one of the two themes.
@@ -38,9 +53,29 @@ Count the distinct kinds of text the product actually shows, and declare that
 many. Name each for what it carries, not for how big it is: `sm`/`md`/`lg`
 records a size that the value already states, so the name adds nothing.
 
+**The top of the scale does not obey the rest of it, and this is arithmetic
+rather than taste.** Leading has two tiers and the break sits around 72px.
+Measured across sixteen sites: every one setting type above 72px lands at 1.05
+or below, from `.7` to `1.05`; every one whose largest step is 36–48px lands
+between 1.0 and 1.2; body steps on the same pages run 1.4 to 1.6. The only
+value above 1.3 anywhere in the set is on the page whose largest type *is* its
+body copy.
+
+A display line inheriting the body's leading opens a gap the eye reads as two
+unrelated lines, and it is one of the most reliable signs that a scale was
+inherited rather than declared.
+
+**Tracking at that size is not the matching rule, and assuming it was would put
+a false one in this file.** The measurements disagree with the intuition:
+`-0.04em` and `-0.022em` on two sites, `+0.005em` on a third, exactly zero on a
+fourth. Tracking belongs to the face and its optical size, and a face drawn for
+display already carries it. Set it against the rendered result, and expect one
+value per family rather than one per step — a site with two families and a third
+tracking value usually has a callsite deciding on its own.
+
 **Record as**  Derivation, when a step's size or line height comes from the body
 step. Subtraction, when a step the framework offers is not declared because
-nothing in the product uses it.
+nothing in the product uses it. Platform fact for the display line height.
 
 **Worked**  A dense product declared four steps and a generous one declared
 three. Both named them for their job — a note, a body, a figure, a title — and
@@ -67,6 +102,20 @@ actually lives: a family loaded at four weights is four downloads, and a weight
 the tree never renders is a download nobody chose. It is also where a replaced
 theme leaks — a `font-semibold` that resolves out of a nine-step ramp nobody
 declared is a value nobody picked, one level below the family.
+
+**Nothing in the reference set sets display type above 600, and the measurement
+is emphatic.** The display weight resolves to 400 on seven of sixteen sites and
+to 500 or less on eleven. Six of them load a full 100–900 variable axis and not
+one reaches past 600 at display size; one runs a 220px hero at 500 and declares
+no 600 or 700 anywhere. At display size the stroke is already heavy in absolute
+terms, and the weight that reads as confident at 16px reads as shouting at 96px.
+Treat 600 as the ceiling and go looking for a reason before crossing it.
+
+**The unused download is not hypothetical.** Nine of those sixteen ship at
+least one webfont nothing references — a preloaded pair for a route that 404s,
+five faces pulled from a CDN and never applied, seven subsets of a weight the
+tree does not use. Extract the weights the tree actually renders and diff them
+against what the theme loads, once, before you finish.
 
 **Record as**  Judgment, naming the root. Accepted cost, when a native stack
 means some readers get a different face than others, or when a webfont costs a

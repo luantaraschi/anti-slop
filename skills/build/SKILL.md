@@ -17,7 +17,7 @@ description: |
   a published site needs.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # build
@@ -35,7 +35,7 @@ file: every rule below is downstream of it, and where a rule leaves an axis
 free, spending that freedom on the answer any brief would produce is the one
 outcome the client already rejected.
 
-## Two files, opposite rules
+## Five references, and what separates them
 
 `deriving.md` carries what a different product would answer differently — the
 palette, the families, the scale, the spacing ladder, the radius, the
@@ -50,8 +50,40 @@ nothing there is recorded, because a floor is a debt rather than a decision.
 
 Reading a floor rule as a derivation produces an interface that argues for why
 it has no focus ring. Reading a derivation as a floor produces the ecosystem's
-defaults with a justification attached. The rest of this file assumes the two
-stay apart.
+defaults with a justification attached.
+
+`composing.md` carries what neither of them decides: the ground, the largest
+element, the grammar the page borrows, the proof it is alive, and what lands on
+the grid. It also carries the three registers — what this skill settles in
+silence, what it brings as routes before writing code, and what it proposes
+once the page exists. It is the only file here that talks to the person rather
+than only to the code.
+
+`precedents.md` is the library `composing.md` cites from, and it is governed by
+a rule about direction rather than about content: subject, then decision, then
+a precedent that supports it. Read backwards it is a moodboard.
+
+## What to load, and when
+
+The five together are about a hundred kilobytes, and loading them at step one
+spends most of the window before a single value has been decided. The auditor
+solved this with a table and so does this file. Read each reference at the step
+that needs it.
+
+| Step | Read |
+|---|---|
+| 1 to 4 · roots, theme, derive, record | `deriving.md` |
+| 5 · the collision test | `skills/audit/references/molds.md` |
+| 6 · routes | `composing.md`, and `precedents.md` only to argue a route you have already reached |
+| 7 to 8 · composition, components | `floor.md`, beside the route |
+| 10 · the legal pages | `legal.md` |
+| 12 · the floor pass | `floor.md` again, as a checklist |
+
+`precedents.md` is the largest of the five and the one most often not needed at
+all. A build whose route came out of the subject without argument never has to
+open it, and that is the good case rather than a shortcut: the direction rule
+says a precedent supports a decision that already exists, so a build that
+reaches step six with its decision made has nothing to look up.
 
 **It does design, and the honest boundary is narrower than "it does not."**
 A survey of the neighbouring skills, 2026-08-17, found that this one and
@@ -60,10 +92,12 @@ naming a colour for its rank, and the same removal pass — and disagree outrigh
 on how many type families a product should carry. Two skills making the same
 decision with different justification machinery is not a handoff.
 
-What is genuinely left to the design skills is **composition**: the shape of the
-page, what sits where, what the reader meets first, and the one element the page
-is remembered by. This skill derives the material a layout is made of — a
-measure, a page width, a spacing ladder, a scale — and then decides no layout.
+**That survey placed composition outside this skill, and it is no longer
+outside.** The boundary read well and held only while one of the neighbouring
+skills was reliably invoked to cross it, which none was — and a skill that
+derives a measure, a page width, a spacing ladder and a scale, and then decides
+no layout, has produced the material for an interface rather than an interface.
+`composing.md` carries what changed.
 
 What this skill has that they do not is the recording. `frontend-design` keeps
 its plan in thinking and shows it when confident, so the reasoning evaporates on
@@ -133,22 +167,31 @@ decided and is not.
    This is the deliverable, not commentary around it.
 5. **The collision test,** below. It runs on the recorded plan and it is a gate:
    nothing is built until the plan has been through it.
-6. **Composition and the signature,** below. What the reader meets first, in
-   what order, and the one element the page is remembered by.
-7. **Components,** built against the theme rather than re-deciding at each
+6. **Routes.** Two or three named directions, each a closed bundle of the five
+   decisions in `composing.md`, each with its cost stated, and one of them
+   recommended. The person chooses, or mixes two, and that choice is the brief
+   from here on. This is the one step that waits for an answer.
+7. **Composition and the signature,** below, built out of the chosen route.
+8. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
    palette nobody picked, one level down. Every control carries its floor as
    it is written, not as a later pass: `floor.md` is read here, beside
    `deriving.md`, and the two are applied together.
-8. **Copy,** drawn only from the inventory.
-9. **The legal pages,** where the site is published and collects anything.
-   `legal.md` carries the inventory they draw on and the rule for a field
-   nobody answered. They are written before their links are added.
-10. **The reduction pass.** One pass whose only purpose is removal.
-11. **The floor pass.** One pass that only checks, against `floor.md`, and it
+9. **Copy,** drawn only from the inventory.
+10. **The legal pages,** where the site is published and collects anything.
+    `legal.md` carries the inventory they draw on and the rule for a field
+    nobody answered. They are written before their links are added.
+11. **The reduction pass.** One pass whose only purpose is removal.
+12. **The floor pass.** One pass that only checks, against `floor.md`, and it
     is the last thing that happens. The reduction pass deletes, and a deletion
     can take a focus ring or an `aria-live` region out with the element it was
     attached to.
+
+Steps 6 and 7 are the only ones that involve the person, and step 6 is the only
+one that stops for an answer. Everything else in this list is register one:
+decided and applied without asking, because asking about a value with one right
+answer is noise wearing the costume of collaboration. `composing.md` carries the
+test that keeps the two apart.
 
 ## The seven shapes of a recorded decision
 
