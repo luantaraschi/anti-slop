@@ -66,7 +66,7 @@
       <div class="facts" aria-label="Project facts">
         <span><b>94</b> tells</span>
         <span><b>3</b> skills</span>
-        <span><b>21</b> blind reports</span>
+        <span><b>23</b> blind reports</span>
         <span><b>MIT</b> licensed</span>
       </div>
       <div class="hero-actions">
@@ -276,7 +276,7 @@
         <code>fixtures/slop-dashboard</code> on 2026-08-18. The two under ROOT
         are there because the same evidence produces four more: the empty theme
         is also why A3 and A5 fire, and the retyped card is also why A4 and A6
-        do. Two files close six findings. Twenty-one blind reports are committed
+        do. Two files close six findings. Twenty-three blind reports are committed
         under <code>calibration/</code>, written by agents that were given the
         skill and the directory and nothing else.
       </p>
@@ -323,9 +323,11 @@
       </div>
 
       <p class="note">
-        Which is how each half tests the other: a tell that fires on a tree the
-        build skill produced is the build skill's failure, and it arrives with a
-        file and a line.
+        Which is how the first two test each other: a tell that fires on a tree
+        the build skill produced is the build skill's failure, and it arrives
+        with a file and a line. The rewriter stands outside that loop, because
+        it returns text rather than a report and there is nothing for a tell to
+        fire on.
       </p>
     </section>
 
