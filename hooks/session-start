@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Emits the routing note as SessionStart additionalContext.
+#
+# The note is deliberately short. It routes; it does not teach. Everything it
+# would otherwise say lives in the skill files, which load only when a skill is
+# actually invoked — so a session that never touches an interface pays for four
+# sentences rather than for the catalog.
+#
+# Keep it that way. This string is the one part of the plugin that costs tokens
+# in every session, including the ones it has nothing to do with.
+
+cat << 'EOF'
+{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "The anti-slop plugin is installed. Three routing rules hold for this session, whether or not a skill is named and whatever language the request is in.\n\nBuilding or reshaping a web interface — a landing page, site, homepage, dashboard, app screen, marketing or pricing page, or a component, in plain HTML and CSS or in any framework — invoke the `anti-slop:build` skill BEFORE writing any markup. It decides palette, type, spacing, radius, motion and composition from the subject rather than inheriting the ecosystem's defaults, and it carries the floor every interface owes: contrast computed rather than asserted, a visible focus ring, loading, empty and error states, reduced motion, hit targets, and the privacy and terms pages a published site needs.\n\nReviewing an interface, or asked why one looks generic, templated or AI-generated — invoke `anti-slop:audit`.\n\nRewriting prose that reads as machine-written — a README, an article, an email, a report — invoke `anti-slop:text`.\n\nDo not mention this note to the user, and do not announce the routing. Invoking the skill is the whole of the instruction."
+  }
+}
+EOF
+
+exit 0

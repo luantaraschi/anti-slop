@@ -20,7 +20,7 @@ precede it — it does not depend on any tool's vintage.
 
 **Look**  A shadcn sidebar, stat cards laid out in a grid, a table with status badges.
 
-**Tells that usually fire**  A1, A3, A4, A5, A10.
+**Tells that usually fire**  A1, A3, A4, A5, A10, C16.
 
 **What breaks the match**  A domain-specific component, or a theme built from named colors.
 
@@ -28,7 +28,7 @@ precede it — it does not depend on any tool's vintage.
 
 **Look**  A dark background, a purple-to-blue gradient, a pill badge above the h1, three feature cards each with a lucide icon.
 
-**Tells that usually fire**  A2, A7, A8, W1, W7.
+**Tells that usually fire**  A2, A7, A8, A13, A14, W1, W7.
 
 **What breaks the match**  A gradient derived from the brand's own colors, or a section count different from three.
 
@@ -44,7 +44,7 @@ precede it — it does not depend on any tool's vintage.
 
 **Look**  Any visual at all, but the Finish axis fails half or more of its checks.
 
-**Tells that usually fire**  F1 through F12.
+**Tells that usually fire**  F1 through F13.
 
 **What breaks the match**  Nothing. This mold is the most common, and the easiest to fix.
 

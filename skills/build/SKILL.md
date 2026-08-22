@@ -1,15 +1,23 @@
 ---
 name: build
 description: |
-  Decide a product's visual identity and voice before building its interface,
-  so the result is not the ecosystem's defaults wearing a product's name. Use
-  when starting a landing page, dashboard, app or component library — in plain
-  HTML and CSS or in any framework — before writing components, or when an
-  interface already reads as generic and its palette, type scale, radius,
-  motion and copy need deciding rather than inheriting.
+  Build a web interface that looks designed rather than generated. Use FIRST,
+  before writing any markup, whenever the request is to build, make, create,
+  code, design, redesign, rebuild or improve a landing page, website, homepage,
+  dashboard, admin panel, app screen, marketing page, pricing page, portfolio,
+  component or component library — in plain HTML and CSS or in React, Next,
+  Vue, Svelte, Astro, Tailwind or shadcn. Also fires on "faz uma landing page",
+  "cria um site", "monta um dashboard", "faz uma tela", "melhora essa
+  interface". Also when an interface already reads as generic and its palette,
+  type, radius, motion and copy need deciding rather than inheriting.
+  Decides palette, type, spacing, radius, motion and composition
+  from the subject instead of inheriting the ecosystem's defaults, and holds
+  the floor every interface owes: contrast, visible focus, loading, empty and
+  error states, reduced motion, touch targets, and the privacy and terms pages
+  a published site needs.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # build
@@ -18,6 +26,32 @@ metadata:
 
 This skill runs before the components exist. It forces the decisions whose
 absence `anti-slop` detects, and writes them where `anti-slop` looks for them.
+
+Work as the design lead at a studio whose reputation is that no two clients get
+the same page. This client has already turned down proposals that felt
+templated, and is paying for a point of view rather than a competent
+arrangement of the ecosystem's defaults. That framing is not decoration on this
+file: every rule below is downstream of it, and where a rule leaves an axis
+free, spending that freedom on the answer any brief would produce is the one
+outcome the client already rejected.
+
+## Two files, opposite rules
+
+`deriving.md` carries what a different product would answer differently — the
+palette, the families, the scale, the spacing ladder, the radius, the
+elevation, the motion. Every value there comes from a root, and every value
+there is recorded with the reasoning that produced it.
+
+`floor.md` carries what no product answers differently: contrast, visible
+focus, the three states beyond success, reduced motion, hit targets, the
+published-page settings, the legal pages. Nothing there comes from a root, and
+nothing there is recorded, because a floor is a debt rather than a decision.
+`legal.md` carries the one part of the floor long enough to need its own file.
+
+Reading a floor rule as a derivation produces an interface that argues for why
+it has no focus ring. Reading a derivation as a floor produces the ecosystem's
+defaults with a justification attached. The rest of this file assumes the two
+stay apart.
 
 **It does design, and the honest boundary is narrower than "it does not."**
 A survey of the neighbouring skills, 2026-08-17, found that this one and
@@ -53,6 +87,18 @@ was never the defect.
 A gradient, a shadow, a pill, a purple, a rounded corner — all available. What
 is not available is reaching for one without deciding it.
 
+**The floor is not an exception to that rule, and it is worth being exact about
+why.** The argument against a banned-patterns list is that the pattern was never
+the defect — the absence of a decision was. `floor.md` fires on absence too: a
+missing focus ring, an unmeasured contrast pairing, a fetch with no failure
+branch. Nothing there forbids a pattern, so nothing there contradicts this
+section. What it does is name the class of absences no brief can license.
+
+The catalog already carried two of them before the class had a name. F1 and F6
+answer `Not slop when` with `Never` — there is no page without a language, and
+none whose h1 competes with another. Contrast, focus, the three states beyond
+success and the legal pages join that class rather than starting a new one.
+
 ## The four roots
 
 Only the brief or the human answers these. Answer from the brief where the
@@ -85,11 +131,24 @@ decided and is not.
    carries the rule per value.
 4. **Record.** Every derived value lands with one of the seven shapes below.
    This is the deliverable, not commentary around it.
-5. **Components,** built against the theme rather than re-deciding at each
+5. **The collision test,** below. It runs on the recorded plan and it is a gate:
+   nothing is built until the plan has been through it.
+6. **Composition and the signature,** below. What the reader meets first, in
+   what order, and the one element the page is remembered by.
+7. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
-   palette nobody picked, one level down.
-6. **Copy,** drawn only from the inventory.
-7. **The reduction pass.** One pass whose only purpose is removal.
+   palette nobody picked, one level down. Every control carries its floor as
+   it is written, not as a later pass: `floor.md` is read here, beside
+   `deriving.md`, and the two are applied together.
+8. **Copy,** drawn only from the inventory.
+9. **The legal pages,** where the site is published and collects anything.
+   `legal.md` carries the inventory they draw on and the rule for a field
+   nobody answered. They are written before their links are added.
+10. **The reduction pass.** One pass whose only purpose is removal.
+11. **The floor pass.** One pass that only checks, against `floor.md`, and it
+    is the last thing that happens. The reduction pass deletes, and a deletion
+    can take a focus ring or an `aria-live` region out with the element it was
+    attached to.
 
 ## The seven shapes of a recorded decision
 
@@ -238,6 +297,101 @@ Naming is part of the evidence. Colors named for the product rather than for
 their rank, type sizes named for what they carry rather than `sm`/`md`/`lg`. A
 palette named `primary` through `quinary` records an order, not a decision.
 
+**No literal survives the emitting step.** Whatever writes the theme, the
+component or the summary document writes token names, never values. This is the
+failure that undoes everything above, and it is easier to fall into than it
+looks: one design tool surveyed for this skill resolves a style correctly out of
+a curated table and then has its emitter append `border-radius: 8px` and
+`transition: all 200ms ease` to every project it touches — including projects
+whose own selected style declares a radius of zero, and including the
+`transition: all` its own rule set forbids four lines further down. The
+derivations were right and the output was the ecosystem's defaults, because the
+last function in the chain typed numbers.
+
+So the check is mechanical and belongs at the end of the build: grep the emitted
+tree for a hex, a pixel value, a duration and a cubic-bezier outside the token
+block. Each hit is either a value that should have been a token or a Departure
+that should have been recorded. There is no third case.
+
+## The collision test
+
+The seven shapes prove a value was decided. They cannot prove it was not the
+decision everybody makes, and the two are different failures: a page can record
+every derivation honestly and still land where any competent build lands, at
+which point the record is evidence of care and the page still looks like the
+others.
+
+So before anything is built, run the plan against a neighbour. Take a brief for
+a different product in the same category — a competitor, or the same product
+told to a different audience — and work it far enough to reach a palette, a
+family pair, and an opening. Then compare.
+
+**Name what collided.** Any value that came out the same is a value the
+category produced rather than this product. It does not have to change, and
+sometimes it should not: a bookkeeping product and its competitor will both
+reach for a restrained neutral, and forcing a difference there buys nothing but
+strangeness. What has to change is that the collision is now recorded and
+answered.
+
+**The artifact is the enforcement.** Write down, beside the plan: the
+neighbouring brief you tested against, the values that collided, and for each
+one either what you changed or why the collision is correct. A test whose only
+output is a feeling that the plan is fine did not run. Two builds have claimed
+to run this and produced nothing, which is how it is now known to need an
+artifact.
+
+**Then check the plan against the molds.** The auditor keeps the current list in
+`skills/audit/references/molds.md`, dated and maintained, and the builder should
+read it here rather than carry a second copy that ages on its own. The clusters
+it names as of this writing: a stock dashboard of sidebar, stat grid and status
+badges; a gradient landing on a dark ground with a pill badge and three icon
+cards; a cream editorial near `#F4F1EA` with a high-contrast serif and a
+terracotta accent.
+
+Each is a legitimate answer to some brief. None is a legitimate answer to a
+brief that left the axis free, and the distinction is the whole of the test:
+where the brief asks for one of them, the brief wins and this paragraph does
+not apply. A mold is checked against the *combination* rather than the values —
+a cream ground is not the defect, a cream ground with that serif and that accent
+is, and a plan that dodges one value while keeping the cluster has not moved.
+
+## Composition and the signature
+
+This skill used to derive the material and decide no layout, on the grounds
+that composition belonged to the design skills. That boundary held only while
+something else was reliably invoked to cross it, which nothing was, and a
+material with no layout is not an interface. Composition is in scope, and it is
+governed by two rules rather than by a catalog of page shapes.
+
+**Structure encodes something true, or it is not structure.** An eyebrow, a
+divider, a numbered marker, a column count, a section order: each one either
+carries information the reader needs or it is decoration wearing the costume of
+information. Numbered markers are the clearest case, because they are almost
+always wrong — `01 / 02 / 03` claims the content is a sequence, and the reader
+who discovers it is not learns to distrust the next signal too. Count what
+actually exists before deciding how many of anything there are; three is the
+number that appears when nobody counted.
+
+**The opening is an argument, not a slot.** Whatever the reader meets first
+should be the most characteristic thing in the subject's world, in whatever
+form that thing takes — a sentence, a figure, a photograph, a live control, a
+table, a demonstration of the product doing the thing. The pill badge above an
+h1 above a subtitle above two buttons is the arrangement that appears
+regardless of subject, which is the proof it was not derived from one. Where
+the product can be shown working, showing it beats describing it, and a page
+that never shows its product is the strongest evidence available that there is
+none.
+
+**The signature.** One element the page is remembered by, which embodies the
+brief and appears nowhere else. Decide it before building, name it in the
+record, and spend the page's boldness there. Everything around it stays quiet:
+a page with three memorable elements has none, and the discipline that produces
+the signature is the same discipline that keeps its neighbours plain.
+
+This is where the reduction pass gets its instruction. Ask of every icon, card,
+badge, number, animation, section and second call to action whether it competes
+with the signature. What competes goes, and what remains is quieter for it.
+
 ## The reduction pass
 
 After the interface exists, one pass that only removes. For each icon, card,
@@ -258,12 +412,30 @@ An invented metric, a fabricated testimonial, and a headline that would fit any
 product are one failure: an empty inventory filled with fiction. The first two
 carry legal consequences the third does not.
 
+**A legal page is the one thing an empty inventory does not buy silence on, and
+the distinction is narrow enough to state exactly.** A testimonial is a claim
+about a person who did not speak. A privacy notice is a disclosure of something
+the site already does, and deleting the link removes the notice while leaving
+the collection — the only one of the available outcomes that is unlawful. So
+those pages get written from what the build knows, with every unanswered field
+shipped as a visible gap rather than as an invention. `legal.md` carries the
+questions, the contents, and the routing rule that keeps a link from pointing
+at a page that does not exist yet.
+
 ## Out of scope
 
-Composition — the shape of the page, what sits where, what the reader meets
-first. This skill derives the material a layout is made of and decides no
-layout; `frontend-design` and its neighbours do that. Also out: any claim about
-who or what wrote a piece of code.
+Any claim about who or what wrote a piece of code. Legal advice: what this
+skill produces is a draft that accurately names what the site does, and whether
+that draft is sufficient in its jurisdiction is a lawyer's call, said in the
+handover and not only on the page.
+
+**Composition used to be out and no longer is.** The old boundary handed the
+shape of the page to `frontend-design` and its neighbours, which was coherent
+only while one of them was reliably invoked, and none was. A skill that derives
+a material and stops does not produce an interface. Where those skills are
+invoked as well, they follow a brief exactly and treat a memory as a hint, so
+this skill's recorded decisions are handed over **as the brief** rather than
+left to be found in a theme file.
 
 **Stack is not out of scope.** Every root, every derivation and every recorded
 shape works the same in plain HTML and CSS as in any framework — the tokens
@@ -282,8 +454,11 @@ file confirms that the scales you replaced really did stop compiling. Two builds
 found real defects this way that no reading would have surfaced.
 
 **When the auditor is not available,** say so rather than claiming the build is
-checked, and run the five cheapest checks by hand, because they are the ones
-this skill has repeatedly missed:
+checked, and run `floor.md` by hand. It is written to be read that way: every
+line is answerable from the artifact, and most are greppable.
+
+Five of its lines are the ones this skill has repeatedly missed, so give them a
+second pass even when the auditor did run:
 
 1. Every heading of four words or more and every short text block carries a wrap
    property.
@@ -297,3 +472,11 @@ this skill has repeatedly missed:
 The last two cannot be verified by reading, which is why they are on this list
 and not in the survival checks. An unverified build is a finding to report, not
 a step to skip quietly.
+
+**The auditor cannot see two of the things this skill now promises.** Contrast
+is arithmetic and the audit catalog deliberately does not carry it, because
+`web-design-guidelines` owns accessibility and a ratio needs computing rather
+than reading. The collision test is unauditable for the same reason the
+reduction pass is: nothing in a tree records the plan that was rejected. Both
+are therefore reported rather than checked — name the pairings you computed and
+the neighbour you tested against, in the handover, or say you did neither.

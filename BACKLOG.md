@@ -1,10 +1,11 @@
 # Backlog
 
-An index, not a record. Every item below is stated somewhere in
-`fixtures/README.md`, which is the authoritative version and was written with
-the evidence in front of it. Each entry here points at that paragraph, adds what
-the work costs and what it waits on, and stops. Where the two disagree, the
-record wins and this file is the one that is wrong.
+An index, not a record. Every item below is stated somewhere else, in the file
+that was written with the evidence in front of it: `fixtures/README.md` for the
+interface catalog, `corpus/README.md` for the text one, or the skill file that
+carries the item. Each entry here points at that paragraph, adds what the work
+costs and what it waits on, and stops. Where the two disagree, the record wins
+and this file is the one that is wrong.
 
 ## What gates all of it
 
@@ -25,6 +26,24 @@ the A and B below, which are debt rather than plan. It moved the auditor to
 spent no blind run, which is the point: a restructure that changes no tell needs
 no measurement, so the run it did not spend is still available to whichever
 round carries Round A.
+
+**The floor round shipped on 2026-08-22 and spent no blind run either, which is
+a larger claim than the one above and needs its own accounting.** It added five
+tells (A13, A14, C16, W8, F13), two build references (`floor.md`, `legal.md`),
+a duration and easing rule where `deriving.md` previously had no numbers, a
+collision test, a composition section, and a `SessionStart` hook. Of that, only
+the five tells are catalog changes, and none of the five is measured. Round C
+below carries them. Everything else changes the builder rather than the
+detector, and the builder is measured by building rather than by a blind read —
+which is Round D, and which is a different and cheaper kind of run.
+
+Two of the round's promises are unauditable by construction and are recorded
+here so that nothing later mistakes them for coverage. **Contrast** is
+arithmetic the catalog deliberately does not carry, so `floor.md` requires it to
+be computed and reported and no tell confirms it happened. **The collision
+test** leaves no trace in a tree, for the same reason the reduction pass leaves
+none: nothing records the plan that was rejected. Both are reported by the
+builder or not at all.
 
 ## Round A — the measurement debt
 
@@ -86,6 +105,66 @@ problem.
   this catalog from a linter, and it is the least tested field in it. The
   largest item on this page and the one most likely to want its own round.
 
+## Round C — the floor's first measurement
+
+Five tells shipped on 2026-08-22 with no fixture and no blind run. They are
+grouped here rather than folded into Round B because three of them fire on a
+condition no current fixture can hold, so this round is fixture work before it
+is measurement work.
+
+- **C1. Two fixtures need a condition they do not have.** F13 fires on a public
+  site that collects something, and no fixture has a form, an analytics script
+  or a third-party embed. A14 fires on a marketing route that never shows its
+  product, and both landing fixtures are close to that already — `slop-landing`
+  should carry it on an `expect` row and `clean-landing` disarm it with a
+  single honest figure. Do F13 by giving `slop-landing` a form and no notice,
+  and `clean-landing` a form with one.
+- **C2. C16 is the cheapest of the five and should go first.** A focus ring is
+  a grep on both sides: `slop-dashboard` resets the outline and puts nothing
+  back, `clean-dashboard` declares `:focus-visible` once at the root. It is the
+  one new tell whose exemption and whose signal both fit the existing fixtures
+  with no new condition invented.
+- **C3. A13 needs a fixture that carries the decoration on purpose.** This is
+  the A2 problem again, and `clean-landing` is where it belongs: an element from
+  the tell's own list, built from the theme's declared colours, placed once. A
+  grep-shaped implementation has to decline it at the exemption rather than
+  before reaching it, which is the property that made `clean-landing` the
+  sharpest fixture of the four.
+- **C4. W8 may not want a fixture at all.** Fabricated social proof is
+  detectable only against an inventory, and a fixture has no inventory outside
+  the reader's head. Decide whether the tell is testable in this corpus before
+  building for it; an honest exclusion recorded in `fixtures/README.md`, the way
+  F10's is, may be the right answer.
+- **C5. A13's Signal counts and names no threshold.** It says to count the
+  decorative elements against the ones whose values resolve out of the theme,
+  and does not say what count decides. It joins the five tells already recorded
+  under `How a Signal reads` as failing that convention, and it should be fixed
+  by the round that can measure it rather than by picking a number now.
+
+## Round D — measuring the builder rather than the catalog
+
+The floor round changed the builder more than the detector, and a blind read
+cannot measure a builder. What measures it is a build: run `anti-slop build`
+against a brief, then run `anti-slop` against the result, and every tell that
+fires is the builder's failure arriving with a file and a line. Three specimens
+exist from earlier rounds and none of them was built against `floor.md`.
+
+- **D1. One specimen built against the floor.** The three existing ones are the
+  control: `wickfield` carries seven mentions of focus, `chorus` two, `mise`
+  none, and no specimen has a skeleton anywhere. That spread is what the floor
+  was written to remove, and it is the measurement.
+- **D2. Confirm the hook fires.** `hooks/hooks.json` is modelled on the one
+  working example on this machine, and it is unverified for a plugin registered
+  through a skills directory rather than a marketplace. The check is a restart
+  and a grep of a fresh transcript for the routing note. If it does not load,
+  the same block moves to the user's `settings.json` and the plugin ships it as
+  an install instruction instead.
+- **D3. Read the usage counter.** `pluginUsage` in `~/.claude.json` recorded
+  `anti-slop` at zero invocations across 31 startups before this round, against
+  249 for the one plugin here that ships a SessionStart hook. That field is the
+  only ground truth available for whether the description and hook work, and it
+  should be read again after a week rather than reasoned about.
+
 ## Round 3, and what inspecting the corpus changed about it
 
 The plugin design puts two subjects next for the auditor: incomplete states
@@ -122,13 +201,54 @@ Not work yet. Recorded so the next round recognizes it if it happens again.
   run reading the exemption the other way is variance, not a measurement. A
   second decline makes it the tell's problem rather than the round's.
 
+## Round T — everything the text skill shipped unmeasured, 2026-08-22
+
+`anti-slop:text` went in whole: forty tells, two vocabulary files, four
+specimens, expectation rows. Nothing in it has been through a blind run. The
+authoritative version of each item below is in `corpus/README.md` or in the
+skill file that carries it; this is the index.
+
+- **T1. `M1`'s threshold, and what it cost to find.** The tell shipped counting
+  dashes per word, at one per two hundred in English and one per four hundred in
+  Portuguese. Counting the four specimens the same day showed that rate
+  separating nothing: both clean specimens use one paired interruption on
+  purpose and both landed above the threshold, because a pair is two characters
+  and a short document is short. The measure that separates is the share of the
+  text's clause joints the dash carries, and it is now one number for both
+  languages, 15%, with the four figures recorded in `vocabulary-en.md`. Two
+  consequences to carry into the round. The number rests on four documents
+  written by the author of the tell, so it is a floor found by counting and not
+  a rate from the wild. And the claim that the dash is rarer in Brazilian prose
+  survives as an observation of usage rather than as a calibrated figure,
+  because the measurement tested what separates a read draft from an unread one
+  and never tested the difference between the two languages.
+- **T2. Whether `P5` survives.** *Neutrality where the genre wants a position*
+  is the only tell in the catalog that fires on an absence, so it is the only
+  one that can push a rewrite into inventing a stance, which the skill's own
+  fabrication rule forbids. Its exemption list is long for that reason. If a
+  round catches it adding a position, cut it rather than narrow it.
+- **T3. `M1`'s first exemption has no specimen.** The door opens when a sample
+  of the author's writing uses dashes at that rate, and a standalone specimen
+  carries no sample. Measuring it needs a run handed a sample alongside the
+  text, which is a different shape of run and is not built.
+- **T4. Thirteen of forty tells appear in no corpus row**, and eighteen have no
+  `forbid` row. `scripts/validate.py` prints both lists every run. Two short
+  documents cannot carry forty patterns without becoming a list of patterns.
+- **T5. The axis names are unmeasured too.** `Hollow`, `Template`, `Grain`,
+  `Marks`, `Presence` were chosen as plain nouns with free initials. Renaming is
+  cheap until specimens and rows carry the letters, and it is not cheap after.
+- **T6. Both Portuguese specimens were written by the author of the tells.**
+  `docs/calibration-method.md` names that as the thing not to do, and it was
+  done here for the same reason the 2026-08-18 round did it: no other
+  Portuguese corpus exists. Recorded rather than hidden.
+
 ## What finishes a round
 
 `python -m pytest tests/` green, `python scripts/validate.py` at
 `0 problem(s)`, and the round's blind runs committed under
 `calibration/<date>/` with `fixtures/README.md` updated to say what they scored
-before any repair they caused. A score taken after the fixes is a score of the
-fixes.
+before any repair they caused, and `corpus/README.md` where the round scored
+prose. A score taken after the fixes is a score of the fixes.
 
 ## The build skill does not know about application screens
 

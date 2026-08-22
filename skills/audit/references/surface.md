@@ -61,7 +61,7 @@ and named, never stretched.
 
 ### A5 — No type scale
 
-**Signal**  No type scale the project declared: only the framework's default steps, or font sizes typed at each callsite with no relationship between them. Plus one weight doing all the emphasis, and no family the project chose — it runs on whatever the ecosystem reaches for first, which is currently Inter, or on the system stack by default rather than by decision.
+**Signal**  No type scale the project declared: only the framework's default steps, or font sizes typed at each callsite with no relationship between them. Plus one weight doing all the emphasis, and no family the project chose — it runs on whatever the ecosystem reaches for first — currently Inter, Geist or Space Grotesk, and the list dates faster than the rest of this catalog — or on the system stack by default rather than by decision.
 
 **Principle**  Typography carries a page's personality. Without a scale and without a family, the text is a neutral delivery of content.
 
@@ -91,7 +91,7 @@ and named, never stretched.
 
 ### A8 — Template layout
 
-**Signal**  A hero with a pill badge, an h1, a subtitle, and two buttons; a three-card feature grid; a strip of three or four large numbers.
+**Signal**  A hero with a pill badge, an h1, a subtitle, and two buttons; a three-card feature grid; a strip of three or four large numbers; a bento grid whose cell sizes carry no relationship to the weight of what is in them.
 
 **Principle**  The structure itself isn't the problem: it's that the same structure shows up regardless of subject, which proves the subject never shaped the design.
 
@@ -139,3 +139,23 @@ and named, never stretched.
 
 **Not slop when**  A z scale exists in one of the four evidence places and an arbitrary value beside it is a documented escape for a third-party layer the project does not control; or nothing in the tree stacks at all.
 
+
+### A13 — Furniture nobody put there
+
+**Signal**  Background or frame decoration that carries nothing and relates to nothing in the content: a radial orb or blurred colour blob behind a section, a dot or grid pattern across the page ground, a translucent blurred panel used where a solid surface would read the same, a coloured strip down the left edge of a card or callout, a fake terminal or browser chrome wrapping content that is not terminal output. Both clauses have to hold — the element is present, **and** its colours, position and size come from nowhere the project declared. Count the decorative elements against the ones whose values resolve out of the theme.
+
+**Principle**  Each of these is a shape that arrived with a template rather than with the subject, which is why they turn up in the same four places on pages about unrelated things. They are the visual equivalent of A7's decorative icon one layer back: the icon steals attention from the label, and these steal it from the whole page, because a large soft shape is the first thing an eye lands on and it has nothing to say when it gets there.
+
+**Fix**  Remove it, and see whether anything was lost. What survives that test either resolves out of the theme's own colours and the layout's own grid, or it goes. A translucent panel in particular has to earn the blur: it costs a compositor layer and it is right only where something meaningful is actually behind it.
+
+**Not slop when**  The decoration is built from the theme's declared colours and its geometry comes from the layout's own grid or the subject's own material — a dot grid on a product about plotting, a terminal frame around real terminal output. One such element carrying the page's signature is a decision; the same four on every section is the template asking.
+
+### A14 — A product page that never shows the product
+
+**Signal**  A public marketing route describing a product — a landing page, a home page, a pricing page — with no image, screenshot, recording, embedded demo or live control showing the thing working. Icons, logos, abstract illustration and a portrait do not count: the test is whether a reader can see what they would be using. Count the sections that assert a capability against the sections that show one.
+
+**Principle**  This is the cheapest thing to leave out and the most expensive absence on the page. A reader deciding whether to care wants to see the thing, and a page that will not show it reads as a page written before the product existed — which is exactly what it usually is. Every other tell in this catalog describes work nobody finished; this one describes a subject nobody had.
+
+**Fix**  Show the product doing the most characteristic thing it does, as early as the page can carry it. A single honest screenshot beats three feature cards. Where the product genuinely cannot be shown — an API, an agreement, a service — show its artifact instead: the request and the response, the document, the report it produces.
+
+**Not slop when**  The subject has no visual surface at all and the page shows its artifact instead; the route is not a marketing route; or the product is genuinely pre-release and the page says so rather than implying a thing that exists.

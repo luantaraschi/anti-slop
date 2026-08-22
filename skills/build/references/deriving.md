@@ -195,22 +195,85 @@ Another declared none at all, which is a decision when the theme says so.
 
 ### Motion
 
-**From**  Root 3 (temperature), and two platform facts.
+**From**  Root 3 (temperature) decides how much movement exists. Distance
+decides how long each one takes. Everything else here is a platform fact.
 
-**Rule**  Temperature sets how much movement exists. Two facts set its shape
-regardless of temperature: an exit is shorter than its entrance, because what is
-leaving has already lost the eye to what replaces it; and anything driven by
-interactive state moves on a transition rather than a keyframe, so a user who
-changes their mind halfway retargets from where the element is instead of
-restarting its timeline.
+**Rule**  Declare two or three durations, named for what travels rather than for
+their length — a `press`, a `reveal`, a `panel` — and derive each from how far
+the thing actually moves. Duration reads as distance, which is why one value
+everywhere looks wrong: the eye expects the longer journey to take longer, and a
+200ms colour fade beside a 200ms panel slide tells it the panel is small.
 
-Every motion honours `prefers-reduced-motion`.
+**The calibration band.** Three independent motion catalogs, measured against
+each other, land on the same figures: a press answers in 100–160ms, a tooltip or
+small popover in 125–200ms, a dropdown in 150–250ms, a modal or drawer in
+200–500ms. This is not a menu and nothing here should be copied out of it. It is
+a check on the derivation: a value that lands outside its band usually means the
+distance was estimated rather than measured, and the repair is to re-derive it
+rather than to move the number into range. Marketing motion is deliberately
+outside the band and always was.
 
-**Record as**  Platform fact for both rules above. Abstention where movement was
-available and not used.
+**The exit is roughly six tenths of the entrance.** The old rule said only
+*shorter*, which two builds satisfied by taking a millisecond off. The ratio is
+measured: across five enter/exit pairs in one catalog the figures run 0.36 to
+0.88, and the two surfaces most alike — a dropdown and a modal — landed
+independently on exactly 0.60. Use that as the default and depart from it with a
+reason. What is leaving has already lost the eye to what replaces it, so an exit
+that matches its entrance holds attention where it is no longer needed.
 
-**Worked**  A panel entered over 200ms and left over 100ms across the same
-distance, on a transition rather than a keyframe, with both reasons in the file.
+**Ease out, and never ease in.** Anything entering, and anything answering a
+pointer, decelerates into place: it moves most at the moment the user is still
+looking at where it came from. `ease-in` starts slow, which puts the stillest
+part of the motion at the exact instant the person acted, and reads as an
+interface that did not hear them. It is correct only for something leaving the
+viewport entirely and never coming back.
+
+The specific curve is character rather than correctness, and the proof is that
+three respected sets disagree — `cubic-bezier(0.23, 1, 0.32, 1)`,
+`cubic-bezier(0.16, 1, 0.3, 1)` and `cubic-bezier(0.22, 1, 0.36, 1)` are all in
+production and all defensible. Pick one for the temperature and use it
+everywhere; the failure is not the choice, it is a tree carrying four of them.
+
+**An entrance moves as well as fades.** From `scale(0.9)` to `scale(0.97)`,
+or a small translate, plus opacity. Never from `scale(0)`, which is an object
+being manufactured rather than arriving, and never opacity alone, which is a
+thing appearing out of nothing at no position. A press goes the other way, to
+about `scale(0.97)`, and returns.
+
+**A stagger runs 30–80ms between items and never blocks input.** Longer reads as
+the interface making the reader wait for a decoration.
+
+**Animate `transform` and `opacity`.** Both are composited; height, width, top
+and left are not, and a list that animates its own height drops frames on the
+device that can least afford it. `transition: all` names properties nobody meant
+to animate.
+
+**Interactive state moves on a transition, not a keyframe.** A keyframe runs a
+fixed timeline and restarts from the beginning when the state changes mid-
+flight; a transition retargets from wherever the element currently sits, so a
+reader who changes their mind never sees the interface stuck. Keyframes are for
+a sequence meant to run once, start to finish.
+
+**Motion starts where it was caused.** A menu opening from a button grows from
+the corner nearest that button, which is what `transform-origin` is for. Growing
+from its own centre is the tell that nobody asked what opened it.
+
+**Reduced motion keeps the change and drops the travel.** Not everything
+switched off — a reader who reduces motion still needs to know the panel opened.
+Keep the opacity and colour change, remove the transform, and shorten what is
+left.
+
+**Record as**  Derivation for each duration, written as the distance it covers
+and the ratio to its own exit. Judgment for the curve, naming the temperature.
+Platform fact for the transition-over-keyframe rule, the compositor rule, the
+ease-in rule and reduced motion. Abstention at each place movement was available
+and not used, which on a sober temperature is most of them.
+
+**Worked**  A panel travelling 320px entered over 240ms and left over 145ms —
+0.60 of the entrance — on a transition, from `translateY(8px)` and
+`opacity: 0`, easing out on the family's one curve, with its origin at the
+control that opened it. The theme declared three durations and the file said
+which distance produced each.
 
 ### Interactive states
 
@@ -251,6 +314,14 @@ When starting from a component library, the variants the product does not use
 are removed rather than left in place. What is left carries the theme's own
 radius, colors, and type scale, which is what makes the library's file evidence
 of a decision rather than evidence of an install.
+
+A component's own surface derives too, and the rule is arithmetic: each boolean
+prop doubles the states the component can be in, so five of them is
+thirty-two combinations of which the tree renders four. `<Section dark inverted
+narrow centered fullBleed />` is a component that was extended five times
+instead of designed once, and nobody has rendered most of what it can now
+express. Name the variants the product actually has — one prop taking a few
+named values — and let composition carry the rest.
 
 **Record as**  Subtraction, naming what was removed and why.
 

@@ -364,11 +364,39 @@ def test_report_coverage_sorts_ids_by_number_not_lexicographically():
     assert "C1, C10, C2" not in joined
 
 
+TEXT_FRONTMATTER = """---
+name: text
+description: |
+  Rewrite text so it stops reading as a draft nobody read back. Use when writing
+  sounds generated. Keeps the author's voice and invents no facts.
+license: MIT
+---
+
+# text
+"""
+
+
+TEXT_TELL = """# Hollow
+
+### H1 — Significance nobody measured
+
+**Signal**  A sentence asserting that something marks a pivotal moment.
+
+**Principle**  Importance is shown by what happened, not claimed alongside it.
+
+**Fix**  State what happened and cut the claim about what it represents.
+
+**Not slop when**  a source in the text measures the significance.
+"""
+
+
 def _write_plugin_tree(root):
     """Build the smallest tree main() accepts: every skill the registry names.
 
-    The auditor carries a catalog; the build skill carries prose. main() has to
-    accept both shapes, so the fixture has to hold both.
+    Three shapes, because main() has to accept all three. The auditor carries a
+    catalog and an expectations file. The build skill carries prose and neither.
+    The text skill carries a catalog, a reference declared as prose, and an
+    expectations file that is not the auditor's.
     """
     skill = root / "skills" / "audit"
     (skill / "references").mkdir(parents=True)
@@ -385,9 +413,24 @@ def _write_plugin_tree(root):
         "# Deriving\n\nProse, not a catalog. No tell headings here.\n",
         encoding="utf-8",
     )
+    text = root / "skills" / "text"
+    (text / "references").mkdir(parents=True)
+    (text / "SKILL.md").write_text(
+        TEXT_FRONTMATTER + "\nReferences: `hollow.md`, `vocabulary-en.md`\n",
+        encoding="utf-8",
+    )
+    (text / "references" / "hollow.md").write_text(TEXT_TELL, encoding="utf-8")
+    (text / "references" / "vocabulary-en.md").write_text(
+        "# Vocabulary\n\nA watched list, not a catalog. No tell headings here.\n",
+        encoding="utf-8",
+    )
     (root / "fixtures").mkdir()
     (root / "fixtures" / "README.md").write_text(
         "| `slop-landing` | expect | F1 |\n", encoding="utf-8"
+    )
+    (root / "corpus").mkdir()
+    (root / "corpus" / "README.md").write_text(
+        "| `slop-release-en` | expect | H1 |\n", encoding="utf-8"
     )
 
 
@@ -411,8 +454,9 @@ def test_main_does_not_read_a_skill_left_at_the_repo_root(tmp_path, capsys):
 BUILD_FRONTMATTER = """---
 name: build
 description: |
-  Decide a product's visual identity and voice before building its interface.
-  Use when an interface reads as generic and its palette needs deciding.
+  Build a landing page, dashboard or component that looks designed rather than
+  generated. Use when an interface reads as generic and its palette, type and
+  motion need deciding rather than inheriting.
 license: MIT
 ---
 
@@ -475,7 +519,7 @@ def test_report_coverage_sorts_state_ids_by_number():
 
 def test_check_frontmatter_accepts_a_second_skill_by_its_own_name():
     errors = validate.check_frontmatter(
-        BUILD_FRONTMATTER, "build", ("identity", "generic", "deciding")
+        BUILD_FRONTMATTER, "build", ("build", "landing page", "dashboard", "component", "generic")
     )
     assert errors == []
 
@@ -492,7 +536,7 @@ def test_check_frontmatter_labels_the_skill_it_is_reporting_on():
     errors = validate.check_frontmatter(
         text,
         "build",
-        ("identity", "generic", "deciding"),
+        ("build", "landing page", "dashboard", "component", "generic"),
         "skills/build/SKILL.md",
     )
     assert errors == [
@@ -526,3 +570,220 @@ def test_main_reports_a_reference_the_second_skill_never_cites(tmp_path, capsys)
     (build / "orphan.md").write_text("# Orphan\n", encoding="utf-8")
     assert validate.main(tmp_path) == 1
     assert "orphan.md" in capsys.readouterr().out
+
+
+TEXT_AXES = """# Axes
+
+### T1 — Three of everything
+
+**Signal**  Every section carries three items.
+
+**Principle**  Three is the count a generator reaches for when nobody counted.
+
+**Fix**  Count what exists and write that number.
+
+**Not slop when**  three things exist and other sections carry other counts.
+
+### G1 — The watched vocabulary
+
+**Signal**  The same small set of high frequency words carries the text.
+
+**Principle**  A word nobody chose is a word that fits any subject.
+
+**Fix**  Use the word the subject asks for.
+
+**Not slop when**  the term is the field's own term.
+
+### M1 — Dashes at generator frequency
+
+**Signal**  Dash punctuation doing the work of full stops throughout.
+
+**Principle**  A mark nobody chose gets reached for everywhere.
+
+**Fix**  A full stop, a comma, a colon or parentheses, decided per clause.
+
+**Not slop when**  a sample of the author's writing uses them at that rate.
+
+### P1 — Chatbot residue left in the text
+
+**Signal**  A line addressed to whoever asked for the text.
+
+**Principle**  Correspondence is not content.
+
+**Fix**  Cut it.
+
+**Not slop when**  the text is a transcript of the exchange.
+"""
+
+
+def test_collect_tells_accepts_every_text_axis_prefix():
+    tells = validate.collect_tells(TEXT_TELL + TEXT_AXES)
+    assert list(tells) == ["H1", "T1", "G1", "M1", "P1"]
+    assert tells["H1"]["title"] == "Significance nobody measured"
+    assert tells["P1"]["title"] == "Chatbot residue left in the text"
+
+
+def test_check_tells_accepts_the_text_catalog():
+    assert validate.check_tells(TEXT_TELL + TEXT_AXES, "references/hollow.md") == []
+
+
+def test_check_duplicate_tell_ids_catches_a_repeated_text_id():
+    text = TEXT_AXES.replace("### G1 —", "### T1 —")
+    errors = validate.check_duplicate_tell_ids(text, "references/template.md")
+    assert errors == ["references/template.md: T1 is defined more than once"]
+
+
+def test_check_frontmatter_accepts_the_text_skill_by_its_own_name():
+    errors = validate.check_frontmatter(
+        TEXT_FRONTMATTER, "text", ("text", "rewrite", "voice")
+    )
+    assert errors == []
+
+
+def test_check_frontmatter_reports_a_text_description_that_lost_a_trigger():
+    text = TEXT_FRONTMATTER.replace("Keeps the author's voice", "Keeps the register")
+    errors = validate.check_frontmatter(text, "text", ("text", "rewrite", "voice"))
+    assert any("voice" in e for e in errors)
+
+
+CORPUS_TABLE = """# Corpus
+
+| Specimen | Kind | IDs |
+|---|---|---|
+| `slop-release-en` | expect | H1, T1, M1 |
+| `clean-release-en` | forbid | H1, T1 |
+"""
+
+
+def test_check_fixture_ids_accepts_text_ids():
+    assert validate.check_fixture_ids(CORPUS_TABLE, {"H1", "T1", "M1"}) == []
+
+
+def test_check_fixture_ids_calls_a_text_id_unknown_rather_than_malformed():
+    """H1 is well formed. Against the interface catalog it is simply not there.
+
+    The distinction matters: malformed says fix the typo, unknown says this id
+    belongs to another catalog. Collapsing them would hide the second case.
+    """
+    errors = validate.check_fixture_ids("| `slop-landing` | expect | H1 |", {"F1"})
+    assert errors == ["fixtures/README.md: slop-landing expects unknown id H1"]
+
+
+def test_check_fixture_ids_labels_the_source_it_is_given():
+    errors = validate.check_fixture_ids(
+        CORPUS_TABLE, {"H1", "T1"}, "corpus/README.md"
+    )
+    assert errors == ["corpus/README.md: slop-release-en expects unknown id M1"]
+
+
+def test_report_coverage_labels_the_source_it_is_given():
+    lines = validate.report_coverage(
+        CORPUS_TABLE, {"H1", "T1", "M1", "P5"}, "corpus/README.md"
+    )
+    joined = "\n".join(lines)
+    assert "corpus/README.md" in joined
+    assert "1 of 4 appear in no row: P5" in joined
+
+
+def test_report_coverage_labels_the_default_source():
+    lines = validate.report_coverage(COVERAGE_TABLE, {"A1", "C3", "W2"})
+    assert all(line.startswith("fixtures/README.md") for line in lines)
+
+
+def test_main_accepts_the_three_skill_layout(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    assert validate.main(tmp_path) == 0
+    assert "0 problem(s)" in capsys.readouterr().out
+
+
+def test_main_accepts_a_reference_the_registry_declares_as_prose(tmp_path, capsys):
+    """A vocabulary file holds a watched list, not tells. That is not a defect."""
+    _write_plugin_tree(tmp_path)
+    assert validate.main(tmp_path) == 0
+    assert "vocabulary-en.md" not in capsys.readouterr().out
+
+
+def test_main_reports_a_catalog_reference_not_declared_as_prose(tmp_path, capsys):
+    """The control for the test above: the exemption is by declaration.
+
+    Without this pair, `prose` could be reading every empty file as prose and
+    both tests would still pass.
+    """
+    _write_plugin_tree(tmp_path)
+    text = tmp_path / "skills" / "text"
+    (text / "references" / "grain.md").write_text(
+        "# Grain\n\nNo tell headings here.\n", encoding="utf-8"
+    )
+    (text / "SKILL.md").write_text(
+        TEXT_FRONTMATTER
+        + "\nReferences: `hollow.md`, `grain.md`, `vocabulary-en.md`\n",
+        encoding="utf-8",
+    )
+    assert validate.main(tmp_path) == 1
+    assert "skills/text/references/grain.md: no tells found" in capsys.readouterr().out
+
+
+def test_main_keeps_a_text_id_out_of_the_interface_expectations(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    (tmp_path / "fixtures" / "README.md").write_text(
+        "| `slop-landing` | expect | H1 |\n", encoding="utf-8"
+    )
+    assert validate.main(tmp_path) == 1
+    assert (
+        "fixtures/README.md: slop-landing expects unknown id H1"
+        in capsys.readouterr().out
+    )
+
+
+def test_main_keeps_an_interface_id_out_of_the_corpus_expectations(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    (tmp_path / "corpus" / "README.md").write_text(
+        "| `slop-release-en` | expect | F1 |\n", encoding="utf-8"
+    )
+    assert validate.main(tmp_path) == 1
+    assert (
+        "corpus/README.md: slop-release-en expects unknown id F1"
+        in capsys.readouterr().out
+    )
+
+
+def test_main_reports_coverage_for_both_catalogs_separately(tmp_path, capsys):
+    _write_plugin_tree(tmp_path)
+    validate.main(tmp_path)
+    out = capsys.readouterr().out
+    assert "fixtures/README.md coverage:" in out
+    assert "corpus/README.md coverage:" in out
+
+
+def test_main_reports_an_expectations_file_the_registry_names_and_cannot_find(
+    tmp_path, capsys
+):
+    """A missing expectations file turns id checking off in silence otherwise."""
+    _write_plugin_tree(tmp_path)
+    (tmp_path / "corpus" / "README.md").unlink()
+    assert validate.main(tmp_path) == 1
+    assert "corpus/README.md: not found" in capsys.readouterr().out
+
+
+def test_cross_skill_reference_accepts_a_path_that_resolves(tmp_path):
+    target = tmp_path / "skills" / "audit" / "references" / "molds.md"
+    target.parent.mkdir(parents=True)
+    target.write_text("# Molds\n", encoding="utf-8")
+    text = "Read `skills/audit/references/molds.md` before deciding.\n"
+    assert validate.check_cross_skill_references(text, tmp_path) == []
+
+
+def test_cross_skill_reference_reports_a_path_that_does_not(tmp_path):
+    text = "Read `skills/audit/references/gone.md` before deciding.\n"
+    assert validate.check_cross_skill_references(
+        text, tmp_path, "skills/build/SKILL.md"
+    ) == [
+        "skills/build/SKILL.md: cites skills/audit/references/gone.md, "
+        "which does not exist"
+    ]
+
+
+def test_cross_skill_reference_ignores_a_bare_filename(tmp_path):
+    # `check_references` owns that case, and reporting it here too would
+    # produce two errors for one citation.
+    assert validate.check_cross_skill_references("see `deriving.md`\n", tmp_path) == []

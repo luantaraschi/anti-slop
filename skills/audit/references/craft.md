@@ -295,3 +295,15 @@ other indicators already give the reader, and this indicator is short one.
 
 **Not slop when**  The tree is a single column of full-width blocks that reflows on its own, so no width can break it; the surface is deliberately fixed-width and says so in the theme; or the project handles width elsewhere and this view fell outside it.
 
+
+### C16 — Focus nobody made visible
+
+**Signal**  An interactive element reachable by keyboard whose focused state is indistinguishable from its resting state: `outline: none` or `outline-none` with no replacement in the same rule, a focus ring removed at the reset and never redeclared, or a tree with no `:focus-visible` and no focus variant on any control. Count the controls whose focus is visible against the ones whose is not.
+
+This tell sits inside the axis's own boundary rather than outside it. Craft excludes accessibility because a contrast ratio needs a tool and a role needs a screen reader — this needs the Tab key, which is looking at the page, which is what the axis measures.
+
+**Principle**  Nothing on the page moves. Someone navigating by keyboard presses Tab, the page appears not to respond, and there is no way to find out where they are except by pressing Enter and seeing what happens. It is the one defect in this catalog that makes the interface unusable rather than unconvincing, and it is almost always inherited: a reset removed the outline because it was ugly, and nothing put anything back.
+
+**Fix**  One `:focus-visible` rule at the root rather than a variant per control, so nothing built later can be built without it. `:focus-visible` rather than `:focus`, which puts the ring under a mouse press where it reads as a bug and invites the next person to delete it again.
+
+**Not slop when**  Nothing in the tree is focusable, so the condition never arises; or the project declares a visible focus treatment globally and this control sits outside it for a reason recorded beside it.

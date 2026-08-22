@@ -12,17 +12,43 @@ REQUIRED_KEYS = ("name", "description", "license")
 DESCRIPTION_TRIGGERS = ("vibecoded", "AI-generated", "audit", "craft")
 
 # Every skill the plugin exposes, with the words its description has to keep to
-# go on firing at the right moment, and whether its references are a catalog of
-# tells or prose. The build skill's deriving.md is prose: asking it for tells
-# would report a defect where there is none.
+# go on firing at the right moment, whether its references are a catalog of
+# tells or prose, which of those references carry prose even inside a catalog,
+# and where the expectations for its ids live.
+#
+# `prose` is a declaration rather than a measurement. A reference with no tells
+# in it is exempt because the registry says it holds none, not because the
+# parser found none: the second reading would let a catalog file that lost its
+# headings pass as prose.
+#
+# `expectations` is per skill because the two catalogs share no ids. One global
+# set would accept a text id in an interface fixture row, which is the one
+# mistake a reader of a row cannot see.
 SKILLS = {
     "audit": {
         "triggers": DESCRIPTION_TRIGGERS,
         "catalog": True,
+        "prose": {"molds.md"},
+        "expectations": "fixtures/README.md",
     },
     "build": {
-        "triggers": ("identity", "generic", "deciding"),
+        # Changed 2026-08-22, and the reason belongs here because the previous
+        # set is why this skill never fired. `identity` and `deciding` name the
+        # phase of work rather than the request, so the description that carried
+        # them read as a precondition a user had to already know about, and the
+        # plugin's own usage counter recorded zero invocations across 31
+        # startups. The set below names the act instead. `generic` survives from
+        # the old set because it is the one word there a person actually types.
+        "triggers": ("build", "landing page", "dashboard", "component", "generic"),
         "catalog": False,
+        "prose": set(),
+        "expectations": None,
+    },
+    "text": {
+        "triggers": ("text", "rewrite", "voice"),
+        "catalog": True,
+        "prose": {"vocabulary-en.md", "vocabulary-pt.md"},
+        "expectations": "corpus/README.md",
     },
 }
 
@@ -35,7 +61,13 @@ FORBIDDEN_CONTENT_CHARACTERS = ("\u2014", "\u2013")
 FORBIDDEN_DASH_SEPARATORS = (" - ", " -- ")
 SITE_TEXT_SUFFIXES = {".css", ".html", ".js", ".json", ".md", ".svg", ".txt", ".xml"}
 
-_TELL_HEADING = re.compile(r"^### ([AWFCS]\d+) — (.+)$")
+# A W F C S are the interface axes: Surface, Words, Finish, Craft, States.
+# H T G M P are the text axes: Hollow, Template, Grain, Marks, Presence. The
+# two sets are disjoint on purpose, so an id means one thing across the plugin
+# even though each catalog is checked against its own expectations.
+TELL_LETTERS = "AWFCSHTGMP"
+
+_TELL_HEADING = re.compile(r"^### ([{}]\d+) — (.+)$".format(TELL_LETTERS))
 
 
 def check_forbidden_content_character(text, source):
@@ -182,7 +214,15 @@ _REFERENCE = re.compile(r"`([\w-]+\.md)`")
 
 
 def check_references(skill_text, available, source="SKILL.md"):
-    """Cross-check the files a SKILL.md cites against the files beside it."""
+    """Cross-check the files a SKILL.md cites against the files beside it.
+
+    Inside a SKILL.md, a backticked filename ending in `.md` is a reference
+    citation and nothing else. Only SKILL.md and README.md are exempt by name,
+    so prose that names any other markdown file in backticks, an instruction
+    file or a document elsewhere in the repository, is read as a citation and
+    reported as missing. Write those without backticks. Loosening this check is
+    how a genuinely absent reference starts passing.
+    """
     cited = {
         name
         for name in _REFERENCE.findall(skill_text)
@@ -199,16 +239,44 @@ def check_references(skill_text, available, source="SKILL.md"):
     return errors
 
 
+_CROSS_SKILL_REFERENCE = re.compile(r"`((?:[\w.-]+/)+[\w-]+\.md)`")
+
+
+def check_cross_skill_references(skill_text, root, source="SKILL.md"):
+    """A skill citing a file outside its own references/ has to resolve too.
+
+    `check_references` above only sees a bare filename, because inside one skill
+    that is what a citation looks like. It cannot see a path, so the first time
+    a skill cited a sibling's file the citation went unchecked in silence, which
+    is the failure mode that check exists to prevent one directory down.
+
+    Paths are resolved from the repository root rather than from the skill, so a
+    cited file that moves is reported wherever it was named.
+    """
+    return [
+        "{}: cites {}, which does not exist".format(source, path)
+        for path in sorted(set(_CROSS_SKILL_REFERENCE.findall(skill_text)))
+        if not (root / path).exists()
+    ]
+
+
 _FIXTURE_ROW = re.compile(r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|(.*)\|")
-_TELL_ID = re.compile(r"^[AWFCS]\d+$")
+_TELL_ID = re.compile(r"^[{}]\d+$".format(TELL_LETTERS))
+
+DEFAULT_EXPECTATIONS = "fixtures/README.md"
 
 
-def check_fixture_ids(text, known_ids):
+def check_fixture_ids(text, known_ids, source=DEFAULT_EXPECTATIONS):
     """Every id a fixture names must be well formed and exist in the catalog.
 
     The row itself is matched permissively and the ids are shaped inside the
     loop, so a typo is reported rather than dropping the whole row out of the
     scan and turning id-checking off in silence.
+
+    `known_ids` holds one skill's catalog, not the plugin's. A well formed id
+    from the other catalog is therefore reported as unknown rather than as
+    malformed, which is the distinction between fix the typo and this id
+    belongs somewhere else.
     """
     errors = []
     rows = 0
@@ -228,20 +296,22 @@ def check_fixture_ids(text, known_ids):
             else:
                 continue
             errors.append(
-                "fixtures/README.md: {} {}s {} id {}".format(
-                    fixture, kind, fault, tell_id
-                )
+                "{}: {} {}s {} id {}".format(source, fixture, kind, fault, tell_id)
             )
     if rows == 0:
-        errors.insert(0, "fixtures/README.md: no expectation rows found")
+        errors.insert(0, "{}: no expectation rows found".format(source))
     return errors
 
 
-def report_coverage(fixture_text, known_ids):
+def report_coverage(fixture_text, known_ids, source=DEFAULT_EXPECTATIONS):
     """Say which catalog ids no fixture exercises. Informative, not an error.
 
     Closing the gap is not this function's job — printing the number every run
     is, so it stops being prose that ages.
+
+    The source is carried into the line because two catalogs report coverage
+    now, and two unlabelled reports interleaved read as one report that
+    contradicts itself.
     """
     in_a_row = set()
     forbidden = set()
@@ -262,14 +332,14 @@ def report_coverage(fixture_text, known_ids):
     lines = []
     if no_row:
         lines.append(
-            "coverage: {} of {} appear in no row: {}".format(
-                len(no_row), total, ", ".join(no_row)
+            "{} coverage: {} of {} appear in no row: {}".format(
+                source, len(no_row), total, ", ".join(no_row)
             )
         )
     if no_forbid:
         lines.append(
-            "coverage: {} of {} have no forbid row: {}".format(
-                len(no_forbid), total, ", ".join(no_forbid)
+            "{} coverage: {} of {} have no forbid row: {}".format(
+                source, len(no_forbid), total, ", ".join(no_forbid)
             )
         )
     return lines
@@ -277,7 +347,7 @@ def report_coverage(fixture_text, known_ids):
 
 def main(root):
     errors = []
-    known = set()
+    coverage = []
 
     for content_file in content_files(root):
         source = content_file.relative_to(root).as_posix()
@@ -305,9 +375,10 @@ def main(root):
         reference_files = sorted(references.glob("*.md"))
         errors += check_frontmatter(skill_text, name, spec["triggers"], label)
 
+        known = set()
         if spec["catalog"]:
             for reference in reference_files:
-                if reference.name == "molds.md":
+                if reference.name in spec["prose"]:
                     continue
                 source = "skills/{}/references/{}".format(name, reference.name)
                 text = reference.read_text(encoding="utf-8")
@@ -317,13 +388,22 @@ def main(root):
 
         available = {p.name for p in reference_files}
         errors += check_references(skill_text, available, label)
+        errors += check_cross_skill_references(skill_text, root, label)
 
-    fixture_readme = root / "fixtures" / "README.md"
-    coverage = []
-    if fixture_readme.exists():
-        fixture_text = fixture_readme.read_text(encoding="utf-8")
-        errors += check_fixture_ids(fixture_text, known)
-        coverage = report_coverage(fixture_text, known)
+        expectations = spec["expectations"]
+        if expectations is None:
+            continue
+        path = root / expectations
+        if not path.exists():
+            errors.append(
+                "{}: not found under {}, and skills/{} names it as where its "
+                "ids are expected.".format(expectations, root, name)
+            )
+            continue
+        text = path.read_text(encoding="utf-8")
+        errors += check_fixture_ids(text, known, expectations)
+        coverage += report_coverage(text, known, expectations)
+
     for error in errors:
         print(error)
     for line in coverage:
