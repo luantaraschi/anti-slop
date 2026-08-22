@@ -32,7 +32,14 @@ SKILLS = {
         "expectations": "fixtures/README.md",
     },
     "build": {
-        "triggers": ("identity", "generic", "deciding"),
+        # Changed 2026-08-22, and the reason belongs here because the previous
+        # set is why this skill never fired. `identity` and `deciding` name the
+        # phase of work rather than the request, so the description that carried
+        # them read as a precondition a user had to already know about, and the
+        # plugin's own usage counter recorded zero invocations across 31
+        # startups. The set below names the act instead. `generic` survives from
+        # the old set because it is the one word there a person actually types.
+        "triggers": ("build", "landing page", "dashboard", "component", "generic"),
         "catalog": False,
         "prose": set(),
         "expectations": None,
@@ -232,6 +239,27 @@ def check_references(skill_text, available, source="SKILL.md"):
     return errors
 
 
+_CROSS_SKILL_REFERENCE = re.compile(r"`((?:[\w.-]+/)+[\w-]+\.md)`")
+
+
+def check_cross_skill_references(skill_text, root, source="SKILL.md"):
+    """A skill citing a file outside its own references/ has to resolve too.
+
+    `check_references` above only sees a bare filename, because inside one skill
+    that is what a citation looks like. It cannot see a path, so the first time
+    a skill cited a sibling's file the citation went unchecked in silence, which
+    is the failure mode that check exists to prevent one directory down.
+
+    Paths are resolved from the repository root rather than from the skill, so a
+    cited file that moves is reported wherever it was named.
+    """
+    return [
+        "{}: cites {}, which does not exist".format(source, path)
+        for path in sorted(set(_CROSS_SKILL_REFERENCE.findall(skill_text)))
+        if not (root / path).exists()
+    ]
+
+
 _FIXTURE_ROW = re.compile(r"^\|\s*`([\w-]+)`\s*\|\s*(expect|forbid)s?\s*\|(.*)\|")
 _TELL_ID = re.compile(r"^[{}]\d+$".format(TELL_LETTERS))
 
@@ -360,6 +388,7 @@ def main(root):
 
         available = {p.name for p in reference_files}
         errors += check_references(skill_text, available, label)
+        errors += check_cross_skill_references(skill_text, root, label)
 
         expectations = spec["expectations"]
         if expectations is None:

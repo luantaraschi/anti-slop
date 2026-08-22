@@ -26,9 +26,9 @@ line.
 
 ## What the auditor holds
 
-**49 tells across five axes.** Surface has 12 (A1 through A12), Craft has 15
-(C1 through C15), States has 3 (S1 through S3), Words has 7 (W1 through W7),
-and Finish has 12 (F1 through F12).
+**54 tells across five axes.** Surface has 14 (A1 through A14), Craft has 16
+(C1 through C16), States has 3 (S1 through S3), Words has 8 (W1 through W8),
+and Finish has 13 (F1 through F13).
 `grep -c '^### [AWFCS][0-9]' skills/audit/references/*.md`
 
 **Every tell has the same four fields:** Signal, Principle, Fix, Not slop when.

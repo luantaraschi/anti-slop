@@ -454,8 +454,9 @@ def test_main_does_not_read_a_skill_left_at_the_repo_root(tmp_path, capsys):
 BUILD_FRONTMATTER = """---
 name: build
 description: |
-  Decide a product's visual identity and voice before building its interface.
-  Use when an interface reads as generic and its palette needs deciding.
+  Build a landing page, dashboard or component that looks designed rather than
+  generated. Use when an interface reads as generic and its palette, type and
+  motion need deciding rather than inheriting.
 license: MIT
 ---
 
@@ -518,7 +519,7 @@ def test_report_coverage_sorts_state_ids_by_number():
 
 def test_check_frontmatter_accepts_a_second_skill_by_its_own_name():
     errors = validate.check_frontmatter(
-        BUILD_FRONTMATTER, "build", ("identity", "generic", "deciding")
+        BUILD_FRONTMATTER, "build", ("build", "landing page", "dashboard", "component", "generic")
     )
     assert errors == []
 
@@ -535,7 +536,7 @@ def test_check_frontmatter_labels_the_skill_it_is_reporting_on():
     errors = validate.check_frontmatter(
         text,
         "build",
-        ("identity", "generic", "deciding"),
+        ("build", "landing page", "dashboard", "component", "generic"),
         "skills/build/SKILL.md",
     )
     assert errors == [
@@ -762,3 +763,27 @@ def test_main_reports_an_expectations_file_the_registry_names_and_cannot_find(
     (tmp_path / "corpus" / "README.md").unlink()
     assert validate.main(tmp_path) == 1
     assert "corpus/README.md: not found" in capsys.readouterr().out
+
+
+def test_cross_skill_reference_accepts_a_path_that_resolves(tmp_path):
+    target = tmp_path / "skills" / "audit" / "references" / "molds.md"
+    target.parent.mkdir(parents=True)
+    target.write_text("# Molds\n", encoding="utf-8")
+    text = "Read `skills/audit/references/molds.md` before deciding.\n"
+    assert validate.check_cross_skill_references(text, tmp_path) == []
+
+
+def test_cross_skill_reference_reports_a_path_that_does_not(tmp_path):
+    text = "Read `skills/audit/references/gone.md` before deciding.\n"
+    assert validate.check_cross_skill_references(
+        text, tmp_path, "skills/build/SKILL.md"
+    ) == [
+        "skills/build/SKILL.md: cites skills/audit/references/gone.md, "
+        "which does not exist"
+    ]
+
+
+def test_cross_skill_reference_ignores_a_bare_filename(tmp_path):
+    # `check_references` owns that case, and reporting it here too would
+    # produce two errors for one citation.
+    assert validate.check_cross_skill_references("see `deriving.md`\n", tmp_path) == []

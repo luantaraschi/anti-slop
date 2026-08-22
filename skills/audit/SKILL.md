@@ -1,15 +1,20 @@
 ---
 name: audit
 description: |
-  Audit any web interface for the marks of work nobody finished — the palette
-  nobody picked, the copy nobody wrote, the settings nobody set. Use when a site
-  looks generic, AI-generated or vibecoded, when checking a landing page,
-  dashboard or app before showing it to anyone, or when asked to audit the
-  surface, the craft, the states, the words or the finish. Works on plain HTML
-  and CSS as readily as on React, Tailwind, Vue, Svelte or shadcn.
+  Audit an existing web interface for the marks of work nobody finished — the
+  palette nobody picked, the copy nobody wrote, the focus ring nobody declared,
+  the settings nobody set. Use when asked to review, audit, check, critique or
+  grade a page, screen, site or component, when a site looks generic,
+  AI-generated or vibecoded, or before showing a landing page, dashboard or app
+  to anyone. Runs whole, or one axis at a time: the surface, the craft, the
+  states, the words or the finish. Also fires on "audita essa interface", "revisa essa página",
+  "por que isso tem cara de IA", "olha esse site". Works on plain HTML and CSS
+  as readily as on React, Tailwind, Vue, Svelte or shadcn. For building an
+  interface rather than reading one, use `anti-slop build` instead — this skill
+  reports and does not design.
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # audit
@@ -28,7 +33,8 @@ anyone looked, and its evidence lives in the relationship between
 elements — a radius against the radius nested inside it, a number against
 the layout it sits in, a border in one theme against the same border in
 the other. It does not generate an interface from scratch. For that, use
-`frontend-design`.
+`anti-slop build`, which forces the decisions this catalog looks for and
+holds the floor it now checks.
 
 ## What it never claims
 
@@ -63,7 +69,7 @@ just listing symptoms.
    read against.
 3. **Surface, theme before components.** Read `tailwind.config`,
    `globals.css`, and any tokens file before opening a single component. Three
-   of the ten Surface tells (A1, A3, A5) are absences that live in the theme,
+   of the fourteen Surface tells (A1, A3, A5) are absences that live in the theme,
    and starting from components collects symptoms while missing the cause.
 4. **Craft, the relationship between elements, after the theme is known.**
    Knowing what the theme declares is what lets a nested radius, a scale
@@ -214,11 +220,12 @@ single finding touches belongs in its paragraph.
 A rendered pass, a real console error, and running the Finish axis against a
 site published over HTTP.
 
-**Stack is not a scope limit.** Thirty-nine of the forty-nine tells never
-mention a framework at all: every tell on States, Words and Finish, and all but
-one on Craft. The ten that do — most of Surface — name Tailwind classes as
-*examples of a pattern*, because that is the ecosystem the pattern was measured
-in. The pattern is what fires. `theme.extend` stands for wherever this project
+**Stack is not a scope limit.** Forty-two of the fifty-four tells never
+mention a framework at all: every tell on States, seven of the eight on Words,
+fourteen of the sixteen on Craft, eleven of the fourteen on Surface and seven
+of the thirteen on Finish. The twelve that do — most of them on Surface — name
+Tailwind classes as *examples of a pattern*, because that is the ecosystem the
+pattern was measured in. The pattern is what fires. `theme.extend` stands for wherever this project
 declares its values, one `rounded-2xl` everywhere stands for one radius
 everywhere, `text-gray-500` stands for a neutral nobody chose. Read the example,
 find its equivalent, audit that.

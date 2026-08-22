@@ -20,17 +20,17 @@
 
 <p align="center">
   <img alt="version 0.4.0" src="https://img.shields.io/badge/version-0.4.0-8C3A1C">
-  <img alt="89 tells" src="https://img.shields.io/badge/catalog-89_tells-67635B">
+  <img alt="94 tells" src="https://img.shields.io/badge/catalog-94_tells-67635B">
   <img alt="3 skills" src="https://img.shields.io/badge/skills-3-67635B">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-8C3A1C"></a>
 </p>
 
 A Claude Code plugin for work that came out generic. It ships three skills, and
-89 tells: 49 that read an interface, 40 that read prose.
+94 tells: 54 that read an interface, 40 that read prose.
 
 **`anti-slop:audit`** reads interface code for the marks of work nobody finished:
 the palette nobody picked, the dark theme nobody opened, the copy nobody wrote,
-the settings nobody set. Forty-nine tells across five axes, reported as a ranked
+the settings nobody set. Fifty-four tells across five axes, reported as a ranked
 list with a file and a line. The report uses plain words, so the reader does not
 need the vocabulary to act on it.
 
@@ -76,16 +76,18 @@ any tool. They report what is missing, not who (or what) left it that way.
 skills/audit/ ... the auditor, catalog included
    SKILL.md ......... the procedure: how to rank, what to load, how to report
    |
-   +-- references/surface.md  A1-A12   the palette, radius, shadows, type
-   +-- references/craft.md    C1-C15   the rendered result
+   +-- references/surface.md  A1-A14   the palette, radius, shadows, type
+   +-- references/craft.md    C1-C16   the rendered result
    +-- references/states.md   S1-S3    the paths off the demo
-   +-- references/words.md    W1-W7    the copy
-   +-- references/finish.md   F1-F12   lang, title, meta, keys
+   +-- references/words.md    W1-W8    the copy
+   +-- references/finish.md   F1-F13   lang, title, meta, keys, legal pages
    +-- references/molds.md             recurring shapes across tells
    |
 skills/build/ the four roots, and what derives from them
-   SKILL.md ......... the process, the seven recorded shapes, the reduction pass
+   SKILL.md ......... the process, the seven recorded shapes, the two passes
    +-- references/deriving.md          the rule per derived value
+   +-- references/floor.md             what no brief answers differently
+   +-- references/legal.md             the privacy notice and the terms
    |
 skills/text/ ... the rewriter, catalog included
    SKILL.md ......... the rule, the three roots, the removal pass, the modes
@@ -101,19 +103,20 @@ skills/text/ ... the rewriter, catalog included
 fixtures/ ........... four interface specimens, two clean, two slop
 corpus/ ............. four prose specimens, one pair per language
 calibration/ ........ the blind reports, as the runs produced them
+hooks/ .............. the SessionStart note that routes work to the skills
 scripts/validate.py . structural check over both catalogs
 BACKLOG.md .......... what the last round left open, and what gates it
 ROADMAP.md .......... the order the open work should happen in, and why
 ```
 
-49 tells across five axes is far more than belongs in one context window, and
+54 tells across five axes is far more than belongs in one context window, and
 loading all of it to answer `anti-slop words` would crowd out the code being
 audited. So `SKILL.md` carries only the procedure and a table mapping each
 invocation to the references it needs; the axis files load on demand. A single
 axis run reads one file.
 
 The ordering is deliberate rather than alphabetical. Finish runs first because
-nearly all twelve of its tells are greppable, so the cheapest evidence is
+nearly all thirteen of its tells are greppable, so the cheapest evidence is
 gathered before the axes that require reading relationships between files.
 
 Every tell is written to the same four field shape, `Signal`, `Principle`,
@@ -131,6 +134,17 @@ Both fixtures named `clean-*` in this repository are the argument. `clean-landin
 runs a gradient and a `shadow-xl`, just like the slop landing. Its colours come
 from the theme and each effect appears once. A2 and A4 are on its forbid row and
 neither has ever fired on it in a blind run.
+
+**There is one class of rule that no brief releases, and naming it costs the
+sentence above nothing.** A page has a language. A page has one h1. A focus ring
+is visible, contrast clears its floor, a fetch has a failure branch, and a public
+site that collects something says so. F1 and F6 have always answered `Not slop
+when` with `Never`, so the class existed before it had a name; the floor round of
+2026-08-22 named it and let contrast, focus, the states beyond success and the
+legal pages join. None of those forbids a pattern. Each fires on an absence, which
+is what the rule above says the defect always was. `skills/build/references/floor.md`
+is the whole list, and it is deliberately the shortest file in the plugin that
+could be called a checklist.
 
 The rewriter inherits the same rule, and it costs more there than anywhere else,
 because the neighbouring tools do ban. The em dash is the clearest case. It is a
@@ -180,6 +194,29 @@ cp -r anti-slop/skills/text ~/.claude/skills/anti-slop-text
 Rename the text skill on the way in if you already have a skill called `text`.
 The directory name is what Claude Code matches on, and the frontmatter name is
 what the plugin uses.
+
+### Firing without being asked
+
+Installed as a plugin, `hooks/hooks.json` registers a `SessionStart` hook that
+prints four sentences routing interface work to `anti-slop:build`, a review to
+`anti-slop:audit` and prose to `anti-slop:text`. It is about 280 tokens, it
+loads no catalog, and it is the only part of the plugin that costs anything in
+a session it has nothing to do with. That is deliberate: the note routes and
+does not teach, so everything it would otherwise say stays in the skill files
+and loads only when a skill is actually invoked.
+
+`hooks/run-hook.cmd` is a polyglot wrapper copied byte for byte from the one
+plugin on the author's machine whose SessionStart hook is known to work on
+Windows. It exists because Claude Code prepends `bash` to any command
+containing `.sh`, which is why the payload script is extensionless, and because
+a CRLF checkout makes bash read the trailing carriage return as part of the
+last argument and the hook then fails silently. `.gitattributes` pins both to
+LF for that reason.
+
+Copying a skill directory on its own does not bring the hook. Without it the
+skills still fire on their descriptions, which is what they were doing before.
+The honest note is that they were not firing often enough, and that is what the
+hook is for.
 
 ## Use
 
@@ -348,10 +385,11 @@ rejects all six, with a reason:
 A rendered pass, a real console error, and running the Finish axis against a
 site published over HTTP.
 
-**Stack is not one of them.** Thirty-nine of the forty-nine tells never name a
-framework, a build tool or a library: every tell on States and Words, fourteen
-of the fifteen on Craft, nine of the twelve on Surface, and six of the twelve on
-Finish. Ten tells name tools: A1, A2, A7, C14, F1, F2, F5, F8, F11 and F12.
+**Stack is not one of them.** Forty-two of the fifty-four tells never name a
+framework, a build tool or a library: every tell on States, seven of the eight
+on Words, fourteen of the sixteen on Craft, eleven of the fourteen on Surface,
+and seven of the thirteen on Finish. Twelve tells name tools: A1, A2, A7, C14,
+C16, W8, F1, F2, F5, F8, F11 and F12.
 They mention Tailwind, React, Next.js, Vite, Storybook or an icon set as examples of a
 pattern, because that is the ecosystem the pattern was measured in, and the
 pattern is what fires. A7 names three icon libraries only to say that which one
@@ -362,13 +400,21 @@ first line.
 That count has been wrong in this file twice, in both directions. Both errors
 came from patterns too narrow to catch how the names are written. A search for
 `next.js` and `react` misses `next/image`, `Vite's`, `Next's` and `Storybook`.
-Ten and thirty-nine is what a proper-noun
-search returns on 2026-08-18.
+Twelve and forty-two is what a proper-noun search returns on 2026-08-22, after
+the five tells that arrived with the floor. Two of those five carry a name: C16
+reaches for `outline-none`, and W8 releases a Storybook story the way F12
+already does, which is what moved Words off a clean sweep.
 
 Also out of scope today, and worth stating because they are the obvious
 neighbours: performance, SEO beyond what the Finish axis greps, analytics,
-security, uploads, privacy and legal copy. None of that is here. A skill for the
-shipping side is designed and not built.
+security and uploads. None of that is here. A skill for the shipping side is
+designed and not built.
+
+Privacy and legal copy used to sit in that list and no longer does. F13 checks
+that the pages exist on a public site that collects something, and
+`anti-slop:build` carries what they have to contain in `legal.md`. What is still
+out is whether the copy is sufficient in any particular jurisdiction, which is a
+lawyer's call and is said in the handover rather than implied by the page.
 
 ## How mature each skill is
 

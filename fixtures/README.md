@@ -62,17 +62,20 @@ A `slop-*` fixture that has been cleaned up tests nothing.
 
 ## What the corpus does not cover
 
-Fifteen of the forty-nine tells appear in no row at all, so nothing here
-exercises them in either direction: A9, A11, A12, C2, C6, C14, F6, F7, F8, F9,
-F10, S3, W2, W4 and W5. Six more appear only on an `expect` row, so the pattern
-is demonstrated and the exemption has no counterexample: A8, F5, F11, F12, W6
-and W7. That is twenty-one of forty-nine with no `forbid` coverage, a bit over
-two in five, which means that many "Not slop when" clauses have never been
+Twenty of the fifty-four tells appear in no row at all, so nothing here
+exercises them in either direction: A9, A11, A12, A13, A14, C2, C6, C14, C16,
+F6, F7, F8, F9, F10, F13, S3, W2, W4, W5 and W8. Six more appear only on an
+`expect` row, so the pattern is demonstrated and the exemption has no
+counterexample: A8, F5, F11, F12, W6 and W7. That is twenty-six of fifty-four
+with no `forbid` coverage, a bit under half, which means that many "Not slop
+when" clauses have never been
 tested against a fixture built to disarm them, and that clause is the field
 separating this catalog from a linter. F10's absence is a decision with a
 reason, recorded below. C2 and C6 are absent because no fixture has an
 asymmetric icon inside a control or a content image. Neither condition
-arises in this corpus. The other eight are a plain gap.
+arises in this corpus. The other seventeen are a plain gap. (That figure was
+eight against the old fifteen and did not survive a recount: fifteen less F10,
+C2 and C6 is twelve, not eight. Twenty less the same three is seventeen.)
 
 ## Known tensions
 

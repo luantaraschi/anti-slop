@@ -73,10 +73,20 @@ it. A landing page has both, and the two run in sequence.
 
 ### W7 — The rule of three
 
-**Signal**  Always three features, always three bullets, always three steps, always three numbers in the stats strip.
+**Signal**  Always three features, always three bullets, always three steps, always three numbers in the stats strip, always three pricing tiers.
 
 **Principle**  Three is the number a generator reaches for when nobody counted. Its repetition across every section is what gives it away.
 
 **Fix**  Count how many things actually exist. Two, if there are two. Five, if there are five.
 
 **Not slop when**  The content really is three things, and other sections on the same page carry different counts.
+
+### W8 — Social proof nobody gave
+
+**Signal**  A testimonial, a review, a rating, a customer logo wall, a user count or a funding line whose subject cannot be found anywhere the project would know it from — not in the inventory, not in the content, not in a data file, not behind a link. The reliable marks are a quotation attributed to a first name and a role with no company, a portrait from a stock set, a logo row of companies with no relationship stated, and a round number carrying no date or source.
+
+**Principle**  Every other tell in this catalog costs the reader attention or trust. This one is a claim about a person or an organisation that did not make it, and it carries a legal exposure the rest of the catalog does not — in Brazil under the CDC's rules on misleading advertising, and under the equivalent consumer statute nearly everywhere else.
+
+**Fix**  Cut it. An empty section beats a fabricated one, and the page is shorter and more honest for it. Where real proof exists, use it with its source attached: a named person at a named organisation, a figure with the date it was measured, a logo the project can show it has permission for.
+
+**Not slop when**  The content is real and the attribution is checkable; or the surface is a component library, a Storybook story, a test fixture or documentation demonstrating the pattern, which F12 already releases for the same reason.

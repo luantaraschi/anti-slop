@@ -124,3 +124,13 @@ two axes are read against.
 **Fix**  Replace it with real content, or remove the section. An empty section beats one filled with a lie.
 
 **Not slop when**  It's in a test fixture, a Storybook story, or documentation showing the pattern on purpose.
+
+### F13 — The pages a published site owes
+
+**Signal**  A site is reachable without authentication and takes something from whoever arrives — a form field, an analytics script, a third-party embed, a cookie beyond the session — and there is no privacy notice: no route, no link, nothing in the footer. Separately, the same site offers an account, a purchase or a subscription and has no terms. A link that exists and resolves to nothing counts as absent, and is the worse of the two failures.
+
+**Principle**  This is the one tell in the catalog whose cost is not aesthetic. The obligation attaches to the collecting, not to the page, so a site without the notice is not a site that skipped a section — it is a site doing the thing and not saying so. Under the LGPD and the GDPR alike, the disclosure is what makes the collection lawful.
+
+**Fix**  Write the notice from what the tree actually does — read the collection off the forms, the scripts and the embeds rather than from a template — and add the link only once the page resolves. Where a fact is missing, ship the gap visibly rather than inventing a retention period. `anti-slop build` carries the contents and the inventory in `legal.md`.
+
+**Not slop when**  The app is internal, or sits entirely behind authentication, and never receives a visitor who has not already agreed to something. A declared prototype that will never be published is released for the same reason F5 releases a framework favicon. Nothing else releases it: a site small enough to skip a sitemap is not small enough to skip this.

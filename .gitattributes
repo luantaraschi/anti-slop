@@ -1,0 +1,6 @@
+# The hook payload runs under bash on every platform, including Windows, where
+# it is reached through run-hook.cmd. A CRLF checkout makes bash read the
+# trailing carriage return as part of the last argument and the hook fails
+# silently, which is the failure mode this whole directory exists to avoid.
+hooks/session-start text eol=lf
+hooks/run-hook.cmd  text eol=lf
