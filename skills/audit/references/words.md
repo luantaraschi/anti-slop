@@ -1,10 +1,15 @@
 # Words
 
 Copy inside the interface, not marketing prose. Vocabulary that reads as
-generated in any medium belongs to the `humanizer` skill; W6 hands off to it
-rather than repeating its catalog. What lives here are the failures that only
-exist in a running interface: the label that names the machine, the button
-whose verb never comes back, the empty screen that gives no direction.
+generated in any medium belongs to `anti-slop:text`, the plugin's third skill;
+W6 hands off to it rather than repeating its catalog. What lives here are the
+failures that only exist in a running interface: the label that names the
+machine, the button whose verb never comes back, the empty screen that gives no
+direction.
+
+The division is by medium, not by quality. This axis reads a label, a toast, an
+empty state and an error, and it reports. That skill reads prose and rewrites
+it. A landing page has both, and the two run in sequence.
 
 ### W1 — Catalog labels
 
@@ -62,7 +67,7 @@ whose verb never comes back, the empty screen that gives no direction.
 
 **Principle**  An unbacked claim occupies the place information should hold. Whoever reads it wants to know what the thing does.
 
-**Fix**  Swap for something specific. **Handoff:** run the `humanizer` skill on the text instead of rewriting it here.
+**Fix**  Swap for something specific. **Handoff:** run `anti-slop text` on the copy instead of rewriting it here. That skill carries the vocabulary, the exemptions and the fabrication rule this one deliberately does not repeat.
 
 **Not slop when**  The brand voice is openly promotional and the text backs the claim with a verifiable fact.
 

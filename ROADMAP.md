@@ -70,9 +70,47 @@ measured while taken from the framework, and `12 = 5 + 7` stated as the tree's
 rule while holding at one of five panels. All three repaired in the code rather
 than the prose.
 
+### 12 — The text skill ✅ 2026-08-22
+
+`anti-slop:text` shipped. Forty tells in five axes (`H`, `T`, `G`, `M`, `P`),
+two vocabulary files, four corpus specimens with expectation rows, and the
+validator extended to check two catalogs against their own expectations rather
+than one merged set. `W6`'s handoff moved from `humanizer` into the plugin.
+
+Design in `docs/specs/2026-08-22-anti-slop-text-design.md`.
+
+**Nothing about it is measured.** That is item 13, and it is the first thing in
+the Open list below even though it carries the highest number there.
+
 ---
 
 ## Open, and what each needs
+
+### 13 — The first blind round for the text catalog · **can be done without you**
+
+Goes first. Forty tells, four specimens and two unmeasured thresholds shipped
+together, which is the shape this file's own opening paragraph calls the failure
+mode: unmeasured changes compound.
+
+The round differs from an audit round in one way. This skill returns text, not
+findings, so a run is scored by reading its rewrite against the specimen's row
+rather than by reading its report. `corpus/README.md` carries the procedure and
+the third question the round has to ask, which is whether the rewrite invented a
+fact.
+
+Two things the round should settle, both recorded in the skill rather than
+guessed at.
+
+**`M1`'s threshold against text this repository did not write.** It is 15% of a
+text's clause joints carried by the dash, and it was found by counting the four
+specimens on the day they were written, after the per-word rate it replaced was
+measured and separated nothing. Four self-authored documents is a floor, not a
+rate from the wild.
+
+**Whether `P5` survives.** It is the only tell in the catalog that fires on an
+absence of opinion, so it is the only one that can push a rewrite into inventing
+a position, which is a fabrication under the skill's own rule. If the round
+catches it doing that, cut it rather than narrow it.
 
 ### 6 — A plain HTML and CSS fixture pair · **can be done without you**
 
@@ -148,6 +186,14 @@ scored fixtures this repository built. One has scored real code — your portfol
 three pages, plus three defects in the report format that no fixture could have
 surfaced. Real code is where false positives live, and it is the cheapest test
 you can run.
+
+**And run the text skill on something of yours in Portuguese**, with a sample of
+your own writing alongside it. Two of the four corpus specimens are Portuguese
+and both were written by the same hand that wrote the tells, which
+`docs/calibration-method.md` says not to do. Your own prose is the first text
+this catalog will meet that it did not also invent, and the Portuguese half is
+the half with no prior art anywhere to check it against. A false positive there
+will be visible to you immediately and invisible to me.
 
 ---
 

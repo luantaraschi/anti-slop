@@ -7,7 +7,7 @@
     {
       "name": "anti-slop",
       "source": "./",
-      "description": "Audit an interface for the marks of work nobody finished."
+      "description": "Read an interface, or a piece of writing, for the marks of work nobody finished."
     }
   ]
 }
