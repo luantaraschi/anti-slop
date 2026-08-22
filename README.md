@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img alt="version 0.4.0" src="https://img.shields.io/badge/version-0.4.0-8C3A1C">
+  <img alt="version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-8C3A1C">
   <img alt="94 tells" src="https://img.shields.io/badge/catalog-94_tells-67635B">
   <img alt="3 skills" src="https://img.shields.io/badge/skills-3-67635B">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-8C3A1C"></a>
@@ -483,13 +483,13 @@ the one the third skill made necessary: the two catalogs share no ids, so they
 are checked separately, and a text id in an interface row is reported rather
 than quietly accepted.
 
-It currently reports `0 problem(s)`, along with four coverage notes: 15 of 49
-interface tells appear in no fixture row and 21 have no `forbid` row, and 13 of
+It currently reports `0 problem(s)`, along with four coverage notes: 20 of 54
+interface tells appear in no fixture row and 26 have no `forbid` row, and 13 of
 40 text tells appear in no corpus row and 18 have no `forbid` row. Those are
 printed rather than suppressed, so the gaps in calibration are visible instead
 of implied.
 
-`python -m pytest tests/` runs 66 tests over the validator itself, all
+`python -m pytest tests/` runs 69 tests over the validator itself, all
 passing. The validator is written so that every check takes text and returns a
 list of errors, with only `main()` touching the filesystem, which is what
 makes those tests possible without fixtures on disk.

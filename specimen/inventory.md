@@ -30,8 +30,14 @@ a warm cream ground near #F4F1EA, a high-contrast display serif, and a
 terracotta accent. That is the combination generated design converges on
 whatever the subject is. It cleared every check in this repository. The values
 were derived, the decisions recorded and the contrast computed. Yet the result
-was still the template. Nothing in the 49 tells could have caught it, because each
+was still the template. Nothing in the catalog could have caught it, because each
 value genuinely was chosen; they were simply all chosen from the same place.
+
+The builder answered this on 2026-08-22 with the collision test: the recorded
+plan is run against a brief for a neighbouring product before anything is built,
+and every value that comes out the same is recorded as a collision and either
+changed or defended in writing. It is not auditable, for the reason this
+paragraph gives, so the builder reports it or says it did neither.
 
 That is the sharpest limit of the catalog this repository has found, and it was
 found by a person looking at the page rather than by an audit reading it.

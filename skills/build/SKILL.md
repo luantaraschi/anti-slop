@@ -17,7 +17,7 @@ description: |
   a published site needs.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # build
@@ -35,7 +35,7 @@ file: every rule below is downstream of it, and where a rule leaves an axis
 free, spending that freedom on the answer any brief would produce is the one
 outcome the client already rejected.
 
-## Four references, and what separates them
+## Five references, and what separates them
 
 `deriving.md` carries what a different product would answer differently — the
 palette, the families, the scale, the spacing ladder, the radius, the
@@ -62,6 +62,28 @@ than only to the code.
 `precedents.md` is the library `composing.md` cites from, and it is governed by
 a rule about direction rather than about content: subject, then decision, then
 a precedent that supports it. Read backwards it is a moodboard.
+
+## What to load, and when
+
+The five together are about a hundred kilobytes, and loading them at step one
+spends most of the window before a single value has been decided. The auditor
+solved this with a table and so does this file. Read each reference at the step
+that needs it.
+
+| Step | Read |
+|---|---|
+| 1 to 4 · roots, theme, derive, record | `deriving.md` |
+| 5 · the collision test | `skills/audit/references/molds.md` |
+| 6 · routes | `composing.md`, and `precedents.md` only to argue a route you have already reached |
+| 7 to 8 · composition, components | `floor.md`, beside the route |
+| 10 · the legal pages | `legal.md` |
+| 12 · the floor pass | `floor.md` again, as a checklist |
+
+`precedents.md` is the largest of the five and the one most often not needed at
+all. A build whose route came out of the subject without argument never has to
+open it, and that is the good case rather than a shortcut: the direction rule
+says a precedent supports a decision that already exists, so a build that
+reaches step six with its decision made has nothing to look up.
 
 **It does design, and the honest boundary is narrower than "it does not."**
 A survey of the neighbouring skills, 2026-08-17, found that this one and

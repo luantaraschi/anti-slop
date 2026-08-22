@@ -1,6 +1,6 @@
 {
   "name": "anti-slop",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Read an interface, or a piece of writing, for the marks of work nobody finished.",
   "author": {
     "name": "Luan Taraschi"

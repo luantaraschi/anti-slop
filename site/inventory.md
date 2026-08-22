@@ -2,14 +2,14 @@
 
 Root 1 of the build skill's four roots, for the page in this directory. It is
 the only source `index.html`'s copy is allowed to draw on. Every figure here was
-measured on 2026-08-18 rather than remembered; the command that measures it sits
+measured on 2026-08-22 rather than remembered; the command that measures it sits
 beside it where one exists.
 
 ## What the product is
 
-A plugin for Claude Code, named `anti-slop`, version 0.3.0, MIT, by Luan
-Taraschi. It ships two skills: `anti-slop:audit` at 0.3.0 and `anti-slop:build`
-at 0.1.0.
+A plugin for Claude Code, named `anti-slop`, version 0.5.0, MIT, by Luan
+Taraschi. It ships three skills: `anti-slop:audit` at 0.4.0,
+`anti-slop:build` at 0.3.0 and `anti-slop:text` at 0.1.0.
 
 ## What the identity means
 
@@ -38,12 +38,12 @@ choices.
 **Six invocations:** `anti-slop`, plus one per axis. A path after the mode
 narrows the scope to that file or directory.
 
-**39 of the 49 tells never name a framework, a build tool or a library.** This
-includes every tell on States and Words, fourteen of the fifteen on Craft, nine of the
-twelve on Surface, six of the twelve on Finish. The ten that do are A1, A2, A7,
-C14, F1, F2, F5, F8, F11 and F12. Measured with a proper-noun search, because a
-narrower one misses `next/image`, `Vite's`, `Next's` and `Storybook` and returns
-a flattering 42.
+**42 of the 54 tells never name a framework, a build tool or a library.** This
+includes every tell on States, seven of the eight on Words, fourteen of the
+sixteen on Craft, eleven of the fourteen on Surface and seven of the thirteen on
+Finish. The twelve that do are A1, A2, A7, C14, C16, W8, F1, F2, F5, F8, F11 and
+F12. Measured with a proper-noun search, because a narrower one misses
+`next/image`, `Vite's`, `Next's` and `Storybook`.
 
 **The rule a finding has to meet:** the pattern is present **and** there is no
 evidence anyone chose it. Neither half alone is a finding.
@@ -63,6 +63,22 @@ cost, Platform fact, Abstention, Judgment, Departure.
 **Five checks** a record has to survive, the first being that every count in it
 is a count you ran.
 
+**Five references**, read at the step that needs them rather than all at once:
+`deriving.md` for the rule per derived value, `floor.md` for what no brief
+answers differently, `legal.md` for the privacy notice and the terms,
+`composing.md` for the ground and the largest element and the routes, and
+`precedents.md` for moves measured off twenty reference sites.
+
+**Three registers.** Anything with one right answer it settles in silence. The
+shape of the page it brings as two or three named routes and waits for an
+answer. Anything bolder it proposes once there is a page to look at. A decision
+belongs in the second register when changing it later would mean rebuilding
+rather than editing.
+
+**What is not measured:** the route step is exercised by no fixture and no
+specimen. Contrast and the collision test are unauditable by construction and
+are reported rather than checked.
+
 ## Evidence that exists
 
 **Four calibration fixtures:** `slop-dashboard`, `clean-dashboard`,
@@ -78,11 +94,13 @@ the auditor reading fixtures; three are the auditor reading what the build skill
 produced.
 `find calibration -maxdepth 2 -name 'audit-*.md' | wc -l`
 
-**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 49
+**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 69
 tests.
 
-**The validator reports its own gaps rather than hiding them:** 15 of the 49
-tells appear in no fixture row, and 21 of the 49 have no `forbid` row.
+**The validator reports its own gaps rather than hiding them:** 20 of the 54
+tells appear in no fixture row, and 26 of the 54 have no `forbid` row. Five of
+those twenty are the tells added on 2026-08-22 and no fixture holds the
+condition any of them fires on yet.
 
 **`clean-landing` runs a gradient and a `shadow-xl`.** The slop landing uses both
 features too. On `clean-landing`, each value comes from named theme colours and
@@ -168,9 +186,9 @@ The auditor alone, without the plugin:
 
 No user count, download count, or star count. No testimonial and no logo wall.
 No time-saved figure, accuracy percentage, or conversion number. The catalog is
-not complete. Twenty-one of 49 tells have never been tested against a
-counterexample, and the page says so. Twenty-one
+not complete. Twenty-six of 54 tells have never been tested against a
+counterexample, and the page says so. Twenty-six
 is the number with no `forbid` row, which is what a counterexample is: a case a
-tell must *not* fire on. Fifteen is the different, smaller number of tells that
+tell must *not* fire on. Twenty is the different, smaller number of tells that
 appear in no fixture row at all, and attaching it to this claim understates the
 gap.
