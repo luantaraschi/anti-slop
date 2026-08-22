@@ -88,10 +88,11 @@ are reported rather than checked.
 W7, F2, F3, F4, F5, F12. `clean-landing` carries A2 and A4 on its `forbid` row,
 and neither has fired on it in any blind run.
 
-**21 blind reports**, every one committed under `calibration/`, across four
-rounds dated 2026-08-07, 2026-08-17, 2026-08-17b and 2026-08-18. Eighteen are
-the auditor reading fixtures; three are the auditor reading what the build skill
-produced.
+**23 blind reports**, every one committed under `calibration/`, across five
+rounds dated 2026-08-07, 2026-08-17, 2026-08-17b, 2026-08-18 and 2026-08-18b.
+Eighteen are the auditor reading fixtures, three are the auditor reading what
+the build skill produced, and two are the auditor reading this page and the
+specimen beside it.
 `find calibration -maxdepth 2 -name 'audit-*.md' | wc -l`
 
 **`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 69
