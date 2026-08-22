@@ -78,10 +78,25 @@ the alternative that ships today.
 
 **From** root 4 (density) and whatever the page is actually about.
 
-Every page in the reference set has exactly one element between roughly five
-and twelve times the body size, and in every case it can be pointed at. This is
-the signature made into a number instead of a mood, which is what makes it
-possible to derive rather than to feel.
+Every page in the reference set has exactly one element that is unmistakably
+the largest, and in every case it can be pointed at. This is the signature made
+into a number instead of a mood, which is what makes it possible to derive
+rather than to feel.
+
+**The number is smaller than a screenshot suggests, and this paragraph was
+wrong before it was measured.** Across fourteen measurable sites the ratio of
+display size to body size sits between **2.0 and 6.0** on twelve of them —
+2.25 at Conductor, 2.5 at Increase, 3.0 at Aside and curated.design, 4.0 at
+Primora, 5.4 at Billow, 6.0 at Next.js Conf. The four that run higher are 12×,
+13× and 21×, and they share one property: **the giant text is not a sentence.**
+It is a wordmark, a product name, an artist's name. Only one site in the corpus
+sets an actual headline past 6×, and it does it by fitting the line to the
+viewport rather than by choosing a size.
+
+So the decision has two branches and they are not interchangeable. A sentence
+at the top of the scale lands between two and six times the body. A word — a
+name, a mark, a single verb — is free of that ceiling and usually wants the
+width of the viewport rather than a multiple of anything.
 
 **It is usually not the h1, and the teardown is emphatic about this.** Three of
 the measured pages carry a heading of 36px or 2.25rem while something else on
@@ -157,27 +172,41 @@ real date, or a real count available.
 **From** the composition, after decisions two and three.
 
 **This decision was written from screenshots first and the measurement
-reversed it, so the reversal is the entry.** Nineteen sites were checked for a
-grid, by grepping for the things that draw one rather than by looking. Eleven
-have no grid at all — not drawn, not underneath, nothing: curated.design,
-reboot.studio, Aside, Billow, Conductor, Prime Intellect, meech213, Seksy
-Planety, Marble, Better File Transfer, Octolane. Five have a **real column
-system that content genuinely aligns to and that is never drawn**: ten columns
-at shopify.design, eighteen at Next.js Conf, eight with 24px gutters at JARCOS,
-a section rail at Increase, a container rail at Primora. One draws a grid that
-works, and it works because the dots are DOM nodes and the photographs land on
-them exactly: Friends of the New.
+reversed it, so the reversal is the entry.** Sixteen sites were checked by
+grepping for what draws a grid and for what addresses one, rather than by
+looking. Seven carry a real coordinate system content genuinely lands on. Two
+of those are invisible: ten columns at shopify.design, where the rules then say
+`grid-column: 4 / span 4` and place eight consecutive lines of one paragraph on
+eight different start columns, and eighteen at Next.js Conf, addressed forty-
+eight times. Five are visible **and** load-bearing, which is the combination
+that matters.
 
-And one draws a dot field by `background-image: radial-gradient(...)` with
-**nothing aligning to it**: Doany. That is the case A13 describes, on a site
-that is otherwise excellent, which is the cleanest possible demonstration that
-the tell is about alignment rather than about taste.
+Three more draw something and nothing aligns to it, and here the arithmetic
+settles it rather than the eye. Doany's dot field has a 22px pitch while its
+hero runs `padding: 70px 28px 84px` with margins of 26, 24 and 40 — not one of
+them a multiple of 22. Increase paints graph paper at 22px, 24px and 16px
+against a `--spacing: .25rem` scale, and 22 is not a multiple of 4. That is A13,
+on two sites that are otherwise excellent, and it is the cleanest demonstration
+available that the tell is about alignment rather than about taste.
+
+**A page can carry both at once, and Increase and Primora do.** Their rails are
+structural — a continuous 1px rule at x=0 and x=1160 running the height of the
+document — and their lattice is decoration laid over it. Judge the two
+separately.
+
+**The strongest case in the corpus went to real trouble to get this right.**
+Friends of the New wrote the `background-image: radial-gradient(...)` version
+of its dot lattice, commented it out at `style.css:552`, and shipped four
+hundred literal `<span>` elements instead — so that every dot inherits Grid
+placement from the same `--columns` token that steps 12/16/14/10/8/6/4 and
+drives the module `calc((100vw - 4rem) / var(--columns))` at over a hundred
+callsites. The dots are the coordinate system rather than a picture of one.
 
 So the rule inverts the intuition. **Having a column system is normal and
-drawing one is rare.** The default answer to this decision is a real grid
-nobody can see. Draw it only when something lands on it — and "lands on it"
-means a photograph at a coordinate, a card with a registration mark, a rule
-that terminates a column — never merely "sits on top of it".
+drawing one is rare.** The default answer is a real grid nobody can see. Draw
+it only when something lands on it, and prove the landing with arithmetic: if
+the page's spacing values are not multiples of the lattice pitch, nothing is
+landing and the lattice is texture.
 
 **When it surfaces.** Never on its own. It is settled by the route.
 
