@@ -42,6 +42,14 @@ the pattern itself.
 whose absence the auditor detects, and writes them where the auditor looks for
 them.
 
+It works in three registers, and the difference between them is what stops it
+being either a form or a generator. Anything with one right answer it settles in
+silence: the floor, the arithmetic, the craft. The shape of the page it brings
+as two or three named routes and waits for an answer. Anything bolder that would
+open a different design line it proposes, with what it costs and what it needs
+from you, once there is a page to look at. The line is testable: a decision is
+directional if changing it later means rebuilding rather than editing.
+
 **`anti-slop:text`** rewrites prose. Forty tells across five axes on the text
 itself rather than on the interface around it: whether anything is behind the
 sentence, whether the content chose the shape or the mould did, whether anyone
@@ -88,6 +96,8 @@ skills/build/ the four roots, and what derives from them
    +-- references/deriving.md          the rule per derived value
    +-- references/floor.md             what no brief answers differently
    +-- references/legal.md             the privacy notice and the terms
+   +-- references/composing.md         the ground, the largest element, routes
+   +-- references/precedents.md        measured moves, cited after deciding
    |
 skills/text/ ... the rewriter, catalog included
    SKILL.md ......... the rule, the three roots, the removal pass, the modes
