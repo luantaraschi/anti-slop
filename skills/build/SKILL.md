@@ -224,8 +224,11 @@ decided and is not.
    nothing is built until the plan has been through it.
 6. **Routes.** Two or three named directions, each a closed bundle of the five
    decisions in `composing.md`, each with its cost stated, and one of them
-   recommended. The person chooses, or mixes two, and that choice is the brief
-   from here on. This is the one step that waits for an answer.
+   recommended. **Then take your own recommendation and build.** Name it in one
+   line, keep the others in a paragraph the person can reach for, and go. Step 6
+   waits for an answer in two cases only, and `composing.md` carries them: the
+   person asked to choose, or a directional root came back unanswered and the
+   routes differ on exactly what it would have settled.
 7. **Composition and the signature,** below, built out of the chosen route.
 8. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
@@ -242,11 +245,12 @@ decided and is not.
     can take a focus ring or an `aria-live` region out with the element it was
     attached to.
 
-Steps 6 and 7 are the only ones that involve the person, and step 6 is the only
-one that stops for an answer. Everything else in this list is register one:
-decided and applied without asking, because asking about a value with one right
-answer is noise wearing the costume of collaboration. `composing.md` carries the
-test that keeps the two apart.
+Steps 6 and 7 are the only ones that involve the person, and neither of them
+stops by default. Step 6 names its routes, takes one, and says which. It stops
+only in the two cases `composing.md` names. Everything else in this list is
+register one: decided and applied without asking, because asking about a value
+with one right answer is noise wearing the costume of collaboration.
+`composing.md` carries the test that keeps the registers apart.
 
 ## The seven shapes of a recorded decision
 
