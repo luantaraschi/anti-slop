@@ -558,6 +558,34 @@ shipped as a visible gap rather than as an invention. `legal.md` carries the
 questions, the contents, and the routing rule that keeps a link from pointing
 at a page that does not exist yet.
 
+## The rendered pass
+
+Two of the five checks below cannot be done by reading, and this repository has
+recorded across three rounds that every round produces at least one defect
+visible only by opening the page: a header 214px out of alignment at 1920px, a
+closed panel still reserving 52px, a focus ring that exists in the stylesheet
+and is painted over by a parent.
+
+So open it. Where the session has any browser tooling at all, the step before
+the floor pass is to load the page and look:
+
+- **Three widths: 375, 768, 1440.** The first is where the measure breaks and
+  the last is where the composition does.
+- **Both themes, if two exist.** Opened, not inferred from one.
+- **`prefers-reduced-motion: reduce` switched on**, and the page loaded under
+  it rather than toggled after.
+- **One tab pass from the top**, watching for the focus ring on every
+  interactive element in order, and for the order itself.
+
+**Report what you saw at the altitude a finding is reported at:** what is
+wrong, what it costs, and where. A screenshot attached to a claim is evidence.
+A screenshot attached to nothing is decoration, and four of them are a slideshow.
+
+**Where no browser tooling is available, say so in one line** and run the five
+hand checks below instead. That line matters more than it looks: a build
+reporting "checked" without saying how is the same defect as a contrast ratio
+asserted rather than computed.
+
 ## Out of scope
 
 Any claim about who or what wrote a piece of code. Legal advice: what this
@@ -606,8 +634,9 @@ second pass even when the auditor did run:
 5. Reduced motion was switched on and the page checked under it.
 
 The last two cannot be verified by reading, which is why they are on this list
-and not in the survival checks. An unverified build is a finding to report, not
-a step to skip quietly.
+and not in the survival checks. Where the rendered pass ran, it already answered
+both and this list is the fallback rather than a second pass. An unverified
+build is a finding to report, not a step to skip quietly.
 
 **The auditor cannot see two of the things this skill now promises.** Contrast
 is arithmetic and the audit catalog deliberately does not carry it, because
