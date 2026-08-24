@@ -231,8 +231,13 @@ code, and a reader holding ten findings and no next step is holding a list.
 Two things that line has to be honest about.
 
 **How many the fixer can take on its own.** Say the number. A repair that needs
-a root, a fact or a redesign is refused by name at the other end, and it is
-cheaper for the person to learn that here.
+a root, a fact, a redesign or a change with no bounded size is refused by name at
+the other end, and it is cheaper for the person to learn that here. The fourth
+class is the one an auditor forgets: `skills/fix/references/repairs.md` marks
+those rows `unsettled`, because the change is well understood and can touch
+every consumer of the thing it changes, and A8, A10, A14 and S2 all sit there. A
+count that leaves them on the fixer's side is wrong the moment one of them
+fires.
 
 **Which findings those are.** Name their ids in the same line. The palette, the
 type families and the legal pages are the usual three, and all three need an

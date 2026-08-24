@@ -1002,3 +1002,86 @@ carries that warning in its own text; C3 has the same problem and carries none.
 **C14 does not reach an empty-to-populated height swap**, which costs the reader
 their place in exactly the way its Principle describes, because the branch says
 *pending* and an empty state is not a pending one.
+
+### v5, the closed loop's first run, 2026-08-24
+
+Three blind runs, all on one copy of `slop-dashboard`, and the first round that
+scored a repair rather than a reading. Reports in `calibration/2026-08-24/`, and
+`calibration/2026-08-24/README.md` reconciles them. Run 1 audited the fixture
+whole with the finding cap suspended, run 2 gave `anti-slop:fix` that report and
+nobody to ask, run 3 audited the repaired tree whole. Each agent was fresh, none
+could read this file, and none could read any previous round's reports.
+
+The scores below are the ones taken before the round's own repairs to the
+skills, which is what this section is for. Nothing in the catalog, the repair
+map or either skill was edited by this round.
+
+| Run | Result |
+|---|---|
+| 1, the audit before | **29 of the 54 tells fire, 25 decline.** Seven rules supplied. Two build-breaking defects recorded above the findings rather than folded into a scored row. |
+| 2, the repair | **15 repaired, 14 refused, 0 unaccounted.** Seven rules supplied. Nothing refused bare: every refusal names the answer it is missing. |
+| 3, the audit after | **16 findings.** 13 of the 29 closed, 0 opened. Five rules supplied. |
+
+**The after set is a strict subset of the before set.** Every one of the sixteen
+ids that fires after fired before, checked one at a time, so the fixer opened no
+finding the catalog can name. That is the number that decides whether the fixer
+is safe to run unattended and it came back clean at id level.
+
+**It did not come back clean at site level.** C4 fires after on a site that did
+not exist before, the error banner the fixer's own S1 repair wrote. A fixer that
+counts only ids reports zero regressions on a pass that made one.
+
+**Three of the fifteen repairs did not close the finding they attacked**: A4,
+C4 and C15. Reconciled against what each report could see, five repairs in total
+changed a site rather than the thing that governs it: C4, C9, C10, A4 and C15.
+The fixer saw two of the five and the second audit saw three, and neither report
+could have seen all five, because the fixer knows what it decided and not what
+still fires while the auditor knows what still fires and not what was decided.
+
+**Twelve of the fourteen refusals are the skill working**, each naming a root, a
+fact, or a row the repair map marks `unsettled`. Two, F2 and F10, are work the
+code could have settled, and both trace to the map rather than to the fixer.
+
+### Recorded for v5, not fixed
+
+**C16's verdict flipped between two blind audits of a declaration neither audit
+changed.** Run 1 fired it, supplying a rule that the Principle governs a fourth
+failure form the Signal does not enumerate: a focus ring declared, never
+removed, and pointing at a colour nobody defined. Run 3 declined the same code as
+a correctly shaped focus treatment and handed the token problem back to A1. Run 2
+refused it against the map. Three reports, three resolutions, one unchanged
+declaration. A tell whose verdict flips on unchanged code is not calibrated, and
+this is the sharpest thing the round produced.
+
+**Three of `repairs.md`'s `stops without` cells are wrong against the tell they
+map, out of the 29 rows this run exercised**, and two more are arguable. C1 and
+C16 are too free, F10 too strict. The arguable pair, F2 and C12, carry the
+larger finding: a cell can be right about the repair a tell's Fix describes and
+wrong about the finding actually in front of the fixer.
+
+**Two build-breaking defects and no tell reaches either.** `app/globals.css`
+carries no Tailwind directive, so no utility class anywhere in this fixture emits
+any CSS, and `lib/utils.ts` does not exist while two files import a helper from
+it. Both were checked against all five catalog files. F12 is the nearest tell and
+reaches neither: it catches surviving placeholder strings, not an import that
+resolves to nothing. The fixture is unchanged and both defects are still in it,
+which is correct for a specimen of an unfinished tree and is worth knowing before
+anyone reads a finding count off it.
+
+**Nineteen supplied rules across the three runs reconcile to fifteen distinct
+gaps.** Four were found twice by independent readers: no tell defines
+"internal", C4 has no population threshold, C16 has no name for a token that does
+not resolve, and the "three things" exemption has no threshold. Six of the
+fifteen are against `repairs.md` and the build references it delegates to rather
+than against this catalog.
+
+**W6 appears nowhere in run 3**, neither in its findings nor in any of its three
+decline categories, so 53 of 54 ids were accounted for after the repair rather
+than 54. Nothing suggests W6 fires on this tree. The report is not edited to fix
+it and the gap is recorded instead.
+
+**A caveat on this round's independence**, the same one v4 carries: the prompts
+for all three runs were written by the same hand that wrote the skills they
+measure. The agents were blind; the prompt writing was not. The record notes that
+this convention has now been followed twice and cited twice to
+`docs/calibration-method.md`, which does not contain it.

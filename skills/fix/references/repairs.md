@@ -12,7 +12,9 @@ unanswered, and they are most of the Surface axis.
 
 **Declare.** The value exists and is right; nothing records that anyone chose
 it. The repair is to move it where the project declares its values and name it
-for the subject. No root needed, so these never stop.
+for the subject. No root needed, so these stop only where the row says so, and
+two of them do: F9 and F10 both stop without the site's origin, which is a fact
+rather than a root. Read the row, not the class.
 
 This class has a second reading, and it is second rather than original: it also
 covers a bounded property the code never declared at all — an optical offset, a

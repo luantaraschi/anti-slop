@@ -17,7 +17,7 @@ metadata:
 
 ## What this is
 
-The third side of a loop that had two. `anti-slop audit` reads an interface and
+The third side of a loop that had two. `anti-slop` reads an interface and
 reports. `anti-slop build` decides an interface that does not exist yet. This
 skill stands where a report exists and the code still has to change.
 
@@ -90,7 +90,7 @@ stays visible and a wrongly repaired one does not.
 ## Process
 
 1. **Get the findings.** From a report in the conversation, from a file, or by
-   running `anti-slop audit` yourself if there is none. Say which.
+   running `anti-slop` yourself if there is none. Say which.
 2. **Sort by cause, not by order.** Roots first, and under each root the
    findings its repair kills. The report's fourth column already says which;
    where it does not, `repairs.md` does.

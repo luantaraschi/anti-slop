@@ -170,7 +170,7 @@ record's section 7 and carried as `BACKLOG.md` T2-6.
 
 Ten tasks. The builder got a step 0 naming three sizes of job — a new surface,
 a new part inside a system that already exists, and one element — and the
-twelve steps now run only at the first size. Its route step takes its own
+thirteen steps now run only at the first size. Its route step takes its own
 recommendation and builds by default, stopping in two named cases only. The
 four roots, the inventory and the chosen route now survive the session in
 `anti-slop-brief.md`, read before step 1 and written at step 4. Each skill
@@ -195,11 +195,58 @@ gained a related but separate step of its own, three widths, both themes,
 `prefers-reduced-motion` switched on, one tab pass, which is new work rather
 than a retirement, since a build never had this step before.
 
-**This round spent no blind run.** Everything above is a prose or process
-change measured by nothing yet. Item 13 above and the fixer's own first
-measurement are what tasks 11 and 12 spend the round's blind run on; this
-entry only records what shipped. `BACKLOG.md` carries the full account of
-what is still unmeasured.
+**The ten tasks above spent no blind run between them.** Everything in this
+entry is a prose or process change, and tasks 11 and 12 then spent seven runs
+elsewhere: three on the repair loop, in item 15 below, and four on the text
+catalog, in item 13 above. Neither reaches the entry gate's three sizes, the
+route step's new default, `anti-slop-brief.md` or the rendered pass, so what
+this entry records is still measured by nothing. `BACKLOG.md` Round F carries
+the full account of what is owed.
+
+### 15 — The first run of the closed loop ✅ 2026-08-24
+
+Three blind agents on one copy of `fixtures/slop-dashboard`: an audit, then
+`anti-slop:fix` given that report and nobody to ask, then an audit of the
+repaired tree. The record is `calibration/2026-08-24/README.md` and it
+reconciles the three reports rather than restating them.
+
+**29 findings fired before, 16 after. 13 closed and 0 opened.** The after set is
+a strict subset of the before set, checked id by id, so the fixer introduced no
+finding the catalog can name. Of 29 findings it was handed, 15 were repaired and
+14 refused, and **12 of the 14 refusals name an answer only a person holds**.
+Nothing was refused bare.
+
+**It is safe to run and not yet trustworthy unattended**, and the gap between
+those two is where the round's value is. Three of the fifteen repairs did not
+close the finding they attacked. Five in total changed a site rather than the
+thing that governs it, and no single report could see all five: the fixer knows
+what it decided and not what still fires, the auditor the reverse. The one the
+fixer could not see is precisely the one its skipped step 6 re-audit was written
+to catch, which arrived as a demonstration rather than as an assertion.
+
+**The catalog gained its sharpest open question.** C16's verdict flipped between
+two blind audits of a declaration neither audit changed: fired by one, declined
+by the other, refused against the map by the fixer. A tell whose verdict flips on
+unchanged code is not calibrated.
+
+**`repairs.md` came back from its first blind reader with three demonstrably
+wrong `stops without` cells out of 29 rows exercised**, two more that are right
+about the repair and wrong about the finding in front of them, and a structural
+assumption, one class per id, that C16 breaks. No class assignment was
+overturned; the column beside them is what was wrong.
+
+And two build-breaking defects that no tell in the 54 tell catalog reaches: a
+missing Tailwind directive and a missing `lib/utils.ts`. The catalog is a catalog
+of taste with no floor for whether the thing compiles, so the closed loop can
+drive a tree to a small finding count while the tree does not build. Nothing was
+repaired in the round that found it, on the usual rule. `BACKLOG.md` Round F2
+carries all of it.
+
+**Caveat, recorded in the record itself:** the prompts for all three runs were
+written by the same hand that wrote the skills they measure. The agents were
+blind; the prompt writing was not. The record also establishes that this
+convention has now been recorded twice, cited both times to
+`docs/calibration-method.md`, and that the file does not contain the rule.
 
 ---
 
@@ -273,7 +320,7 @@ have no counterexample.
 
 ## One step that is yours today
 
-**Run the audit on two or three of your own projects.** Thirteen blind runs have
+**Run the audit on two or three of your own projects.** Twenty blind runs have
 scored fixtures this repository built. One has scored real code — your portfolio
 — and it found a placeholder endpoint that silently broke your contact form on
 three pages, plus three defects in the report format that no fixture could have
@@ -292,9 +339,10 @@ will be visible to you immediately and invisible to me.
 
 ## What is deliberately not on this list
 
-**Closing every coverage gap.** Fifteen tells appear in no fixture row. Three are
-uncovered on purpose. Of the rest, A9 and C2 have been measured as too broad, so
-the honest answer for some may be to cut rather than to cover.
+**Closing every coverage gap.** Twenty tells appear in no fixture row, which
+`scripts/validate.py` prints on every run. Three are uncovered on purpose. Of
+the rest, A9 and C2 have been measured as too broad, so the honest answer for
+some may be to cut rather than to cover.
 
 A rendered pass used to sit here too. Item 14, above, is where it was retired
 and what replaced it.

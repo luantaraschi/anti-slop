@@ -77,7 +77,8 @@ that needs it.
 | 6 · routes | `composing.md`, and `precedents.md` only to argue a route you have already reached |
 | 7 to 8 · composition, components | `floor.md`, beside the route |
 | 10 · the legal pages | `legal.md` |
-| 12 · the floor pass | `floor.md` again, as a checklist |
+| 12 · the rendered pass | nothing; it opens the page |
+| 13 · the floor pass | `floor.md` again, as a checklist |
 
 Step 0 is the size of the job, below, and it reads nothing. A one element job
 never opens anything but `floor.md`.
@@ -138,18 +139,18 @@ success and the legal pages join that class rather than starting a new one.
 
 ## What size of job this is
 
-Answer before step 1, in one line, and say which answer you took. The twelve
+Answer before step 1, in one line, and say which answer you took. The thirteen
 steps below are written for a surface that does not exist yet. Running all of
 them against a request to fix one card is not thoroughness — it is how a skill
 gets dropped in silence the third time somebody pays for it, and a step
 silently dropped is worse than a step that was never claimed.
 
 **A new surface.** A page, a screen, a site, a component library with no theme
-to inherit. Steps 1 to 12, all of them.
+to inherit. Steps 1 to 13, all of them.
 
 **A new part inside a system that already exists.** A screen in an app that has
 a theme, a component in a library that has one. This is the common case and the
-process above does not describe it.
+process below does not describe it.
 
 The four roots are not asked here, they are read. Root 1 is the product, which
 the person still has to supply. Roots 2, 3 and 4 are already answered by the
@@ -243,7 +244,11 @@ decided and is not.
     `legal.md` carries the inventory they draw on and the rule for a field
     nobody answered. They are written before their links are added.
 11. **The reduction pass.** One pass whose only purpose is removal.
-12. **The floor pass.** One pass that only checks, against `floor.md`, and it
+12. **The rendered pass,** below. Open the page at three widths, in both
+    themes, with `prefers-reduced-motion` on, and tab through it once. Where the
+    session has no browser tooling, say so in one line and run the five hand
+    checks instead. Two of those five cannot be answered by reading at all.
+13. **The floor pass.** One pass that only checks, against `floor.md`, and it
     is the last thing that happens. The reduction pass deletes, and a deletion
     can take a focus ring or an `aria-live` region out with the element it was
     attached to.
@@ -373,11 +378,12 @@ those values stop resolving, which turns a decision into a constraint.
 In Tailwind that means declaring `colors`, `spacing`, `fontSize`,
 `borderRadius`, `fontWeight` and `lineHeight` under `theme` rather than under
 `theme.extend` — the last two are the ones builds forget, and on a restrained
-palette weight carries more of the hierarchy than radius does. In plain CSS the
-equivalent is narrower: you cannot stop a literal from working, so the
-constraint has to come from review rather than from the compiler, and the
-discipline is that no rule outside the token block types a colour, a size or a
-radius directly.
+palette weight carries more of the hierarchy than radius does: a `font-semibold`
+resolving out of a nine-step ramp nobody declared is the same defect as a colour
+nobody picked. In plain CSS the equivalent is narrower: you cannot stop a literal
+from working, so the constraint has to come from review rather than from the
+compiler, and the discipline is that no rule outside the token block types a
+colour, a size or a radius directly.
 
 Be exact about what that buys, because a build stated it too broadly and an
 audit caught it: a top-level `theme` is merged per key against the framework's
@@ -385,10 +391,7 @@ own, so **only the keys you declare are replaced**. Everything you leave out —
 `height`, `minHeight`, `width`, `flex`, `inset`, `opacity`, `keyframes` — stays
 at its default and goes on compiling. Replacing four keys does not make a tree
 token-complete, and a comment claiming it does is the first survival check
-failing. The last two are the ones builds forget,
-and on a restrained palette weight carries more of the hierarchy than radius
-does — a `font-semibold` resolving out of a nine-step ramp nobody declared is
-the same defect as a colour nobody picked.
+failing.
 
 Two things to know before you do it. The scale you replace has to be complete
 enough to build from, because there is no fallback left. And an unrecognised
@@ -574,8 +577,8 @@ visible only by opening the page: a header 214px out of alignment at 1920px, a
 closed panel still reserving 52px, a focus ring that exists in the stylesheet
 and is painted over by a parent.
 
-So open it. Where the session has any browser tooling at all, the step before
-the floor pass is to load the page and look:
+So open it. Where the session has any browser tooling at all, step 12, the step
+before the floor pass, is to load the page and look:
 
 - **Three widths: 375, 768, 1440.** The first is where the measure breaks and
   the last is where the composition does.

@@ -45,10 +45,13 @@ them.
 It works in three registers, and the difference between them is what stops it
 being either a form or a generator. Anything with one right answer it settles in
 silence: the floor, the arithmetic, the craft. The shape of the page it brings
-as two or three named routes and waits for an answer. Anything bolder that would
-open a different design line it proposes, with what it costs and what it needs
-from you, once there is a page to look at. The line is testable: a decision is
-directional if changing it later means rebuilding rather than editing.
+as two or three named routes, one of them recommended, and then it takes its own
+recommendation and builds. It stops for an answer in two cases only: you asked
+to choose, or a directional root came back unanswered and the routes differ on
+exactly what it would have settled. Anything bolder that would open a different
+design line it proposes, with what it costs and what it needs from you, once
+there is a page to look at. The line is testable: a decision is directional if
+changing it later means rebuilding rather than editing.
 
 **`anti-slop:text`** rewrites prose. Forty tells across five axes on the text
 itself rather than on the interface around it: whether anything is behind the
@@ -464,19 +467,30 @@ lawyer's call and is said in the handover rather than implied by the page.
 
 Not equally, and the difference is worth knowing before you rely on one.
 
-**`anti-slop:audit` is the mature half.** Four calibration rounds produced
-twenty-one blind reports committed under `calibration/`. Eighteen cover the
+**`anti-slop:audit` is the mature half.** Six calibration rounds produced
+twenty-five blind audit reports committed under `calibration/`. Twenty cover the
 auditor reading fixtures. Three cover the auditor reading what the build skill
-produced. Its most recent scores are below.
+produced. Two cover the auditor reading this project's own site and specimen.
+Counting every blind report rather than every audit, thirty are committed there:
+the twenty-five above, the fixer's single run and the rewriter's four.
+`site/inventory.md` carries the command behind each figure. Its most recent
+scores are below.
 
-**`anti-slop:text` is at 0.2.0 and has almost no evidence trail.** Its forty
-tells, its four specimens and its expectation rows exist. No blind run has
-scored any of it. The rows in `corpus/README.md` say what each specimen was
-written to carry, which is a claim about the specimen and not a measurement of
-the catalog.
+**`anti-slop:text` is at 0.2.0 and has one round behind it.** Its forty tells,
+its four specimens and its expectation rows exist, and the first blind round
+scored them on 24 August 2026: four runs, one per specimen, recorded in
+`calibration/2026-08-24b/README.md`. `slop-release-en` carried 22 of its 23
+expected ids and nothing off row, `clean-release-en` 0 of 20 forbidden,
+`slop-notice-pt` 15 of 16 expected plus one off row fire, and `clean-notice-pt`
+0 of 15 forbidden. Both clean specimens came back byte identical and neither
+rewrite invented a fact. The round also found more than it settled, `M1`'s
+undefined denominator first among it, and the record rather than this paragraph
+is where that lives. The rows in `corpus/README.md` still say only what each
+specimen was written to carry, which is a claim about the specimen and not a
+measurement of the catalog.
 
-One number in it has been measured, and only against the four documents this
-repository wrote: M1's dash threshold. It is worth knowing what that measurement
+One number in it was measured before that round, and only against the four
+documents this repository wrote: M1's dash threshold. It is worth knowing what that measurement
 did, because it is the whole method in one afternoon. The tell shipped counting
 dashes per word. Counting the specimens showed that rate separating nothing:
 both clean specimens use one paired interruption on purpose, and both landed
@@ -484,7 +498,11 @@ above the threshold, because a pair is two characters and a short document is
 short. The measure that separates is the share of a text's clause joints the
 dash carries. The tell, both vocabulary files and two of the specimens changed
 the same day. That is a floor found by counting, not a rate from the wild, and
-it says so where it sits.
+it says so where it sits. The blind round then found that M1's Signal does not
+define its own denominator, so no two readings of it agree and three of the four
+published figures reproduce under neither recount. The threshold did not move
+and the record carries a proposed definition. Read it before trusting this
+paragraph.
 
 One tell, P5, is flagged as the first candidate for removal, because it is the
 only one that fires on an absence of opinion and so the only one that can push a
@@ -501,16 +519,20 @@ and are not yet measured. `BACKLOG.md` lists seven gaps around application
 screens. The skill was written with pages in mind and remains thinnest on
 screens with real state.
 
-**`anti-slop:fix` is at 0.1.0 and has no evidence trail yet.** It shipped this
-round with `repairs.md` mapping all fifty-four interface tells to the rule
+**`anti-slop:fix` is at 0.1.0 and has exactly one round behind it.** It shipped
+this round with `repairs.md` mapping all fifty-four interface tells to the rule
 that repairs each one, in five classes: derive 13, declare 10, branch 10,
-write 17 and unsettled 4. No repair has been run blind against a fixture, and
-none of the round's other unmeasured changes have either. `BACKLOG.md` records
-what is owed.
+write 17 and unsettled 4. The loop was then run blind on a copy of
+`fixtures/slop-dashboard`, and the record is `calibration/2026-08-24/README.md`:
+**29 findings fired before, 16 after, 13 closed and 0 opened. 15 were repaired
+and 14 refused, of which 12 refusals are correct.** Three of the fifteen repairs
+did not close the finding they attacked, and five changed the row rather than
+the cause. Nothing else this round changed has been measured. `BACKLOG.md`
+records what is owed.
 
 All four are usable. The auditor is the one with the evidence trail, the
-builder has three measured specimens, the fixer has a repair map and no
-measurement yet, and the rewriter has none yet.
+builder has three measured specimens, the fixer has a repair map and one
+measured pass over one fixture, and the rewriter has one blind round.
 
 ## Testing & Reliability
 

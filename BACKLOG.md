@@ -395,15 +395,17 @@ to avoid.
 
 ## Round F — everything the daily-use round shipped unmeasured, 2026-08-24
 
-The round that closed the loop with a fourth skill. It spent no blind run
-(`ROADMAP.md` item 14 says so plainly), and this file's own opening paragraph
-names unmeasured change compounding as the failure to avoid, so every process
-change below is recorded rather than assumed sound. Tasks 11 and 12 are where
-the round's blind run gets spent.
+The round that closed the loop with a fourth skill. Its ten process tasks spent
+no blind run between them, and this file's own opening paragraph names unmeasured
+change compounding as the failure to avoid, so every process change below is
+recorded rather than assumed sound. Tasks 11 and 12 then spent seven blind runs,
+three on the repair loop and four on the text catalog. What those seven measured
+is in Round F2 and Round T2 below; everything left in this section is what they
+did not reach.
 
 - **F1. The entry gate's three sizes.** `skills/build/SKILL.md` now names a
   new surface, a new part inside a system that already exists, and one
-  element, and runs the twelve steps only at the first size. No fixture has
+  element, and runs the thirteen steps only at the first size. No fixture has
   been built at the second or third size, so the gate's own classification has
   never been tested against a real request, only reasoned about.
 - **F2. The route step's two stopping cases.** It now takes its own
@@ -424,10 +426,14 @@ the round's blind run gets spent.
   reduced motion switched on, one tab pass, which is new work rather than a
   retirement. Neither side has been run by a session with browser tooling
   yet.
-- **F5. Every one of `repairs.md`'s 54 class assignments.** Derive 13, declare
-  10, branch 10, write 17, unsettled 4. The map was built by reading the audit
-  catalog and the build references against each other, not by running a
-  repair. No finding has been repaired and re-audited against it.
+- **F5. Twenty-five of `repairs.md`'s 54 class assignments.** The map covers all
+  fifty-four, derive 13, declare 10, branch 10, write 17 and unsettled 4, and it
+  was built by reading the audit catalog and the build references against each
+  other rather than by running a repair. Task 11's blind run then exercised 29
+  of the 54 rows against a real tree, and Round F2 below carries what came back,
+  so the twenty-five rows no finding reached are what is still unmeasured here.
+  Of the 29 exercised, no class assignment was overturned; what the run found
+  wrong was the `stops without` column beside them, which is F2-1.
 - **F6. Nine Minor findings against the repair map, raised and deferred by the
   Task 8 review** (full list in
   `.superpowers/sdd/2026-08-24-daily-use/progress.md`, "Task 8: minor
@@ -440,8 +446,10 @@ the round's blind run gets spent.
   platform fact; C6's near miss at `floor.md:70`; `repairs.md:126` repeating
   `skills/fix/SKILL.md:78` almost verbatim against the file's own
   no-repetition rule; a loose sentence about the unsettled three; and "the
-  radius" against "the radius scale" for one section. None of these repaired
-  in this round.
+  radius" against "the radius scale" for one section. One of the nine is now
+  repaired: the `declare` paragraph no longer says "these never stop", because
+  F9 and F10 are declare rows whose own `Stops without` cell names a fact. The
+  other eight stand.
 - **F7. Nine controller rulings across the round, five of which corrected the
   plan's own content rather than just an implementer's reading of it.**
   `.superpowers/sdd/2026-08-24-daily-use/progress.md` records five pre-flight
@@ -477,6 +485,115 @@ the round's blind run gets spent.
   and text siblings hardcode them, specified that way by the plan, which
   couples the fixture to the registry rather than pinning the words
   (`progress.md:135-137`). None of the three repaired in this round.
+
+## Round F2 — what the closed loop's first blind run found, 2026-08-24
+
+Round F's F5 is now measured in part. Three fresh agents, each blind: a full
+audit of a copy of `fixtures/slop-dashboard`, then `anti-slop:fix` given that
+report and nobody to ask, then a full audit of the repaired tree. Reports and
+reconciliation in `calibration/2026-08-24/`, which is the record and the
+authority for everything below. The headline: **29 findings fired before, 16
+after, 13 closed and 0 opened; 15 repairs and 14 refusals, 12 of the refusals
+correct.**
+
+Nothing below was repaired in the round that found it, on the same rule Round T2
+records: the runs are spent, and a Signal or a map row edited before the next
+round is unmeasured until that round.
+
+- **F2-1. Three of `repairs.md`'s `stops without` cells are wrong against the
+  tell they map, and two more are arguable.** Out of 29 rows the run exercised.
+  Wrong: `C1` says `nothing` where its Fix asks for radii tied to the scale, and
+  the scale is `A3`, which is refused. `C16` says `nothing` where satisfying it
+  means hard-coding a colour past a token system that stays broken. `F10` says
+  the repair stops without the site's origin, and a robots file needs no origin
+  at all, so the map is stricter than the tell it maps. Arguable, and the more
+  useful half: `F2`, whose cell derives correctly from a Fix whose prescribed
+  pattern contains the product's name and which blocked an instance that closes
+  without it, and `C12`, blocked on a fact the row data already carried. The
+  finding the two arguable ones carry is structural: a cell can be right about
+  the repair its Fix describes and wrong about the finding actually in front of
+  the fixer, because the column states one precondition where two are in play.
+  Record section 3.
+- **F2-2. Three of fifteen repairs did not close the finding they attacked.**
+  `A4`, `C4` and `C15`, each failing a different way, and this is the number that
+  matters more than the headline. `A4`: the primitive's own shadow in
+  `components/ui/card.tsx` survived the pass that removed every other one.
+  `C15`: the two sites the report named were fixed and a third, the toolbar, was
+  not. `C4`: the fixer's own `S1` repair wrote a second short text block and
+  never went back to it. Record section 1.
+- **F2-3. Five repairs changed the row rather than the cause, and no single
+  report can see all five.** The fixer flagged two, `C9` and `C10`, both row
+  level because a root above them was refused. Audit 2 found three, `C4`, `C9`
+  and `C10`. Reconciled against F2-2 the total is five: `C4`, `C9`, `C10`, `A4`
+  and `C15`. The fixer knows what it decided and not what still fires; the
+  auditor knows what still fires and not what was decided. **The one the fixer
+  could not see, `C4`, is precisely the one its skipped step 6 re-audit would
+  have caught**, because the repair that created `C4`'s second site landed later
+  in the same pass. The fixer did not run step 6 and said so, substituting a
+  manual signal by signal check and naming the substitution as a gap rather than
+  calling it a re-audit. Record section 4.
+- **F2-4. Two of fourteen refusals were work the code could have settled.**
+  `F2` and `F10`, and in both the fixer named the blocker honestly and the
+  blocker traces to `repairs.md` rather than to the fixer looking for an exit.
+  Nothing was refused bare: all fourteen name the answer they are missing, and
+  the other twelve name a root, a fact, or a row the map marks `unsettled`.
+  Record section 3.
+- **F2-5. Nineteen supplied rules reconcile to fifteen distinct gaps, six of
+  them in the repair map this round shipped.** Seven came from audit 1, seven
+  from the fixer, five from audit 2. Four gaps were found twice by independent
+  readers and those are the strongest evidence in the set: no tell defines
+  "internal", `C4` has no population threshold, `C16` has no name for a token
+  that does not resolve, and the "three things" exemption has no threshold. The
+  six against `repairs.md` and the build references it delegates to all came from
+  the single fixer run, which is the right way to read that number: six holes on
+  a first read is the shape of a new document rather than a broken one. Full
+  table in record section 5.
+- **F2-6. `C16`'s verdict flipped between two blind audits of a declaration
+  neither audit changed.** Audit 1 fired it by supplying a rule that the
+  Principle governs a fourth failure form its Signal does not enumerate. Audit 2
+  declined it as a correctly shaped focus treatment and handed the token problem
+  back to `A1`. Three reports, three different resolutions, one tell. **A tell
+  whose verdict flips on unchanged code is not calibrated**, and this is the
+  sharpest open question the catalog gained this round. Its structural
+  consequence lands on the map: `repairs.md` assumes one class per id, and `C16`
+  has two failure modes with different classes. Absent, it is a branch that stops
+  without nothing. Declared and unresolvable, it is a derive that stops with
+  `A1`. No row can hold both. Record sections 1 and 6.
+- **F2-7. Two build-breaking defects that no tell in the 54 tell catalog
+  reaches.** `app/globals.css` carried no Tailwind directive, so no utility class
+  anywhere in the tree emitted any CSS, and `lib/utils.ts` did not exist while
+  two files imported a helper from it. Checked against all five catalog files
+  rather than against the map alone. The catalog is a catalog of taste and has no
+  floor for whether the thing compiles, **which means the closed loop can drive a
+  tree to a small finding count while the tree does not build.** The fixer
+  repaired both under a scope rule it had to invent, because neither the fix
+  `SKILL.md` nor the map addresses a build-breaking absence outside the catalog.
+  Record section 7.
+- **F2-8. The auditor is asked to say what the fixer can take on and never reads
+  `repairs.md`.** Both closing paragraphs claim seven ids as free that the map
+  does not, and neither could have been right: the report format asks one skill
+  to estimate another skill's capability from outside it. That paragraph either
+  needs the map or needs to stop making the claim. Record section 6.
+- **F2-9. Audit 2's ledger does not close, and the prompt-authorship caveat
+  cites a rule to a file that does not carry it.** `W6` appears nowhere in audit
+  2, neither in its findings nor in any of its three decline categories, so 53 of
+  54 ids were accounted for after the repair rather than 54. Separately, the
+  caveat that a round's prompts were written by the author of the skills it
+  measures has now been recorded twice and cited both times to
+  `docs/calibration-method.md`. All 150 lines of that file were read for the
+  record and the rule is not there. A convention followed twice, cited twice to a
+  file that does not contain it, and written down nowhere is one round away from
+  being dropped by whoever does not already know it. The method file is where it
+  belongs.
+
+**One question this round closed rather than opened.** Report language was an
+open item twice in this file, once in the 2026-08-18 stack-neutralisation notes
+and once in the first real-world run's list before it.
+`skills/audit/SKILL.md:216-220` now settles it: the report is written in the
+language of the request, and identifiers, paths, tell ids, class names and code
+stay exactly as they are in the source. Both are marked closed where they sit.
+It is settled as a rule and unmeasured as a behaviour, since no blind run has
+yet reported in a language other than English against it.
 
 ## What finishes a round
 
@@ -617,11 +734,15 @@ the right call and the catalog now says so — but it has to be declared in the
 first line of the report, because a verdict reached through a translation is
 weaker than one reached directly and the reader has to be able to weigh it.
 
-Still open from this run, not repaired:
+From this run, one item is closed and one is still open:
 
-- The report language followed the user rather than the catalog, so axis
-  headings were translated while tell ids and field names were not. No rule
-  covers this either way.
+- **Report language: closed 2026-08-24.** The run reported in the user's
+  language, translating axis headings and leaving tell ids and field names in
+  English, and no rule covered it either way at the time.
+  `skills/audit/SKILL.md:216-220` now settles it, and settles it the way the run
+  guessed: the report is written in the language of the request, and
+  identifiers, paths, tell ids, class names and code stay exactly as they are in
+  the source. Recorded in Round F2 above.
 - The five adapted axes were not named individually. If a tell cannot survive
   the translation to a non-React stack it should be declined and named, and
   nothing yet says which ones those are.
@@ -655,7 +776,7 @@ failed twice and the C1 rewrites that were withdrawn twice. **The next blind
 round measures a broadened catalog, which is a different question from the one
 the last round measured.**
 
-Still open from this change:
+Still open from this change, apart from the last item, which this round closed:
 
 - **The fixtures are all React and Tailwind.** A catalog that claims to read any
   stack has no specimen outside one, so the claim is argued rather than tested.
@@ -664,6 +785,9 @@ Still open from this change:
 - **The build skill is further behind.** `deriving.md` still tells a builder to
   replace `theme.colors` and `theme.spacing` by name. The concepts transfer the
   same way the audit ones did, and the same measurement applies.
-- **Report language is unruled.** The first real-world run reported in the
-  user's language with axis headings translated and tell ids and field names
-  left in English. Nothing says which is right.
+- **Report language: closed 2026-08-24.** It was unruled when this section was
+  written, the first real-world run having reported in the user's language with
+  axis headings translated and tell ids and field names left in English.
+  `skills/audit/SKILL.md:216-220` now carries the rule and the exception list
+  for identifiers, paths, tell ids, class names and code. Recorded in Round F2
+  above.
