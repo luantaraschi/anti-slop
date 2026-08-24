@@ -429,8 +429,16 @@ rejects all six, with a reason:
 
 ## Out of scope
 
-A rendered pass, a real console error, and running the Finish axis against a
-site published over HTTP.
+A rendered pass, unless the session has browser tooling. The Craft axis asks
+whether anyone looked and answers it by reading code, which is a limit the
+catalog carries by construction. Where a browser is available the auditor opens
+the page at 375, 768 and 1440 in both themes, and marks every finding that came
+from looking rather than from reading, because a finding stated as observed and
+one stated as read are worth different amounts to whoever has to reproduce it.
+The builder runs the same pass as a step of its own, before the floor pass.
+
+A real console error, and running the Finish axis against a site published over
+HTTP, stay out of scope.
 
 **Stack is not one of them.** Forty-two of the fifty-four tells never name a
 framework, a build tool or a library: every tell on States, seven of the eight
