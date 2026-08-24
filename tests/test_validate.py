@@ -393,10 +393,11 @@ TEXT_TELL = """# Hollow
 def _write_plugin_tree(root):
     """Build the smallest tree main() accepts: every skill the registry names.
 
-    Three shapes, because main() has to accept all three. The auditor carries a
-    catalog and an expectations file. The build skill carries prose and neither.
-    The text skill carries a catalog, a reference declared as prose, and an
-    expectations file that is not the auditor's.
+    Four shapes, because main() has to accept all four. The auditor carries a
+    catalog and an expectations file. The build skill carries prose and
+    neither. The text skill carries a catalog, a reference declared as prose,
+    and an expectations file that is not the auditor's. The fixer carries
+    prose, no expectations, and a citation into another skill by path.
     """
     skill = root / "skills" / "audit"
     (skill / "references").mkdir(parents=True)
@@ -422,6 +423,17 @@ def _write_plugin_tree(root):
     (text / "references" / "hollow.md").write_text(TEXT_TELL, encoding="utf-8")
     (text / "references" / "vocabulary-en.md").write_text(
         "# Vocabulary\n\nA watched list, not a catalog. No tell headings here.\n",
+        encoding="utf-8",
+    )
+    fix = root / "skills" / "fix"
+    (fix / "references").mkdir(parents=True)
+    (fix / "SKILL.md").write_text(
+        FIX_FRONTMATTER
+        + "\nReference: `repairs.md` and `skills/build/references/deriving.md`\n",
+        encoding="utf-8",
+    )
+    (fix / "references" / "repairs.md").write_text(
+        "# Repairs\n\nA map from ids to rules. No tell headings here.\n",
         encoding="utf-8",
     )
     (root / "fixtures").mkdir()
@@ -690,12 +702,6 @@ def test_report_coverage_labels_the_default_source():
     assert all(line.startswith("fixtures/README.md") for line in lines)
 
 
-def test_main_accepts_the_three_skill_layout(tmp_path, capsys):
-    _write_plugin_tree(tmp_path)
-    assert validate.main(tmp_path) == 0
-    assert "0 problem(s)" in capsys.readouterr().out
-
-
 def test_main_accepts_a_reference_the_registry_declares_as_prose(tmp_path, capsys):
     """A vocabulary file holds a watched list, not tells. That is not a defect."""
     _write_plugin_tree(tmp_path)
@@ -787,3 +793,59 @@ def test_cross_skill_reference_ignores_a_bare_filename(tmp_path):
     # `check_references` owns that case, and reporting it here too would
     # produce two errors for one citation.
     assert validate.check_cross_skill_references("see `deriving.md`\n", tmp_path) == []
+
+
+FIX_FRONTMATTER = """---
+name: fix
+description: |
+  Repair an interface from findings that already exist. Use when an audit has
+  reported and the code still has to change, or when asked to fix what a
+  finding named.
+license: MIT
+---
+"""
+
+
+def test_check_frontmatter_accepts_the_fix_skill_by_its_own_name():
+    assert validate.check_frontmatter(
+        FIX_FRONTMATTER,
+        "fix",
+        validate.SKILLS["fix"]["triggers"],
+        "skills/fix/SKILL.md",
+    ) == []
+
+
+def test_check_frontmatter_reports_a_fix_description_that_lost_a_trigger():
+    errors = validate.check_frontmatter(
+        FIX_FRONTMATTER.replace("Repair an interface", "Mend an interface"),
+        "fix",
+        validate.SKILLS["fix"]["triggers"],
+        "skills/fix/SKILL.md",
+    )
+    assert errors == [
+        "skills/fix/SKILL.md: description is missing triggers: repair"
+    ]
+
+
+def test_main_validates_the_fix_skill_which_carries_no_catalog(tmp_path, capsys):
+    """repairs.md maps ids to rules; it defines none, and that is not a defect."""
+    _write_plugin_tree(tmp_path)
+    assert validate.main(tmp_path) == 0
+    assert "skills/fix" not in capsys.readouterr().out
+
+
+def test_main_reports_a_cross_skill_path_the_fix_skill_cannot_resolve(
+    tmp_path, capsys
+):
+    """The fixer cites the builder's rules by path. A move has to be reported."""
+    _write_plugin_tree(tmp_path)
+    (tmp_path / "skills" / "fix" / "SKILL.md").write_text(
+        FIX_FRONTMATTER
+        + "\nReference: `repairs.md` and `skills/build/references/gone.md`\n",
+        encoding="utf-8",
+    )
+    assert validate.main(tmp_path) == 1
+    assert (
+        "skills/fix/SKILL.md: cites skills/build/references/gone.md, "
+        "which does not exist" in capsys.readouterr().out
+    )

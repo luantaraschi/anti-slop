@@ -44,6 +44,16 @@ SKILLS = {
         "prose": set(),
         "expectations": None,
     },
+    "fix": {
+        # The fixer owns no catalog. It consumes the auditor's ids and repairs
+        # them with the builder's rules, which is the whole reason it is a
+        # skill and not a mode of either: a skill that reports and a skill that
+        # mutates cannot be scored by the same blind run.
+        "triggers": ("fix", "repair", "finding"),
+        "catalog": False,
+        "prose": set(),
+        "expectations": None,
+    },
     "text": {
         "triggers": ("text", "rewrite", "voice"),
         "catalog": True,
