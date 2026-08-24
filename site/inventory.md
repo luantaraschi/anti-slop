@@ -55,6 +55,14 @@ them.
 
 ## What the builder holds
 
+**Three sizes of job**, answered before anything else and declared in one line.
+A surface that does not exist yet runs the whole process. A new part inside a
+system that already has a theme reads its roots off the artifact instead of
+asking for them, and enters at the composition step; a part that cannot be built
+inside the existing decisions is a finding to report rather than a licence to
+redecide the system. One element gets the floor for whatever that element owes
+and the reduction pass, and nothing else. No size skips the floor.
+
 **Four roots** only a brief or a human can answer: what the product concretely
 is, the voice, the visual temperature, the density.
 
@@ -79,8 +87,15 @@ Anything bolder it proposes once there is a page to look at. A decision
 belongs in the second register when changing it later would mean rebuilding
 rather than editing.
 
+**A rendered pass** where the session has any browser tooling, run before the
+floor pass: three widths at 375, 768 and 1440, both themes opened rather than
+inferred from one, reduced motion switched on before the page loads, and one tab
+pass watching the focus ring and the order. Where no browser is available it
+says so in one line and runs five hand checks instead.
+
 **What is not measured:** the route step is exercised by no fixture and no
-specimen. Contrast and the collision test are unauditable by construction and
+specimen. No fixture has been built at the second or third size, and no session
+with browser tooling has run the rendered pass. Contrast and the collision test are unauditable by construction and
 are reported rather than checked.
 
 ## What the fixer holds

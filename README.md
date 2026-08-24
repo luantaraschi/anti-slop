@@ -42,6 +42,13 @@ the pattern itself.
 whose absence the auditor detects, and writes them where the auditor looks for
 them.
 
+Before anything else it asks how large the job is, and says in one line which
+answer it took. A page or a site that does not exist yet runs the whole process.
+A screen inside a system that already has a theme reads its roots off what
+shipped and builds against them rather than redeciding them. A single element
+gets only what that element owes. The floor holds at every size, because a focus
+ring nobody declared is the same defect in a one element job as in a whole site.
+
 It works in three registers, and the difference between them is what stops it
 being either a form or a generator. Anything with one right answer it settles in
 silence: the floor, the arithmetic, the craft. The shape of the page it brings
@@ -52,6 +59,10 @@ exactly what it would have settled. Anything bolder that would open a different
 design line it proposes, with what it costs and what it needs from you, once
 there is a page to look at. The line is testable: a decision is directional if
 changing it later means rebuilding rather than editing.
+
+Where the session has browser tooling it opens the page before it finishes, at
+375, 768 and 1440, in both themes, under reduced motion, with one tab pass. Two
+of its checks cannot be answered by reading and this is how it answers them.
 
 **`anti-slop:text`** rewrites prose. Forty tells across five axes on the text
 itself rather than on the interface around it: whether anything is behind the
@@ -429,8 +440,16 @@ rejects all six, with a reason:
 
 ## Out of scope
 
-A rendered pass, a real console error, and running the Finish axis against a
-site published over HTTP.
+A rendered pass, unless the session has browser tooling. The Craft axis asks
+whether anyone looked and answers it by reading code, which is a limit the
+catalog carries by construction. Where a browser is available the auditor opens
+the page at 375, 768 and 1440 in both themes, and marks every finding that came
+from looking rather than from reading, because a finding stated as observed and
+one stated as read are worth different amounts to whoever has to reproduce it.
+The builder runs the same pass as a step of its own, before the floor pass.
+
+A real console error, and running the Finish axis against a site published over
+HTTP, stay out of scope.
 
 **Stack is not one of them.** Forty-two of the fifty-four tells never name a
 framework, a build tool or a library: every tell on States, seven of the eight
