@@ -79,6 +79,9 @@ that needs it.
 | 10 · the legal pages | `legal.md` |
 | 12 · the floor pass | `floor.md` again, as a checklist |
 
+Step 0 is the size of the job, below, and it reads nothing. A one element job
+never opens anything but `floor.md`.
+
 `precedents.md` is the largest of the five and the one most often not needed at
 all. A build whose route came out of the subject without argument never has to
 open it, and that is the good case rather than a shortcut: the direction rule
@@ -132,6 +135,58 @@ The catalog already carried two of them before the class had a name. F1 and F6
 answer `Not slop when` with `Never` — there is no page without a language, and
 none whose h1 competes with another. Contrast, focus, the three states beyond
 success and the legal pages join that class rather than starting a new one.
+
+## What size of job this is
+
+Answer before step 1, in one line, and say which answer you took. The twelve
+steps below are written for a surface that does not exist yet. Running all of
+them against a request to fix one card is not thoroughness — it is how a skill
+gets dropped in silence the third time somebody pays for it, and a step
+silently dropped is worse than a step that was never claimed.
+
+**A new surface.** A page, a screen, a site, a component library with no theme
+to inherit. Steps 1 to 12, all of them.
+
+**A new part inside a system that already exists.** A screen in an app that has
+a theme, a component in a library that has one. This is the common case and the
+process above does not describe it.
+
+The four roots are not asked here, they are read. Root 1 is the product, which
+the person still has to supply. Roots 2, 3 and 4 are already answered by the
+artifact: the copy that shipped is the voice, the theme file is the temperature
+and the density, and both are readable from the four places the auditor's own
+rule names — wherever the project declares its values, whether those names came
+from the subject, whether shared components differ from what they were
+installed as, and anywhere a choice is written down beside the value it
+governs. Read them, state what you found in three lines, and enter at step 7
+with `floor.md` open beside the route the system already took.
+
+A part that genuinely cannot be built inside the existing decisions is a
+finding to report, not a licence to redecide the system. Say which decision
+blocks it and what changing it would cost.
+
+**One element.** A button, a spacing value, a state that is missing, a
+correction the person named by name. `floor.md` for whatever that element owes
+and the reduction pass, and nothing else. No roots, no routes, no recording,
+no theme audit.
+
+Three rules hold across all three sizes.
+
+**The size is declared, not implied.** Name it in one line before starting, so
+the person can say you got it wrong while it is still cheap.
+
+**No size is a licence to skip the floor.** A focus ring nobody declared is the
+same defect in a one element job as in a whole site, and `floor.md` is scoped
+to what the job touches rather than to how large the job is.
+
+**A size is not a verdict on the request.** Somebody asking for one component
+inside a system with no theme at all is a new surface wearing a small request,
+and the honest move is to say so and let them choose, not to derive a palette
+they did not ask for.
+
+**When the size is genuinely unclear, ask.** The line between the second size
+and the first is whether the existing decisions survive, and that is the
+person's call rather than a default.
 
 ## The four roots
 
