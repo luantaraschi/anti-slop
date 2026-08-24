@@ -79,8 +79,92 @@ than one merged set. `W6`'s handoff moved from `humanizer` into the plugin.
 
 Design in `docs/specs/2026-08-22-anti-slop-text-design.md`.
 
-**Nothing about it is measured.** That is item 13, and it is the first thing in
-the Open list below even though it carries the highest number there.
+**Nothing about it was measured when it shipped.** That was item 13, and item
+13 is the entry directly below: the round of 2026-08-24 scored all four
+specimens and is what closed it.
+
+### 13 — The first blind round for the text catalog ✅ 2026-08-24
+
+Four blind runs, one per corpus specimen, reports and reconciliation in
+`calibration/2026-08-24b/`. Scored against the `expect` and `forbid` rows in
+`corpus/README.md`.
+
+| Run | Result |
+|---|---|
+| `slop-release-en` | 22 of 23 expected ids fired, nothing off-row |
+| `clean-release-en` | 0 of 20 forbidden fired, file byte identical |
+| `slop-notice-pt` | 15 of 16 expected fired, one off-row fire (`G2`) whose ownership against `H1` needs a ruling |
+| `clean-notice-pt` | 0 of 15 forbidden fired, file byte identical |
+
+The two byte-identical results were confirmed with `git diff` in each target
+repository. Neither rewrite invented a fact, and both flagged a close call
+rather than hiding it. `clean-notice-pt`, the specimen `corpus/README.md` calls
+the one that decides whether the catalog is usable, had all five of its
+deliberate baits reached and declined: `G9`, `P1`, `P5`, `M1` and `T1`.
+`clean-release-en`'s sharp case, `P6`'s own exemption for a version-scoped
+document, passed from both sides — run 2 excused it and run 1's rewrite kept
+the history in.
+
+**What it asked for, and what came back.**
+
+The round was run to settle two things.
+
+*`M1`'s threshold against text this repository did not write.* It is 15% of a
+text's clause joints carried by the dash, found by counting the four specimens
+on the day they were written, after the per-word rate it replaced was measured
+and separated nothing. Four self-authored documents is a floor, not a rate from
+the wild.
+
+**The threshold did not move. The published figures turned out not to
+reproduce.** `M1`'s Signal does not define its own denominator, so no two
+readings of it agree. Run 3 counted one document two ways under the tell's own
+words and got 15.15% and 18.5%. Two further recounts made for the record, one
+under the only definition the repository states and one under the definition the
+record proposes, put `slop-notice-pt` at 14.3% and 16.1% against a published
+19%. With the two nearby variants of the proposed definition, 15.6% and 16.7%,
+seven figures now exist for that one file: 14.3, 15.15, 15.6, 16.1, 16.7, 18.5
+and 19. **Three of the four published figures reproduce under neither
+recount**; only `clean-notice-pt`'s 7% survives.
+That is a defect of a different kind from a threshold nobody has measured: an
+unmeasured number might be wrong, a number that cannot be recovered from the
+file it names cannot be checked at all, and it is prior to the question of
+whether 15% is right. Under the proposed definition `M1` fires on both slop
+specimens and neither clean one, so the definition passes the rows and the
+threshold does not have to move for it to work. Written out as a proposal in the
+record, run over all four specimens there, and deliberately not applied to the
+skill. `BACKLOG.md` T2-1.
+
+*Whether `P5` survives.* It is the only tell that fires on an absence of
+opinion, so it is the only one that can push a rewrite into inventing a
+position, which is a fabrication under the skill's own rule. If the round
+catches it doing that, cut it rather than narrow it.
+
+**It was not caught, and it was not tested.** `P5` did not fire once in four
+runs. Three runs reached it and declined it by its own register exemption,
+including on the specimen built to bait it; run 1 does not account for it at
+all, which the record files as an error in run 1's report. None of the four
+specimens is opinion, review, recommendation or argument, so the round tested
+`P5`'s exemption four times and never tested `P5`. It survives untested on the
+case that would condemn it, and what settles it is one specimen in a genre that
+takes a position. `BACKLOG.md` T2-2.
+
+**And the finding neither question asked for.** Eighteen supplied rules across
+the four runs reconcile to thirteen distinct gaps: four thresholds a tell asks
+for and does not give, six terms or tests it uses without defining, three about
+which axis or which exemption owns a case. Four of the thirteen were found by
+more than one blind agent independently and one by three, which is `T1`'s "most
+common count" being undefined on a text with one or two enumerations. Three
+tells carry seven of the thirteen: `M1`, `T1` and `G3`. Nothing was repaired in
+the round that found it, by controller ruling: the runs are spent, and a Signal
+edited now is unmeasured until the next round.
+
+**Caveat, recorded in the record itself:** the prompts were written by the
+author of the tells they measure, and both Portuguese specimens were too. The
+agents were blind; the prompt writing was not.
+The recoverability check that shipped hours earlier met its first real use in
+this round and nearly produced the wrong branch, from a `git status` run in the
+wrong directory rather than from anything wrong with the rule. Recorded in the
+record's section 7 and carried as `BACKLOG.md` T2-6.
 
 ### 14 — Daily use: proportion, a rendered-pass step, and the loop closed with a fourth skill ✅ 2026-08-24
 
@@ -112,7 +196,7 @@ gained a related but separate step of its own, three widths, both themes,
 than a retirement, since a build never had this step before.
 
 **This round spent no blind run.** Everything above is a prose or process
-change measured by nothing yet. Item 13 below and the fixer's own first
+change measured by nothing yet. Item 13 above and the fixer's own first
 measurement are what tasks 11 and 12 spend the round's blind run on; this
 entry only records what shipped. `BACKLOG.md` carries the full account of
 what is still unmeasured.
@@ -120,32 +204,6 @@ what is still unmeasured.
 ---
 
 ## Open, and what each needs
-
-### 13 — The first blind round for the text catalog · **can be done without you**
-
-Goes first. Forty tells, four specimens and two unmeasured thresholds shipped
-together, which is the shape this file's own opening paragraph calls the failure
-mode: unmeasured changes compound.
-
-The round differs from an audit round in one way. This skill returns text, not
-findings, so a run is scored by reading its rewrite against the specimen's row
-rather than by reading its report. `corpus/README.md` carries the procedure and
-the third question the round has to ask, which is whether the rewrite invented a
-fact.
-
-Two things the round should settle, both recorded in the skill rather than
-guessed at.
-
-**`M1`'s threshold against text this repository did not write.** It is 15% of a
-text's clause joints carried by the dash, and it was found by counting the four
-specimens on the day they were written, after the per-word rate it replaced was
-measured and separated nothing. Four self-authored documents is a floor, not a
-rate from the wild.
-
-**Whether `P5` survives.** It is the only tell in the catalog that fires on an
-absence of opinion, so it is the only one that can push a rewrite into inventing
-a position, which is a fabrication under the skill's own rule. If the round
-catches it doing that, cut it rather than narrow it.
 
 ### 6 — A plain HTML and CSS fixture pair · **can be done without you**
 

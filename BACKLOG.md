@@ -225,9 +225,14 @@ Not work yet. Recorded so the next round recognizes it if it happens again.
 ## Round T — everything the text skill shipped unmeasured, 2026-08-22
 
 `anti-slop:text` went in whole: forty tells, two vocabulary files, four
-specimens, expectation rows. Nothing in it has been through a blind run. The
-authoritative version of each item below is in `corpus/README.md` or in the
-skill file that carries it; this is the index.
+specimens, expectation rows. The authoritative version of each item below is in
+`corpus/README.md` or in the skill file that carries it; this is the index.
+
+**Measured on 2026-08-24 by four blind runs**, one per specimen, in
+`calibration/2026-08-24b/`. Round T2 below carries what they found and what
+they left. T1 and T2 in this list were the two the round was run to settle;
+read them with the T2-1 and T2-2 entries beside them, because the round changed
+what each question is. T3 through T6 the round did not touch.
 
 - **T1. `M1`'s threshold, and what it cost to find.** The tell shipped counting
   dashes per word, at one per two hundred in English and one per four hundred in
@@ -262,6 +267,131 @@ skill file that carries it; this is the index.
   `docs/calibration-method.md` names that as the thing not to do, and it was
   done here for the same reason the 2026-08-18 round did it: no other
   Portuguese corpus exists. Recorded rather than hidden.
+
+## Round T2 — what the text catalog's first blind round found, 2026-08-24b
+
+Round T above is now measured. Four blind runs, one per corpus specimen,
+reports and reconciliation in `calibration/2026-08-24b/`, which is the record
+and the authority for everything below. The scores: `slop-release-en` 22 of 23
+expected ids, `clean-release-en` 0 of 20 forbidden, `slop-notice-pt` 15 of 16
+expected plus one off-row true positive, `clean-notice-pt` 0 of 15 forbidden.
+Both clean specimens came back byte identical, verified with `git diff` in
+their own repositories. No fabrication in either rewrite.
+
+The round found more than it settled, which is why this section exists rather
+than a line closing Round T. Nothing below was repaired in the round that found
+it: the runs are spent, and a Signal edited before the next round is unmeasured
+until that round, which is what this file's opening section names as the thing
+to avoid.
+
+- **T2-1. `M1`'s Signal does not define its own denominator. First, ahead of
+  everything else here.** This displaces Round T's T1 as the `M1` item, because
+  T1's question — is 15% the right number — cannot be asked until this one is
+  answered. Run 3 counted one document two ways under the tell's own words and
+  got 15.15% (5 dashes over 33 joints, list-label colons counted) and 18.5%
+  (5 over 27, excluded), against a threshold of "above roughly 15%". Two further
+  recounts were made for the record: 14.3% under `vocabulary-en.md:175-177`'s
+  "count roughly", the only definition the repository states, and 16.1% under
+  the definition the record proposes. `vocabulary-en.md`'s table says 19% for
+  the same file. Counting the two nearby variants of the proposed definition,
+  15.6% and 16.7%, that is **seven figures for one document**: 14.3, 15.15,
+  15.6, 16.1, 16.7, 18.5 and 19. No two alike.
+  **The finding is that the published figures do not reproduce, not that the
+  specimen falls below the line.** Three of the four reproduce under neither
+  recount (37 against 28.2 and 30.6; 8 against 6.2 and 6.2; 19 against 14.3 and
+  16.1); only `clean-notice-pt`'s 7% survives, at 6.7 and 6.9. And under every
+  variant of the proposed definition — 15.6%, 16.1%, 16.7% — `M1` fires on the
+  specimen written to carry it, and on neither clean specimen, so the proposal
+  passes the corpus rows and the 15% threshold does not have to move. The
+  proposal, written out precisely in
+  `calibration/2026-08-24b/README.md` section 3 and deliberately not applied:
+  count body prose only; a joint is a sentence-ending full stop, question mark
+  or exclamation mark, a comma, a semicolon, a colon joining two clauses in
+  running prose, or a dash; a colon introducing a list or closing a list label,
+  a colon in a heading, the comma after a salutation, and anything inside a
+  heading, code span, URL, number or quoted passage are not joints; computed,
+  not estimated. Applying it obliges recomputing all four figures in both
+  vocabulary files and saying in the table which definition produced them.
+  `vocabulary-en.md:175-177` carries a partial definition, the "count roughly"
+  list that both recounts used as their base; what neither it nor the Signal
+  says is which colons and which commas are joints.
+  `vocabulary-pt.md:207` restates the 19% figure in prose as well as carrying
+  the threshold, so both files need the same edit.
+- **T2-2. `P5` survives the round untested on the case that would condemn it.**
+  Round T's T2 asked whether a rewrite catches it inventing a position. It did
+  not fire once in four runs. Three runs reached it and declined it by its own
+  register exemption, including on `clean-notice-pt`, the specimen built to
+  bait it; run 1 does not account for it at all, which is an error in run 1's
+  report recorded in the record's section 8. So the round tested `P5`'s
+  exemption four times and never tested `P5`, because none of the four
+  specimens is opinion, review, recommendation or argument. What settles it is
+  one specimen in a genre that unmistakably takes a position, neutral
+  throughout, with no stance in the source for a rewrite to recover: if the
+  rewrite supplies a stance, cut the tell. One specimen, one run. No `expect`
+  row in the corpus carries `P5` on any document.
+- **T2-3. Eighteen supplied rules reconcile to thirteen distinct gaps**, four
+  thresholds, six definitions, three about which axis or exemption owns a case.
+  Full table in the record's section 5. Four were found by more than one blind
+  agent independently, and those go first: `T1`'s "most common count" undefined
+  at n of one or two (runs 1, 3 and 4, three independent hits, a fire in one
+  and a decline in two); `G9`'s exemption list naming no administrative or
+  changelog convention (runs 2 and 3, both closing it by analogy from a
+  neighbouring tell); `P4`'s exemption list naming teaching genres only (runs 2
+  and 4, same shape); and the catalog having no rule at all for which axis owns
+  a sentence matching two tells (run 1 on `H5` against `G5`, run 3 on `T2`
+  against `H1`, two different tie-breaks invented). Three tells carry seven of
+  the thirteen gaps: `M1` three, `T1` two, `G3` two.
+- **T2-4. Which axis owns *representa* in Portuguese, `H1` or `G2`.** A ruling,
+  not an edit, and the reason `slop-notice-pt`'s `expect` row was left exactly
+  as it is. `G2` fired on *que representa um verdadeiro divisor de águas*, a
+  phrase `G2`'s own Signal lists, so on the English catalog's words the row is
+  short. But `vocabulary-pt.md:91` files *representa um marco* and *marca um
+  divisor de águas* under `H1`, and `vocabulary-pt.md` carries no `G2` section
+  at all — so the repository's own Portuguese vocabulary already assigns the
+  construction to the axis that is on the row. And run 3 fired both `H1`
+  (`text-3:33`) and `G2` (`text-3:59`) on the identical nine words, in the same
+  report that supplied the rule that a sentence matching two signals is filed
+  once. **So this is a second instance of the gap in T2-3, not a row gap**, and
+  adding `G2` to the row would write a double count into the answer key. Rule
+  first, then edit the row or leave it.
+
+  `corpus/README.md`'s Known gaps section **was** updated in the same commit,
+  by ruling: it said "No blind run has scored any of this", which the commit
+  itself disproved, and this file's "What finishes a round" asks that file to
+  carry the score. That sentence is a factual claim about whether a round
+  happened rather than an answer key change, so it cost no blind run and the
+  no-repair ruling did not reach it. The four expectation rows were not touched.
+  What is still stale there is the `M1` paragraph, which describes a threshold
+  whose denominator T2-1 shows is undefined; the updated section points a reader
+  at the record instead.
+- **T2-5. The fabrication rule is silent on transferred attribution.** Run 3's
+  rewrite dropped *Especialistas apontam que* and let the claim stand as the
+  writer's, which is `H4`'s own Fix applied and adds no fact, but changes who
+  asserts the sentence. The record judges it inside the rule and at the rule's
+  edge, and says why (section 6). The clause to decide: either the fabrication
+  rule states that reassigning an unnamed attribution to the writer is not
+  fabrication, which is the current de facto reading, or `H4`'s Fix gains a
+  second option — cut the claim — for registers where who asserts it changes
+  what it means.
+- **T2-6. The recoverability check's first real use nearly produced the wrong
+  branch.** `skills/text/SKILL.md` shipped the check hours before these runs.
+  One run's first `git status` ran from the wrong directory and reported no
+  repository, which under the rule sends the rewrite to the conversation
+  instead of the file. The agent caught it and corrected before writing. The
+  rule read its input correctly; the input was wrong, and the branch a wrong
+  input reaches is the safe-looking one, so the failure mode is a false
+  negative that reads as caution. Observed by the round's operator; none of the
+  four reports records it, because a self-corrected error leaves no trace in a
+  report describing outcomes. Candidate fix: run the check against the target
+  file's own path rather than an ambient working directory, and reach the "not
+  a repository" branch only after the path itself is confirmed. This is a
+  change to a skill the round measured, so it waits with the rest.
+- **T2-7. Round T's T3, T4, T5 and T6 are untouched by this round.** `M1`'s
+  first exemption still has no specimen and still needs a differently shaped
+  run. Thirteen of forty tells still appear in no row and eighteen still have
+  no `forbid` row; `scripts/validate.py` prints both lists. The axis names are
+  still unmeasured. Both Portuguese specimens are still author-written, which
+  the round's record carries as its caveat alongside the prompt-authorship one.
 
 ## Round F — everything the daily-use round shipped unmeasured, 2026-08-24
 
