@@ -101,8 +101,18 @@ naming where the repair happens. The package and every published surface
 were brought up to four skills: `plugin.json` at 0.6.0, `audit` at 0.5.0,
 `build` at 0.4.0, `text` at 0.2.0, `fix` at 0.1.0, suite at 72 tests.
 
+This round also retires the "rendered pass" limit that used to sit under
+"What is deliberately not on this list", below. That limit was written about
+the auditor's own `Out of scope` line, which used to say a rendered pass was
+out of reach because the Craft axis answers by reading code. It now opens
+the page at 375, 768 and 1440, in both themes, where a browser is available,
+and marks which findings came from looking rather than reading. The builder
+gained a related but separate step of its own, three widths, both themes,
+`prefers-reduced-motion` switched on, one tab pass, which is new work rather
+than a retirement, since a build never had this step before.
+
 **This round spent no blind run.** Everything above is a prose or process
-change measured by nothing yet. Item 13 above and the fixer's own first
+change measured by nothing yet. Item 13 below and the fixer's own first
 measurement are what tasks 11 and 12 spend the round's blind run on; this
 entry only records what shipped. `BACKLOG.md` carries the full account of
 what is still unmeasured.
@@ -228,9 +238,5 @@ will be visible to you immediately and invisible to me.
 uncovered on purpose. Of the rest, A9 and C2 have been measured as too broad, so
 the honest answer for some may be to cut rather than to cover.
 
-**A rendered pass is no longer on this list.** It was recorded as a limit
-because the Craft axis asked whether anyone looked and answered by reading
-code. The 2026-08-24 round (item 14, above) made it a build step instead:
-three widths, both themes, reduced motion, one tab pass, where the session
-has browser tooling. The step itself is unmeasured, which `BACKLOG.md`
-records.
+A rendered pass used to sit here too. Item 14, above, is where it was retired
+and what replaced it.

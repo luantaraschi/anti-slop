@@ -224,12 +224,13 @@ what the plugin uses.
 ### Firing without being asked
 
 Installed as a plugin, `hooks/hooks.json` registers a `SessionStart` hook that
-prints four sentences routing interface work to `anti-slop:build`, a review to
-`anti-slop:audit` and prose to `anti-slop:text`. It is about 280 tokens, it
-loads no catalog, and it is the only part of the plugin that costs anything in
-a session it has nothing to do with. That is deliberate: the note routes and
-does not teach, so everything it would otherwise say stays in the skill files
-and loads only when a skill is actually invoked.
+prints five sentences routing interface work to `anti-slop:build`, a review to
+`anti-slop:audit`, a repair to `anti-slop:fix` and prose to `anti-slop:text`.
+It is about 310 tokens, it loads no catalog, and it is the only part of the
+plugin that costs anything in a session it has nothing to do with. That is
+deliberate: the note routes and does not teach, so everything it would
+otherwise say stays in the skill files and loads only when a skill is
+actually invoked.
 
 `hooks/run-hook.cmd` is a polyglot wrapper copied byte for byte from the one
 plugin on the author's machine whose SessionStart hook is known to work on
@@ -353,15 +354,15 @@ together with what every calibration run scored across all four fixtures.
 
 ## The five interface axes
 
-**Surface** (A1 through A12) is the visual layer: the palette, the radius,
-the shadows, the type scale, the icons and motion. Twelve tells, three of them
-(A1, A3, A5) absences that live in the theme file rather than in any one
+**Surface** (A1 through A14) is the visual layer: the palette, the radius,
+the shadows, the type scale, the icons and motion. Fourteen tells, three of
+them (A1, A3, A5) absences that live in the theme file rather than in any one
 component.
 
-**Craft** (C1 through C15) is whether anyone looked at the rendered result:
+**Craft** (C1 through C16) is whether anyone looked at the rendered result:
 a radius that ignores what it wraps, a counter that jitters instead of
 holding still, a heading that leaves one word behind, a dark theme nobody
-opened. Fifteen tells read relationships between elements rather than any single
+opened. Sixteen tells read relationships between elements rather than any single
 line. They compare a value with its container and the same screen across themes.
 
 **States** (S1 through S3) is whether the interface exists off the path that
@@ -369,12 +370,12 @@ was demonstrated: a request with no failure branch, view state the URL never
 learns, an action that cannot be taken back or stopped. Three tells whose
 evidence is a branch that is missing rather than a value that is wrong.
 
-**Words** (W1 through W7) is the copy inside the interface: labels, button
-verbs, empty states, error messages. Seven tells that catch the gap between
+**Words** (W1 through W8) is the copy inside the interface: labels, button
+verbs, empty states, error messages. Eight tells that catch the gap between
 what a generator writes by default and what a person writes once they have
 looked at the screen.
 
-**Finish** (F1 through F12) is twelve tells covering what a browser or a
+**Finish** (F1 through F13) is thirteen tells covering what a browser or a
 search engine checks first, things like the `lang` attribute, the title, the
 meta tags, the favicon, and a stable key on every mapped list. Nearly all of
 them are greppable, which is why the audit reads this axis before the other

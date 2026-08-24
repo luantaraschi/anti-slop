@@ -4,7 +4,7 @@
 #
 # The note is deliberately short. It routes; it does not teach. Everything it
 # would otherwise say lives in the skill files, which load only when a skill is
-# actually invoked — so a session that never touches an interface pays for four
+# actually invoked — so a session that never touches an interface pays for five
 # sentences rather than for the catalog.
 #
 # Keep it that way. This string is the one part of the plugin that costs tokens

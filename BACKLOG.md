@@ -284,20 +284,26 @@ the round's blind run gets spent.
   route now survive the session in a file read before step 1 and written at
   step 4. No build has run since this shipped, so the round trip from a first
   session's file to a second session's read has never been exercised.
-- **F4. The rendered pass, now a step.** Three widths, both themes, reduced
-  motion, one tab pass, where the session has browser tooling. `ROADMAP.md`'s
-  "What is deliberately not on this list" no longer carries this as a limit,
-  because it is no longer one, but no session with browser tooling has run
-  the step yet.
+- **F4. The rendered pass, on both sides of the loop.** The auditor's own
+  `Out of scope` line used to say a rendered pass was unreachable because the
+  Craft axis answers by reading code; it now opens the page at 375, 768 and
+  1440, in both themes, where a browser is available, and marks which
+  findings came from looking rather than reading. That is the specific limit
+  `ROADMAP.md`'s "What is deliberately not on this list" retired. The
+  builder gained a related but separate step, three widths, both themes,
+  reduced motion switched on, one tab pass, which is new work rather than a
+  retirement. Neither side has been run by a session with browser tooling
+  yet.
 - **F5. Every one of `repairs.md`'s 54 class assignments.** Derive 13, declare
   10, branch 10, write 17, unsettled 4. The map was built by reading the audit
   catalog and the build references against each other, not by running a
   repair. No finding has been repaired and re-audited against it.
-- **F6. Ten Minor findings against the repair map, raised and deferred by the
+- **F6. Nine Minor findings against the repair map, raised and deferred by the
   Task 8 review** (full list in
   `.superpowers/sdd/2026-08-24-daily-use/progress.md`, "Task 8: minor
-  (deferred, 10 findings)"): F5 classed as `write` where the blocking half is
-  an asset; the `declare` paragraph's "these never stop" read against F9 and
+  (deferred, 10 findings)", which miscounts its own list at ten): F5 classed
+  as `write` where the blocking half is an asset; the `declare` paragraph's
+  "these never stop" read against F9 and
   F10, which both stop; the `branch` paragraph promising a fact no branch row
   records; three removal-shaped `derive` rows recording three different
   stops-without; C8 classed `derive` where `deriving.md` calls the rule a
@@ -306,17 +312,41 @@ the round's blind run gets spent.
   no-repetition rule; a loose sentence about the unsettled three; and "the
   radius" against "the radius scale" for one section. None of these repaired
   in this round.
-- **F7. Two of the round's four controller rulings corrected the plan itself,
-  not just an implementer's reading of it.** The plan classed C3, C4 and C5 as
-  `branch`; the controller moved them to `declare` and widened that class's
-  own paragraph to name the stretch, which is why the counts above are
-  derive 13, declare 10, branch 10, write 17, unsettled 4 rather than what the
-  plan specified. Separately, the plan's A3 row said the radius repair stops
-  without root 3; `deriving.md:195` opens the radius scale from root 4
-  (density), so the row was corrected to root 4 and `repairs.md`'s own
-  provenance paragraph was rewritten so it no longer claims every given row
-  was correct as written. Neither correction has been measured against a
-  repair either.
+- **F7. Nine controller rulings across the round, five of which corrected the
+  plan's own content rather than just an implementer's reading of it.**
+  `.superpowers/sdd/2026-08-24-daily-use/progress.md` records five pre-flight
+  rulings (lines 47, 54, 59, 67, 75) and four raised during execution
+  (lines 118, 131, 142, 148). The five that corrected the plan: T3's step 3
+  was folded into step 4 rather than left as a two-step contradiction
+  (line 59); T4's step 2 replaces the whole paragraph at
+  `skills/build/SKILL.md:515-517` rather than deleting a sentence from below
+  that had no separate target (line 67); T7's suite count was corrected from
+  the plan's stated 73 tests to 72, because the plan would have kept two
+  byte-identical tests where only one exists once T7 deletes the duplicate,
+  which is the reason `docs/plans/2026-08-24-daily-use.md` appears in this
+  round's diff at task 10 (line 75); and Task 8 supplied two, C3, C4 and C5
+  reclassified from `branch` to `declare`, which is why the counts above are
+  derive 13, declare 10, branch 10, write 17, unsettled 4 rather than what
+  the plan specified (line 142), and A3's stops-without root corrected from
+  3 to 4, with `repairs.md`'s own provenance paragraph rewritten so it no
+  longer claims every given row was correct as written (line 148). The other
+  four rulings governed how to read or execute the plan rather than what it
+  should have said: the line-number citation convention (line 47), where
+  T9's insertion lands relative to T5's own addition (line 54), the
+  mechanical re-review of Task 6's fix round (line 118), and the
+  confirmation that Task 7 owed no citation of `floor.md` (line 131). None of
+  the five content corrections has been measured against a repair.
+- **F8. Three more Minor findings the Task 8 review did not raise, deferred
+  by earlier tasks in the same ledger.** Task 1's new section names roots 1
+  to 4 by number before `## The four roots` enumerates them, inherent to the
+  anchor the plan chose rather than an implementer choice
+  (`progress.md:91-93`). Task 4's own report cites the audit heading at line
+  218 where the pre-edit hunk puts it at 219, report arithmetic only, the
+  edit itself landed on the right anchor (`progress.md:108-110`). Task 7's
+  two new frontmatter tests read triggers from the registry where the build
+  and text siblings hardcode them, specified that way by the plan, which
+  couples the fixture to the registry rather than pinning the words
+  (`progress.md:135-137`). None of the three repaired in this round.
 
 ## What finishes a round
 
