@@ -106,6 +106,18 @@ the numbers in prose that ages. They are uncovered because two short documents
 cannot carry forty patterns without becoming a list of patterns, which is not a
 document.
 
-**No blind run has scored any of this.** The rows say what the specimens were
-written to carry. Nothing here has been measured yet. The first round is the
-open item in `ROADMAP.md`.
+**The first blind round ran on 24 August 2026, and the record is
+`calibration/2026-08-24b/README.md`.** Four runs, one per specimen, scored
+against the rows above. `slop-release-en` carried 22 of its 23 expected ids and
+nothing off row, `clean-release-en` 0 of 20 forbidden, `slop-notice-pt` 15 of 16
+expected plus one off row fire, and `clean-notice-pt` 0 of 15 forbidden. Both
+clean specimens came back byte identical. Neither rewrite invented a fact.
+
+The rows themselves were not edited by that round, and two open questions about
+them sit in the record rather than here. Whether `slop-notice-pt`'s row is short
+by `G2` depends on a ruling about which axis owns *representa* in Portuguese,
+since `vocabulary-pt.md` files the phrase under `H1` and carries no `G2` section
+at all. And the `M1` paragraph above describes a threshold whose denominator the
+round found undefined: three of the four figures in `vocabulary-en.md` reproduce
+under no reading the round tried, and the record carries a proposed definition
+and the recomputed numbers. Read that record before trusting either paragraph.

@@ -17,7 +17,7 @@ description: |
   a published site needs.
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # build
@@ -77,7 +77,11 @@ that needs it.
 | 6 · routes | `composing.md`, and `precedents.md` only to argue a route you have already reached |
 | 7 to 8 · composition, components | `floor.md`, beside the route |
 | 10 · the legal pages | `legal.md` |
-| 12 · the floor pass | `floor.md` again, as a checklist |
+| 12 · the rendered pass | nothing; it opens the page |
+| 13 · the floor pass | `floor.md` again, as a checklist |
+
+Step 0 is the size of the job, below, and it reads nothing. A one element job
+never opens anything but `floor.md`.
 
 `precedents.md` is the largest of the five and the one most often not needed at
 all. A build whose route came out of the subject without argument never has to
@@ -133,6 +137,58 @@ answer `Not slop when` with `Never` — there is no page without a language, and
 none whose h1 competes with another. Contrast, focus, the three states beyond
 success and the legal pages join that class rather than starting a new one.
 
+## What size of job this is
+
+Answer before step 1, in one line, and say which answer you took. The thirteen
+steps below are written for a surface that does not exist yet. Running all of
+them against a request to fix one card is not thoroughness — it is how a skill
+gets dropped in silence the third time somebody pays for it, and a step
+silently dropped is worse than a step that was never claimed.
+
+**A new surface.** A page, a screen, a site, a component library with no theme
+to inherit. Steps 1 to 13, all of them.
+
+**A new part inside a system that already exists.** A screen in an app that has
+a theme, a component in a library that has one. This is the common case and the
+process below does not describe it.
+
+The four roots are not asked here, they are read. Root 1 is the product, which
+the person still has to supply. Roots 2, 3 and 4 are already answered by the
+artifact: the copy that shipped is the voice, the theme file is the temperature
+and the density, and both are readable from the four places the auditor's own
+rule names — wherever the project declares its values, whether those names came
+from the subject, whether shared components differ from what they were
+installed as, and anywhere a choice is written down beside the value it
+governs. Read them, state what you found in three lines, and enter at step 7
+with `floor.md` open beside the route the system already took.
+
+A part that genuinely cannot be built inside the existing decisions is a
+finding to report, not a licence to redecide the system. Say which decision
+blocks it and what changing it would cost.
+
+**One element.** A button, a spacing value, a state that is missing, a
+correction the person named by name. `floor.md` for whatever that element owes
+and the reduction pass, and nothing else. No roots, no routes, no recording,
+no theme audit.
+
+Three rules hold across all three sizes.
+
+**The size is declared, not implied.** Name it in one line before starting, so
+the person can say you got it wrong while it is still cheap.
+
+**No size is a licence to skip the floor.** A focus ring nobody declared is the
+same defect in a one element job as in a whole site, and `floor.md` is scoped
+to what the job touches rather than to how large the job is.
+
+**A size is not a verdict on the request.** Somebody asking for one component
+inside a system with no theme at all is a new surface wearing a small request,
+and the honest move is to say so and let them choose, not to derive a palette
+they did not ask for.
+
+**When the size is genuinely unclear, ask.** The line between the second size
+and the first is whether the existing decisions survive, and that is the
+person's call rather than a default.
+
 ## The four roots
 
 Only the brief or the human answers these. Answer from the brief where the
@@ -155,7 +211,10 @@ decided and is not.
 
 ## Process
 
-1. **Roots.** Answer all four. Record the inventory as text before any code.
+1. **Roots.** Read anti-slop-brief.md if the project has one: it answers the
+   roots and this step becomes a check rather than an interview. Otherwise
+   answer all four, and record the inventory as text before any code. Either
+   way the file is written at step 4, below.
 2. **Theme before components,** which is the audit procedure run backwards. The
    auditor reads wherever a project declares its values first — a theme
    config, a variables file, a `:root` block, the top of the main stylesheet —
@@ -169,8 +228,11 @@ decided and is not.
    nothing is built until the plan has been through it.
 6. **Routes.** Two or three named directions, each a closed bundle of the five
    decisions in `composing.md`, each with its cost stated, and one of them
-   recommended. The person chooses, or mixes two, and that choice is the brief
-   from here on. This is the one step that waits for an answer.
+   recommended. **Then take your own recommendation and build.** Name it in one
+   line, keep the others in a paragraph the person can reach for, and go. Step 6
+   waits for an answer in two cases only, and `composing.md` carries them: the
+   person asked to choose, or a directional root came back unanswered and the
+   routes differ on exactly what it would have settled.
 7. **Composition and the signature,** below, built out of the chosen route.
 8. **Components,** built against the theme rather than re-deciding at each
    callsite. A class stack retyped at five callsites is the same defect as a
@@ -182,16 +244,21 @@ decided and is not.
     `legal.md` carries the inventory they draw on and the rule for a field
     nobody answered. They are written before their links are added.
 11. **The reduction pass.** One pass whose only purpose is removal.
-12. **The floor pass.** One pass that only checks, against `floor.md`, and it
+12. **The rendered pass,** below. Open the page at three widths, in both
+    themes, with `prefers-reduced-motion` on, and tab through it once. Where the
+    session has no browser tooling, say so in one line and run the five hand
+    checks instead. Two of those five cannot be answered by reading at all.
+13. **The floor pass.** One pass that only checks, against `floor.md`, and it
     is the last thing that happens. The reduction pass deletes, and a deletion
     can take a focus ring or an `aria-live` region out with the element it was
     attached to.
 
-Steps 6 and 7 are the only ones that involve the person, and step 6 is the only
-one that stops for an answer. Everything else in this list is register one:
-decided and applied without asking, because asking about a value with one right
-answer is noise wearing the costume of collaboration. `composing.md` carries the
-test that keeps the two apart.
+Steps 6 and 7 are the only ones that involve the person, and neither of them
+stops by default. Step 6 names its routes, takes one, and says which. It stops
+only in the two cases `composing.md` names. Everything else in this list is
+register one: decided and applied without asking, because asking about a value
+with one right answer is noise wearing the costume of collaboration.
+`composing.md` carries the test that keeps the registers apart.
 
 ## The seven shapes of a recorded decision
 
@@ -311,11 +378,12 @@ those values stop resolving, which turns a decision into a constraint.
 In Tailwind that means declaring `colors`, `spacing`, `fontSize`,
 `borderRadius`, `fontWeight` and `lineHeight` under `theme` rather than under
 `theme.extend` — the last two are the ones builds forget, and on a restrained
-palette weight carries more of the hierarchy than radius does. In plain CSS the
-equivalent is narrower: you cannot stop a literal from working, so the
-constraint has to come from review rather than from the compiler, and the
-discipline is that no rule outside the token block types a colour, a size or a
-radius directly.
+palette weight carries more of the hierarchy than radius does: a `font-semibold`
+resolving out of a nine-step ramp nobody declared is the same defect as a colour
+nobody picked. In plain CSS the equivalent is narrower: you cannot stop a literal
+from working, so the constraint has to come from review rather than from the
+compiler, and the discipline is that no rule outside the token block types a
+colour, a size or a radius directly.
 
 Be exact about what that buys, because a build stated it too broadly and an
 audit caught it: a top-level `theme` is merged per key against the framework's
@@ -323,10 +391,7 @@ own, so **only the keys you declare are replaced**. Everything you leave out —
 `height`, `minHeight`, `width`, `flex`, `inset`, `opacity`, `keyframes` — stays
 at its default and goes on compiling. Replacing four keys does not make a tree
 token-complete, and a comment claiming it does is the first survival check
-failing. The last two are the ones builds forget,
-and on a restrained palette weight carries more of the hierarchy than radius
-does — a `font-semibold` resolving out of a nine-step ramp nobody declared is
-the same defect as a colour nobody picked.
+failing.
 
 Two things to know before you do it. The scale you replace has to be complete
 enough to build from, because there is no fallback left. And an unrecognised
@@ -355,6 +420,37 @@ So the check is mechanical and belongs at the end of the build: grep the emitted
 tree for a hex, a pixel value, a duration and a cubic-bezier outside the token
 block. Each hit is either a value that should have been a token or a Departure
 that should have been recorded. There is no third case.
+
+## Where the brief goes
+
+The theme file holds the values, and the seven shapes hold the reasoning beside
+them. Neither holds the four roots, the inventory root 1 produced, or the route
+that was taken — and those three are exactly what a second session needs in
+order not to re-derive a product that was already decided. Today they live in
+the conversation, which is to say they do not live anywhere.
+
+So they land in a file: *anti-slop-brief.md*, beside the project's other
+documents if it keeps any, at the root if it does not.
+
+It holds four things and nothing else. The four roots as answered, marked where
+one was read off the artifact rather than supplied. The inventory. The route
+taken, named, with the one or two that were not. And the date.
+
+**It does not restate the theme.** A value written in two places diverges in one
+of them, and the theme file is the one the auditor reads. The brief holds what
+has no other home.
+
+**Read it before step 1 and it answers the roots.** Say which of its roots the
+new request changes, change those, and leave the rest. A request that
+contradicts the brief is a fork worth naming out loud, because the alternative
+is a second product growing quietly inside the first.
+
+**Write it at step 4** with the recording, and update it at step 6 once the
+route is settled. Written after the build it is a summary, and a summary is what
+the seven shapes already are.
+
+**A brief can answer the root that would have stopped step 6.** That is its
+second use and the one that pays for it on the third screen.
 
 ## The collision test
 
@@ -465,6 +561,42 @@ shipped as a visible gap rather than as an invention. `legal.md` carries the
 questions, the contents, and the routing rule that keeps a link from pointing
 at a page that does not exist yet.
 
+**The interface's copy is in the language the product ships in, and everything
+you say about the build is in the language of the request.** The two are often
+different and the mistake is to collapse them: a Brazilian asking in Portuguese
+for a page aimed at United States buyers wants English on the page and
+Portuguese in the handover. Where the brief does not settle which language the
+product ships in, that is root 1 unanswered — ask, and do not infer it from the
+language of the request.
+
+## The rendered pass
+
+Two of the five checks below cannot be done by reading, and this repository has
+recorded across three rounds that every round produces at least one defect
+visible only by opening the page: a header 214px out of alignment at 1920px, a
+closed panel still reserving 52px, a focus ring that exists in the stylesheet
+and is painted over by a parent.
+
+So open it. Where the session has any browser tooling at all, step 12, the step
+before the floor pass, is to load the page and look:
+
+- **Three widths: 375, 768, 1440.** The first is where the measure breaks and
+  the last is where the composition does.
+- **Both themes, if two exist.** Opened, not inferred from one.
+- **`prefers-reduced-motion: reduce` switched on**, and the page loaded under
+  it rather than toggled after.
+- **One tab pass from the top**, watching for the focus ring on every
+  interactive element in order, and for the order itself.
+
+**Report what you saw at the altitude a finding is reported at:** what is
+wrong, what it costs, and where. A screenshot attached to a claim is evidence.
+A screenshot attached to nothing is decoration, and four of them are a slideshow.
+
+**Where no browser tooling is available, say so in one line** and run the five
+hand checks below instead. That line matters more than it looks: a build
+reporting "checked" without saying how is the same defect as a contrast ratio
+asserted rather than computed.
+
 ## Out of scope
 
 Any claim about who or what wrote a piece of code. Legal advice: what this
@@ -513,8 +645,9 @@ second pass even when the auditor did run:
 5. Reduced motion was switched on and the page checked under it.
 
 The last two cannot be verified by reading, which is why they are on this list
-and not in the survival checks. An unverified build is a finding to report, not
-a step to skip quietly.
+and not in the survival checks. Where the rendered pass ran, it already answered
+both and this list is the fallback rather than a second pass. An unverified
+build is a finding to report, not a step to skip quietly.
 
 **The auditor cannot see two of the things this skill now promises.** Contrast
 is arithmetic and the audit catalog deliberately does not carry it, because

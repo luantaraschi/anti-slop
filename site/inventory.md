@@ -7,9 +7,10 @@ beside it where one exists.
 
 ## What the product is
 
-A plugin for Claude Code, named `anti-slop`, version 0.5.0, MIT, by Luan
-Taraschi. It ships three skills: `anti-slop:audit` at 0.4.0,
-`anti-slop:build` at 0.3.0 and `anti-slop:text` at 0.1.0.
+A plugin for Claude Code, named `anti-slop`, version 0.6.0, MIT, by Luan
+Taraschi. It ships four skills: `anti-slop:audit` at 0.5.0,
+`anti-slop:build` at 0.4.0, `anti-slop:text` at 0.2.0 and `anti-slop:fix` at
+0.1.0.
 
 ## What the identity means
 
@@ -70,14 +71,39 @@ answers differently, `legal.md` for the privacy notice and the terms,
 `precedents.md` for moves measured off twenty reference sites.
 
 **Three registers.** Anything with one right answer it settles in silence. The
-shape of the page it brings as two or three named routes and waits for an
-answer. Anything bolder it proposes once there is a page to look at. A decision
+shape of the page it brings as two or three named routes, one of them
+recommended, and then it takes that recommendation and builds. It stops for an
+answer in two cases only: the person asked to choose, or a directional root came
+back unanswered and the routes differ on exactly what it would have settled.
+Anything bolder it proposes once there is a page to look at. A decision
 belongs in the second register when changing it later would mean rebuilding
 rather than editing.
 
 **What is not measured:** the route step is exercised by no fixture and no
 specimen. Contrast and the collision test are unauditable by construction and
 are reported rather than checked.
+
+## What the fixer holds
+
+**One reference:** `repairs.md`, mapping all 54 interface tells to the rule
+that repairs each one, in five classes: derive 13, declare 10, branch 10,
+write 17 and unsettled 4.
+
+**Six invocations:** `anti-slop fix`, plus one per axis. A path after the mode
+restricts the scope the same way the auditor's does.
+
+**What it refuses, always by name:** a repair whose fix needs a root nobody
+set, a fact nobody supplied, a redesign, or a change with no bounded size.
+
+**What one blind round measured, 2026-08-24:** the loop run on a copy of
+`fixtures/slop-dashboard`. 29 findings fired before, 16 after, 13 closed and 0
+opened. 15 repaired, 14 refused, 12 of those refusals correct. Three of the
+fifteen repairs did not close the finding they attacked and five changed the row
+rather than the cause. Record in `calibration/2026-08-24/README.md`.
+
+**What is still not measured:** the fixer has met one fixture and one report.
+Its step 6 re-audit has never been run, and the round's own record shows the one
+row level repair the fixer missed is the one that step would have caught.
 
 ## Evidence that exists
 
@@ -88,14 +114,19 @@ are reported rather than checked.
 W7, F2, F3, F4, F5, F12. `clean-landing` carries A2 and A4 on its `forbid` row,
 and neither has fired on it in any blind run.
 
-**23 blind reports**, every one committed under `calibration/`, across five
-rounds dated 2026-08-07, 2026-08-17, 2026-08-17b, 2026-08-18 and 2026-08-18b.
-Eighteen are the auditor reading fixtures, three are the auditor reading what
-the build skill produced, and two are the auditor reading this page and the
-specimen beside it.
+**25 blind audit reports**, every one committed under `calibration/`, across
+six rounds dated 2026-08-07, 2026-08-17, 2026-08-17b, 2026-08-18, 2026-08-18b
+and 2026-08-24. Twenty are the auditor reading fixtures, three are the auditor
+reading what the build skill produced, and two are the auditor reading this page
+and the specimen beside it.
 `find calibration -maxdepth 2 -name 'audit-*.md' | wc -l`
 
-**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 69
+**30 blind reports in all, across seven rounds**, the seventh being
+2026-08-24b. The five the count above leaves out are the fixer's single run and
+the rewriter's four, which are blind runs of skills that do not audit.
+`find calibration -maxdepth 2 -name '*.md' ! -name 'README.md' | wc -l`
+
+**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 72
 tests.
 
 **The validator reports its own gaps rather than hiding them:** 20 of the 54

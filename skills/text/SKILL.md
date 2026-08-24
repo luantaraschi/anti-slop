@@ -9,7 +9,7 @@ description: |
   Portuguese.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # text
@@ -219,8 +219,14 @@ Prose. Three modes.
 | Mode | When | Deliver |
 |---|---|---|
 | Pasted | the text is in the conversation | the rewrite, then a short note |
-| File | you were given a path | the file rewritten in place, then a short note |
+| File | you were given a path | the file rewritten in place once it is recoverable, then a short note |
 | Embedded | another skill or agent called you mid task | the rewritten text alone |
+
+**The note is written in the language of the request, which is not always the
+language of the text.** Somebody asking in Portuguese to clean up an English
+README gets the README in English and the note in Portuguese. The text keeps
+its own language, which the Out of scope section already says; this is about
+everything else you write.
 
 **The note is one or two sentences in plain words.** It says what the text was
 doing and what the rewrite did about it, and where a root went unanswered it
@@ -233,6 +239,24 @@ frontmatter, data, tables of values, link targets and quoted material stay
 exactly as they are. Quoted material is the one people forget: a watched phrase
 inside a quotation is being discussed, not used, and editing it puts words in
 somebody's mouth.
+
+**Before writing over a file, check that it is recoverable.** Run `git status`
+on the path and act on what it says.
+
+Tracked and clean: rewrite in place, and say so in the note.
+
+Tracked and already modified, or not tracked at all: say which of the two it is,
+show the rewrite instead of writing it, and let the person decide. If they tell
+you to write anyway, write.
+
+This is not caution for its own sake. This skill deletes sentences on purpose,
+it produces no diff, and the removal pass is the step with the highest yield —
+so it is also the step that removes the most that cannot be got back. The undo
+has to exist before the rewrite does.
+
+**Where the repository is not a git repository at all,** say that in one line
+and show the rewrite. Do not offer to make a backup copy: a second file nobody
+asked for is litter, and the person can redirect the output themselves.
 
 **Never deliver a diff or a findings list** unless the user asks for one in so
 many words. The output of this skill is the text.

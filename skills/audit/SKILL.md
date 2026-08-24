@@ -14,7 +14,7 @@ description: |
   reports and does not design.
 license: MIT
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # audit
@@ -215,10 +215,50 @@ one place a reader learns that repairs collapse into each other, so a count of
 sites, a severity, or a note written there costs them that. How many places a
 single finding touches belongs in its paragraph.
 
+**The report is written in the language of the request.** Identifiers, paths,
+tell ids, class names and code stay exactly as they are in the source. Somebody
+who typed "audita essa interface" gets the verdict and every finding in
+Portuguese, with `components/table.tsx:88` still spelled that way. The `Signal`
+fields in this catalog are written in English because that is where they are
+maintained; what reaches the reader is not.
+
+## What happens after the report
+
+Close the report with one line naming what repairs it and over what scope:
+`anti-slop fix`, or `anti-slop fix surface app/`. This skill does not change
+code, and a reader holding ten findings and no next step is holding a list.
+
+Two things that line has to be honest about.
+
+**How many the fixer can take on its own.** Say the number. A repair that needs
+a root, a fact, a redesign or a change with no bounded size is refused by name at
+the other end, and it is cheaper for the person to learn that here. The fourth
+class is the one an auditor forgets: `skills/fix/references/repairs.md` marks
+those rows `unsettled`, because the change is well understood and can touch
+every consumer of the thing it changes, and A8, A10, A14 and S2 all sit there. A
+count that leaves them on the fixer's side is wrong the moment one of them
+fires.
+
+**Which findings those are.** Name their ids in the same line. The palette, the
+type families and the legal pages are the usual three, and all three need an
+answer this report cannot produce by reading code.
+
+Never offer to repair inside this skill. The separation is what keeps a blind
+run able to score this report: a run that scored a mutated tree would be
+scoring two skills at once and attributing the result to one.
+
 ## Out of scope
 
-A rendered pass, a real console error, and running the Finish axis against a
-site published over HTTP.
+**A rendered pass, unless the session has browser tooling.** The Craft axis asks
+whether anyone looked and answers it by reading code, which is a limit this
+catalog carries by construction. Where a browser is available, open the page at
+375, 768 and 1440, in both themes, and mark every finding that came from
+looking rather than from reading. A finding stated as observed and a finding
+stated as read are worth different amounts to whoever has to reproduce it, and
+the report is the only place that distinction can be made.
+
+A real console error, and running the Finish axis against a site published over
+HTTP, stay out of scope.
 
 **Stack is not a scope limit.** Forty-two of the fifty-four tells never
 mention a framework at all: every tell on States, seven of the eight on Words,

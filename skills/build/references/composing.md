@@ -26,6 +26,26 @@ of collaboration.
 presented whole, so a person can choose one in a sentence. This is where the
 five decisions below get settled, and it happens once.
 
+**It brings routes; it does not always stop for them.** A skill that halts on
+every page to hold a vote is the form again, one register up. So the default is
+to name the two or three, say which one you would build, take it, and build.
+The alternatives stay written where the person can reach them, and register
+three is where the second one comes back if the page turns out to argue for it.
+
+Two cases stop, and they are the two where building first destroys the answer.
+
+**The person asked to choose.** In so many words, or by asking for options, or
+by having asked last time.
+
+**A directional root came back unanswered and the routes differ on exactly what
+it would have settled.** Building there means guessing the root and then
+dressing the guess in a finished page, which is the outcome the four roots
+exist to prevent. Note which root, and ask for that root rather than for a
+route.
+
+Everything else proceeds. A route taken and named in one line can be argued
+with in one line. A route waited on stops the work.
+
 **Register three: propose, during and after.** The bolder move that opens a
 different design line, and the move that only became visible because the page
 now exists. Each one is a fork rather than a tweak, and each says so.

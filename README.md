@@ -19,13 +19,13 @@
 </p>
 
 <p align="center">
-  <img alt="version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-8C3A1C">
+  <img alt="version 0.6.0" src="https://img.shields.io/badge/version-0.6.0-8C3A1C">
   <img alt="94 tells" src="https://img.shields.io/badge/catalog-94_tells-67635B">
-  <img alt="3 skills" src="https://img.shields.io/badge/skills-3-67635B">
+  <img alt="4 skills" src="https://img.shields.io/badge/skills-4-67635B">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-8C3A1C"></a>
 </p>
 
-A Claude Code plugin for work that came out generic. It ships three skills, and
+A Claude Code plugin for work that came out generic. It ships four skills, and
 94 tells: 54 that read an interface, 40 that read prose.
 
 **`anti-slop:audit`** reads interface code for the marks of work nobody finished:
@@ -45,10 +45,13 @@ them.
 It works in three registers, and the difference between them is what stops it
 being either a form or a generator. Anything with one right answer it settles in
 silence: the floor, the arithmetic, the craft. The shape of the page it brings
-as two or three named routes and waits for an answer. Anything bolder that would
-open a different design line it proposes, with what it costs and what it needs
-from you, once there is a page to look at. The line is testable: a decision is
-directional if changing it later means rebuilding rather than editing.
+as two or three named routes, one of them recommended, and then it takes its own
+recommendation and builds. It stops for an answer in two cases only: you asked
+to choose, or a directional root came back unanswered and the routes differ on
+exactly what it would have settled. Anything bolder that would open a different
+design line it proposes, with what it costs and what it needs from you, once
+there is a page to look at. The line is testable: a decision is directional if
+changing it later means rebuilding rather than editing.
 
 **`anti-slop:text`** rewrites prose. Forty tells across five axes on the text
 itself rather than on the interface around it: whether anything is behind the
@@ -58,6 +61,14 @@ text at all. It returns the rewritten text and no report. It reads English and
 Portuguese, and the Portuguese half is written from Portuguese rather than
 translated from the English one.
 
+**`anti-slop:fix`** repairs an interface from findings that already exist.
+`skills/fix/references/repairs.md` maps every one of the fifty-four interface
+tells to the rule that repairs it, and the skill repairs the cause a finding
+names rather than the row it was printed on. It refuses by name the repairs
+that need an answer only the person has: a root nobody set, a fact nobody
+supplied, a redesign, or a change with no bounded size. It re-audits every
+repair before calling it done.
+
 The auditor and the builder are one loop. The auditor suppresses a false positive when it finds evidence
 that somebody chose the value. That evidence may live in `theme.extend`, custom
 properties, a tokens file or primitives that differ from stock. The build
@@ -65,6 +76,10 @@ skill writes into those four places. So a tell firing on a tree the build skill
 produced is the build skill's failure, and it arrives with a file and a line.
 That is how this repository tests the half of itself that generates rather than
 detects.
+
+The auditor and the fixer are a second loop, and it is the one that returns to
+the code rather than to a specimen: a report becomes a repair, and the fixer
+re-audits the same finding before it is allowed to call anything done.
 
 ## The claim it does not make
 
@@ -110,6 +125,10 @@ skills/text/ ... the rewriter, catalog included
    +-- references/vocabulary-en.md      the watched words, English
    +-- references/vocabulary-pt.md      the watched words, Portuguese
    |
+skills/fix/ ..... the third side of the loop, repairs the audit's findings
+   SKILL.md ......... the rule, the refusals, the process, the invocation table
+   +-- references/repairs.md           every interface tell mapped to its rule
+   |
 fixtures/ ........... four interface specimens, two clean, two slop
 corpus/ ............. four prose specimens, one pair per language
 calibration/ ........ the blind reports, as the runs produced them
@@ -134,7 +153,7 @@ Every tell is written to the same four field shape, `Signal`, `Principle`,
 usable: a tell without a stated exemption becomes a lint rule that fires on
 deliberate choices, which is how audit tools lose their readers.
 
-## None of the three has a list of banned patterns
+## None of the four has a list of banned patterns
 
 Forbid the purple gradient and the generic reappears wherever the list does not
 reach. The audit rule says why: a finding is a pattern present **and** no
@@ -208,12 +227,13 @@ what the plugin uses.
 ### Firing without being asked
 
 Installed as a plugin, `hooks/hooks.json` registers a `SessionStart` hook that
-prints four sentences routing interface work to `anti-slop:build`, a review to
-`anti-slop:audit` and prose to `anti-slop:text`. It is about 280 tokens, it
-loads no catalog, and it is the only part of the plugin that costs anything in
-a session it has nothing to do with. That is deliberate: the note routes and
-does not teach, so everything it would otherwise say stays in the skill files
-and loads only when a skill is actually invoked.
+prints five sentences routing interface work to `anti-slop:build`, a review to
+`anti-slop:audit`, a repair to `anti-slop:fix` and prose to `anti-slop:text`.
+It is about 310 tokens, it loads no catalog, and it is the only part of the
+plugin that costs anything in a session it has nothing to do with. That is
+deliberate: the note routes and does not teach, so everything it would
+otherwise say stays in the skill files and loads only when a skill is
+actually invoked.
 
 `hooks/run-hook.cmd` is a polyglot wrapper copied byte for byte from the one
 plugin on the author's machine whose SessionStart hook is known to work on
@@ -276,6 +296,23 @@ scrubbing the tell.
 the copy inside a running interface, a button label or an empty state, and
 reports. The second reads prose and rewrites it. A landing page has both.
 
+The fix skill takes findings, from a report already in the conversation, from
+a file, or from a fresh audit it runs itself, and repairs the cause each one
+names.
+
+| Invocation | Repairs | References to load |
+|---|---|---|
+| `anti-slop fix` | every finding it is handed or finds | `repairs.md`, then the rules it names |
+| `anti-slop fix surface` | Surface findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix craft` | Craft findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix states` | States findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix words` | Words findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix finish` | Finish findings only | `repairs.md`, then the rules it names |
+
+A path alongside the mode restricts the scope. It repairs interface findings
+only. The text catalog needs no fixer, because `anti-slop text` already
+returns the rewritten text rather than a report.
+
 ## Example output
 
 ---
@@ -320,15 +357,15 @@ together with what every calibration run scored across all four fixtures.
 
 ## The five interface axes
 
-**Surface** (A1 through A12) is the visual layer: the palette, the radius,
-the shadows, the type scale, the icons and motion. Twelve tells, three of them
-(A1, A3, A5) absences that live in the theme file rather than in any one
+**Surface** (A1 through A14) is the visual layer: the palette, the radius,
+the shadows, the type scale, the icons and motion. Fourteen tells, three of
+them (A1, A3, A5) absences that live in the theme file rather than in any one
 component.
 
-**Craft** (C1 through C15) is whether anyone looked at the rendered result:
+**Craft** (C1 through C16) is whether anyone looked at the rendered result:
 a radius that ignores what it wraps, a counter that jitters instead of
 holding still, a heading that leaves one word behind, a dark theme nobody
-opened. Fifteen tells read relationships between elements rather than any single
+opened. Sixteen tells read relationships between elements rather than any single
 line. They compare a value with its container and the same screen across themes.
 
 **States** (S1 through S3) is whether the interface exists off the path that
@@ -336,12 +373,12 @@ was demonstrated: a request with no failure branch, view state the URL never
 learns, an action that cannot be taken back or stopped. Three tells whose
 evidence is a branch that is missing rather than a value that is wrong.
 
-**Words** (W1 through W7) is the copy inside the interface: labels, button
-verbs, empty states, error messages. Seven tells that catch the gap between
+**Words** (W1 through W8) is the copy inside the interface: labels, button
+verbs, empty states, error messages. Eight tells that catch the gap between
 what a generator writes by default and what a person writes once they have
 looked at the screen.
 
-**Finish** (F1 through F12) is twelve tells covering what a browser or a
+**Finish** (F1 through F13) is thirteen tells covering what a browser or a
 search engine checks first, things like the `lang` attribute, the title, the
 meta tags, the favicon, and a stable key on every mapped list. Nearly all of
 them are greppable, which is why the audit reads this axis before the other
@@ -430,19 +467,30 @@ lawyer's call and is said in the handover rather than implied by the page.
 
 Not equally, and the difference is worth knowing before you rely on one.
 
-**`anti-slop:audit` is the mature half.** Four calibration rounds produced
-twenty-one blind reports committed under `calibration/`. Eighteen cover the
+**`anti-slop:audit` is the mature half.** Six calibration rounds produced
+twenty-five blind audit reports committed under `calibration/`. Twenty cover the
 auditor reading fixtures. Three cover the auditor reading what the build skill
-produced. Its most recent scores are below.
+produced. Two cover the auditor reading this project's own site and specimen.
+Counting every blind report rather than every audit, thirty are committed there:
+the twenty-five above, the fixer's single run and the rewriter's four.
+`site/inventory.md` carries the command behind each figure. Its most recent
+scores are below.
 
-**`anti-slop:text` is at 0.1.0 and has almost no evidence trail.** Its forty
-tells, its four specimens and its expectation rows exist. No blind run has
-scored any of it. The rows in `corpus/README.md` say what each specimen was
-written to carry, which is a claim about the specimen and not a measurement of
-the catalog.
+**`anti-slop:text` is at 0.2.0 and has one round behind it.** Its forty tells,
+its four specimens and its expectation rows exist, and the first blind round
+scored them on 24 August 2026: four runs, one per specimen, recorded in
+`calibration/2026-08-24b/README.md`. `slop-release-en` carried 22 of its 23
+expected ids and nothing off row, `clean-release-en` 0 of 20 forbidden,
+`slop-notice-pt` 15 of 16 expected plus one off row fire, and `clean-notice-pt`
+0 of 15 forbidden. Both clean specimens came back byte identical and neither
+rewrite invented a fact. The round also found more than it settled, `M1`'s
+undefined denominator first among it, and the record rather than this paragraph
+is where that lives. The rows in `corpus/README.md` still say only what each
+specimen was written to carry, which is a claim about the specimen and not a
+measurement of the catalog.
 
-One number in it has been measured, and only against the four documents this
-repository wrote: M1's dash threshold. It is worth knowing what that measurement
+One number in it was measured before that round, and only against the four
+documents this repository wrote: M1's dash threshold. It is worth knowing what that measurement
 did, because it is the whole method in one afternoon. The tell shipped counting
 dashes per word. Counting the specimens showed that rate separating nothing:
 both clean specimens use one paired interruption on purpose, and both landed
@@ -450,14 +498,18 @@ above the threshold, because a pair is two characters and a short document is
 short. The measure that separates is the share of a text's clause joints the
 dash carries. The tell, both vocabulary files and two of the specimens changed
 the same day. That is a floor found by counting, not a rate from the wild, and
-it says so where it sits.
+it says so where it sits. The blind round then found that M1's Signal does not
+define its own denominator, so no two readings of it agree and three of the four
+published figures reproduce under neither recount. The threshold did not move
+and the record carries a proposed definition. Read it before trusting this
+paragraph.
 
 One tell, P5, is flagged as the first candidate for removal, because it is the
 only one that fires on an absence of opinion and so the only one that can push a
 rewrite into inventing a position. Use the skill, and read what it hands back
 before you ship it.
 
-**`anti-slop:build` is at 0.1.0 and younger than the auditor.** Three specimens have been built
+**`anti-slop:build` is at 0.4.0 and younger than the auditor.** Three specimens have been built
 with it and all three audited blind, by agents that had not seen the build
 skill: **2 of 41 tells fired on the first, 0 of 41 on the second, 0 of 41 on the
 third.** Forty-one is the size the catalog was at the time, not its size now.
@@ -467,8 +519,20 @@ and are not yet measured. `BACKLOG.md` lists seven gaps around application
 screens. The skill was written with pages in mind and remains thinnest on
 screens with real state.
 
-All three are usable. The auditor is the one with the evidence trail, the
-builder has three measured specimens, and the rewriter has none yet.
+**`anti-slop:fix` is at 0.1.0 and has exactly one round behind it.** It shipped
+this round with `repairs.md` mapping all fifty-four interface tells to the rule
+that repairs each one, in five classes: derive 13, declare 10, branch 10,
+write 17 and unsettled 4. The loop was then run blind on a copy of
+`fixtures/slop-dashboard`, and the record is `calibration/2026-08-24/README.md`:
+**29 findings fired before, 16 after, 13 closed and 0 opened. 15 were repaired
+and 14 refused, of which 12 refusals are correct.** Three of the fifteen repairs
+did not close the finding they attacked, and five changed the row rather than
+the cause. Nothing else this round changed has been measured. `BACKLOG.md`
+records what is owed.
+
+All four are usable. The auditor is the one with the evidence trail, the
+builder has three measured specimens, the fixer has a repair map and one
+measured pass over one fixture, and the rewriter has one blind round.
 
 ## Testing & Reliability
 
@@ -489,7 +553,7 @@ interface tells appear in no fixture row and 26 have no `forbid` row, and 13 of
 printed rather than suppressed, so the gaps in calibration are visible instead
 of implied.
 
-`python -m pytest tests/` runs 69 tests over the validator itself, all
+`python -m pytest tests/` runs 72 tests over the validator itself, all
 passing. The validator is written so that every check takes text and returns a
 list of errors, with only `main()` touching the filesystem, which is what
 makes those tests possible without fixtures on disk.
