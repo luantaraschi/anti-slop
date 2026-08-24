@@ -222,6 +222,26 @@ Portuguese, with `components/table.tsx:88` still spelled that way. The `Signal`
 fields in this catalog are written in English because that is where they are
 maintained; what reaches the reader is not.
 
+## What happens after the report
+
+Close the report with one line naming what repairs it and over what scope:
+`anti-slop fix`, or `anti-slop fix surface app/`. This skill does not change
+code, and a reader holding ten findings and no next step is holding a list.
+
+Two things that line has to be honest about.
+
+**How many the fixer can take on its own.** Say the number. A repair that needs
+a root, a fact or a redesign is refused by name at the other end, and it is
+cheaper for the person to learn that here.
+
+**Which findings those are.** Name their ids in the same line. The palette, the
+type families and the legal pages are the usual three, and all three need an
+answer this report cannot produce by reading code.
+
+Never offer to repair inside this skill. The separation is what keeps a blind
+run able to score this report: a run that scored a mutated tree would be
+scoring two skills at once and attributing the result to one.
+
 ## Out of scope
 
 **A rendered pass, unless the session has browser tooling.** The Craft axis asks
