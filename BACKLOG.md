@@ -263,6 +263,61 @@ skill file that carries it; this is the index.
   done here for the same reason the 2026-08-18 round did it: no other
   Portuguese corpus exists. Recorded rather than hidden.
 
+## Round F — everything the daily-use round shipped unmeasured, 2026-08-24
+
+The round that closed the loop with a fourth skill. It spent no blind run
+(`ROADMAP.md` item 14 says so plainly), and this file's own opening paragraph
+names unmeasured change compounding as the failure to avoid, so every process
+change below is recorded rather than assumed sound. Tasks 11 and 12 are where
+the round's blind run gets spent.
+
+- **F1. The entry gate's three sizes.** `skills/build/SKILL.md` now names a
+  new surface, a new part inside a system that already exists, and one
+  element, and runs the twelve steps only at the first size. No fixture has
+  been built at the second or third size, so the gate's own classification has
+  never been tested against a real request, only reasoned about.
+- **F2. The route step's two stopping cases.** It now takes its own
+  recommendation and builds by default, stopping only in two named cases. No
+  specimen exercises either stopping case or the new default path; the
+  distribution the plan itself calls "a guess" is still a guess.
+- **F3. `anti-slop-brief.md`.** The four roots, the inventory and the chosen
+  route now survive the session in a file read before step 1 and written at
+  step 4. No build has run since this shipped, so the round trip from a first
+  session's file to a second session's read has never been exercised.
+- **F4. The rendered pass, now a step.** Three widths, both themes, reduced
+  motion, one tab pass, where the session has browser tooling. `ROADMAP.md`'s
+  "What is deliberately not on this list" no longer carries this as a limit,
+  because it is no longer one, but no session with browser tooling has run
+  the step yet.
+- **F5. Every one of `repairs.md`'s 54 class assignments.** Derive 13, declare
+  10, branch 10, write 17, unsettled 4. The map was built by reading the audit
+  catalog and the build references against each other, not by running a
+  repair. No finding has been repaired and re-audited against it.
+- **F6. Ten Minor findings against the repair map, raised and deferred by the
+  Task 8 review** (full list in
+  `.superpowers/sdd/2026-08-24-daily-use/progress.md`, "Task 8: minor
+  (deferred, 10 findings)"): F5 classed as `write` where the blocking half is
+  an asset; the `declare` paragraph's "these never stop" read against F9 and
+  F10, which both stop; the `branch` paragraph promising a fact no branch row
+  records; three removal-shaped `derive` rows recording three different
+  stops-without; C8 classed `derive` where `deriving.md` calls the rule a
+  platform fact; C6's near miss at `floor.md:70`; `repairs.md:126` repeating
+  `skills/fix/SKILL.md:78` almost verbatim against the file's own
+  no-repetition rule; a loose sentence about the unsettled three; and "the
+  radius" against "the radius scale" for one section. None of these repaired
+  in this round.
+- **F7. Two of the round's four controller rulings corrected the plan itself,
+  not just an implementer's reading of it.** The plan classed C3, C4 and C5 as
+  `branch`; the controller moved them to `declare` and widened that class's
+  own paragraph to name the stretch, which is why the counts above are
+  derive 13, declare 10, branch 10, write 17, unsettled 4 rather than what the
+  plan specified. Separately, the plan's A3 row said the radius repair stops
+  without root 3; `deriving.md:195` opens the radius scale from root 4
+  (density), so the row was corrected to root 4 and `repairs.md`'s own
+  provenance paragraph was rewritten so it no longer claims every given row
+  was correct as written. Neither correction has been measured against a
+  repair either.
+
 ## What finishes a round
 
 `python -m pytest tests/` green, `python scripts/validate.py` at

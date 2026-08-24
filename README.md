@@ -19,13 +19,13 @@
 </p>
 
 <p align="center">
-  <img alt="version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-8C3A1C">
+  <img alt="version 0.6.0" src="https://img.shields.io/badge/version-0.6.0-8C3A1C">
   <img alt="94 tells" src="https://img.shields.io/badge/catalog-94_tells-67635B">
-  <img alt="3 skills" src="https://img.shields.io/badge/skills-3-67635B">
+  <img alt="4 skills" src="https://img.shields.io/badge/skills-4-67635B">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-8C3A1C"></a>
 </p>
 
-A Claude Code plugin for work that came out generic. It ships three skills, and
+A Claude Code plugin for work that came out generic. It ships four skills, and
 94 tells: 54 that read an interface, 40 that read prose.
 
 **`anti-slop:audit`** reads interface code for the marks of work nobody finished:
@@ -58,6 +58,14 @@ text at all. It returns the rewritten text and no report. It reads English and
 Portuguese, and the Portuguese half is written from Portuguese rather than
 translated from the English one.
 
+**`anti-slop:fix`** repairs an interface from findings that already exist.
+`skills/fix/references/repairs.md` maps every one of the fifty-four interface
+tells to the rule that repairs it, and the skill repairs the cause a finding
+names rather than the row it was printed on. It refuses by name the repairs
+that need an answer only the person has: a root nobody set, a fact nobody
+supplied, a redesign, or a change with no bounded size. It re-audits every
+repair before calling it done.
+
 The auditor and the builder are one loop. The auditor suppresses a false positive when it finds evidence
 that somebody chose the value. That evidence may live in `theme.extend`, custom
 properties, a tokens file or primitives that differ from stock. The build
@@ -65,6 +73,10 @@ skill writes into those four places. So a tell firing on a tree the build skill
 produced is the build skill's failure, and it arrives with a file and a line.
 That is how this repository tests the half of itself that generates rather than
 detects.
+
+The auditor and the fixer are a second loop, and it is the one that returns to
+the code rather than to a specimen: a report becomes a repair, and the fixer
+re-audits the same finding before it is allowed to call anything done.
 
 ## The claim it does not make
 
@@ -110,6 +122,10 @@ skills/text/ ... the rewriter, catalog included
    +-- references/vocabulary-en.md      the watched words, English
    +-- references/vocabulary-pt.md      the watched words, Portuguese
    |
+skills/fix/ ..... the third side of the loop, repairs the audit's findings
+   SKILL.md ......... the rule, the refusals, the process, the invocation table
+   +-- references/repairs.md           every interface tell mapped to its rule
+   |
 fixtures/ ........... four interface specimens, two clean, two slop
 corpus/ ............. four prose specimens, one pair per language
 calibration/ ........ the blind reports, as the runs produced them
@@ -134,7 +150,7 @@ Every tell is written to the same four field shape, `Signal`, `Principle`,
 usable: a tell without a stated exemption becomes a lint rule that fires on
 deliberate choices, which is how audit tools lose their readers.
 
-## None of the three has a list of banned patterns
+## None of the four has a list of banned patterns
 
 Forbid the purple gradient and the generic reappears wherever the list does not
 reach. The audit rule says why: a finding is a pattern present **and** no
@@ -275,6 +291,23 @@ scrubbing the tell.
 `anti-slop words` and `anti-slop text` are not the same thing. The first reads
 the copy inside a running interface, a button label or an empty state, and
 reports. The second reads prose and rewrites it. A landing page has both.
+
+The fix skill takes findings, from a report already in the conversation, from
+a file, or from a fresh audit it runs itself, and repairs the cause each one
+names.
+
+| Invocation | Repairs | References to load |
+|---|---|---|
+| `anti-slop fix` | every finding it is handed or finds | `repairs.md`, then the rules it names |
+| `anti-slop fix surface` | Surface findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix craft` | Craft findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix states` | States findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix words` | Words findings only | `repairs.md`, then the rules it names |
+| `anti-slop fix finish` | Finish findings only | `repairs.md`, then the rules it names |
+
+A path alongside the mode restricts the scope. It repairs interface findings
+only. The text catalog needs no fixer, because `anti-slop text` already
+returns the rewritten text rather than a report.
 
 ## Example output
 
@@ -435,7 +468,7 @@ twenty-one blind reports committed under `calibration/`. Eighteen cover the
 auditor reading fixtures. Three cover the auditor reading what the build skill
 produced. Its most recent scores are below.
 
-**`anti-slop:text` is at 0.1.0 and has almost no evidence trail.** Its forty
+**`anti-slop:text` is at 0.2.0 and has almost no evidence trail.** Its forty
 tells, its four specimens and its expectation rows exist. No blind run has
 scored any of it. The rows in `corpus/README.md` say what each specimen was
 written to carry, which is a claim about the specimen and not a measurement of
@@ -457,7 +490,7 @@ only one that fires on an absence of opinion and so the only one that can push a
 rewrite into inventing a position. Use the skill, and read what it hands back
 before you ship it.
 
-**`anti-slop:build` is at 0.1.0 and younger than the auditor.** Three specimens have been built
+**`anti-slop:build` is at 0.4.0 and younger than the auditor.** Three specimens have been built
 with it and all three audited blind, by agents that had not seen the build
 skill: **2 of 41 tells fired on the first, 0 of 41 on the second, 0 of 41 on the
 third.** Forty-one is the size the catalog was at the time, not its size now.
@@ -467,8 +500,16 @@ and are not yet measured. `BACKLOG.md` lists seven gaps around application
 screens. The skill was written with pages in mind and remains thinnest on
 screens with real state.
 
-All three are usable. The auditor is the one with the evidence trail, the
-builder has three measured specimens, and the rewriter has none yet.
+**`anti-slop:fix` is at 0.1.0 and has no evidence trail yet.** It shipped this
+round with `repairs.md` mapping all fifty-four interface tells to the rule
+that repairs each one, in five classes: derive 13, declare 10, branch 10,
+write 17 and unsettled 4. No repair has been run blind against a fixture, and
+none of the round's other unmeasured changes have either. `BACKLOG.md` records
+what is owed.
+
+All four are usable. The auditor is the one with the evidence trail, the
+builder has three measured specimens, the fixer has a repair map and no
+measurement yet, and the rewriter has none yet.
 
 ## Testing & Reliability
 
@@ -489,7 +530,7 @@ interface tells appear in no fixture row and 26 have no `forbid` row, and 13 of
 printed rather than suppressed, so the gaps in calibration are visible instead
 of implied.
 
-`python -m pytest tests/` runs 69 tests over the validator itself, all
+`python -m pytest tests/` runs 72 tests over the validator itself, all
 passing. The validator is written so that every check takes text and returns a
 list of errors, with only `main()` touching the filesystem, which is what
 makes those tests possible without fixtures on disk.

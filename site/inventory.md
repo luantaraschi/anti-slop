@@ -7,9 +7,10 @@ beside it where one exists.
 
 ## What the product is
 
-A plugin for Claude Code, named `anti-slop`, version 0.5.0, MIT, by Luan
-Taraschi. It ships three skills: `anti-slop:audit` at 0.4.0,
-`anti-slop:build` at 0.3.0 and `anti-slop:text` at 0.1.0.
+A plugin for Claude Code, named `anti-slop`, version 0.6.0, MIT, by Luan
+Taraschi. It ships four skills: `anti-slop:audit` at 0.5.0,
+`anti-slop:build` at 0.4.0, `anti-slop:text` at 0.2.0 and `anti-slop:fix` at
+0.1.0.
 
 ## What the identity means
 
@@ -79,6 +80,20 @@ rather than editing.
 specimen. Contrast and the collision test are unauditable by construction and
 are reported rather than checked.
 
+## What the fixer holds
+
+**One reference:** `repairs.md`, mapping all 54 interface tells to the rule
+that repairs each one, in five classes: derive 13, declare 10, branch 10,
+write 17 and unsettled 4.
+
+**Six invocations:** `anti-slop fix`, plus one per axis. A path after the mode
+restricts the scope the same way the auditor's does.
+
+**What it refuses, always by name:** a repair whose fix needs a root nobody
+set, a fact nobody supplied, a redesign, or a change with no bounded size.
+
+**What is not measured:** no repair has been run blind against a fixture yet.
+
 ## Evidence that exists
 
 **Four calibration fixtures:** `slop-dashboard`, `clean-dashboard`,
@@ -95,7 +110,7 @@ the build skill produced, and two are the auditor reading this page and the
 specimen beside it.
 `find calibration -maxdepth 2 -name 'audit-*.md' | wc -l`
 
-**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 69
+**`python scripts/validate.py` reports `0 problem(s)`**, and `pytest` runs 72
 tests.
 
 **The validator reports its own gaps rather than hiding them:** 20 of the 54

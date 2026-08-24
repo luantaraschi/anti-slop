@@ -65,7 +65,7 @@
       </p>
       <div class="facts" aria-label="Project facts">
         <span><b>94</b> tells</span>
-        <span><b>3</b> skills</span>
+        <span><b>4</b> skills</span>
         <span><b>23</b> blind reports</span>
         <span><b>MIT</b> licensed</span>
       </div>
@@ -283,7 +283,7 @@
     </section>
 
     <section class="column">
-      <h2>Three skills, and two of them are one loop</h2>
+      <h2>Four skills, and the loop closes</h2>
 
       <div class="skills">
         <div>
@@ -320,13 +320,27 @@
             Portuguese rather than translated from the English one.
           </p>
         </div>
+
+        <div>
+          <h3>anti-slop:fix</h3>
+          <p>
+            Changes the code. It repairs the cause a finding names rather than
+            the row it printed on, using a map from every one of the 54
+            interface tells to the rule that repairs it, and it re-audits each
+            repair before calling it done. It refuses by name the repairs that
+            need an answer only the person has: a root nobody set, a fact
+            nobody supplied, a redesign, or a change with no bounded size.
+          </p>
+        </div>
       </div>
 
       <p class="note">
-        Which is how the first two test each other: a tell that fires on a tree
-        the build skill produced is the build skill's failure, and it arrives
-        with a file and a line. The rewriter stands outside that loop, because
-        it returns text rather than a report and there is nothing for a tell to
+        The auditor and the builder test each other: a tell that fires on a
+        tree the build skill produced is the build skill's failure, and it
+        arrives with a file and a line. The auditor and the fixer close a
+        second loop the same way: a repair that does not clear the same audit
+        again is not done. The rewriter stands outside both loops, because it
+        returns text rather than a report and there is nothing for a tell to
         fire on.
       </p>
     </section>

@@ -82,6 +82,31 @@ Design in `docs/specs/2026-08-22-anti-slop-text-design.md`.
 **Nothing about it is measured.** That is item 13, and it is the first thing in
 the Open list below even though it carries the highest number there.
 
+### 14 — Daily use: proportion, a rendered-pass step, and the loop closed with a fourth skill ✅ 2026-08-24
+
+Ten tasks. The builder got a step 0 naming three sizes of job — a new surface,
+a new part inside a system that already exists, and one element — and the
+twelve steps now run only at the first size. Its route step takes its own
+recommendation and builds by default, stopping in two named cases only. The
+four roots, the inventory and the chosen route now survive the session in
+`anti-slop-brief.md`, read before step 1 and written at step 4. Each skill
+states what language it answers in. The rewriter checks a file is recoverable
+before writing over it.
+
+The loop that used to stop at a report now closes. `anti-slop:fix` shipped
+with its one reference, `repairs.md`, mapping all 54 interface tells to the
+rule that repairs each one, in five classes: derive 13, declare 10, branch
+10, write 17, unsettled 4. The auditor's report now closes with the line
+naming where the repair happens. The package and every published surface
+were brought up to four skills: `plugin.json` at 0.6.0, `audit` at 0.5.0,
+`build` at 0.4.0, `text` at 0.2.0, `fix` at 0.1.0, suite at 72 tests.
+
+**This round spent no blind run.** Everything above is a prose or process
+change measured by nothing yet. Item 13 above and the fixer's own first
+measurement are what tasks 11 and 12 spend the round's blind run on; this
+entry only records what shipped. `BACKLOG.md` carries the full account of
+what is still unmeasured.
+
 ---
 
 ## Open, and what each needs
@@ -203,7 +228,9 @@ will be visible to you immediately and invisible to me.
 uncovered on purpose. Of the rest, A9 and C2 have been measured as too broad, so
 the honest answer for some may be to cut rather than to cover.
 
-**A rendered pass.** Every round produces at least one defect only visible by
-opening the page — a header 214px out of alignment at 1920px, a closed panel
-reserving 52px. The Craft axis asks whether anyone looked and answers it by
-reading code. Recorded as a limit; closing it is a different product.
+**A rendered pass is no longer on this list.** It was recorded as a limit
+because the Craft axis asked whether anyone looked and answered by reading
+code. The 2026-08-24 round (item 14, above) made it a build step instead:
+three widths, both themes, reduced motion, one tab pass, where the session
+has browser tooling. The step itself is unmeasured, which `BACKLOG.md`
+records.
