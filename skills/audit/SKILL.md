@@ -215,6 +215,13 @@ one place a reader learns that repairs collapse into each other, so a count of
 sites, a severity, or a note written there costs them that. How many places a
 single finding touches belongs in its paragraph.
 
+**The report is written in the language of the request.** Identifiers, paths,
+tell ids, class names and code stay exactly as they are in the source. Somebody
+who typed "audita essa interface" gets the verdict and every finding in
+Portuguese, with `components/table.tsx:88` still spelled that way. The `Signal`
+fields in this catalog are written in English because that is where they are
+maintained; what reaches the reader is not.
+
 ## Out of scope
 
 **A rendered pass, unless the session has browser tooling.** The Craft axis asks

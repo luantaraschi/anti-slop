@@ -558,6 +558,14 @@ shipped as a visible gap rather than as an invention. `legal.md` carries the
 questions, the contents, and the routing rule that keeps a link from pointing
 at a page that does not exist yet.
 
+**The interface's copy is in the language the product ships in, and everything
+you say about the build is in the language of the request.** The two are often
+different and the mistake is to collapse them: a Brazilian asking in Portuguese
+for a page aimed at United States buyers wants English on the page and
+Portuguese in the handover. Where the brief does not settle which language the
+product ships in, that is root 1 unanswered — ask, and do not infer it from the
+language of the request.
+
 ## The rendered pass
 
 Two of the five checks below cannot be done by reading, and this repository has

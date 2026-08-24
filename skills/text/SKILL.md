@@ -222,6 +222,12 @@ Prose. Three modes.
 | File | you were given a path | the file rewritten in place, then a short note |
 | Embedded | another skill or agent called you mid task | the rewritten text alone |
 
+**The note is written in the language of the request, which is not always the
+language of the text.** Somebody asking in Portuguese to clean up an English
+README gets the README in English and the note in Portuguese. The text keeps
+its own language, which the Out of scope section already says; this is about
+everything else you write.
+
 **The note is one or two sentences in plain words.** It says what the text was
 doing and what the rewrite did about it, and where a root went unanswered it
 says which one. It never carries ids, never carries a verdict, never ranks
