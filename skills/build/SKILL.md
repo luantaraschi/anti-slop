@@ -210,7 +210,10 @@ decided and is not.
 
 ## Process
 
-1. **Roots.** Answer all four. Record the inventory as text before any code.
+1. **Roots.** Read anti-slop-brief.md if the project has one: it answers the
+   roots and this step becomes a check rather than an interview. Otherwise
+   answer all four, and record the inventory as text before any code. Either
+   way the file is written at step 4, below.
 2. **Theme before components,** which is the audit procedure run backwards. The
    auditor reads wherever a project declares its values first — a theme
    config, a variables file, a `:root` block, the top of the main stylesheet —
@@ -414,6 +417,37 @@ So the check is mechanical and belongs at the end of the build: grep the emitted
 tree for a hex, a pixel value, a duration and a cubic-bezier outside the token
 block. Each hit is either a value that should have been a token or a Departure
 that should have been recorded. There is no third case.
+
+## Where the brief goes
+
+The theme file holds the values, and the seven shapes hold the reasoning beside
+them. Neither holds the four roots, the inventory root 1 produced, or the route
+that was taken — and those three are exactly what a second session needs in
+order not to re-derive a product that was already decided. Today they live in
+the conversation, which is to say they do not live anywhere.
+
+So they land in a file: *anti-slop-brief.md*, beside the project's other
+documents if it keeps any, at the root if it does not.
+
+It holds four things and nothing else. The four roots as answered, marked where
+one was read off the artifact rather than supplied. The inventory. The route
+taken, named, with the one or two that were not. And the date.
+
+**It does not restate the theme.** A value written in two places diverges in one
+of them, and the theme file is the one the auditor reads. The brief holds what
+has no other home.
+
+**Read it before step 1 and it answers the roots.** Say which of its roots the
+new request changes, change those, and leave the rest. A request that
+contradicts the brief is a fork worth naming out loud, because the alternative
+is a second product growing quietly inside the first.
+
+**Write it at step 4** with the recording, and update it at step 6 once the
+route is settled. Written after the build it is a summary, and a summary is what
+the seven shapes already are.
+
+**A brief can answer the root that would have stopped step 6.** That is its
+second use and the one that pays for it on the third screen.
 
 ## The collision test
 
